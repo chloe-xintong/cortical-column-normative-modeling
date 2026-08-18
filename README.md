@@ -1,3 +1,135 @@
+# Data Preparation
+
+The `data_preparation` module identifies and verifies MRI acquisitions before cortical reconstruction, diffusion processing, and cortical trajectory generation.
+
+Raw subject directories may contain multiple MRI acquisitions without standardized filenames. This module uses BXH metadata and image-level comparison to identify candidate T1-weighted, diffusion, QSM, and other MRI acquisitions.
+
+## Scripts
+
+```text
+data_preparation/
+├── identify_scans.py
+├── inspect_bxh_details.py
+└── compare_images.py
+```
+
+## `identify_scans.py`
+
+Scans a raw subject directory for `.bxh` files, extracts key acquisition metadata, and assigns a preliminary scan classification.
+
+Run:
+
+```bash
+python data_preparation/identify_scans.py \
+/path/to/raw_subject
+```
+
+To save the scan inventory:
+
+```bash
+python data_preparation/identify_scans.py \
+/path/to/raw_subject \
+--output /path/to/scan_inventory.csv
+```
+
+The output includes metadata such as:
+
+```text
+file
+description
+series_number
+protocol_name
+TR
+TE
+TI
+flip_angle
+matrix
+voxel_size
+scan_options
+classification
+confidence
+status
+```
+
+Temporary files beginning with `._` are ignored.
+
+## `inspect_bxh_details.py`
+
+Displays detailed BXH metadata for one acquisition or compares the metadata of two acquisitions.
+
+Run with one BXH file:
+
+```bash
+python data_preparation/inspect_bxh_details.py \
+/path/to/scan.bxh
+```
+
+Compare two BXH files:
+
+```bash
+python data_preparation/inspect_bxh_details.py \
+/path/to/scan_1.bxh \
+/path/to/scan_2.bxh
+```
+
+This script is useful when multiple candidate acquisitions are detected and additional metadata are needed to determine their relationship.
+
+## `compare_images.py`
+
+Compares two MRI image files using image geometry and voxel intensities.
+
+Run:
+
+```bash
+python data_preparation/compare_images.py \
+/path/to/image_1.nii.gz \
+/path/to/image_2.nii.gz
+```
+
+The comparison includes:
+
+```text
+shape
+voxel size
+orientation
+affine
+intensity statistics
+voxel-wise differences
+```
+
+Voxel-wise comparison is performed only when the image dimensions match.
+
+The script uses `nibabel` and can also read supported FreeSurfer image formats such as `.mgz` and `.mgh`.
+
+## Workflow
+
+```text
+Raw subject directory
+        |
+        v
+identify_scans.py
+        |
+        v
+Scan inventory
+        |
+        +----------------------+
+        |                      |
+        v                      v
+clear candidate         ambiguous candidates
+                               |
+                               v
+                  inspect_bxh_details.py
+                               |
+                               v
+                      compare_images.py
+                               |
+                               v
+                   select input images
+```
+
+The raw MRI files are not modified during data preparation.
+
+The selected structural T1 image is passed to cortical reconstruction, while the selected diffusion acquisition is passed to diffusion processing.
 
 
 ## Trajectory Level Data Structure
