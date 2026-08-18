@@ -1,5 +1,35 @@
 #!/usr/bin/env python
+"""
+Build cortical trajectories from FreeSurfer white and pial surfaces.
 
+For each hemisphere, white and pial vertices with the same vertex index
+are paired to define a straight cortical trajectory:
+
+    white[i] -> pial[i]
+
+Each trajectory is sampled with a configurable number of evenly spaced
+points, including both endpoints. The default is 21 points.
+
+Outputs:
+    <subject_id>_pair_<hemisphere>.mat
+    <subject_id>_trajectory_<hemisphere>.mat
+
+Pair format:
+    (N, 6)
+    [white_x, white_y, white_z, pial_x, pial_y, pial_z]
+
+Trajectory format:
+    (N * points_num, 3)
+
+The flattened trajectory format is retained for compatibility with the
+reference Brain_column_builder implementation.
+
+Usage:
+    python trajectory_processing/build_trajectories.py \
+        --subject-id <subject_id> \
+        --subject-dir <freesurfer_subject_dir> \
+        --output-dir <output_dir>
+"""
 import argparse
 from pathlib import Path
 
