@@ -1,3 +1,14 @@
+"""
+Create a surface visualization of cortical trajectories for a selected
+FreeSurfer cortical region.
+
+The script loads cortical trajectory points, selects trajectories whose
+surface vertices belong to a specified aparc region, optionally subsamples
+them, and converts the trajectories into tube-like surface geometry for
+visualization.
+
+The current script uses manually specified input/output paths and parameters.
+"""
 import numpy as np
 from scipy.io import loadmat
 import nibabel.freesurfer.io as fsio
