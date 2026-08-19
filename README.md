@@ -1,145 +1,63 @@
-# Cortical trajectory analysis
+# Cortical Trajectory Analysis
+
+This repository contains the current implementation of the cortical trajectory processing pipeline, including MRI data preparation, cortical reconstruction, diffusion processing, registration, and cortical trajectory generation.
 
 ## Data Preparation
 
-The `data_preparation` module identifies and verifies MRI acquisitions before cortical reconstruction, diffusion processing, and cortical trajectory generation.
-
-Raw subject directories may contain multiple MRI acquisitions without standardized filenames. This module uses BXH metadata and image-level comparison to identify candidate T1-weighted, diffusion, QSM, and other MRI acquisitions.
-
-### Scripts
-
-```text
-data_preparation/
-├── identify_scans.py
-├── inspect_bxh_details.py
-└── compare_images.py
-```
+The `data_preparation` module is used to identify and inspect MRI acquisitions before downstream processing.
 
 ### `identify_scans.py`
 
-Scans a raw subject directory for `.bxh` files, extracts key acquisition metadata, and assigns a preliminary scan classification.
-
-Run:
+Identifies candidate MRI scans from BXH metadata and provides a preliminary classification of structural, diffusion, QSM, and other acquisitions.
 
 ```bash
 python data_preparation/identify_scans.py \
-/path/to/raw_subject
+    /path/to/raw_subject
 ```
 
-To save the scan inventory:
+Optional output:
 
 ```bash
 python data_preparation/identify_scans.py \
-/path/to/raw_subject \
---output /path/to/scan_inventory.csv
+    /path/to/raw_subject \
+    --output /path/to/scan_inventory.csv
 ```
-
-The output includes metadata such as:
-
-```text
-file
-description
-series_number
-protocol_name
-TR
-TE
-TI
-flip_angle
-matrix
-voxel_size
-scan_options
-classification
-confidence
-status
-```
-
-Temporary files beginning with `._` are ignored.
 
 ### `inspect_bxh_details.py`
 
-Displays detailed BXH metadata for one acquisition or compares the metadata of two acquisitions.
-
-Run with one BXH file:
+Displays detailed BXH metadata for one acquisition or compares two BXH files.
 
 ```bash
 python data_preparation/inspect_bxh_details.py \
-/path/to/scan.bxh
+    /path/to/scan.bxh
 ```
-
-Compare two BXH files:
-
-```bash
-python data_preparation/inspect_bxh_details.py \
-/path/to/scan_1.bxh \
-/path/to/scan_2.bxh
-```
-
-This script is useful when multiple candidate acquisitions are detected and additional metadata are needed to determine their relationship.
 
 ### `compare_images.py`
 
-Compares two MRI image files using image geometry and voxel intensities.
-
-Run:
+Compares image geometry and voxel intensities between two MRI images.
 
 ```bash
 python data_preparation/compare_images.py \
-/path/to/image_1.nii.gz \
-/path/to/image_2.nii.gz
+    /path/to/image_1.nii.gz \
+    /path/to/image_2.nii.gz
 ```
 
-The comparison includes:
+### `extract_diffusion_gradients.py`
 
-```text
-shape
-voxel size
-orientation
-affine
-intensity statistics
-voxel-wise differences
+Extracts diffusion b-values and gradient vectors from BXH metadata and saves them in FSL `.bval` and `.bvec` format.
+
+```bash
+python data_preparation/extract_diffusion_gradients.py \
+    /path/to/diffusion.bxh \
+    --nifti /path/to/diffusion.nii.gz \
+    --output-prefix /path/to/output_prefix
 ```
 
-Voxel-wise comparison is performed only when the image dimensions match.
-
-The script uses `nibabel` and can also read supported FreeSurfer image formats such as `.mgz` and `.mgh`.
-
-### Workflow
-
-```text
-Raw subject directory
-        |
-        v
-identify_scans.py
-        |
-        v
-Scan inventory
-        |
-        +----------------------+
-        |                      |
-        v                      v
-clear candidate         ambiguous candidates
-                               |
-                               v
-                  inspect_bxh_details.py
-                               |
-                               v
-                      compare_images.py
-                               |
-                               v
-                   select input images
-```
-
-The raw MRI files are not modified during data preparation.
-
-The selected structural T1 image is passed to cortical reconstruction, while the selected diffusion acquisition is passed to diffusion processing.
+The gradient coordinate convention should be validated before tensor fitting.
 
 ## Cortical Reconstruction
 
 Cortical surfaces and anatomical parcellations are generated using FreeSurfer.
-
-This step must be run on a system with FreeSurfer installed and configured. In the current workflow, FreeSurfer reconstruction is performed on a local macOS workstation, and the resulting subject directory is transferred back to the compute server for downstream processing.
-
-Run:
 
 ```bash
 bash cortical_reconstruction/run_freesurfer.sh \
@@ -147,6 +65,117 @@ bash cortical_reconstruction/run_freesurfer.sh \
     <t1_image> \
     <subjects_dir> \
     [threads]
+```
+
+The main outputs used by the trajectory pipeline include the white and pial surfaces, cortical thickness, and anatomical parcellation.
+
+FreeSurfer outputs can be checked with:
+
+```bash
+python qc/check_freesurfer_outputs.py \
+    <freesurfer_subject_dir>
+```
+
+## Diffusion Processing
+
+### Initial Preprocessing
+
+The current preprocessing script performs DWI denoising, b0 extraction, and brain-mask generation.
+
+```bash
+bash diffusion_processing/preprocess_dwi.sh \
+    <input_dwi.mif> \
+    <output_dir>
+```
+
+The complete preprocessing strategy for the MUSE diffusion data is still being validated.
+
+### Diffusion Tensor Metrics
+
+After a validated preprocessed DWI and diffusion gradients are available, tensor fitting can be performed with:
+
+```bash
+bash diffusion_processing/fit_tensor_and_metrics.sh \
+    --dwi <preprocessed_dwi> \
+    --bvec <bvec_file> \
+    --bval <bval_file> \
+    --mask <brain_mask> \
+    --output-dir <output_directory>
+```
+
+The script generates:
+
+```text
+tensor.mif
+adc.nii.gz
+fa.nii.gz
+ad.nii.gz
+rd.nii.gz
+```
+
+## Registration
+
+Diffusion MRI is registered to the FreeSurfer subject using boundary-based registration.
+
+```bash
+bash registration/run_bbregister.sh \
+    <subject_id> \
+    <freesurfer_subjects_dir> \
+    <masked_dwi.nii.gz> \
+    <output_transform.dat>
+```
+
+The resulting transformation is used to relate cortical trajectory coordinates to diffusion-image space.
+
+## Cortical Trajectory Generation
+
+Cortical trajectories are generated by pairing corresponding FreeSurfer white and pial surface vertices:
+
+```text
+white[i] -> pial[i]
+```
+
+By default, each trajectory contains 21 evenly spaced points including both endpoints.
+
+```bash
+python trajectory_processing/build_trajectories.py \
+    --subject-id <subject_id> \
+    --subject-dir <freesurfer_subject_dir> \
+    --output-dir <output_dir>
+```
+
+The generated trajectories can be checked with:
+
+```bash
+python qc/check_trajectories.py \
+    --trajectory-dir <trajectory_output_dir> \
+    --subject-id <subject_id>
+```
+
+## Trajectory Coordinate Transformation
+
+Trajectory coordinates can be transformed from FreeSurfer/T1 space to DWI voxel coordinates using the registration transform.
+
+```bash
+python trajectory_processing/transform_trajectories.py \
+    --subject-id <subject_id> \
+    --trajectory-dir <trajectory_dir> \
+    --transform <transform_file> \
+    --dwi <reference_dwi.nii.gz> \
+    --output-dir <output_dir>
+```
+
+## Image Space QC
+
+Spatial geometry between two NIfTI images can be compared using:
+
+```bash
+python visualization/check_image_space.py \
+    --image1 <image_1> \
+    --image2 <image_2>
+```
+
+The script compares image shape, voxel size, orientation, and affine transformation.
 
 ## Trajectory Level Data Structure
 
@@ -210,5 +239,3 @@ Each row represents one sampling point along a cortical trajectory.
 normalized_depth = 0.00   GM/WM interface
 normalized_depth = 1.00   Pial surface
 ```
-
-

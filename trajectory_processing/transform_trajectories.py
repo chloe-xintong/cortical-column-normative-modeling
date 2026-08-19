@@ -1,4 +1,29 @@
 #!/usr/bin/env python
+"""
+Transform cortical trajectory points from FreeSurfer/T1 space
+to diffusion-image voxel coordinates.
+
+The script reads cortical trajectories generated in FreeSurfer surface
+coordinates, applies the registration transform between diffusion and
+T1/FreeSurfer space, and converts the transformed coordinates into
+diffusion-image voxel indices.
+
+Inputs:
+    - Cortical trajectory .mat files
+    - DWI-to-T1 registration transform
+    - Reference diffusion image
+
+Outputs:
+    - Transformed trajectory .mat files in diffusion voxel coordinates
+
+Usage:
+    python trajectory_processing/transform_trajectories.py \
+        --subject-id <subject_id> \
+        --trajectory-dir <trajectory_dir> \
+        --transform <registration.dat> \
+        --reference-image <diffusion_image> \
+        --output-dir <output_dir>
+"""
 import argparse
 from pathlib import Path
 
