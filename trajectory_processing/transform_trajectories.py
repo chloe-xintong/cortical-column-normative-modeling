@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+'''
+Transform cortical trajectories from FreeSurfer space to DWI voxel space.
 
 # Purpose:
 # Transform cortical trajectories from FreeSurfer space to DWI voxel space.
@@ -16,7 +18,7 @@
 
 # Outputs:
 # Transformed LH and RH trajectory coordinates in DWI voxel space.
-
+'''
 import argparse
 from pathlib import Path
 
