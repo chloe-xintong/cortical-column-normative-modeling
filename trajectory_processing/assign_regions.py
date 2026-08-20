@@ -1,22 +1,22 @@
 #!/usr/bin/env python
+'''
+Purpose:
+Assign cortical trajectories to Desikan-Killiany regions using
+FreeSurfer aparc annotations.
 
-# Purpose:
-# Assign cortical trajectories to Desikan-Killiany regions using
-# FreeSurfer aparc annotations.
-#
-# Usage:
-# python trajectory_processing/assign_regions.py \
-#   --subject-id <ID> \
-#   --subjects-dir <FreeSurfer subjects dir> \
-#   --trajectory-dir <trajectory dir> \
-#   --output-dir <output dir>
-#
-# Inputs:
-# FreeSurfer lh/rh.aparc.annot files and DWI-space trajectory MAT files.
-#
-# Outputs:
-# Region-wise trajectory coordinate MAT and CSV files.
+Usage:
+python trajectory_processing/assign_regions.py \
+   --subject-id <ID> \
+   --subjects-dir <FreeSurfer subjects dir> \
+   --trajectory-dir <trajectory dir> \
+   --output-dir <output dir>
 
+ Inputs:
+ FreeSurfer lh/rh.aparc.annot files and DWI-space trajectory MAT files.
+
+ Outputs:
+ Region-wise trajectory coordinate MAT and CSV files.
+'''
 import argparse
 from pathlib import Path
 
