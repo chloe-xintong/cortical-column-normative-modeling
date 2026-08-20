@@ -1,29 +1,22 @@
 #!/usr/bin/env python
-"""
-Transform cortical trajectory points from FreeSurfer/T1 space
-to diffusion-image voxel coordinates.
 
-The script reads cortical trajectories generated in FreeSurfer surface
-coordinates, applies the registration transform between diffusion and
-T1/FreeSurfer space, and converts the transformed coordinates into
-diffusion-image voxel indices.
+# Purpose:
+# Transform cortical trajectories from FreeSurfer space to DWI voxel space.
 
-Inputs:
-    - Cortical trajectory .mat files
-    - DWI-to-T1 registration transform
-    - Reference diffusion image
+# Usage:
+# python trajectory_processing/transform_trajectories.py \
+#   --subject-id <ID> \
+#   --trajectory-dir <trajectory_dir> \
+#   --transform <DWI2T1_dti.dat> \
+#   --dwi <reference_dwi.nii.gz> \
+#   --output-dir <output_dir>
 
-Outputs:
-    - Transformed trajectory .mat files in diffusion voxel coordinates
+# Inputs:
+# Trajectory MAT files, bbregister transform, and reference DWI image.
 
-Usage:
-    python trajectory_processing/transform_trajectories.py \
-        --subject-id <subject_id> \
-        --trajectory-dir <trajectory_dir> \
-        --transform <registration.dat> \
-        --reference-image <diffusion_image> \
-        --output-dir <output_dir>
-"""
+# Outputs:
+# Transformed LH and RH trajectory coordinates in DWI voxel space.
+
 import argparse
 from pathlib import Path
 
@@ -40,55 +33,64 @@ def load_transform_matrix(transform_path):
             f"Transform file not found: {transform_path}"
         )
 
-    rows = []
+    lines = transform_path.read_text().splitlines()
 
-    with open(transform_path, "r") as file:
-        for line in file:
-            values = line.strip().split()
+    for start in range(len(lines) - 3):
+        rows = []
 
-            if len(values) != 4:
-                continue
+        for line in lines[start:start + 4]:
+            values = line.strip().replace(",", " ").split()
+
+            if len(values) < 4:
+                break
 
             try:
-                row = [float(value) for value in values]
+                rows.append(
+                    [float(value) for value in values[:4]]
+                )
             except ValueError:
-                continue
+                break
 
-            rows.append(row)
+        if len(rows) == 4:
+            transform = np.asarray(rows, dtype=float)
 
-    if len(rows) < 4:
-        raise ValueError(
-            f"Could not find a 4x4 transform matrix in {transform_path}"
-        )
+            if transform.shape == (4, 4):
+                return transform
 
-    transform = np.asarray(
-        rows[-4:],
-        dtype=float,
+    raise ValueError(
+        f"Could not find a 4x4 transform matrix in {transform_path}"
     )
-
-    if transform.shape != (4, 4):
-        raise ValueError(
-            f"Transform must have shape (4, 4), got {transform.shape}"
-        )
-
-    return transform
 
 
 def vox2ras_tkreg(shape, voxel_size):
-    nx, ny, nz = shape
-    dx, dy, dz = voxel_size
+    nx, ny, nz = [float(value) for value in shape]
+    dx, dy, dz = [float(value) for value in voxel_size]
 
-    matrix = np.array(
-        [
-            [-dx, 0.0, 0.0, dx * nx / 2.0],
-            [0.0, 0.0, dz, -dz * nz / 2.0],
-            [0.0, -dy, 0.0, dy * ny / 2.0],
-            [0.0, 0.0, 0.0, 1.0],
-        ],
-        dtype=float,
-    )
+    matrix = np.zeros((4, 4), dtype=float)
+
+    matrix[0, 0] = -dx
+    matrix[0, 3] = dx * nx / 2.0
+
+    matrix[1, 2] = dz
+    matrix[1, 3] = -dz * nz / 2.0
+
+    matrix[2, 1] = -dy
+    matrix[2, 3] = dy * ny / 2.0
+
+    matrix[3, 3] = 1.0
 
     return matrix
+
+
+def vox2ras_0to1(matrix):
+    matrix = np.asarray(matrix, dtype=float)
+
+    q = np.zeros((4, 4), dtype=float)
+    q[0:3, 3] = 1.0
+
+    return np.linalg.inv(
+        np.linalg.inv(matrix) + q
+    )
 
 
 def load_dwi_geometry(dwi_path):
@@ -108,6 +110,8 @@ def load_dwi_geometry(dwi_path):
         shape,
         voxel_size,
     )
+
+    t_mov = vox2ras_0to1(t_mov)
 
     return shape, voxel_size, t_mov
 
@@ -158,11 +162,13 @@ def transform_points_to_dwi(
         dtype=float,
     )
 
-    homogeneous[0:3, :] = trajectory_points.T
+    homogeneous[:3, :] = trajectory_points.T
 
-    dwi_ras = transform @ homogeneous
-
-    dwi_voxel = np.linalg.inv(t_mov) @ dwi_ras
+    dwi_voxel = (
+        np.linalg.inv(t_mov)
+        @ transform
+        @ homogeneous
+    )
 
     return dwi_voxel
 
@@ -202,9 +208,7 @@ def process_hemisphere(
         / f"{subject_id}_trajectory_{hemisphere}_dwi.mat"
     )
 
-    variable_name = (
-        f"{hemisphere}_trajectory_dwi"
-    )
+    variable_name = f"{hemisphere}_trajectory_dwi"
 
     savemat(
         str(output_path),
@@ -215,29 +219,17 @@ def process_hemisphere(
 
     print()
     print(f"Hemisphere: {hemisphere}")
-    print(
-        f"Input trajectory shape: "
-        f"{trajectory_points.shape}"
-    )
-    print(
-        f"DWI trajectory shape: "
-        f"{trajectory_dwi.shape}"
-    )
-
-    print(
-        "Voxel coordinate ranges:"
-    )
+    print(f"Input shape: {trajectory_points.shape}")
+    print(f"Output shape: {trajectory_dwi.shape}")
 
     print(
         f"i: {trajectory_dwi[0].min():.2f} "
         f"to {trajectory_dwi[0].max():.2f}"
     )
-
     print(
         f"j: {trajectory_dwi[1].min():.2f} "
         f"to {trajectory_dwi[1].max():.2f}"
     )
-
     print(
         f"k: {trajectory_dwi[2].min():.2f} "
         f"to {trajectory_dwi[2].max():.2f}"
@@ -249,39 +241,34 @@ def process_hemisphere(
 def main():
     parser = argparse.ArgumentParser(
         description=(
-            "Transform cortical trajectory points "
-            "from FreeSurfer/T1 space to DWI voxel coordinates."
+            "Transform cortical trajectories "
+            "from FreeSurfer space to DWI voxel space."
         )
     )
 
     parser.add_argument(
         "--subject-id",
         required=True,
-        help="Subject identifier.",
     )
 
     parser.add_argument(
         "--trajectory-dir",
         required=True,
-        help="Directory containing trajectory MAT files.",
     )
 
     parser.add_argument(
         "--transform",
         required=True,
-        help="T1-to-DWI transform file.",
     )
 
     parser.add_argument(
         "--dwi",
         required=True,
-        help="Reference DWI NIfTI image.",
     )
 
     parser.add_argument(
         "--output-dir",
         required=True,
-        help="Directory for transformed trajectories.",
     )
 
     args = parser.parse_args()
@@ -299,7 +286,7 @@ def main():
     print(f"DWI voxel size: {voxel_size}")
 
     print()
-    print("T1-to-DWI transform:")
+    print("Transform:")
     print(transform)
 
     print()

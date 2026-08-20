@@ -1,157 +1,82 @@
 #!/usr/bin/env bash
 
-# Fit a diffusion tensor model and generate diffusion metric maps.
-#
-# This script expects a preprocessed 4D diffusion image together with
-# FSL-format b-vectors, b-values, and a brain mask.
-#
-# Processing:
-#   preprocessed DWI
-#       -> dwi2tensor
-#       -> diffusion tensor
-#       -> tensor2metric
-#       -> ADC/MD, FA, AD, and RD maps
+# Fit the diffusion tensor and generate diffusion metric maps.
 #
 # Inputs:
-#   --dwi        Preprocessed 4D diffusion image
-#   --bvec       FSL-format b-vector file
-#   --bval       FSL-format b-value file
-#   --mask       Diffusion-space brain mask
-#   --output-dir Output directory
+#   Bias-corrected DWI in MRtrix format
+#   Brain mask
 #
 # Outputs:
-#   tensor.mif
-#   adc.nii.gz
-#   fa.nii.gz
-#   ad.nii.gz
-#   rd.nii.gz
+#   Diffusion tensor
+#   ADC / MD
+#   FA
+#   AD
+#   RD
 #
 # Usage:
-#   bash diffusion_processing/fit_tensor_and_metrics.sh \
-#       --dwi <preprocessed_dwi> \
-#       --bvec <bvec_file> \
-#       --bval <bval_file> \
-#       --mask <brain_mask> \
-#       --output-dir <output_directory>
+#   bash fit_tensor_and_metrics.sh \
+#       PREPROCESSED_DWI \
+#       BRAIN_MASK \
+#       OUTPUT_DIR \
+#       SUBJECT_ID
 
 set -euo pipefail
 
-usage() {
-    echo "Usage:"
-    echo "  bash diffusion_processing/fit_tensor_and_metrics.sh \\"
-    echo "    --dwi <preprocessed_dwi.nii.gz|mif> \\"
-    echo "    --bvec <bvec_file> \\"
-    echo "    --bval <bval_file> \\"
-    echo "    --mask <brain_mask.nii.gz|mif> \\"
-    echo "    --output-dir <output_directory>"
-}
-
-DWI=""
-BVEC=""
-BVAL=""
-MASK=""
-OUTPUT_DIR=""
-
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --dwi)
-            DWI="$2"
-            shift 2
-            ;;
-        --bvec)
-            BVEC="$2"
-            shift 2
-            ;;
-        --bval)
-            BVAL="$2"
-            shift 2
-            ;;
-        --mask)
-            MASK="$2"
-            shift 2
-            ;;
-        --output-dir)
-            OUTPUT_DIR="$2"
-            shift 2
-            ;;
-        -h|--help)
-            usage
-            exit 0
-            ;;
-        *)
-            echo "Unknown argument: $1"
-            usage
-            exit 1
-            ;;
-    esac
-done
-
-if [[ -z "$DWI" || -z "$BVEC" || -z "$BVAL" || -z "$MASK" || -z "$OUTPUT_DIR" ]]; then
-    usage
-    exit 1
-fi
-
-for file in "$DWI" "$BVEC" "$BVAL" "$MASK"; do
-    if [[ ! -f "$file" ]]; then
-        echo "Input file not found: $file"
-        exit 1
-    fi
-done
+PREPROCESSED_DWI=$1
+BRAIN_MASK=$2
+OUTPUT_DIR=$3
+SUBJECT_ID=$4
 
 mkdir -p "$OUTPUT_DIR"
 
-TENSOR="$OUTPUT_DIR/tensor.mif"
-ADC="$OUTPUT_DIR/adc.nii.gz"
-FA="$OUTPUT_DIR/fa.nii.gz"
-AD="$OUTPUT_DIR/ad.nii.gz"
-RD="$OUTPUT_DIR/rd.nii.gz"
+TENSOR="${OUTPUT_DIR}/${SUBJECT_ID}_07_dt.mif"
 
-echo "Diffusion tensor fitting"
-echo "DWI:        $DWI"
-echo "bvec:       $BVEC"
-echo "bval:       $BVAL"
-echo "mask:       $MASK"
-echo "output dir: $OUTPUT_DIR"
+ADC="${OUTPUT_DIR}/${SUBJECT_ID}_adc.nii.gz"
+FA="${OUTPUT_DIR}/${SUBJECT_ID}_fa.nii.gz"
+AD="${OUTPUT_DIR}/${SUBJECT_ID}_ad.nii.gz"
+RD="${OUTPUT_DIR}/${SUBJECT_ID}_rd.nii.gz"
 
-if [[ ! -f "$TENSOR" ]]; then
-    echo
-    echo "Fitting diffusion tensor..."
+# Fit the diffusion tensor using the gradient information
+# stored in the preprocessed MRtrix image.
+dwi2tensor \
+    "$PREPROCESSED_DWI" \
+    "$TENSOR" \
+    -mask "$BRAIN_MASK" \
+    -force
 
-    dwi2tensor \
-        "$DWI" \
-        "$TENSOR" \
-        -fslgrad "$BVEC" "$BVAL" \
-        -mask "$MASK" \
-        -force
-else
-    echo
-    echo "Tensor already exists, skipping:"
-    echo "$TENSOR"
-fi
+# Generate mean diffusivity / apparent diffusion coefficient.
+tensor2metric \
+    "$TENSOR" \
+    -adc "$ADC" \
+    -mask "$BRAIN_MASK" \
+    -force
 
-if [[ ! -f "$ADC" || ! -f "$FA" || ! -f "$AD" || ! -f "$RD" ]]; then
-    echo
-    echo "Generating diffusion metrics..."
+# Generate fractional anisotropy.
+tensor2metric \
+    "$TENSOR" \
+    -fa "$FA" \
+    -mask "$BRAIN_MASK" \
+    -force
 
-    tensor2metric \
-        "$TENSOR" \
-        -adc "$ADC" \
-        -fa "$FA" \
-        -ad "$AD" \
-        -rd "$RD" \
-        -mask "$MASK" \
-        -force
-else
-    echo
-    echo "Diffusion metric files already exist, skipping."
-fi
+# Generate axial diffusivity.
+tensor2metric \
+    "$TENSOR" \
+    -ad "$AD" \
+    -mask "$BRAIN_MASK" \
+    -force
 
-echo
-echo "Diffusion tensor fitting complete."
-echo
-echo "Outputs:"
-echo "  $TENSOR"
-echo "  $ADC"
-echo "  $FA"
-echo "  $AD"
-echo "  $RD"
+# Generate radial diffusivity.
+tensor2metric \
+    "$TENSOR" \
+    -rd "$RD" \
+    -mask "$BRAIN_MASK" \
+    -force
+
+echo "Tensor fitting completed."
+echo "Tensor:"
+echo "$TENSOR"
+echo "Diffusion metrics:"
+echo "$ADC"
+echo "$FA"
+echo "$AD"
+echo "$RD"
