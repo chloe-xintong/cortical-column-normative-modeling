@@ -8,7 +8,7 @@ them, and converts the trajectories into tube-like surface geometry for
 visualization.
 
 The current script uses manually specified input/output paths and parameters.
-"""
+""" 
 import numpy as np
 from scipy.io import loadmat
 import nibabel.freesurfer.io as fsio

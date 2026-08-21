@@ -1,63 +1,60 @@
 #!/usr/bin/env bash
 
-# Preprocess diffusion MRI using the MRtrix workflow recovered
-# from the original diffusion preprocessing pipeline.
+# Preprocess diffusion MRI using MRtrix/FSL/ANTs.
 #
 # Steps:
 #   1. Import raw DWI with bvec/bval
 #   2. MP-PCA denoising
 #   3. Gibbs ringing correction
-#   4. Motion / eddy / susceptibility correction
-#   5. ANTs-based bias field correction
+#   4. Extract forward b0
+#   5. Build forward/reverse SE-EPI pair
+#   6. Create eddy brain mask
+#   7. Motion / eddy / susceptibility correction
+#   8. ANTs-based bias field correction
 #
 # Usage:
 #   bash preprocess_dwi.sh \
 #       INPUT_DWI \
 #       BVEC \
 #       BVAL \
+#       REVERSE_PHASE \
 #       OUTPUT_DIR \
 #       SUBJECT_ID \
 #       PE_DIR \
-#       READOUT_TIME \
-#       SE_EPI \
-#       EDDY_MASK
+#       READOUT_TIME
 
 set -euo pipefail
 
-if [[ $# -ne 9 ]]; then
+if [[ $# -ne 8 ]]; then
     echo "Usage:"
     echo "  bash preprocess_dwi.sh \\"
     echo "    INPUT_DWI \\"
     echo "    BVEC \\"
     echo "    BVAL \\"
+    echo "    REVERSE_PHASE \\"
     echo "    OUTPUT_DIR \\"
     echo "    SUBJECT_ID \\"
     echo "    PE_DIR \\"
-    echo "    READOUT_TIME \\"
-    echo "    SE_EPI \\"
-    echo "    EDDY_MASK"
+    echo "    READOUT_TIME"
     exit 1
 fi
 
 INPUT_DWI=$1
 BVEC=$2
 BVAL=$3
-OUTPUT_DIR=$4
-SUBJECT_ID=$5
-PE_DIR=$6
-READOUT_TIME=$7
-SE_EPI=$8
-EDDY_MASK=$9
+REVERSE_PHASE=$4
+OUTPUT_DIR=$5
+SUBJECT_ID=$6
+PE_DIR=$7
+READOUT_TIME=$8
 
-# Check required input files.
-for file in "$INPUT_DWI" "$BVEC" "$BVAL" "$SE_EPI" "$EDDY_MASK"; do
+for file in "$INPUT_DWI" "$BVEC" "$BVAL" "$REVERSE_PHASE"; do
     if [[ ! -f "$file" ]]; then
         echo "ERROR: Input file not found: $file" >&2
         exit 1
     fi
 done
 
-# Check phase-encoding direction.
 case "$PE_DIR" in
     AP|PA|LR|RL|IS|SI)
         ;;
@@ -68,7 +65,6 @@ case "$PE_DIR" in
         ;;
 esac
 
-# Check that readout time is numeric and positive.
 if ! awk -v value="$READOUT_TIME" \
     'BEGIN { exit !(value ~ /^[0-9]*\.?[0-9]+$/ && value > 0) }'; then
     echo "ERROR: Invalid readout time: $READOUT_TIME" >&2
@@ -77,58 +73,95 @@ fi
 
 mkdir -p "$OUTPUT_DIR"
 
-DWI_01="${OUTPUT_DIR}/${SUBJECT_ID}_01_dwi_nii4D.mif"
-DWI_02="${OUTPUT_DIR}/${SUBJECT_ID}_02_dwi_nii4D_denoised.mif"
-DWI_03="${OUTPUT_DIR}/${SUBJECT_ID}_03_dwi_nii4D_degibbs.mif"
-DWI_04="${OUTPUT_DIR}/${SUBJECT_ID}_04_dwi_nii4D_preprocessed.mif"
-DWI_05="${OUTPUT_DIR}/${SUBJECT_ID}_05_dwi_nii4D_biascorrected.mif"
+DWI_01="${OUTPUT_DIR}/${SUBJECT_ID}_01_dwi_raw.mif"
+DWI_02="${OUTPUT_DIR}/${SUBJECT_ID}_02_dwi_denoised.mif"
+DWI_03="${OUTPUT_DIR}/${SUBJECT_ID}_03_dwi_degibbs.mif"
+DWI_04="${OUTPUT_DIR}/${SUBJECT_ID}_04_dwi_preprocessed.mif"
+DWI_05="${OUTPUT_DIR}/${SUBJECT_ID}_05_dwi_biascorrected.mif"
+
+FORWARD_B0="${OUTPUT_DIR}/${SUBJECT_ID}_forward_b0.nii.gz"
+SE_EPI="${OUTPUT_DIR}/${SUBJECT_ID}_rev_seepi_pair.nii.gz"
+
+MEAN_B0="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0.nii.gz"
+EDDY_MASK="${OUTPUT_DIR}/${SUBJECT_ID}_eddy_mask.nii.gz"
 
 echo "Subject: $SUBJECT_ID"
 echo "Input DWI: $INPUT_DWI"
+echo "Reverse phase: $REVERSE_PHASE"
 echo "Output directory: $OUTPUT_DIR"
 echo "Phase-encoding direction: $PE_DIR"
 echo "Readout time: $READOUT_TIME"
 
-# Import raw DWI and attach FSL-format gradient information.
+# Import raw DWI and attach gradients.
 mrconvert \
     "$INPUT_DWI" \
     "$DWI_01" \
     -fslgrad "$BVEC" "$BVAL" \
     -force
 
-if [[ ! -s "$DWI_01" ]]; then
-    echo "ERROR: MRtrix import failed." >&2
-    exit 1
-fi
-
-# Check that diffusion gradients were imported.
 echo "Checking imported diffusion gradients..."
 mrinfo "$DWI_01" -dwgrad
 
-# Remove random noise using MP-PCA denoising.
+# MP-PCA denoising.
 dwidenoise \
     "$DWI_01" \
     "$DWI_02" \
     -force
 
-if [[ ! -s "$DWI_02" ]]; then
-    echo "ERROR: Denoising output was not generated." >&2
-    exit 1
-fi
-
-# Remove Gibbs ringing artifacts.
+# Gibbs ringing correction.
 mrdegibbs \
     "$DWI_02" \
     "$DWI_03" \
     -force
 
-if [[ ! -s "$DWI_03" ]]; then
-    echo "ERROR: Gibbs correction output was not generated." >&2
+# Extract all b0 volumes and compute their mean.
+dwiextract \
+    "$DWI_03" \
+    -bzero \
+    - \
+    | mrmath \
+        - \
+        mean \
+        "$FORWARD_B0" \
+        -axis 3 \
+        -force
+
+# Combine forward and reverse phase-encoded b0 images.
+mrcat \
+    "$FORWARD_B0" \
+    "$REVERSE_PHASE" \
+    "$SE_EPI" \
+    -axis 3 \
+    -force
+
+# Create a brain mask for eddy.
+dwiextract \
+    "$DWI_03" \
+    -bzero \
+    - \
+    | mrmath \
+        - \
+        mean \
+        "$MEAN_B0" \
+        -axis 3 \
+        -force
+
+bet \
+    "$MEAN_B0" \
+    "${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain" \
+    -m \
+    -f 0.2
+
+BET_MASK="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain_mask.nii.gz"
+
+if [[ ! -f "$BET_MASK" ]]; then
+    echo "ERROR: BET mask was not generated." >&2
     exit 1
 fi
 
-# Correct motion, eddy-current distortion, and susceptibility distortion.
-# These parameters must match the acquisition protocol of the dataset.
+cp "$BET_MASK" "$EDDY_MASK"
+
+# Motion, eddy-current, and susceptibility correction.
 dwifslpreproc \
     "$DWI_03" \
     "$DWI_04" \
@@ -140,22 +173,19 @@ dwifslpreproc \
     -eddy_mask "$EDDY_MASK" \
     -force
 
-if [[ ! -s "$DWI_04" ]]; then
-    echo "ERROR: DWI preprocessing output was not generated." >&2
-    exit 1
-fi
-
-# Correct low-frequency intensity bias using ANTs through MRtrix.
+# ANTs-based bias-field correction.
 dwibiascorrect ants \
     "$DWI_04" \
     "$DWI_05" \
     -force
 
-if [[ ! -s "$DWI_05" ]]; then
-    echo "ERROR: Bias-corrected DWI was not generated." >&2
-    exit 1
-fi
-
+echo
 echo "DWI preprocessing completed successfully."
 echo "Final preprocessed DWI:"
 echo "$DWI_05"
+echo
+echo "SE-EPI pair:"
+echo "$SE_EPI"
+echo
+echo "Eddy mask:"
+echo "$EDDY_MASK"

@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Purpose:
-# Register the DWI image to FreeSurfer anatomical space using bbregister.
+# Register a masked diffusion image to FreeSurfer anatomical space
+# using bbregister.
+#
 # Usage:
-# bash register_dwi_to_t1.sh <subject_id> <dwi_image> <subjects_dir> <output_dat>
-# Inputs:
-# subject_id, DWI image, FreeSurfer subjects directory
-# Output:
-# DWI2T1_dti.dat registration transform
-
-
-SUBJECT_ID="$1"
-DWI_IMAGE="$2"
-SUBJECTS_DIR="$3"
-OUTPUT_DAT="$4"
+# bash registration/register_dwi_to_t1.sh \
+#   SUBJECT_ID \
+#   MOVING_IMAGE \
+#   SUBJECTS_DIR \
+#   OUTPUT_DAT
 
 if [ "$#" -ne 4 ]; then
     echo "Usage:"
     echo "bash registration/register_dwi_to_t1.sh \\"
     echo "  <subject_id> \\"
-    echo "  <dwi_image> \\"
+    echo "  <moving_image> \\"
     echo "  <subjects_dir> \\"
     echo "  <output_dat>"
     exit 1
 fi
 
-if [ ! -f "$DWI_IMAGE" ]; then
-    echo "DWI image not found: $DWI_IMAGE"
+SUBJECT_ID="$1"
+MOVING_IMAGE="$2"
+SUBJECTS_DIR="$3"
+OUTPUT_DAT="$4"
+
+if [ ! -f "$MOVING_IMAGE" ]; then
+    echo "Moving image not found: $MOVING_IMAGE"
     exit 1
 fi
 
@@ -37,16 +37,18 @@ if [ ! -d "$SUBJECTS_DIR/$SUBJECT_ID" ]; then
     exit 1
 fi
 
+mkdir -p "$(dirname "$OUTPUT_DAT")"
+
 export SUBJECTS_DIR="$SUBJECTS_DIR"
 
 echo "Subject:      $SUBJECT_ID"
-echo "Moving image: $DWI_IMAGE"
+echo "Moving image: $MOVING_IMAGE"
 echo "SUBJECTS_DIR: $SUBJECTS_DIR"
 echo "Output:       $OUTPUT_DAT"
 
 bbregister \
     --s "$SUBJECT_ID" \
-    --mov "$DWI_IMAGE" \
+    --mov "$MOVING_IMAGE" \
     --reg "$OUTPUT_DAT" \
     --sd "$SUBJECTS_DIR" \
     --dti \
