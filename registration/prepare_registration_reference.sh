@@ -13,11 +13,11 @@
 #
 # Usage:
 #
-#   bash create_brain_mask.sh \
-#       PREPROCESSED_DWI \
-#       OUTPUT_DIR \
-#       SUBJECT_ID \
-#       REGISTRATION_MASK
+# bash registration/prepare_registration_reference.sh \
+#    PREPROCESSED_DWI \
+#    OUTPUT_DIR \
+#    SUBJECT_ID \
+#    REGISTRATION_MASK
 
 set -euo pipefail
 
