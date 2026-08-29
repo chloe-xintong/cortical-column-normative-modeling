@@ -1,29 +1,36 @@
 #!/usr/bin/env bash
 
-# Create diffusion-space masks and a 3D DWI reference for registration.
+# Prepare the 3D diffusion reference image used for DWI-to-T1 registration.
 #
-# The mean-b0 BET mask is generated for QC.
-# The registration reference follows the old pipeline:
+# This reproduces the registration-reference construction used in the
+# historical pipeline:
 #
 #   4D preprocessed DWI
 #       -> remove volume 0
 #       -> sum remaining diffusion volumes
-#       -> apply registration mask
+#       -> apply the supplied registration mask
 #       -> 3D masked DWI
+#
+# The registration mask should already be generated during DWI preprocessing.
 #
 # Usage:
 #
 # bash registration/prepare_registration_reference.sh \
-#    PREPROCESSED_DWI \
-#    OUTPUT_DIR \
-#    SUBJECT_ID \
-#    REGISTRATION_MASK
+#     PREPROCESSED_DWI \
+#     OUTPUT_DIR \
+#     SUBJECT_ID \
+#     REGISTRATION_MASK
 
 set -euo pipefail
 
+
+# -------------------------------------------------------------------------
+# Check command-line arguments
+# -------------------------------------------------------------------------
+
 if [[ "$#" -ne 4 ]]; then
     echo "Usage:"
-    echo "bash create_brain_mask.sh \\"
+    echo "bash registration/prepare_registration_reference.sh \\"
     echo "    PREPROCESSED_DWI \\"
     echo "    OUTPUT_DIR \\"
     echo "    SUBJECT_ID \\"
@@ -31,10 +38,20 @@ if [[ "$#" -ne 4 ]]; then
     exit 1
 fi
 
+
+# -------------------------------------------------------------------------
+# Inputs
+# -------------------------------------------------------------------------
+
 PREPROCESSED_DWI="$1"
 OUTPUT_DIR="$2"
 SUBJECT_ID="$3"
 REGISTRATION_MASK="$4"
+
+
+# -------------------------------------------------------------------------
+# Check required input files
+# -------------------------------------------------------------------------
 
 if [[ ! -f "$PREPROCESSED_DWI" ]]; then
     echo "ERROR: Preprocessed DWI not found:"
@@ -48,61 +65,41 @@ if [[ ! -f "$REGISTRATION_MASK" ]]; then
     exit 1
 fi
 
+
+# -------------------------------------------------------------------------
+# Create output directory
+# -------------------------------------------------------------------------
+
 mkdir -p "$OUTPUT_DIR"
 
-B0_MIF="${OUTPUT_DIR}/${SUBJECT_ID}_b0.mif"
-MEAN_B0_MIF="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0.mif"
-MEAN_B0_NII="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0.nii.gz"
-MEAN_B0_BRAIN="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain.nii.gz"
-B0_MASK="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain_mask.nii.gz"
+
+# -------------------------------------------------------------------------
+# Output files
+# -------------------------------------------------------------------------
 
 DWI_NO_B0="${OUTPUT_DIR}/${SUBJECT_ID}_dwi4D_no_b0.mif"
 DWI_SUM="${OUTPUT_DIR}/${SUBJECT_ID}_dwi_sum.nii.gz"
 DWI_MASKED="${OUTPUT_DIR}/${SUBJECT_ID}_dwi_masked.nii.gz"
 
-# Extract all b0 volumes.
-dwiextract \
-    "$PREPROCESSED_DWI" \
-    "$B0_MIF" \
-    -bzero \
-    -force
 
-# Average all b0 volumes into one 3D image.
-mrmath \
-    "$B0_MIF" \
-    mean \
-    "$MEAN_B0_MIF" \
-    -axis 3 \
-    -force
+# -------------------------------------------------------------------------
+# Remove volume 0
+#
+# This intentionally follows the historical pipeline rather than removing
+# volumes according to their b-values.
+# -------------------------------------------------------------------------
 
-# Convert mean b0 to NIfTI for BET.
-mrconvert \
-    "$MEAN_B0_MIF" \
-    "$MEAN_B0_NII" \
-    -force
-
-# Generate a BET mask for QC.
-PATH="$FSLDIR/bin:$PATH" bet \
-    "$MEAN_B0_NII" \
-    "$MEAN_B0_BRAIN" \
-    -f 0.20 \
-    -R \
-    -m
-
-if [[ ! -f "$B0_MASK" ]]; then
-    echo "ERROR: BET mask was not generated:"
-    echo "$B0_MASK"
-    exit 1
-fi
-
-# Remove volume 0, matching the old pipeline.
 mrconvert \
     "$PREPROCESSED_DWI" \
     -coord 3 1:end \
     "$DWI_NO_B0" \
     -force
 
-# Sum the remaining diffusion volumes into one 3D image.
+
+# -------------------------------------------------------------------------
+# Sum the remaining diffusion-weighted volumes into one 3D image
+# -------------------------------------------------------------------------
+
 mrmath \
     "$DWI_NO_B0" \
     sum \
@@ -110,7 +107,11 @@ mrmath \
     -axis 3 \
     -force
 
-# Check that the summed DWI and registration mask have matching dimensions.
+
+# -------------------------------------------------------------------------
+# Confirm that the summed DWI and registration mask have matching dimensions
+# -------------------------------------------------------------------------
+
 DWI_SIZE=$(mrinfo "$DWI_SUM" -size)
 MASK_SIZE=$(mrinfo "$REGISTRATION_MASK" -size)
 
@@ -128,7 +129,11 @@ if [[ "$DWI_SIZE" != "$MASK_SIZE" ]]; then
     exit 1
 fi
 
-# Apply the registration mask to the summed DWI.
+
+# -------------------------------------------------------------------------
+# Apply the registration mask
+# -------------------------------------------------------------------------
+
 mrcalc \
     "$DWI_SUM" \
     "$REGISTRATION_MASK" \
@@ -136,22 +141,24 @@ mrcalc \
     "$DWI_MASKED" \
     -force
 
+
+# -------------------------------------------------------------------------
+# Verify output
+# -------------------------------------------------------------------------
+
 if [[ ! -f "$DWI_MASKED" ]]; then
     echo "ERROR: Registration DWI was not generated:"
     echo "$DWI_MASKED"
     exit 1
 fi
 
-echo
-echo "Brain mask and registration reference creation completed."
+
+# -------------------------------------------------------------------------
+# Summary
+# -------------------------------------------------------------------------
 
 echo
-echo "Mean b0:"
-echo "$MEAN_B0_NII"
-
-echo
-echo "BET mask for QC:"
-echo "$B0_MASK"
+echo "Registration reference preparation completed."
 
 echo
 echo "Registration mask:"

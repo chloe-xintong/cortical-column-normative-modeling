@@ -23,7 +23,7 @@
 #       PE_DIR \
 #       READOUT_TIME
 
-set -euo pipefail
+set -o pipefail
 
 if [[ $# -ne 8 ]]; then
     echo "Usage:"
@@ -150,7 +150,7 @@ bet \
     "$MEAN_B0" \
     "${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain" \
     -m \
-    -f 0.2
+    -f 0.3
 
 BET_MASK="${OUTPUT_DIR}/${SUBJECT_ID}_mean_b0_brain_mask.nii.gz"
 
