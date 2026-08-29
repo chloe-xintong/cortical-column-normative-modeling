@@ -232,7 +232,7 @@ echo "[4/6] Running historical DTC MP-PCA denoising..."
 DTC_ROOT="$DTC_ROOT" \
 MASKED_DWI="$MASKED_DWI" \
 DENOISED_DWI="$DENOISED_DWI" \
-python - <<'PY'
+/home/xintong/.conda/envs/cortical_trajectory_analysis/bin/python - <<'PY'
 
 import os
 import sys
