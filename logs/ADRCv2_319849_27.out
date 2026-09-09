@@ -1,0 +1,257 @@
+Job 319857 started at Tue Sep 8 05:32:22 PM EDT 2026
+Job Name: ADRCv2
+Running on node: kythira
+Subject=D0091 Node=kythira.cluster.local CPUs=4
+T1=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/T1.nii.gz
+DWI=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/bia5_01192_013.nii.gz
+Reverse=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/bia5_01192_013_revphase.nii.gz PE=PA Readout=0.076191
+Subject ID:   D0091
+T1 image:     /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/T1.nii.gz
+SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects
+Threads:      4
+Starting new FreeSurfer reconstruction.
+fs-check-version --s D0091 --o /tmp/tmp.Tun2z7
+Tue Sep  8 17:32:25 EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+/home/apps//freesurfer/bin/fs-check-version --s D0091 --o /tmp/tmp.Tun2z7
+-rwxrwxr-x 1 alex admins 18565 Jun 13  2023 /home/apps//freesurfer/bin/fs-check-version
+
+freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+pid 158483
+Current FS Version freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+Subject does not have a bstampfile, copying /home/apps//freesurfer/build-stamp.txt
+Subject FS Version: freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects
+Actual FREESURFER_HOME /home/apps/freesurfer
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091
+
+ mri_convert /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/T1.nii.gz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig/001.mgz 
+
+mri_convert /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/T1.nii.gz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig/001.mgz 
+reading from /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0091/T1.nii.gz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, -1, 0)
+k_ras = (0, 0, 1)
+writing to /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig/001.mgz...
+@#@FSTIME  2026:09:08:17:32:26 mri_convert N 2 e 1.35 S 0.02 U 1.48 P 111% M 20480 F 0 R 4382 W 0 c 4 w 332 I 17816 O 17200 L 6.98 5.26 2.36
+@#@FSLOADPOST 2026:09:08:17:32:27 mri_convert N 2 6.98 5.26 2.36
+#--------------------------------------------
+#@# MotionCor Tue Sep  8 17:32:27 EDT 2026
+Found 1 runs
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig/001.mgz
+Checking for (invalid) multi-frame inputs...
+Only one run found so motion
+correction will not be performed. I'll
+copy the run to rawavg and continue.
+
+ cp /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig/001.mgz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz 
+
+
+ mri_info /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz 
+
+rawavg.mgz ========================================
+Volume information for /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz
+          type: MGH
+    dimensions: 256 x 256 x 124
+   voxel sizes: 1.000000, 1.000000, 1.000000
+          type: SHORT (4)
+           fov: 256.000
+           dof: 1
+        xstart: -128.0, xend: 128.0
+        ystart: -128.0, yend: 128.0
+        zstart: -62.0, zend: 62.0
+            TR: 1000.00 msec, TE: 0.00 msec, TI: 0.00 msec, flip angle: 0.00 degrees
+       nframes: 1
+       PhEncDir: UNKNOWN
+       FieldStrength: 0.000000
+ras xform present
+    xform info: x_r =  -1.0000, y_r =   0.0000, z_r =   0.0000, c_r =    -3.5000
+              : x_a =   0.0000, y_a =  -1.0000, z_a =   0.0000, c_a =    37.0000
+              : x_s =   0.0000, y_s =   0.0000, z_s =   1.0000, c_s =    31.0000
+
+talairach xfm : 
+Orientation   : LPS
+Primary Slice Direction: axial
+
+voxel to ras transform:
+               -1.0000   0.0000   0.0000   124.5000
+                0.0000  -1.0000   0.0000   165.0000
+                0.0000   0.0000   1.0000   -31.0000
+                0.0000   0.0000   0.0000     1.0000
+
+voxel-to-ras determinant 1
+
+ras to voxel transform:
+               -1.0000   0.0000   0.0000   124.5000
+                0.0000  -1.0000   0.0000   165.0000
+                0.0000   0.0000   1.0000    31.0000
+                0.0000   0.0000   0.0000     1.0000
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091
+
+ mri_convert /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz --conform 
+
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz --conform 
+reading from /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/rawavg.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, -1, 0)
+k_ras = (0, 0, 1)
+changing data type from short to uchar (noscale = 0)...
+MRIchangeType: Building histogram 0 7835 1000, flo=0, fhi=0.999, dest_type=0
+Reslicing using trilinear interpolation 
+writing to /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz...
+@#@FSTIME  2026:09:08:17:32:31 mri_convert N 3 e 6.56 S 0.07 U 6.80 P 104% M 29176 F 0 R 27174 W 0 c 19 w 144 I 0 O 6016 L 6.42 5.17 2.35
+@#@FSLOADPOST 2026:09:08:17:32:37 mri_convert N 3 6.38 5.19 2.37
+
+ mri_add_xform_to_header -c /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms/talairach.xfm /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz 
+
+INFO: extension is mgz
+@#@FSTIME  2026:09:08:17:32:37 mri_add_xform_to_header N 4 e 0.53 S 0.01 U 0.94 P 179% M 20480 F 0 R 4575 W 0 c 3 w 131 I 0 O 6016 L 6.38 5.19 2.37
+@#@FSLOADPOST 2026:09:08:17:32:38 mri_add_xform_to_header N 4 6.38 5.19 2.37
+
+ mri_info /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz 
+
+orig.mgz ========================================
+Volume information for /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/orig.mgz
+          type: MGH
+    dimensions: 256 x 256 x 256
+   voxel sizes: 1.000000, 1.000000, 1.000000
+          type: UCHAR (0)
+           fov: 256.000
+           dof: 1
+        xstart: -128.0, xend: 128.0
+        ystart: -128.0, yend: 128.0
+        zstart: -128.0, zend: 128.0
+            TR: 1000.00 msec, TE: 0.00 msec, TI: 0.00 msec, flip angle: 0.00 degrees
+       nframes: 1
+       PhEncDir: UNKNOWN
+       FieldStrength: 0.000000
+ras xform present
+    xform info: x_r =  -1.0000, y_r =   0.0000, z_r =   0.0000, c_r =    -3.5000
+              : x_a =   0.0000, y_a =   0.0000, z_a =   1.0000, c_a =    37.0000
+              : x_s =   0.0000, y_s =  -1.0000, z_s =   0.0000, c_s =    31.0000
+
+talairach xfm : /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms/talairach.xfm
+Orientation   : LIA
+Primary Slice Direction: coronal
+
+voxel to ras transform:
+               -1.0000   0.0000   0.0000   124.5000
+                0.0000   0.0000   1.0000   -91.0000
+                0.0000  -1.0000   0.0000   159.0000
+                0.0000   0.0000   0.0000     1.0000
+
+voxel-to-ras determinant -1
+
+ras to voxel transform:
+               -1.0000  -0.0000  -0.0000   124.5000
+               -0.0000  -0.0000  -1.0000   159.0000
+               -0.0000   1.0000  -0.0000    91.0000
+               -0.0000  -0.0000  -0.0000     1.0000
+#--------------------------------------------
+#@# Talairach Tue Sep  8 17:32:38 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+
+ mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
+
+/usr/bin/bc
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+/home/apps//freesurfer/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.4.1
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Tue Sep  8 17:32:38 EDT 2026
+tmpdir is ./tmp.mri_nu_correct.mni.161208
+cd /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o ./tmp.mri_nu_correct.mni.161208/nu0.mgz --dtype uchar
+AntsN4BiasFieldCorrectionFs done
+mri_convert ./tmp.mri_nu_correct.mni.161208/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert ./tmp.mri_nu_correct.mni.161208/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from ./tmp.mri_nu_correct.mni.161208/nu0.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Tue Sep  8 17:35:29 EDT 2026
+mri_nu_correct.mni done
+@#@FSTIME  2026:09:08:17:32:38 mri_nu_correct.mni N 12 e 171.21 S 0.44 U 171.36 P 100% M 504056 F 0 R 145728 W 0 c 93 w 402 I 0 O 11928 L 6.38 5.19 2.37
+@#@FSLOADPOST 2026:09:08:17:35:29 mri_nu_correct.mni N 12 6.02 5.55 2.98
+
+ talairach_avi --i orig_nu.mgz --xfm transforms/talairach.auto.xfm 
+
+talairach_avi log file is transforms/talairach_avi.log...
+mv -f /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/talsrcimg_to_711-2C_as_mni_average_305_t4_vox2vox.txt /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms/talsrcimg_to_711-2C_as_mni_average_305_t4_vox2vox.txt
+Started at Tue Sep 8 17:35:29 EDT 2026
+Ended   at Tue Sep  8 17:36:12 EDT 2026
+talairach_avi done
+@#@FSTIME  2026:09:08:17:35:29 talairach_avi N 4 e 42.38 S 1.54 U 35.02 P 86% M 253952 F 0 R 399026 W 0 c 65 w 2372 I 0 O 296064 L 6.02 5.55 2.98
+@#@FSLOADPOST 2026:09:08:17:36:12 talairach_avi N 4 5.62 5.53 3.10
+
+ cp transforms/talairach.auto.xfm transforms/talairach.xfm 
+
+lta_convert --src orig.mgz --trg /home/apps//freesurfer/average/mni305.cor.mgz --inxfm transforms/talairach.xfm --outlta transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.4.1
+
+--src: orig.mgz src image (geometry).
+--trg: /home/apps//freesurfer/average/mni305.cor.mgz trg image (geometry).
+--inmni: transforms/talairach.xfm input MNI/XFM transform.
+--outlta: transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.13693   0.01902  -0.08304   6.62513;
+ 0.01610   1.14773   0.24984  -60.68266;
+ 0.08335  -0.40594   1.40271  -21.60606;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file transforms/talairach.xfm.lta...
+lta_convert successful.
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri 
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri 
+#--------------------------------------------
+#@# Talairach Failure Detection Tue Sep  8 17:36:14 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+
+ talairach_afd -T 0.005 -xfm transforms/talairach.xfm 
+
+talairach_afd: Talairach Transform: transforms/talairach.xfm OK (p=0.6552, pval=0.3663 >= threshold=0.0050)
+@#@FSTIME  2026:09:08:17:36:14 talairach_afd N 4 e 0.00 S 0.00 U 0.00 P 50% M 4096 F 0 R 222 W 0 c 0 w 8 I 0 O 0 L 5.62 5.53 3.10
+@#@FSLOADPOST 2026:09:08:17:36:14 talairach_afd N 4 5.62 5.53 3.10
+
+ awk -f /home/apps//freesurfer/bin/extract_talairach_avi_QA.awk /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms/talairach_avi.log 
+
+
+ tal_QC_AZS /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri/transforms/talairach_avi.log 
+
+TalAviQA: 0.96690
+z-score: -2
+#--------------------------------------------
+#@# Nu Intensity Correction Tue Sep  8 17:36:14 EDT 2026
+
+ mri_nu_correct.mni --i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4 
+
+/usr/bin/bc
+/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+/home/apps//freesurfer/bin/mri_nu_correct.mni
+--i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4
+nIters 2
+mri_nu_correct.mni 7.4.1
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Tue Sep  8 17:36:14 EDT 2026
+tmpdir is ./tmp.mri_nu_correct.mni.162437
+cd /mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects/D0091/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o ./tmp.mri_nu_correct.mni.162437/nu0.mgz --dtype uchar

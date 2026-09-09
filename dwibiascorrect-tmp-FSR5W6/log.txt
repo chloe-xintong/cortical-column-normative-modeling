@@ -1,0 +1,5 @@
+mrconvert /mnt/newStor/paros/paros_WORK/xintong/test/preprocess_v1_qc/D0007/D0007_04_dwi_preprocessed.mif /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-FSR5W6/in.mif
+dwi2mask in.mif mask.mif
+dwiextract in.mif - -bzero | mrmath - mean mean_bzero.mif -axis 3
+mrconvert mean_bzero.mif mean_bzero.nii -strides +1,+2,+3
+mrconvert mask.mif mask.nii -strides +1,+2,+3
