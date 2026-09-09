@@ -13,11 +13,11 @@ set -euo pipefail
 
 PIPELINE_DIR="/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis"
 RAW_ROOT="/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE"
-OUTPUT_ROOT="/mnt/newStor/paros/paros_WORK/xintong/test/data/processed"
+OUTPUT_ROOT="/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi"
 SUBJECT_LIST="$PIPELINE_DIR/adrc_30_new_test.csv"
 PREPROCESS="$PIPELINE_DIR/preprocessing/dwi/ADRC_v2/preprocess_dwi.sh"
 RECONALL="$PIPELINE_DIR/preprocessing/t1/run_freesurfer.sh"
-FREESURFER_ROOT="/mnt/newStor/paros/paros_WORK/xintong/test/freesurfer_subjects"
+FREESURFER_ROOT="/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer"
 MONITOR="$PIPELINE_DIR/monitor_job_resources.sh"
 LOG_DIR="$PIPELINE_DIR/logs"
 
