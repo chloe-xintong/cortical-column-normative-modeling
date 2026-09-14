@@ -181,7 +181,7 @@ DWI_PREPROCESS_ROOT = (
 
 ADRC_PREPROCESS_SCRIPT = (
     DWI_PREPROCESS_ROOT
-    / "ADRC_D0007"
+    / "ADRC_v2"
     / "preprocess_dwi.sh"
 )
 
@@ -424,12 +424,12 @@ def run_adrc_preprocessing(
 
     preprocessed_dwi = (
         diffusion_dir
-        / f"{args.subject_id}_05_dwi_biascorrected.mif"
+        / f"{args.subject_id}_05_biascorrected.mif"
     )
 
     brain_mask = (
         diffusion_dir
-        / f"{args.subject_id}_eddy_mask.nii.gz"
+        / f"{args.subject_id}_corrected_mean_b0_brain_mask.nii.gz"
     )
 
     require_file(

@@ -242,6 +242,21 @@ def parse_args():
         ),
     )
 
+    for metric in ("md", "fa", "ad", "rd"):
+        parser.add_argument(
+            f"--{metric}-image",
+            help=f"{metric.upper()} image for cortical profile sampling.",
+        )
+
+    parser.add_argument(
+        "--before-clean",
+        action="store_true",
+        help=(
+            "Sample all supplied metrics into profiles_before_clean and "
+            "stop before bad-column cleaning."
+        ),
+    )
+
     parser.add_argument(
         "--registration-reference",
         required=True,
@@ -302,6 +317,15 @@ def main():
         args.adc_image,
         "ADC image",
     )
+
+    metric_images = {"adc": adc_image}
+    for metric in ("md", "fa", "ad", "rd"):
+        image = getattr(args, f"{metric}_image")
+        if image:
+            metric_images[metric] = require_file(image, f"{metric.upper()} image")
+    if args.before_clean and not {"md", "fa", "ad", "rd"}.issubset(metric_images):
+        missing = ", ".join(sorted({"md", "fa", "ad", "rd"} - set(metric_images)))
+        raise ValueError(f"--before-clean requires all four metric images; missing: {missing}")
 
     registration_reference = require_file(
         args.registration_reference,
@@ -418,9 +442,8 @@ def main():
         / "regions"
     )
 
-    profile_dir = (
-        analysis_dir
-        / "profiles"
+    profile_dir = analysis_dir / (
+        "profiles_before_clean" if args.before_clean else "profiles"
     )
 
     regional_profile_dir = (
@@ -643,36 +666,27 @@ def main():
     # ADC PROFILE SAMPLING
     # ==================================================================
 
-    run_command(
-        [
-            sys.executable,
-            sample_profiles_script,
-            "--subject-id",
-            subject_id,
-            "--region-dir",
-            region_dir,
-            "--metric-image",
-            adc_image,
-            "--metric-name",
-            "adc",
-            "--output-dir",
-            profile_dir,
-        ],
-        "STEP 5: SAMPLE ADC PROFILES",
-    )
-
-
-    adc_profile_count = count_files(
-        profile_dir,
-        f"{subject_id}_*_adc.csv",
-    )
-
-
-    if adc_profile_count != EXPECTED_REGIONS:
-        raise RuntimeError(
-            f"Expected {EXPECTED_REGIONS} ADC profile files, "
-            f"found {adc_profile_count}."
+    for metric_name, metric_image in metric_images.items():
+        run_command(
+            [sys.executable, sample_profiles_script, "--subject-id", subject_id,
+             "--region-dir", region_dir, "--metric-image", metric_image,
+             "--metric-name", metric_name, "--output-dir", profile_dir],
+            f"STEP 5: SAMPLE {metric_name.upper()} PROFILES",
         )
+        count = count_files(profile_dir, f"{subject_id}_*_{metric_name}.csv")
+        if count != EXPECTED_REGIONS:
+            raise RuntimeError(
+                f"Expected {EXPECTED_REGIONS} {metric_name.upper()} profile files, "
+                f"found {count}."
+            )
+
+    adc_profile_count = count_files(profile_dir, f"{subject_id}_*_adc.csv")
+
+    if args.before_clean:
+        print_section("STOP BEFORE CLEANING")
+        print(f"Raw profiles saved in: {profile_dir}")
+        print("No bad-column cleaning was performed.")
+        return
 
 
     # ==================================================================

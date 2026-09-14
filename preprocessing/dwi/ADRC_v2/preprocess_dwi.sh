@@ -194,6 +194,23 @@ do
     fi
 done
 
+# Keep only the production V2 outputs after validation.  The raw, denoised,
+# degibbs, forward-b0, reverse-PE construction, BET brain image, Eddy scratch,
+# and denoising-QC files are intermediate/QC products and are intentionally
+# removed from the production output directory.
+rm -f \
+    "$RAW_MIF" \
+    "$DENOISED_MIF" \
+    "$DEGIBBS_MIF" \
+    "$FORWARD_B0" \
+    "$SE_EPI" \
+    "${BRAIN_BASE}.nii.gz" \
+    "$NOISE_MIF" \
+    "$RESIDUAL_MIF"
+rm -rf \
+    "$OUTPUT_DIR/eddy_scratch" \
+    "$OUTPUT_DIR/qc"
+
 echo
 echo "V2 preprocessing completed successfully."
 echo "Noise map: $NOISE_MIF"

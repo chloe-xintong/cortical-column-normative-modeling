@@ -1,0 +1,172 @@
+Job 320436 started at Fri Sep 11 10:49:44 EDT 2026
+Job Name: ADRCprofiles
+Running on node: kythira
+Subject=D0142 Node=kythira.cluster.local
+Using existing DWI and FreeSurfer outputs; preprocessing disabled
+
+Summed DWI size:
+164 328 122
+
+Registration mask size:
+164 328 122
+
+Registration reference preparation completed.
+
+Registration mask:
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0142/D0142_corrected_mean_b0_brain_mask.nii.gz
+
+Summed DWI:
+/mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_sum.nii.gz
+
+3D masked DWI for registration:
+/mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz
+
+Final registration DWI size:
+164 328 122
+Subject:      D0142
+Moving image: /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz
+SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Output:       /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_DWI2T1.dat
+tmp /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484
+Log file is /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_DWI2T1.log
+Fri Sep 11 10:49:59 EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+/home/apps//freesurfer/bin/bbregister --s D0142 --mov /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz --reg /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_DWI2T1.dat --sd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --dti --init-fsl --12
+
+bbregister 7.4.1
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+FREESURFER_HOME /home/apps//freesurfer
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/D0142_dwi_masked.nii.gz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii...
+fslregister --s D0142 --mov /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+
+Log file is /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat.fslregister.log
+
+Fri Sep 11 10:50:00 EDT 2026
+--s D0142 --mov /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+fslregister 7.4.1
+kythira.cluster.local
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+nIters 1
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0142/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/refvol.fslregister.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0142/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/refvol.fslregister.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0142/mri/brainmask.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/refvol.fslregister.nii...
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii --frame 0
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii --frame 0 
+reading from /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+keeping frame 0
+writing to /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii...
+Mov determinant is 1
+Swapping dims for pos det
+WARNING:: Flipping Left/Right orientation (as det < 0)
+target  volume /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii
+movable volume /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/swapreg.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii
+INFO: target does not conform to COR format, so I'm going to
+reslice to COR. This will not affect the final registration.
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/template.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant -1
+subject = subject-unknown
+RegMat ---------------------------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   1.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+tkregister2_cmdl --mov /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii --reg /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/reg0.1024589.dat --targ brainmask --fstarg --regheader --fslregout /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat.fsl.mat0 --s D0142 --noedit
+target  volume brainmask
+movable volume /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/reg0.1024589.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0142/mri/brainmask.mgz
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+ 1.00000   0.00000   0.00000  -1.00000;
+ 0.00000   0.00000   1.00000  -0.20000;
+ 0.00000  -1.00000   0.00000  -1.60001;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+ 1.00000   0.00000   0.00000  -1.00000;
+ 0.00000   0.00000   1.00000  -0.20000;
+ 0.00000  -1.00000   0.00000  -1.60001;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant 1
+subject = D0142
+RegMat ---------------------------
+ 1.00000   0.00000   0.00000  -1.00000;
+ 0.00000   0.00000   1.00000  -0.20000;
+ 0.00000  -1.00000   0.00000  -1.60001;
+ 0.00000   0.00000   0.00000   1.00000;
+FSLOUTPUTTYPE NIFTI 
+tkreg2FSL: mov det = -1, ref det = -1
+Fri Sep 11 10:50:02 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/fsl.5.0.2.xyztrans.sch -init /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat.fsl.mat0
+Fri Sep 11 10:50:29 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/reg.init.dat.fsl.mat -init /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/D0142/registration/tmp.bbregister.1024484/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/flirt.newdefault.20080811.sch

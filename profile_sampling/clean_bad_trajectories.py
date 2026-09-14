@@ -500,6 +500,35 @@ def save_bad_trajectory_list(
     )
 
 
+def save_bad_trajectory_mask(subject_id, profile_dir, region_dir, bad_by_region):
+    """Save complete binary masks before profile/coordinate cleaning."""
+    data = {
+        "subject_id": subject_id,
+        "depth_samples": DEPTH_SAMPLES,
+        "indexing": "0-based trajectory row indices before cleaning",
+        "regions": {},
+    }
+    for region_key, bad_indices in sorted(bad_by_region.items()):
+        hemisphere = region_key.split("_", 1)[0]
+        mat_path = Path(region_dir) / f"{region_key}.mat"
+        mat = loadmat(str(mat_path))
+        coordinates = np.asarray(mat[f"{hemisphere}_trajectory_dwi"], dtype=float)
+        n_trajectories = coordinates.shape[1] // DEPTH_SAMPLES
+        mask = np.zeros(n_trajectories, dtype=np.uint8)
+        mask[sorted(bad_indices)] = 1
+        data["regions"][region_key] = {
+            "n_trajectories_before": int(n_trajectories),
+            "bad_count": int(mask.sum()),
+            "keep_count": int((mask == 0).sum()),
+            "bad_mask": mask.tolist(),
+            "bad_indices": sorted(int(i) for i in bad_indices),
+        }
+    output_path = Path(profile_dir) / "bad_trajectory_mask.json"
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(data, file, indent=2)
+    print(f"Bad trajectory mask saved: {output_path}")
+
+
 def clean_all_profiles(
     subject_id,
     profile_dir,
@@ -629,6 +658,13 @@ def main():
         subject_id=args.subject_id,
         profile_dir=args.profile_dir,
         metrics=args.metrics,
+        bad_by_region=bad_by_region,
+    )
+
+    save_bad_trajectory_mask(
+        subject_id=args.subject_id,
+        profile_dir=args.profile_dir,
+        region_dir=args.region_dir,
         bad_by_region=bad_by_region,
     )
 

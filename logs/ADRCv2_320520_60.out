@@ -1,0 +1,4325 @@
+Job 320581 started at Fri Sep 11 12:06:22 EDT 2026
+Job Name: ADRCv2
+Running on node: crete
+Subject=D0359 Node=crete CPUs=4
+Start time=2026-09-11T12:06:22-04:00
+Allocated memory=20480
+T1=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/T1.nii.gz
+DWI=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/bia5_02819_011.nii.gz
+Reverse=/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/bia5_02819_011_revphase.nii.gz PE=PA Readout=0.119063
+Subject ID:   D0359
+T1 image:     /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/T1.nii.gz
+SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Threads:      4
+Starting new FreeSurfer reconstruction.
+fs-check-version --s D0359 --o /tmp/tmp.jy1NXL
+Fri Sep 11 12:06:24 EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+/home/apps//freesurfer/bin/fs-check-version --s D0359 --o /tmp/tmp.jy1NXL
+-rwxrwxr-x 1 alex admins 18565 Jun 13  2023 /home/apps//freesurfer/bin/fs-check-version
+
+freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+$Id$
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+pid 2249321
+Current FS Version freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+Subject does not have a bstampfile, copying /home/apps//freesurfer/build-stamp.txt
+Subject FS Version: freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+No constraints on version because REQ=UnSet and FsVerFile=NotThere
+#@#% fs-check-version match = 1
+fs-check-version Done
+INFO: SUBJECTS_DIR is /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Actual FREESURFER_HOME /home/apps/freesurfer
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359
+
+ mri_convert /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/T1.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig/001.mgz 
+
+mri_convert /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/T1.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig/001.mgz 
+reading from /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0359/T1.nii.gz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, -1, 0)
+k_ras = (0, 0, 1)
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig/001.mgz...
+@#@FSTIME  2026:09:11:12:06:25 mri_convert N 2 e 1.39 S 0.04 U 1.38 P 102% M 22528 F 0 R 4384 W 0 c 1 w 365 I 18512 O 17920 L 26.56 14.31 8.30
+@#@FSLOADPOST 2026:09:11:12:06:26 mri_convert N 2 26.56 14.31 8.30
+#--------------------------------------------
+#@# MotionCor Fri Sep 11 12:06:27 EDT 2026
+Found 1 runs
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig/001.mgz
+Checking for (invalid) multi-frame inputs...
+Only one run found so motion
+correction will not be performed. I'll
+copy the run to rawavg and continue.
+
+ cp /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig/001.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz 
+
+
+ mri_info /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz 
+
+rawavg.mgz ========================================
+Volume information for /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz
+          type: MGH
+    dimensions: 256 x 256 x 124
+   voxel sizes: 1.000000, 1.000000, 1.000000
+          type: SHORT (4)
+           fov: 256.000
+           dof: 1
+        xstart: -128.0, xend: 128.0
+        ystart: -128.0, yend: 128.0
+        zstart: -62.0, zend: 62.0
+            TR: 1000.00 msec, TE: 0.00 msec, TI: 0.00 msec, flip angle: 0.00 degrees
+       nframes: 1
+       PhEncDir: UNKNOWN
+       FieldStrength: 0.000000
+ras xform present
+    xform info: x_r =  -1.0000, y_r =   0.0000, z_r =   0.0000, c_r =     2.5000
+              : x_a =   0.0000, y_a =  -1.0000, z_a =   0.0000, c_a =    32.5000
+              : x_s =   0.0000, y_s =   0.0000, z_s =   1.0000, c_s =     4.5000
+
+talairach xfm : 
+Orientation   : LPS
+Primary Slice Direction: axial
+
+voxel to ras transform:
+               -1.0000   0.0000   0.0000   130.5000
+                0.0000  -1.0000   0.0000   160.5000
+                0.0000   0.0000   1.0000   -57.5000
+                0.0000   0.0000   0.0000     1.0000
+
+voxel-to-ras determinant 1
+
+ras to voxel transform:
+               -1.0000   0.0000   0.0000   130.5000
+                0.0000  -1.0000   0.0000   160.5000
+                0.0000   0.0000   1.0000    57.5000
+                0.0000   0.0000   0.0000     1.0000
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359
+
+ mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz --conform 
+
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz --conform 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/rawavg.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, -1, 0)
+k_ras = (0, 0, 1)
+changing data type from short to uchar (noscale = 0)...
+MRIchangeType: Building histogram 0 7136 1000, flo=0, fhi=0.999, dest_type=0
+Reslicing using trilinear interpolation 
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz...
+@#@FSTIME  2026:09:11:12:06:30 mri_convert N 3 e 1.93 S 0.04 U 1.99 P 105% M 29072 F 0 R 14679 W 0 c 2 w 84 I 0 O 6768 L 26.75 14.55 8.41
+@#@FSLOADPOST 2026:09:11:12:06:32 mri_convert N 3 26.93 14.79 8.53
+
+ mri_add_xform_to_header -c /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talairach.xfm /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz 
+
+INFO: extension is mgz
+@#@FSTIME  2026:09:11:12:06:32 mri_add_xform_to_header N 4 e 0.49 S 0.01 U 0.60 P 125% M 20480 F 0 R 4572 W 0 c 2 w 119 I 0 O 6768 L 26.93 14.79 8.53
+@#@FSLOADPOST 2026:09:11:12:06:32 mri_add_xform_to_header N 4 26.93 14.79 8.53
+
+ mri_info /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz 
+
+orig.mgz ========================================
+Volume information for /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz
+          type: MGH
+    dimensions: 256 x 256 x 256
+   voxel sizes: 1.000000, 1.000000, 1.000000
+          type: UCHAR (0)
+           fov: 256.000
+           dof: 1
+        xstart: -128.0, xend: 128.0
+        ystart: -128.0, yend: 128.0
+        zstart: -128.0, zend: 128.0
+            TR: 1000.00 msec, TE: 0.00 msec, TI: 0.00 msec, flip angle: 0.00 degrees
+       nframes: 1
+       PhEncDir: UNKNOWN
+       FieldStrength: 0.000000
+ras xform present
+    xform info: x_r =  -1.0000, y_r =   0.0000, z_r =   0.0000, c_r =     2.5000
+              : x_a =   0.0000, y_a =   0.0000, z_a =   1.0000, c_a =    32.5000
+              : x_s =   0.0000, y_s =  -1.0000, z_s =   0.0000, c_s =     4.5000
+
+talairach xfm : /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talairach.xfm
+Orientation   : LIA
+Primary Slice Direction: coronal
+
+voxel to ras transform:
+               -1.0000   0.0000   0.0000   130.5000
+                0.0000   0.0000   1.0000   -95.5000
+                0.0000  -1.0000   0.0000   132.5000
+                0.0000   0.0000   0.0000     1.0000
+
+voxel-to-ras determinant -1
+
+ras to voxel transform:
+               -1.0000  -0.0000  -0.0000   130.5000
+               -0.0000  -0.0000  -1.0000   132.5000
+               -0.0000   1.0000  -0.0000    95.5000
+               -0.0000  -0.0000  -0.0000     1.0000
+#--------------------------------------------
+#@# Talairach Fri Sep 11 12:06:33 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_nu_correct.mni --no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50 
+
+/usr/bin/bc
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+/home/apps//freesurfer/bin/mri_nu_correct.mni
+--no-rescale --i orig.mgz --o orig_nu.mgz --ants-n4 --n 1 --proto-iters 1000 --distance 50
+nIters 1
+mri_nu_correct.mni 7.4.1
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Fri Sep 11 12:06:33 EDT 2026
+tmpdir is ./tmp.mri_nu_correct.mni.2249648
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o ./tmp.mri_nu_correct.mni.2249648/nu0.mgz --dtype uchar
+AntsN4BiasFieldCorrectionFs done
+mri_convert ./tmp.mri_nu_correct.mni.2249648/nu0.mgz orig_nu.mgz --like orig.mgz --conform
+mri_convert ./tmp.mri_nu_correct.mni.2249648/nu0.mgz orig_nu.mgz --like orig.mgz --conform 
+reading from ./tmp.mri_nu_correct.mni.2249648/nu0.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to orig_nu.mgz...
+ 
+ 
+Fri Sep 11 12:09:45 EDT 2026
+mri_nu_correct.mni done
+@#@FSTIME  2026:09:11:12:06:33 mri_nu_correct.mni N 12 e 192.81 S 0.57 U 192.34 P 100% M 503976 F 0 R 178312 W 0 c 171 w 418 I 0 O 13120 L 26.93 14.79 8.53
+@#@FSLOADPOST 2026:09:11:12:09:45 mri_nu_correct.mni N 12 26.60 19.41 11.42
+
+ talairach_avi --i orig_nu.mgz --xfm transforms/talairach.auto.xfm 
+
+talairach_avi log file is transforms/talairach_avi.log...
+mv -f /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/talsrcimg_to_711-2C_as_mni_average_305_t4_vox2vox.txt /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talsrcimg_to_711-2C_as_mni_average_305_t4_vox2vox.txt
+Started at Fri Sep 11 12:09:45 EDT 2026
+Ended   at Fri Sep 11 12:10:03 EDT 2026
+talairach_avi done
+@#@FSTIME  2026:09:11:12:09:45 talairach_avi N 4 e 17.65 S 1.70 U 9.73 P 64% M 253952 F 0 R 400029 W 0 c 35 w 3545 I 16 O 296032 L 26.60 19.41 11.42
+@#@FSLOADPOST 2026:09:11:12:10:03 talairach_avi N 4 24.17 19.33 11.56
+
+ cp transforms/talairach.auto.xfm transforms/talairach.xfm 
+
+lta_convert --src orig.mgz --trg /home/apps//freesurfer/average/mni305.cor.mgz --inxfm transforms/talairach.xfm --outlta transforms/talairach.xfm.lta --subject fsaverage --ltavox2vox
+7.4.1
+
+--src: orig.mgz src image (geometry).
+--trg: /home/apps//freesurfer/average/mni305.cor.mgz trg image (geometry).
+--inmni: transforms/talairach.xfm input MNI/XFM transform.
+--outlta: transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.06983   0.05811  -0.04914  -2.06459;
+-0.01977   0.97767   0.50767  -51.76021;
+ 0.04942  -0.39187   1.33424   17.87648;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file transforms/talairach.xfm.lta...
+lta_convert successful.
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri 
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri 
+#--------------------------------------------
+#@# Talairach Failure Detection Fri Sep 11 12:10:05 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ talairach_afd -T 0.005 -xfm transforms/talairach.xfm 
+
+talairach_afd: Talairach Transform: transforms/talairach.xfm OK (p=0.5480, pval=0.2115 >= threshold=0.0050)
+@#@FSTIME  2026:09:11:12:10:05 talairach_afd N 4 e 0.00 S 0.00 U 0.00 P 80% M 4096 F 0 R 224 W 0 c 0 w 14 I 0 O 0 L 24.17 19.33 11.56
+@#@FSLOADPOST 2026:09:11:12:10:05 talairach_afd N 4 24.17 19.33 11.56
+
+ awk -f /home/apps//freesurfer/bin/extract_talairach_avi_QA.awk /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talairach_avi.log 
+
+
+ tal_QC_AZS /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talairach_avi.log 
+
+TalAviQA: 0.95012
+z-score: -6
+#--------------------------------------------
+#@# Nu Intensity Correction Fri Sep 11 12:10:05 EDT 2026
+
+ mri_nu_correct.mni --i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4 
+
+/usr/bin/bc
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+/home/apps//freesurfer/bin/mri_nu_correct.mni
+--i orig.mgz --o nu.mgz --uchar transforms/talairach.xfm --n 2 --ants-n4
+nIters 2
+mri_nu_correct.mni 7.4.1
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Fri Sep 11 12:10:05 EDT 2026
+tmpdir is ./tmp.mri_nu_correct.mni.2251058
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+AntsN4BiasFieldCorrectionFs -i orig.mgz -o ./tmp.mri_nu_correct.mni.2251058/nu0.mgz --dtype uchar
+AntsN4BiasFieldCorrectionFs done
+mri_binarize --i ./tmp.mri_nu_correct.mni.2251058/nu0.mgz --min -1 --o ./tmp.mri_nu_correct.mni.2251058/ones.mgz
+
+7.4.1
+cwd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+cmdline mri_binarize --i ./tmp.mri_nu_correct.mni.2251058/nu0.mgz --min -1 --o ./tmp.mri_nu_correct.mni.2251058/ones.mgz 
+sysname  Linux
+hostname crete
+machine  x86_64
+user     xintong
+
+input      ./tmp.mri_nu_correct.mni.2251058/nu0.mgz
+frame      0
+nErode3d   0
+nErode2d   0
+output     ./tmp.mri_nu_correct.mni.2251058/ones.mgz
+Binarizing based on threshold
+min        -1
+max        +infinity
+binval        1
+binvalnot     0
+fstart = 0, fend = 0, nframes = 1
+Starting parallel 1
+Found 16777216 values in range
+Counting number of voxels in first frame
+Found 16777215 voxels in final mask
+Writing output to ./tmp.mri_nu_correct.mni.2251058/ones.mgz
+Count: 16777215 16777215.000000 16777216 99.999994
+mri_binarize done
+mri_segstats --id 1 --seg ./tmp.mri_nu_correct.mni.2251058/ones.mgz --i orig.mgz --sum ./tmp.mri_nu_correct.mni.2251058/sum.junk --avgwf ./tmp.mri_nu_correct.mni.2251058/input.mean.dat
+
+7.4.1
+cwd 
+cmdline mri_segstats --id 1 --seg ./tmp.mri_nu_correct.mni.2251058/ones.mgz --i orig.mgz --sum ./tmp.mri_nu_correct.mni.2251058/sum.junk --avgwf ./tmp.mri_nu_correct.mni.2251058/input.mean.dat 
+sysname  Linux
+hostname crete
+machine  x86_64
+user     xintong
+whitesurfname  white
+UseRobust  0
+Loading ./tmp.mri_nu_correct.mni.2251058/ones.mgz
+Loading orig.mgz
+Voxel Volume is 1 mm^3
+Generating list of segmentation ids
+Found   1 segmentations
+Computing statistics for each segmentation
+
+Reporting on   1 segmentations
+Using PrintSegStat
+Computing spatial average of each frame
+
+Writing to ./tmp.mri_nu_correct.mni.2251058/input.mean.dat
+mri_segstats done
+mri_segstats --id 1 --seg ./tmp.mri_nu_correct.mni.2251058/ones.mgz --i ./tmp.mri_nu_correct.mni.2251058/nu0.mgz --sum ./tmp.mri_nu_correct.mni.2251058/sum.junk --avgwf ./tmp.mri_nu_correct.mni.2251058/output.mean.dat
+
+7.4.1
+cwd 
+cmdline mri_segstats --id 1 --seg ./tmp.mri_nu_correct.mni.2251058/ones.mgz --i ./tmp.mri_nu_correct.mni.2251058/nu0.mgz --sum ./tmp.mri_nu_correct.mni.2251058/sum.junk --avgwf ./tmp.mri_nu_correct.mni.2251058/output.mean.dat 
+sysname  Linux
+hostname crete
+machine  x86_64
+user     xintong
+whitesurfname  white
+UseRobust  0
+Loading ./tmp.mri_nu_correct.mni.2251058/ones.mgz
+Loading ./tmp.mri_nu_correct.mni.2251058/nu0.mgz
+Voxel Volume is 1 mm^3
+Generating list of segmentation ids
+Found   1 segmentations
+Computing statistics for each segmentation
+
+Reporting on   1 segmentations
+Using PrintSegStat
+Computing spatial average of each frame
+
+Writing to ./tmp.mri_nu_correct.mni.2251058/output.mean.dat
+mri_segstats done
+mris_calc -o ./tmp.mri_nu_correct.mni.2251058/nu0.mgz ./tmp.mri_nu_correct.mni.2251058/nu0.mgz mul 1.14524125798010582386
+Saving result to './tmp.mri_nu_correct.mni.2251058/nu0.mgz' (type = MGH )                       [ ok ]
+mri_convert ./tmp.mri_nu_correct.mni.2251058/nu0.mgz nu.mgz --like orig.mgz
+mri_convert ./tmp.mri_nu_correct.mni.2251058/nu0.mgz nu.mgz --like orig.mgz 
+reading from ./tmp.mri_nu_correct.mni.2251058/nu0.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+INFO: transform src into the like-volume: orig.mgz
+writing to nu.mgz...
+mri_make_uchar nu.mgz transforms/talairach.xfm nu.mgz
+type change took 0 minutes and 4 seconds.
+FIRST_PERCENTILE 0.010000
+WM_PERCENTILE    0.900000
+MAX_R 50.000000
+i1 = 7, i2 = 65
+#mri_make_uchar# mapping  9 83 to  3 110  :  b -10.4181 m 1.44414 : thresh 7.21404 maxsat 183.789 : nzero 13838239 nsat 32576
+ 
+ 
+Fri Sep 11 12:13:34 EDT 2026
+mri_nu_correct.mni done
+@#@FSTIME  2026:09:11:12:10:05 mri_nu_correct.mni N 9 e 208.13 S 1.78 U 208.34 P 100% M 612352 F 0 R 629506 W 0 c 195 w 989 I 0 O 31704 L 24.17 19.33 11.56
+@#@FSLOADPOST 2026:09:11:12:13:34 mri_nu_correct.mni N 9 18.31 18.37 12.71
+
+ mri_add_xform_to_header -c /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/talairach.xfm nu.mgz nu.mgz 
+
+INFO: extension is mgz
+@#@FSTIME  2026:09:11:12:13:34 mri_add_xform_to_header N 4 e 0.29 S 0.01 U 0.41 P 145% M 22528 F 0 R 4574 W 0 c 1 w 112 I 0 O 4816 L 18.31 18.37 12.71
+@#@FSLOADPOST 2026:09:11:12:13:34 mri_add_xform_to_header N 4 18.31 18.37 12.71
+#--------------------------------------------
+#@# Intensity Normalization Fri Sep 11 12:13:34 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_normalize -g 1 -seed 1234 -mprage nu.mgz T1.mgz 
+
+using max gradient = 1.000
+setting seed for random number genererator to 1234
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+reading mri_src from nu.mgz...
+normalizing image...
+NOT doing gentle normalization with control points/label
+talairach transform
+ 1.06983   0.05811  -0.04914  -2.06459;
+-0.01977   0.97767   0.50767  -51.76021;
+ 0.04942  -0.39187   1.33424   17.87648;
+ 0.00000   0.00000   0.00000   1.00000;
+processing without aseg, no1d=0
+MRInormInit(): 
+INFO: Modifying talairach volume c_(r,a,s) based on average_305
+MRInormalize(): 
+MRIsplineNormalize(): npeaks = 18
+Starting OpenSpline(): npoints = 18
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 65 (65), valley at 49 (49)
+csf peak at 33, setting threshold to 54
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 68 (68), valley at 41 (41)
+csf peak at 35, setting threshold to 57
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to T1.mgz
+3D bias adjustment took 1 minutes and 14 seconds.
+@#@FSTIME  2026:09:11:12:13:34 mri_normalize N 7 e 74.25 S 0.82 U 86.80 P 118% M 578884 F 0 R 468880 W 0 c 128 w 134 I 0 O 5096 L 18.31 18.37 12.71
+@#@FSLOADPOST 2026:09:11:12:14:48 mri_normalize N 7 21.09 19.10 13.40
+#--------------------------------------------
+#@# Skull Stripping Fri Sep 11 12:14:48 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_em_register -skull nu.mgz /home/apps//freesurfer/average/RB_all_withskull_2020_01_02.gca transforms/talairach_with_skull.lta 
+
+aligning to atlas containing skull, setting unknown_nbr_spacing = 5
+
+== Number of threads available to mri_em_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach_with_skull.log
+reading '/home/apps//freesurfer/average/RB_all_withskull_2020_01_02.gca'...
+GCAread took 0 minutes and 1 seconds.
+average std = 23.0   using min determinant for regularization = 52.8
+0 singular and 9205 ill-conditioned covariance matrices regularized
+reading 'nu.mgz'...
+freeing gibbs priors...done.
+accounting for voxel sizes in initial transform
+bounding unknown intensity as < 8.9 or > 556.0 
+total sample mean = 77.3 (1403 zeros)
+************************************************
+spacing=8, using 3292 sample points, tol=1.00e-05...
+************************************************
+register_mri: find_optimal_transform
+find_optimal_transform: nsamples 3292, passno 0, spacing 8
+resetting wm mean[0]: 100 --> 108
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=14.0
+skull bounding box = (44, 69, 34) --> (212, 192, 234)
+finding center of left hemi white matter
+using (100, 110, 134) as brain centroid of Right_Cerebral_White_Matter...
+MRImask(): AllowDiffGeom = 1
+mean wm in atlas = 108, using box (79,95,109) --> (120, 125,158) to find MRI wm
+before smoothing, mri peak at 110
+robust fit to distribution - 110 +- 4.4
+after smoothing, mri peak at 110, scaling input intensities by 0.982
+scaling channel 0 by 0.981818
+initial log_p = -4.783
+************************************************
+First Search limited to translation only.
+************************************************
+max log p =    -4.657264 @ (-10.526, -10.526, -31.579)
+max log p =    -4.538075 @ (5.263, -5.263, 5.263)
+max log p =    -4.520756 @ (2.632, -2.632, -2.632)
+max log p =    -4.492577 @ (-1.316, 1.316, 3.947)
+max log p =    -4.472446 @ (0.658, -0.658, -1.974)
+max log p =    -4.472446 @ (0.000, 0.000, 0.000)
+max log p =    -4.472446 @ (0.000, 0.000, 0.000)
+max log p =    -4.472446 @ (0.000, 0.000, 0.000)
+Found translation: (-3.3, -17.8, -27.0): log p = -4.472
+****************************************
+Nine parameter search.  iteration 0 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-4.123, old_max_log_p =-4.472 (thresh=-4.5)
+ 1.07500   0.00000   0.00000  -12.91888;
+ 0.00000   1.13162   0.49132  -99.17756;
+ 0.00000  -0.39316   1.00369   35.37133;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 23 seconds.
+****************************************
+Nine parameter search.  iteration 1 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-4.119, old_max_log_p =-4.123 (thresh=-4.1)
+ 1.07500   0.00000   0.00000  -12.91888;
+ 0.00000   1.07062   0.61813  -107.00670;
+ 0.00000  -0.53750   0.93098   67.51414;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.2500
+iteration took 0 minutes and 20 seconds.
+****************************************
+Nine parameter search.  iteration 2 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-4.045, old_max_log_p =-4.119 (thresh=-4.1)
+ 1.07212  -0.05745  -0.06687   1.65009;
+ 0.06894   1.07970   0.54393  -109.11892;
+ 0.03444  -0.44251   0.91391   50.64331;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 3 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-4.045, old_max_log_p =-4.045 (thresh=-4.0)
+ 1.07212  -0.05745  -0.06687   1.65009;
+ 0.06894   1.07970   0.54393  -109.11892;
+ 0.03444  -0.44251   0.91391   50.64331;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.0625
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 4 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-4.030, old_max_log_p =-4.045 (thresh=-4.0)
+ 1.07110  -0.06121  -0.05943   1.36249;
+ 0.06928   1.07478   0.55072  -110.72517;
+ 0.02510  -0.45086   0.90993   53.24102;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 5 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-4.024, old_max_log_p =-4.030 (thresh=-4.0)
+ 1.06929  -0.05596  -0.04734  -0.41285;
+ 0.06054   1.07528   0.55112  -109.23415;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 6 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-4.021, old_max_log_p =-4.024 (thresh=-4.0)
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+min search scale 0.025000 reached
+***********************************************
+Computing MAP estimate using 3292 samples...
+***********************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-05
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 3292
+Quasinewton: input matrix
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 009: -log(p) =   -0.0  tol 0.000010
+Resulting transform:
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+
+pass 1, spacing 8: log(p) = -4.021 (old=-4.783)
+transform before final EM align:
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+
+**************************************************
+ EM alignment process ...
+ Computing final MAP estimate using 364986 samples. 
+**************************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-07
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 364986
+Quasinewton: input matrix
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 6 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 011: -log(p) =    4.4  tol 0.000000
+final transform:
+ 1.06553  -0.05576  -0.04717   0.02808;
+ 0.06061   1.07654   0.55177  -109.52869;
+ 0.01638  -0.45087   0.91145   54.18622;
+ 0.00000   0.00000   0.00000   1.00000;
+
+writing output transformation to transforms/talairach_with_skull.lta...
+#VMPC# mri_em_register VmPeak  808808
+FSRUNTIME@ mri_em_register  0.0479 hours 4 threads
+registration took 2 minutes and 52 seconds.
+@#@FSTIME  2026:09:11:12:14:48 mri_em_register N 4 e 172.53 S 1.52 U 595.27 P 345% M 628948 F 0 R 473157 W 0 c 343 w 65 I 0 O 32 L 21.09 19.10 13.40
+@#@FSLOADPOST 2026:09:11:12:17:41 mri_em_register N 4 22.54 20.71 14.97
+
+ mri_watershed -T1 -brain_atlas /home/apps//freesurfer/average/RB_all_withskull_2020_01_02.gca transforms/talairach_with_skull.lta T1.mgz brainmask.auto.mgz 
+
+
+Mode:          T1 normalized volume
+Mode:          Use the information of atlas (default parms, --help for details)
+
+*********************************************************
+The input file is T1.mgz
+The output file is brainmask.auto.mgz
+Weighting the input with atlas information before watershed
+
+*************************WATERSHED**************************
+Sorting...
+      first estimation of the COG coord: x=132 y=129 z=129 r=72
+      first estimation of the main basin volume: 1589825 voxels
+      Looking for seedpoints 
+        2 found in the cerebellum 
+        16 found in the rest of the brain 
+      global maximum in x=149, y=127, z=94, Imax=255
+      CSF=20, WM_intensity=110, WM_VARIANCE=5
+      WM_MIN=110, WM_HALF_MIN=110, WM_HALF_MAX=110, WM_MAX=110 
+      preflooding height equal to 10 percent
+done.
+Analyze...
+
+      main basin size=1710268567598135 voxels, voxel volume =1.000 
+                     = 1710268567598135 mmm3 = 1710268593733.632 cm3
+done.
+PostAnalyze...Basin Prior
+ 4 basins merged thanks to atlas 
+      ***** 0 basin(s) merged in 1 iteration(s)
+      ***** 0 voxel(s) added to the main basin
+done.
+Weighting the input with prior template 
+
+****************TEMPLATE DEFORMATION****************
+
+      second estimation of the COG coord: x=129,y=136, z=125, r=9458 iterations
+^^^^^^^^ couldn't find WM with original limits - expanding ^^^^^^
+
+   GLOBAL      CSF_MIN=1, CSF_intensity=2, CSF_MAX=5 , nb = 45432
+  RIGHT_CER    CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 1998
+  LEFT_CER     CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 1854
+ RIGHT_BRAIN   CSF_MIN=1, CSF_intensity=2, CSF_MAX=33 , nb = 20592
+ LEFT_BRAIN    CSF_MIN=1, CSF_intensity=2, CSF_MAX=14 , nb = 20034
+    OTHER      CSF_MIN=1, CSF_intensity=2, CSF_MAX=3 , nb = 954
+   
+                     CSF_MAX  TRANSITION  GM_MIN  GM
+    GLOBAL     
+  before analyzing :    5,      5,        13,   64
+  after  analyzing :    5,      18,        25,   29
+   RIGHT_CER   
+  before analyzing :    3,      3,        14,   57
+  after  analyzing :    3,      17,        25,   27
+   LEFT_CER    
+  before analyzing :    3,      3,        16,   53
+  after  analyzing :    3,      17,        25,   26
+  RIGHT_BRAIN  
+  before analyzing :    33,      25,        14,   64
+  after  analyzing :    16,      25,        25,   34
+  LEFT_BRAIN   
+  before analyzing :    14,      13,        13,   67
+  after  analyzing :    13,      21,        25,   32
+     OTHER     
+  before analyzing :    3,      10,        78,   87
+  after  analyzing :    3,      55,        78,   63
+      mri_strip_skull: done peeling brain
+      highly tesselated surface with 10242 vertices
+      matching...62 iterations
+
+*********************VALIDATION*********************
+curvature mean = -0.013, std = 0.010
+curvature mean = 69.435, std = 7.634
+
+No Rigid alignment: -atlas Mode Off (basic atlas / no registration)
+      before rotation: sse = 6.03, sigma = 10.00
+      after  rotation: sse = 6.03, sigma = 10.00
+Localization of inacurate regions: Erosion-Dilation steps
+      the sse mean is  7.11, its var is 10.58   
+      before Erosion-Dilatation  5.31% of inacurate vertices
+      after  Erosion-Dilatation  0.00% of inacurate vertices
+      Validation of the shape of the surface done.
+Scaling of atlas fields onto current surface fields
+
+********FINAL ITERATIVE TEMPLATE DEFORMATION********
+Compute Local values csf/gray
+Fine Segmentation...39 iterations
+
+      mri_strip_skull: done peeling brain
+
+Brain Size = 1546743 voxels, voxel volume = 1.000 mm3
+           = 1546743 mmm3 = 1546.743 cm3
+
+
+******************************
+Saving brainmask.auto.mgz
+done
+mri_watershed done
+@#@FSTIME  2026:09:11:12:17:41 mri_watershed N 6 e 13.01 S 0.67 U 18.13 P 144% M 795700 F 0 R 335488 W 0 c 37 w 498 I 0 O 2384 L 22.54 20.71 14.97
+@#@FSLOADPOST 2026:09:11:12:17:54 mri_watershed N 6 22.57 20.80 15.10
+
+ cp brainmask.auto.mgz brainmask.mgz 
+
+#-------------------------------------
+#@# EM Registration Fri Sep 11 12:17:55 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_em_register -uns 3 -mask brainmask.mgz nu.mgz /home/apps//freesurfer/average/RB_all_2020-01-02.gca transforms/talairach.lta 
+
+setting unknown_nbr_spacing = 3
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_em_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading '/home/apps//freesurfer/average/RB_all_2020-01-02.gca'...
+GCAread took 0 minutes and 1 seconds.
+average std = 7.2   using min determinant for regularization = 5.2
+0 singular and 884 ill-conditioned covariance matrices regularized
+reading 'nu.mgz'...
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+freeing gibbs priors...done.
+accounting for voxel sizes in initial transform
+bounding unknown intensity as < 5.9 or > 519.0 
+total sample mean = 79.1 (1017 zeros)
+************************************************
+spacing=8, using 2841 sample points, tol=1.00e-05...
+************************************************
+register_mri: find_optimal_transform
+find_optimal_transform: nsamples 2841, passno 0, spacing 8
+resetting wm mean[0]: 98 --> 107
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=21.9
+skull bounding box = (67, 79, 49) --> (193, 182, 209)
+finding center of left hemi white matter
+using (109, 113, 129) as brain centroid of Right_Cerebral_White_Matter...
+MRImask(): AllowDiffGeom = 1
+mean wm in atlas = 107, using box (94,100,109) --> (124, 125,148) to find MRI wm
+before smoothing, mri peak at 110
+robust fit to distribution - 109 +- 4.6
+after smoothing, mri peak at 109, scaling input intensities by 0.982
+scaling channel 0 by 0.981651
+initial log_p = -4.445
+************************************************
+First Search limited to translation only.
+************************************************
+max log p =    -4.167542 @ (-10.526, -10.526, -31.579)
+max log p =    -3.974250 @ (5.263, -5.263, 5.263)
+max log p =    -3.969606 @ (2.632, -2.632, 2.632)
+max log p =    -3.934340 @ (-1.316, 3.947, 3.947)
+max log p =    -3.928846 @ (-0.658, 0.658, -0.658)
+max log p =    -3.916743 @ (-0.329, -3.618, 0.329)
+max log p =    -3.916743 @ (0.000, 0.000, 0.000)
+max log p =    -3.916743 @ (0.000, 0.000, 0.000)
+Found translation: (-4.9, -17.4, -20.1): log p = -3.917
+****************************************
+Nine parameter search.  iteration 0 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-3.654, old_max_log_p =-3.917 (thresh=-3.9)
+ 0.99144  -0.13131  -0.07016   22.94948;
+ 0.13053   0.99737   0.53290  -101.14188;
+ 0.00000  -0.53750   0.85598   78.99654;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 23 seconds.
+****************************************
+Nine parameter search.  iteration 1 nscales = 0 ...
+****************************************
+Result so far: scale 1.000: max_log_p=-3.654, old_max_log_p =-3.654 (thresh=-3.7)
+ 0.99144  -0.13131  -0.07016   22.94948;
+ 0.13053   0.99737   0.53290  -101.14188;
+ 0.00000  -0.53750   0.85598   78.99654;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.2500
+iteration took 0 minutes and 21 seconds.
+****************************************
+Nine parameter search.  iteration 2 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-3.513, old_max_log_p =-3.654 (thresh=-3.7)
+ 1.03360  -0.03129  -0.08627   7.16189;
+ 0.06386   0.94781   0.57958  -94.78035;
+ 0.06030  -0.61626   0.83068   83.23101;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 3 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-3.505, old_max_log_p =-3.513 (thresh=-3.5)
+ 1.01163  -0.06112  -0.10321   16.34087;
+ 0.09581   0.92854   0.56563  -94.49517;
+ 0.06143  -0.62782   0.84626   82.81495;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 18 seconds.
+****************************************
+Nine parameter search.  iteration 4 nscales = 1 ...
+****************************************
+Result so far: scale 0.250: max_log_p=-3.505, old_max_log_p =-3.505 (thresh=-3.5)
+ 1.01163  -0.06112  -0.10321   16.34087;
+ 0.09581   0.92854   0.56563  -94.49517;
+ 0.06143  -0.62782   0.84626   82.81495;
+ 0.00000   0.00000   0.00000   1.00000;
+reducing scale to 0.0625
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 5 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-3.490, old_max_log_p =-3.505 (thresh=-3.5)
+ 1.01155  -0.05605  -0.07990   12.77062;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+iteration took 0 minutes and 19 seconds.
+****************************************
+Nine parameter search.  iteration 6 nscales = 2 ...
+****************************************
+Result so far: scale 0.062: max_log_p=-3.488, old_max_log_p =-3.490 (thresh=-3.5)
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+min search scale 0.025000 reached
+***********************************************
+Computing MAP estimate using 2841 samples...
+***********************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-05
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 2841
+Quasinewton: input matrix
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 3 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 009: -log(p) =   -0.0  tol 0.000010
+Resulting transform:
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+
+pass 1, spacing 8: log(p) = -3.488 (old=-4.445)
+transform before final EM align:
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+
+**************************************************
+ EM alignment process ...
+ Computing final MAP estimate using 315638 samples. 
+**************************************************
+dt = 5.00e-06, momentum=0.80, tol=1.00e-07
+l_intensity = 1.0000
+Aligning input volume to GCA...
+Transform matrix
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+nsamples 315638
+Quasinewton: input matrix
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+ IFLAG= -1  LINE SEARCH FAILED. SEE DOCUMENTATION OF ROUTINE MCSRCH ERROR RETURN OF LINE SEARCH: INFO= 6 POSSIBLE CAUSES: FUNCTION OR GRADIENT ARE INCORRECT OR INCORRECT TOLERANCESoutof QuasiNewtonEMA: 011: -log(p) =    3.9  tol 0.000000
+final transform:
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+
+writing output transformation to transforms/talairach.lta...
+#VMPC# mri_em_register VmPeak  796256
+FSRUNTIME@ mri_em_register  0.0456 hours 4 threads
+registration took 2 minutes and 44 seconds.
+@#@FSTIME  2026:09:11:12:17:55 mri_em_register N 7 e 164.04 S 2.08 U 590.21 P 361% M 614268 F 0 R 478323 W 0 c 504 w 102 I 2384 O 24 L 22.57 20.80 15.10
+@#@FSLOADPOST 2026:09:11:12:20:39 mri_em_register N 7 15.79 19.33 15.51
+#--------------------------------------
+#@# CA Normalize Fri Sep 11 12:20:39 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_ca_normalize -c ctrl_pts.mgz -mask brainmask.mgz nu.mgz /home/apps//freesurfer/average/RB_all_2020-01-02.gca transforms/talairach.lta norm.mgz 
+
+writing control point volume to ctrl_pts.mgz
+using MR volume brainmask.mgz to mask input volume...
+reading 1 input volume
+reading atlas from '/home/apps//freesurfer/average/RB_all_2020-01-02.gca'...
+reading transform from 'transforms/talairach.lta'...
+reading input volume from nu.mgz...
+resetting wm mean[0]: 98 --> 107
+resetting gm mean[0]: 61 --> 61
+input volume #1 is the most T1-like
+using real data threshold=21.9
+skull bounding box = (67, 79, 49) --> (193, 182, 209)
+finding center of left hemi white matter
+using (109, 113, 129) as brain centroid of Right_Cerebral_White_Matter...
+mean wm in atlas = 107, using box (94,100,109) --> (124, 125,148) to find MRI wm
+before smoothing, mri peak at 110
+robust fit to distribution - 109 +- 4.6
+after smoothing, mri peak at 109, scaling input intensities by 0.982
+scaling channel 0 by 0.981651
+using 246437 sample points...
+INFO: compute sample coordinates transform
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65340;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: transform used
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (127, 79, 52) --> (196, 201, 206)
+Left_Cerebral_White_Matter: limiting intensities to 91.0 --> 132.0
+9 of 7614 (0.1%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (64, 81, 58) --> (133, 196, 207)
+Right_Cerebral_White_Matter: limiting intensities to 92.0 --> 132.0
+2 of 7719 (0.0%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (132, 168, 96) --> (182, 209, 147)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 132.0
+9 of 9 (100.0%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (89, 168, 96) --> (132, 209, 149)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 132.0
+24 of 24 (100.0%) samples deleted
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (115, 152, 120) --> (151, 209, 156)
+Brain_Stem: limiting intensities to 88.0 --> 132.0
+388 of 400 (97.0%) samples deleted
+using 15766 total control points for intensity normalization...
+bias field = 1.001 +- 0.044
+15 of 15334 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (127, 79, 52) --> (196, 201, 206)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 132.0
+15 of 7681 (0.2%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (64, 81, 58) --> (133, 196, 207)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 132.0
+5 of 7679 (0.1%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (132, 168, 96) --> (182, 209, 147)
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (89, 168, 96) --> (132, 209, 149)
+Right_Cerebellum_White_Matter: limiting intensities to 88.0 --> 132.0
+22 of 22 (100.0%) samples deleted
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (115, 152, 120) --> (151, 209, 156)
+Brain_Stem: limiting intensities to 88.0 --> 132.0
+396 of 406 (97.5%) samples deleted
+using 15788 total control points for intensity normalization...
+bias field = 1.041 +- 0.045
+19 of 15288 control points discarded
+finding control points in Left_Cerebral_White_Matter....
+found 40230 control points for structure...
+bounding box (127, 79, 52) --> (196, 201, 206)
+Left_Cerebral_White_Matter: limiting intensities to 88.0 --> 132.0
+11 of 7699 (0.1%) samples deleted
+finding control points in Right_Cerebral_White_Matter....
+found 39478 control points for structure...
+bounding box (64, 81, 58) --> (133, 196, 207)
+Right_Cerebral_White_Matter: limiting intensities to 88.0 --> 132.0
+13 of 7694 (0.2%) samples deleted
+finding control points in Left_Cerebellum_White_Matter....
+found 3105 control points for structure...
+bounding box (132, 168, 96) --> (182, 209, 147)
+Left_Cerebellum_White_Matter: limiting intensities to 88.0 --> 132.0
+8 of 8 (100.0%) samples deleted
+finding control points in Right_Cerebellum_White_Matter....
+found 2710 control points for structure...
+bounding box (89, 168, 96) --> (132, 209, 149)
+finding control points in Brain_Stem....
+found 3475 control points for structure...
+bounding box (115, 152, 120) --> (151, 209, 156)
+Brain_Stem: limiting intensities to 88.0 --> 132.0
+412 of 445 (92.6%) samples deleted
+using 15846 total control points for intensity normalization...
+bias field = 1.041 +- 0.045
+19 of 15238 control points discarded
+writing normalized volume to norm.mgz...
+writing control points to ctrl_pts.mgz
+freeing GCA...done.
+normalization took 0 minutes and 47 seconds.
+@#@FSTIME  2026:09:11:12:20:39 mri_ca_normalize N 8 e 46.80 S 1.03 U 47.35 P 103% M 713516 F 0 R 647509 W 0 c 63 w 212 I 0 O 3848 L 15.79 19.33 15.51
+@#@FSLOADPOST 2026:09:11:12:21:26 mri_ca_normalize N 8 12.05 17.83 15.19
+#--------------------------------------
+#@# CA Reg Fri Sep 11 12:21:26 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_ca_register -nobigventricles -T transforms/talairach.lta -align-after -mask brainmask.mgz norm.mgz /home/apps//freesurfer/average/RB_all_2020-01-02.gca transforms/talairach.m3z 
+
+not handling expanded ventricles...
+using previously computed transform transforms/talairach.lta
+renormalizing sequences with structure alignment, equivalent to:
+	-renormalize
+	-regularize_mean 0.500
+	-regularize 0.500
+using MR volume brainmask.mgz to mask input volume...
+
+== Number of threads available to mri_ca_register for OpenMP = 4 == 
+reading 1 input volumes...
+logging results to talairach.log
+reading input volume 'norm.mgz'...
+reading GCA '/home/apps//freesurfer/average/RB_all_2020-01-02.gca'...
+label assignment complete, 0 changed (0.00%)
+freeing gibbs priors...done.
+average std[0] = 5.0
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.156
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.16 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 1.05052
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 168.485 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.16 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.793086
+
+
+setting smoothness cost coefficient to 0.615
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.62 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.818892
+
+
+
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 26.934 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.62 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.787095
+
+setting smoothness cost coefficient to 2.353
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.35 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.868356
+
+
+
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 21.285 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.35 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.862934
+
+setting smoothness cost coefficient to 8.000
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=8.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 1.02607
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 86.815 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=8.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.962295
+
+setting smoothness cost coefficient to 20.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=20.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 1.0183
+
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 18.213 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=20.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 1.0183
+
+resetting metric properties...
+setting smoothness cost coefficient to 40.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=40.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.923075
+
+
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 18.849 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=40.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.915772
+
+
+GCAMregister done in 7.4375 min
+Starting GCAmapRenormalizeWithAlignment() without scales
+renormalizing by structure alignment....
+renormalizing input #0
+gca peak = 0.10253 (16)
+mri peak = 0.15912 ( 9)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (2325 voxels, overlap=0.006)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (2325 voxels, peak =  7), gca=7.0
+gca peak = 0.17690 (16)
+mri peak = 0.17742 (11)
+Right_Lateral_Ventricle (43): linear fit = 0.51 x + 0.0 (1839 voxels, overlap=0.036)
+Right_Lateral_Ventricle (43): linear fit = 0.51 x + 0.0 (1839 voxels, peak =  8), gca=8.2
+gca peak = 0.28275 (96)
+mri peak = 0.09169 (101)
+Right_Pallidum (52): linear fit = 1.02 x + 0.0 (861 voxels, overlap=0.969)
+Right_Pallidum (52): linear fit = 1.02 x + 0.0 (861 voxels, peak = 98), gca=98.4
+gca peak = 0.18948 (93)
+mri peak = 0.08828 (99)
+Left_Pallidum (13): linear fit = 1.05 x + 0.0 (744 voxels, overlap=0.867)
+Left_Pallidum (13): linear fit = 1.05 x + 0.0 (744 voxels, peak = 98), gca=98.1
+gca peak = 0.20755 (55)
+mri peak = 0.14301 (57)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (979 voxels, overlap=0.975)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (979 voxels, peak = 55), gca=55.0
+gca peak = 0.31831 (58)
+mri peak = 0.13236 (60)
+Left_Hippocampus (17): linear fit = 0.99 x + 0.0 (867 voxels, overlap=0.896)
+Left_Hippocampus (17): linear fit = 0.99 x + 0.0 (867 voxels, peak = 57), gca=57.1
+gca peak = 0.11957 (102)
+mri peak = 0.08422 (104)
+Right_Cerebral_White_Matter (41): linear fit = 1.01 x + 0.0 (60461 voxels, overlap=0.827)
+Right_Cerebral_White_Matter (41): linear fit = 1.01 x + 0.0 (60461 voxels, peak = 104), gca=103.5
+gca peak = 0.11429 (102)
+mri peak = 0.09848 (105)
+Left_Cerebral_White_Matter (2): linear fit = 1.03 x + 0.0 (61855 voxels, overlap=0.729)
+Left_Cerebral_White_Matter (2): linear fit = 1.03 x + 0.0 (61855 voxels, peak = 106), gca=105.6
+gca peak = 0.14521 (59)
+mri peak = 0.02944 (58)
+Left_Cerebral_Cortex (3): linear fit = 1.02 x + 0.0 (17473 voxels, overlap=0.165)
+Left_Cerebral_Cortex (3): linear fit = 1.02 x + 0.0 (17473 voxels, peak = 60), gca=60.5
+gca peak = 0.14336 (58)
+mri peak = 0.03553 (63)
+Right_Cerebral_Cortex (42): linear fit = 1.02 x + 0.0 (17250 voxels, overlap=0.592)
+Right_Cerebral_Cortex (42): linear fit = 1.02 x + 0.0 (17250 voxels, peak = 59), gca=59.4
+gca peak = 0.13305 (70)
+mri peak = 0.08913 (76)
+Right_Caudate (50): linear fit = 1.07 x + 0.0 (553 voxels, overlap=0.720)
+Right_Caudate (50): linear fit = 1.07 x + 0.0 (553 voxels, peak = 75), gca=74.6
+gca peak = 0.15761 (71)
+mri peak = 0.20109 (76)
+Left_Caudate (11): linear fit = 1.02 x + 0.0 (435 voxels, overlap=0.889)
+Left_Caudate (11): linear fit = 1.02 x + 0.0 (435 voxels, peak = 73), gca=72.8
+gca peak = 0.13537 (57)
+mri peak = 0.05511 (45)
+Left_Cerebellum_Cortex (8): linear fit = 0.82 x + 0.0 (6422 voxels, overlap=0.368)
+Left_Cerebellum_Cortex (8): linear fit = 0.82 x + 0.0 (6422 voxels, peak = 47), gca=47.0
+gca peak = 0.13487 (56)
+mri peak = 0.04469 (55)
+Right_Cerebellum_Cortex (47): linear fit = 0.96 x + 0.0 (6158 voxels, overlap=0.653)
+Right_Cerebellum_Cortex (47): linear fit = 0.96 x + 0.0 (6158 voxels, peak = 54), gca=54.0
+gca peak = 0.19040 (84)
+mri peak = 0.04943 (54)
+Left_Cerebellum_White_Matter (7): linear fit = 0.68 x + 0.0 (4116 voxels, overlap=0.003)
+Left_Cerebellum_White_Matter (7): linear fit = 0.68 x + 0.0 (4116 voxels, peak = 57), gca=56.7
+gca peak = 0.18871 (83)
+mri peak = 0.06578 (57)
+Right_Cerebellum_White_Matter (46): linear fit = 0.67 x + 0.0 (2241 voxels, overlap=0.016)
+Right_Cerebellum_White_Matter (46): linear fit = 0.67 x + 0.0 (2241 voxels, peak = 55), gca=55.2
+gca peak = 0.24248 (57)
+mri peak = 0.08365 (62)
+Left_Amygdala (18): linear fit = 1.18 x + 0.0 (418 voxels, overlap=0.473)
+Left_Amygdala (18): linear fit = 1.18 x + 0.0 (418 voxels, peak = 68), gca=67.5
+gca peak = 0.35833 (56)
+mri peak = 0.11478 (56)
+Right_Amygdala (54): linear fit = 1.00 x + 0.0 (429 voxels, overlap=0.958)
+Right_Amygdala (54): linear fit = 1.00 x + 0.0 (429 voxels, peak = 56), gca=56.0
+gca peak = 0.12897 (85)
+mri peak = 0.07988 (90)
+Left_Thalamus (10): linear fit = 1.05 x + 0.0 (4999 voxels, overlap=0.753)
+Left_Thalamus (10): linear fit = 1.05 x + 0.0 (4999 voxels, peak = 90), gca=89.7
+gca peak = 0.13127 (83)
+mri peak = 0.07965 (91)
+Right_Thalamus (49): linear fit = 1.04 x + 0.0 (4255 voxels, overlap=0.585)
+Right_Thalamus (49): linear fit = 1.04 x + 0.0 (4255 voxels, peak = 87), gca=86.7
+gca peak = 0.12974 (78)
+mri peak = 0.07772 (86)
+Left_Putamen (12): linear fit = 1.12 x + 0.0 (2408 voxels, overlap=0.485)
+Left_Putamen (12): linear fit = 1.12 x + 0.0 (2408 voxels, peak = 87), gca=87.0
+gca peak = 0.17796 (79)
+mri peak = 0.08625 (81)
+Right_Putamen (51): linear fit = 1.10 x + 0.0 (2435 voxels, overlap=0.759)
+Right_Putamen (51): linear fit = 1.10 x + 0.0 (2435 voxels, peak = 87), gca=86.5
+gca peak = 0.10999 (80)
+mri peak = 0.11913 (84)
+Brain_Stem (16): linear fit = 1.10 x + 0.0 (9165 voxels, overlap=0.410)
+Brain_Stem (16): linear fit = 1.10 x + 0.0 (9165 voxels, peak = 88), gca=87.6
+gca peak = 0.13215 (88)
+mri peak = 0.13383 (97)
+Right_VentralDC (60): linear fit = 1.09 x + 0.0 (1002 voxels, overlap=0.214)
+Right_VentralDC (60): linear fit = 1.09 x + 0.0 (1002 voxels, peak = 95), gca=95.5
+gca peak = 0.11941 (89)
+mri peak = 0.09561 (95)
+Left_VentralDC (28): linear fit = 1.10 x + 0.0 (1193 voxels, overlap=0.297)
+Left_VentralDC (28): linear fit = 1.10 x + 0.0 (1193 voxels, peak = 97), gca=97.5
+gca peak = 0.20775 (25)
+mri peak = 0.21277 (13)
+Third_Ventricle (14): linear fit = 0.44 x + 0.0 (76 voxels, overlap=0.041)
+Third_Ventricle (14): linear fit = 0.44 x + 0.0 (76 voxels, peak = 11), gca=11.1
+gca peak = 0.13297 (21)
+mri peak = 0.22883 (54)
+Fourth_Ventricle: unreasonable value (62.1/54.0), not in range [ 0, 55] - rejecting
+gca peak Unknown = 0.94777 ( 0)
+gca peak Left_Inf_Lat_Vent = 0.19087 (28)
+gca peak Third_Ventricle = 0.20775 (25)
+gca peak Fourth_Ventricle = 0.13297 (21)
+gca peak CSF = 0.16821 (33)
+gca peak Left_Accumbens_area = 0.32850 (63)
+gca peak Left_undetermined = 0.98480 (28)
+gca peak Left_vessel = 0.40887 (53)
+gca peak Left_choroid_plexus = 0.10898 (46)
+gca peak Right_Inf_Lat_Vent = 0.17798 (26)
+gca peak Right_Cerebellum_White_Matter = 0.18871 (83)
+gca peak Right_Accumbens_area = 0.30137 (64)
+gca peak Right_vessel = 0.47828 (52)
+gca peak Right_choroid_plexus = 0.11612 (45)
+gca peak Fifth_Ventricle = 0.59466 (35)
+gca peak WM_hypointensities = 0.10053 (78)
+gca peak non_WM_hypointensities = 0.07253 (60)
+gca peak Optic_Chiasm = 0.25330 (73)
+not using caudate to estimate GM means
+setting label Right_Cerebellum_White_Matter based on Left_Cerebellum_White_Matter = 0.68 x +  0: 57
+estimating mean gm scale to be 1.04 x + 0.0
+estimating mean wm scale to be 1.02 x + 0.0
+estimating mean csf scale to be 0.47 x + 0.0
+saving intensity scales to talairach.label_intensities.txt
+GCAmapRenormalizeWithAlignment() took 2.6 min
+noneg pre
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.008
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.896576
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 513.115 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.692042
+
+
+
+
+setting smoothness cost coefficient to 0.031
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.694938
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 355.765 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.579588
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+setting smoothness cost coefficient to 0.118
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.587013
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 177.236 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.539114
+
+
+
+setting smoothness cost coefficient to 0.400
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.575768
+
+
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 23.815 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.575768
+
+
+setting smoothness cost coefficient to 1.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.64879
+
+
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 17.069 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.641776
+
+
+resetting metric properties...
+setting smoothness cost coefficient to 2.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.552224
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 133.6 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=5.00e-02, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=no
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.515844
+
+
+
+
+
+
+
+GCAMregister done in 24.1447 min
+********************* ALLOWING NEGATIVE NODES IN DEFORMATION********************************
+noneg post
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.008
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.508992
+
+iter 0, gcam->neg = 2
+after 0 iterations, nbhd size=0, neg = 0
+
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 21.83 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.507294
+
+
+
+
+
+
+
+
+setting smoothness cost coefficient to 0.031
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.505019
+
+iter 0, gcam->neg = 1
+after 6 iterations, nbhd size=1, neg = 0
+
+
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 27.211 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.502638
+
+
+
+iter 0, gcam->neg = 1
+after 6 iterations, nbhd size=1, neg = 0
+
+
+
+
+iter 0, gcam->neg = 3
+after 7 iterations, nbhd size=1, neg = 0
+
+
+iter 0, gcam->neg = 1
+after 6 iterations, nbhd size=1, neg = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+setting smoothness cost coefficient to 0.118
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.491661
+iter 0, gcam->neg = 5
+after 7 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 3
+after 2 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 2
+after 4 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 3
+after 1 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 3
+after 2 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 6
+after 2 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 12
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 9
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 13
+after 16 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 13
+after 8 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 20
+after 13 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 22
+after 9 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 23
+after 9 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 28
+after 9 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 24
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 6
+after 1 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 101.415 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.477125
+iter 0, gcam->neg = 3
+after 2 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 4
+after 0 iterations, nbhd size=0, neg = 0
+
+
+
+
+
+
+
+iter 0, gcam->neg = 2
+after 1 iterations, nbhd size=0, neg = 0
+
+setting smoothness cost coefficient to 0.400
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.476065
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+
+
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 25.766 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.475161
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 75
+after 20 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 426
+after 17 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 109
+after 19 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 219
+after 28 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 209
+after 17 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 248
+after 27 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 157
+after 24 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 341
+after 27 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 422
+after 22 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 356
+after 26 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 357
+after 26 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 8
+after 8 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 60
+after 16 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 1
+after 1 iterations, nbhd size=0, neg = 0
+setting smoothness cost coefficient to 1.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.468404
+
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 17.68 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.468404
+
+resetting metric properties...
+setting smoothness cost coefficient to 2.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.457159
+iter 0, gcam->neg = 2731
+after 16 iterations, nbhd size=1, neg = 0
+
+
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 25.528 sigma 0.5
+l_jacobian=1.00 l_label=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.432704
+
+label assignment complete, 0 changed (0.00%)
+GCAMregister done in 9.13607 min
+Starting GCAMcomputeMaxPriorLabels()
+Morphing with label term set to 0 *******************************
+Starting GCAMregister()
+label assignment complete, 0 changed (0.00%)
+npasses = 1, nlevels = 6
+#pass# 1 of 1 ************************
+enabling zero nodes
+setting smoothness cost coefficient to 0.008
+
+#GCAMreg# pass 0 level1 5 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.423286
+
+#GCAMreg# pass 0 level1 5 level2 1 tsec 10.705 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.01 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=256, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.423286
+setting smoothness cost coefficient to 0.031
+
+#GCAMreg# pass 0 level1 4 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.423396
+iter 0, gcam->neg = 4
+after 7 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 2
+after 7 iterations, nbhd size=1, neg = 0
+
+#GCAMreg# pass 0 level1 4 level2 1 tsec 22.791 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.03 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=64, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.423298
+iter 0, gcam->neg = 2
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 4
+after 7 iterations, nbhd size=1, neg = 0
+setting smoothness cost coefficient to 0.118
+
+#GCAMreg# pass 0 level1 3 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.42368
+iter 0, gcam->neg = 99
+after 12 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 56
+after 11 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 68
+after 12 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 81
+after 23 iterations, nbhd size=1, neg = 0
+
+#GCAMreg# pass 0 level1 3 level2 1 tsec 38.158 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.12 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=16, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.421948
+iter 0, gcam->neg = 7
+after 9 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 37
+after 14 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+
+iter 0, gcam->neg = 6
+after 5 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 9
+after 15 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 10
+after 9 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 18
+after 13 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 12
+after 16 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 15
+after 21 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 7
+after 11 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 3
+after 4 iterations, nbhd size=0, neg = 0
+setting smoothness cost coefficient to 0.400
+
+#GCAMreg# pass 0 level1 2 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.419939
+iter 0, gcam->neg = 95
+after 26 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 60
+after 20 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 60
+after 20 iterations, nbhd size=1, neg = 0
+
+#GCAMreg# pass 0 level1 2 level2 1 tsec 38.378 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=0.40 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=4, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.418128
+iter 0, gcam->neg = 71
+after 29 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 117
+after 21 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 17
+after 18 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 8
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 12
+after 5 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 18
+after 14 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 33
+after 19 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 43
+after 20 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 41
+after 19 iterations, nbhd size=1, neg = 0
+setting smoothness cost coefficient to 1.000
+
+#GCAMreg# pass 0 level1 1 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.418115
+
+
+#GCAMreg# pass 0 level1 1 level2 1 tsec 18.92 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=1.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=1, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.418115
+resetting metric properties...
+setting smoothness cost coefficient to 2.000
+
+#GCAMreg# pass 0 level1 0 level2 0 tsec 0 sigma 2
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=2.0,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=2.000...
+GCAMRegisterLevel(): init RMS 0.409689
+iter 0, gcam->neg = 833
+after 23 iterations, nbhd size=1, neg = 0
+
+
+
+
+#GCAMreg# pass 0 level1 0 level2 1 tsec 25.805 sigma 0.5
+l_jacobian=1.00 l_log_likelihood=0.20 l_smoothness=2.00 
+tol=2.50e-01, dt=5.00e-02, exp_k=20.0, momentum=0.90, levels=6, niter=500, lbl_dist=10.00, avgs=0, sigma=0.5,type=2, relabel=0, neg=yes
+
+blurring input image with Gaussian with sigma=0.500...
+GCAMRegisterLevel(): init RMS 0.403248
+iter 0, gcam->neg = 9
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 50
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 28
+after 3 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 56
+after 14 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 129
+after 16 iterations, nbhd size=1, neg = 0
+
+iter 0, gcam->neg = 1
+after 0 iterations, nbhd size=0, neg = 0
+
+iter 0, gcam->neg = 16
+after 8 iterations, nbhd size=1, neg = 0
+GCAMregister done in 6.76478 min
+writing output transformation to transforms/talairach.m3z...
+GCAMwrite
+Calls to gcamLogLikelihoodEnergy 4669 tmin = 3.69127
+Calls to gcamLabelEnergy         4060 tmin = 0.869267
+Calls to gcamJacobianEnergy      4669 tmin = 2.30452
+Calls to gcamSmoothnessEnergy    4669 tmin = 10.1941
+Calls to gcamLogLikelihoodTerm 544 tmin = 0.922467
+Calls to gcamLabelTerm         496 tmin = 3.15002
+Calls to gcamJacobianTerm      544 tmin = 2.26793
+Calls to gcamSmoothnessTerm    544 tmin = 0.909217
+Calls to gcamComputeGradient    544 tmin = 14.3763
+Calls to gcamComputeMetricProperties    7124 tmin = 6.1009
+mri_ca_register took 0 hours, 50 minutes and 16 seconds.
+#VMPC# mri_ca_register VmPeak  2306740
+FSRUNTIME@ mri_ca_register  0.8378 hours 4 threads
+@#@FSTIME  2026:09:11:12:21:26 mri_ca_register N 9 e 3016.32 S 14.98 U 7786.74 P 258% M 1356124 F 0 R 10404246 W 0 c 4811 w 69097 I 0 O 64664 L 12.05 17.83 15.19
+@#@FSLOADPOST 2026:09:11:13:11:42 mri_ca_register N 9 9.89 12.10 16.06
+#--------------------------------------
+#@# SubCort Seg Fri Sep 11 13:11:42 EDT 2026
+
+ mri_ca_label -relabel_unlikely 9 .3 -prior 0.5 -align norm.mgz transforms/talairach.m3z /home/apps//freesurfer/average/RB_all_2020-01-02.gca aseg.auto_noCCseg.mgz 
+
+sysname  Linux
+hostname crete
+machine  x86_64
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mri_ca_label -relabel_unlikely 9 .3 -prior 0.5 -align norm.mgz transforms/talairach.m3z /home/apps//freesurfer/average/RB_all_2020-01-02.gca aseg.auto_noCCseg.mgz 
+
+relabeling unlikely voxels with window_size = 9 and prior threshold 0.30
+using Gibbs prior factor = 0.500
+renormalizing sequences with structure alignment, equivalent to:
+	-renormalize
+	-renormalize_mean 0.500
+	-regularize 0.500
+
+== Number of threads available to for OpenMP = 4 == 
+reading 1 input volumes
+reading classifier array from /home/apps//freesurfer/average/RB_all_2020-01-02.gca
+reading input volume from norm.mgz
+average std[0] = 7.2
+reading transform from transforms/talairach.m3z
+setting orig areas to linear transform determinant scaled 6.90
+Atlas used for the 3D morph was /home/apps//freesurfer/average/RB_all_2020-01-02.gca
+average std = 7.2   using min determinant for regularization = 5.2
+0 singular and 0 ill-conditioned covariance matrices regularized
+labeling volume...
+renormalizing by structure alignment....
+renormalizing input #0
+gca peak = 0.15521 (20)
+mri peak = 0.13181 ( 9)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (9730 voxels, overlap=0.004)
+Left_Lateral_Ventricle (4): linear fit = 0.44 x + 0.0 (9730 voxels, peak =  9), gca=8.9
+gca peak = 0.20380 (13)
+mri peak = 0.16945 ( 9)
+Right_Lateral_Ventricle (43): linear fit = 0.56 x + 0.0 (7335 voxels, overlap=0.253)
+Right_Lateral_Ventricle (43): linear fit = 0.56 x + 0.0 (7335 voxels, peak =  7), gca=7.2
+gca peak = 0.26283 (96)
+mri peak = 0.11055 (101)
+Right_Pallidum (52): linear fit = 1.02 x + 0.0 (702 voxels, overlap=0.945)
+Right_Pallidum (52): linear fit = 1.02 x + 0.0 (702 voxels, peak = 98), gca=98.4
+gca peak = 0.15814 (97)
+mri peak = 0.08886 (101)
+Left_Pallidum (13): linear fit = 1.10 x + 0.0 (626 voxels, overlap=0.736)
+Left_Pallidum (13): linear fit = 1.10 x + 0.0 (626 voxels, peak = 106), gca=106.2
+gca peak = 0.27624 (56)
+mri peak = 0.12477 (59)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (825 voxels, overlap=0.814)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (825 voxels, peak = 56), gca=56.0
+gca peak = 0.28723 (59)
+mri peak = 0.11053 (58)
+Left_Hippocampus (17): linear fit = 1.00 x + 0.0 (940 voxels, overlap=0.894)
+Left_Hippocampus (17): linear fit = 1.00 x + 0.0 (940 voxels, peak = 59), gca=59.0
+gca peak = 0.07623 (103)
+mri peak = 0.09978 (104)
+Right_Cerebral_White_Matter (41): linear fit = 1.00 x + 0.0 (45073 voxels, overlap=0.756)
+Right_Cerebral_White_Matter (41): linear fit = 1.00 x + 0.0 (45073 voxels, peak = 103), gca=103.0
+gca peak = 0.07837 (105)
+mri peak = 0.09965 (105)
+Left_Cerebral_White_Matter (2): linear fit = 1.01 x + 0.0 (45044 voxels, overlap=0.711)
+Left_Cerebral_White_Matter (2): linear fit = 1.01 x + 0.0 (45044 voxels, peak = 107), gca=106.6
+gca peak = 0.10165 (58)
+mri peak = 0.03596 (63)
+Left_Cerebral_Cortex (3): linear fit = 1.13 x + 0.0 (17377 voxels, overlap=0.568)
+Left_Cerebral_Cortex (3): linear fit = 1.13 x + 0.0 (17377 voxels, peak = 66), gca=65.8
+gca peak = 0.11113 (58)
+mri peak = 0.03735 (63)
+Right_Cerebral_Cortex (42): linear fit = 1.08 x + 0.0 (17479 voxels, overlap=0.798)
+Right_Cerebral_Cortex (42): linear fit = 1.08 x + 0.0 (17479 voxels, peak = 62), gca=62.4
+gca peak = 0.27796 (67)
+mri peak = 0.15639 (80)
+Right_Caudate (50): linear fit = 1.15 x + 0.0 (891 voxels, overlap=0.055)
+Right_Caudate (50): linear fit = 1.15 x + 0.0 (891 voxels, peak = 77), gca=77.4
+gca peak = 0.14473 (69)
+mri peak = 0.18693 (79)
+Left_Caudate (11): linear fit = 1.09 x + 0.0 (864 voxels, overlap=0.417)
+Left_Caudate (11): linear fit = 1.09 x + 0.0 (864 voxels, peak = 75), gca=74.9
+gca peak = 0.14301 (56)
+mri peak = 0.08229 (45)
+Left_Cerebellum_Cortex (8): linear fit = 0.81 x + 0.0 (5425 voxels, overlap=0.194)
+Left_Cerebellum_Cortex (8): linear fit = 0.81 x + 0.0 (5425 voxels, peak = 45), gca=45.1
+gca peak = 0.14610 (55)
+mri peak = 0.06121 (56)
+Right_Cerebellum_Cortex (47): linear fit = 0.93 x + 0.0 (6179 voxels, overlap=0.734)
+Right_Cerebellum_Cortex (47): linear fit = 0.93 x + 0.0 (6179 voxels, peak = 51), gca=50.9
+gca peak = 0.16309 (85)
+mri peak = 0.06026 (56)
+Left_Cerebellum_White_Matter (7): linear fit = 0.67 x + 0.0 (2245 voxels, overlap=0.015)
+Left_Cerebellum_White_Matter (7): linear fit = 0.67 x + 0.0 (2245 voxels, peak = 57), gca=56.5
+gca peak = 0.15172 (84)
+mri peak = 0.05920 (62)
+Right_Cerebellum_White_Matter (46): linear fit = 0.75 x + 0.0 (1394 voxels, overlap=0.004)
+Right_Cerebellum_White_Matter (46): linear fit = 0.75 x + 0.0 (1394 voxels, peak = 63), gca=63.4
+gca peak = 0.30461 (58)
+mri peak = 0.16714 (64)
+Left_Amygdala (18): linear fit = 1.09 x + 0.0 (341 voxels, overlap=0.491)
+Left_Amygdala (18): linear fit = 1.09 x + 0.0 (341 voxels, peak = 63), gca=62.9
+gca peak = 0.32293 (57)
+mri peak = 0.13627 (64)
+Right_Amygdala (54): linear fit = 1.12 x + 0.0 (351 voxels, overlap=1.010)
+Right_Amygdala (54): linear fit = 1.12 x + 0.0 (351 voxels, peak = 64), gca=64.1
+gca peak = 0.11083 (90)
+mri peak = 0.10106 (90)
+Left_Thalamus (10): linear fit = 1.04 x + 0.0 (3423 voxels, overlap=0.869)
+Left_Thalamus (10): linear fit = 1.04 x + 0.0 (3423 voxels, peak = 94), gca=94.0
+gca peak = 0.11393 (83)
+mri peak = 0.09430 (89)
+Right_Thalamus (49): linear fit = 1.05 x + 0.0 (3303 voxels, overlap=0.818)
+Right_Thalamus (49): linear fit = 1.05 x + 0.0 (3303 voxels, peak = 88), gca=87.6
+gca peak = 0.08575 (81)
+mri peak = 0.11981 (86)
+Left_Putamen (12): linear fit = 1.09 x + 0.0 (1245 voxels, overlap=0.581)
+Left_Putamen (12): linear fit = 1.09 x + 0.0 (1245 voxels, peak = 88), gca=87.9
+gca peak = 0.08618 (78)
+mri peak = 0.11347 (83)
+Right_Putamen (51): linear fit = 1.05 x + 0.0 (1433 voxels, overlap=0.647)
+Right_Putamen (51): linear fit = 1.05 x + 0.0 (1433 voxels, peak = 82), gca=82.3
+gca peak = 0.08005 (78)
+mri peak = 0.12402 (82)
+Brain_Stem (16): linear fit = 1.07 x + 0.0 (6704 voxels, overlap=0.449)
+Brain_Stem (16): linear fit = 1.07 x + 0.0 (6704 voxels, peak = 83), gca=83.1
+gca peak = 0.12854 (88)
+mri peak = 0.12344 (97)
+Right_VentralDC (60): linear fit = 1.07 x + 0.0 (928 voxels, overlap=0.291)
+Right_VentralDC (60): linear fit = 1.07 x + 0.0 (928 voxels, peak = 94), gca=93.7
+gca peak = 0.15703 (87)
+mri peak = 0.12684 (95)
+Left_VentralDC (28): linear fit = 1.11 x + 0.0 (942 voxels, overlap=0.170)
+Left_VentralDC (28): linear fit = 1.11 x + 0.0 (942 voxels, peak = 96), gca=96.1
+gca peak = 0.17522 (25)
+mri peak = 0.17105 (13)
+Third_Ventricle (14): linear fit = 0.44 x + 0.0 (187 voxels, overlap=0.045)
+Third_Ventricle (14): linear fit = 0.44 x + 0.0 (187 voxels, peak = 11), gca=11.1
+gca peak = 0.17113 (14)
+mri peak = 0.07616 ( 8)
+gca peak Unknown = 0.94777 ( 0)
+gca peak Left_Inf_Lat_Vent = 0.16627 (28)
+gca peak Left_Cerebellum_White_Matter = 0.16309 (85)
+gca peak Third_Ventricle = 0.17522 (25)
+gca peak Fourth_Ventricle = 0.17113 (14)
+gca peak CSF = 0.20346 (36)
+gca peak Left_Accumbens_area = 0.70646 (62)
+gca peak Left_undetermined = 1.00000 (28)
+gca peak Left_vessel = 0.89917 (53)
+gca peak Left_choroid_plexus = 0.11689 (35)
+gca peak Right_Inf_Lat_Vent = 0.25504 (23)
+gca peak Right_Accumbens_area = 0.31650 (65)
+gca peak Right_vessel = 0.77268 (52)
+gca peak Right_choroid_plexus = 0.13275 (38)
+gca peak Fifth_Ventricle = 0.60973 (33)
+gca peak WM_hypointensities = 0.11013 (77)
+gca peak non_WM_hypointensities = 0.11354 (41)
+gca peak Optic_Chiasm = 0.51646 (76)
+not using caudate to estimate GM means
+setting label Left_Cerebellum_White_Matter based on Right_Cerebellum_White_Matter = 0.75 x +  0: 63
+estimating mean gm scale to be 1.07 x + 0.0
+estimating mean wm scale to be 1.01 x + 0.0
+estimating mean csf scale to be 0.50 x + 0.0
+Left_Pallidum too bright - rescaling by 0.957 (from 1.095) to 101.6 (was 106.2)
+saving intensity scales to aseg.auto_noCCseg.label_intensities.txt
+renormalizing by structure alignment....
+renormalizing input #0
+gca peak = 0.28877 ( 8)
+mri peak = 0.13181 ( 9)
+Left_Lateral_Ventricle (4): linear fit = 1.05 x + 0.0 (9730 voxels, overlap=0.976)
+Left_Lateral_Ventricle (4): linear fit = 1.05 x + 0.0 (9730 voxels, peak =  8), gca=8.4
+gca peak = 0.24761 ( 7)
+mri peak = 0.16945 ( 9)
+Right_Lateral_Ventricle (43): linear fit = 1.08 x + 0.0 (7335 voxels, overlap=0.802)
+Right_Lateral_Ventricle (43): linear fit = 1.08 x + 0.0 (7335 voxels, peak =  8), gca=7.5
+gca peak = 0.21656 (98)
+mri peak = 0.11055 (101)
+Right_Pallidum (52): linear fit = 1.01 x + 0.0 (702 voxels, overlap=0.841)
+Right_Pallidum (52): linear fit = 1.01 x + 0.0 (702 voxels, peak = 99), gca=99.5
+gca peak = 0.17012 (99)
+mri peak = 0.08886 (101)
+Left_Pallidum (13): linear fit = 1.04 x + 0.0 (626 voxels, overlap=0.736)
+Left_Pallidum (13): linear fit = 1.04 x + 0.0 (626 voxels, peak = 103), gca=103.5
+gca peak = 0.26416 (56)
+mri peak = 0.12477 (59)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (825 voxels, overlap=0.809)
+Right_Hippocampus (53): linear fit = 1.00 x + 0.0 (825 voxels, peak = 56), gca=56.0
+gca peak = 0.29549 (59)
+mri peak = 0.11053 (58)
+Left_Hippocampus (17): linear fit = 0.94 x + 0.0 (940 voxels, overlap=0.872)
+Left_Hippocampus (17): linear fit = 0.94 x + 0.0 (940 voxels, peak = 56), gca=55.8
+gca peak = 0.07646 (103)
+mri peak = 0.09978 (104)
+Right_Cerebral_White_Matter (41): linear fit = 1.00 x + 0.0 (45073 voxels, overlap=0.756)
+Right_Cerebral_White_Matter (41): linear fit = 1.00 x + 0.0 (45073 voxels, peak = 103), gca=103.0
+gca peak = 0.07852 (106)
+mri peak = 0.09965 (105)
+Left_Cerebral_White_Matter (2): linear fit = 1.00 x + 0.0 (45044 voxels, overlap=0.767)
+Left_Cerebral_White_Matter (2): linear fit = 1.00 x + 0.0 (45044 voxels, peak = 105), gca=105.5
+gca peak = 0.08846 (66)
+mri peak = 0.03596 (63)
+Left_Cerebral_Cortex (3): linear fit = 0.99 x + 0.0 (17377 voxels, overlap=0.848)
+Left_Cerebral_Cortex (3): linear fit = 0.99 x + 0.0 (17377 voxels, peak = 65), gca=65.0
+gca peak = 0.10686 (63)
+mri peak = 0.03735 (63)
+Right_Cerebral_Cortex (42): linear fit = 0.99 x + 0.0 (17479 voxels, overlap=0.787)
+Right_Cerebral_Cortex (42): linear fit = 0.99 x + 0.0 (17479 voxels, peak = 62), gca=62.1
+gca peak = 0.22722 (77)
+mri peak = 0.15639 (80)
+Right_Caudate (50): linear fit = 1.00 x + 0.0 (891 voxels, overlap=0.973)
+Right_Caudate (50): linear fit = 1.00 x + 0.0 (891 voxels, peak = 77), gca=77.0
+gca peak = 0.12448 (74)
+mri peak = 0.18693 (79)
+Left_Caudate (11): linear fit = 0.95 x + 0.0 (864 voxels, overlap=0.497)
+Left_Caudate (11): linear fit = 0.95 x + 0.0 (864 voxels, peak = 71), gca=70.7
+gca peak = 0.17483 (45)
+mri peak = 0.08229 (45)
+Left_Cerebellum_Cortex (8): linear fit = 1.00 x + 0.0 (5425 voxels, overlap=0.648)
+Left_Cerebellum_Cortex (8): linear fit = 1.00 x + 0.0 (5425 voxels, peak = 45), gca=45.0
+gca peak = 0.16475 (51)
+mri peak = 0.06121 (56)
+Right_Cerebellum_Cortex (47): linear fit = 1.02 x + 0.0 (6179 voxels, overlap=0.972)
+Right_Cerebellum_Cortex (47): linear fit = 1.02 x + 0.0 (6179 voxels, peak = 52), gca=52.3
+gca peak = 0.21785 (64)
+mri peak = 0.06026 (56)
+Left_Cerebellum_White_Matter (7): linear fit = 0.88 x + 0.0 (2245 voxels, overlap=0.730)
+Left_Cerebellum_White_Matter (7): linear fit = 0.88 x + 0.0 (2245 voxels, peak = 56), gca=56.0
+gca peak = 0.20954 (64)
+mri peak = 0.05920 (62)
+Right_Cerebellum_White_Matter (46): linear fit = 0.99 x + 0.0 (1394 voxels, overlap=0.972)
+Right_Cerebellum_White_Matter (46): linear fit = 0.99 x + 0.0 (1394 voxels, peak = 63), gca=63.0
+gca peak = 0.29847 (63)
+mri peak = 0.16714 (64)
+Left_Amygdala (18): linear fit = 1.00 x + 0.0 (341 voxels, overlap=0.821)
+Left_Amygdala (18): linear fit = 1.00 x + 0.0 (341 voxels, peak = 63), gca=63.0
+gca peak = 0.29330 (64)
+mri peak = 0.13627 (64)
+Right_Amygdala (54): linear fit = 1.00 x + 0.0 (351 voxels, overlap=0.881)
+Right_Amygdala (54): linear fit = 1.00 x + 0.0 (351 voxels, peak = 64), gca=64.0
+gca peak = 0.10860 (92)
+mri peak = 0.10106 (90)
+Left_Thalamus (10): linear fit = 1.00 x + 0.0 (3423 voxels, overlap=0.820)
+Left_Thalamus (10): linear fit = 1.00 x + 0.0 (3423 voxels, peak = 92), gca=91.5
+gca peak = 0.10165 (85)
+mri peak = 0.09430 (89)
+Right_Thalamus (49): linear fit = 1.00 x + 0.0 (3303 voxels, overlap=0.822)
+Right_Thalamus (49): linear fit = 1.00 x + 0.0 (3303 voxels, peak = 85), gca=84.6
+gca peak = 0.07806 (83)
+mri peak = 0.11981 (86)
+Left_Putamen (12): linear fit = 1.00 x + 0.0 (1245 voxels, overlap=0.855)
+Left_Putamen (12): linear fit = 1.00 x + 0.0 (1245 voxels, peak = 83), gca=82.6
+gca peak = 0.08804 (84)
+mri peak = 0.11347 (83)
+Right_Putamen (51): linear fit = 1.01 x + 0.0 (1433 voxels, overlap=0.699)
+Right_Putamen (51): linear fit = 1.01 x + 0.0 (1433 voxels, peak = 85), gca=85.3
+gca peak = 0.06817 (86)
+mri peak = 0.12402 (82)
+Brain_Stem (16): linear fit = 0.99 x + 0.0 (6704 voxels, overlap=0.604)
+Brain_Stem (16): linear fit = 0.99 x + 0.0 (6704 voxels, peak = 85), gca=84.7
+gca peak = 0.12327 (95)
+mri peak = 0.12344 (97)
+Right_VentralDC (60): linear fit = 1.01 x + 0.0 (928 voxels, overlap=0.732)
+Right_VentralDC (60): linear fit = 1.01 x + 0.0 (928 voxels, peak = 96), gca=96.4
+gca peak = 0.14989 (96)
+mri peak = 0.12684 (95)
+Left_VentralDC (28): linear fit = 1.00 x + 0.0 (942 voxels, overlap=0.713)
+Left_VentralDC (28): linear fit = 1.00 x + 0.0 (942 voxels, peak = 96), gca=96.0
+gca peak = 0.37042 (13)
+mri peak = 0.17105 (13)
+Third_Ventricle (14): linear fit = 0.83 x + 0.0 (187 voxels, overlap=0.992)
+Third_Ventricle (14): linear fit = 0.83 x + 0.0 (187 voxels, peak = 11), gca=10.9
+gca peak = 0.35408 ( 7)
+mri peak = 0.07616 ( 8)
+gca peak Unknown = 0.94777 ( 0)
+gca peak Left_Inf_Lat_Vent = 0.16627 (28)
+gca peak Fourth_Ventricle = 0.35408 ( 7)
+gca peak CSF = 0.31486 (18)
+gca peak Left_Accumbens_area = 0.52046 (67)
+gca peak Left_undetermined = 1.00000 (28)
+gca peak Left_vessel = 0.89917 (53)
+gca peak Left_choroid_plexus = 0.11689 (35)
+gca peak Right_Inf_Lat_Vent = 0.25689 (23)
+gca peak Right_Accumbens_area = 0.29156 (75)
+gca peak Right_vessel = 0.77268 (52)
+gca peak Right_choroid_plexus = 0.13275 (38)
+gca peak Fifth_Ventricle = 0.91795 (16)
+gca peak WM_hypointensities = 0.10815 (77)
+gca peak non_WM_hypointensities = 0.14635 (41)
+gca peak Optic_Chiasm = 0.61286 (76)
+not using caudate to estimate GM means
+estimating mean gm scale to be 0.99 x + 0.0
+estimating mean wm scale to be 1.00 x + 0.0
+estimating mean csf scale to be 0.99 x + 0.0
+Left_Pallidum too bright - rescaling by 0.977 (from 1.045) to 101.1 (was 103.5)
+saving intensity scales to aseg.auto_noCCseg.label_intensities.txt
+saving sequentially combined intensity scales to aseg.auto_noCCseg.label_intensities.txt
+40254 voxels changed in iteration 0 of unlikely voxel relabeling
+140 voxels changed in iteration 1 of unlikely voxel relabeling
+3 voxels changed in iteration 2 of unlikely voxel relabeling
+0 voxels changed in iteration 3 of unlikely voxel relabeling
+33087 gm and wm labels changed (%27 to gray, %73 to white out of all changed labels)
+432 hippocampal voxels changed.
+0 amygdala voxels changed.
+Reclassifying using Gibbs Priors
+pass 1: 57554 changed. image ll: -2.105, PF=0.500
+pass 2: 14180 changed. image ll: -2.105, PF=0.500
+pass 3: 4533 changed.
+27098 voxels changed in iteration 0 of unlikely voxel relabeling
+214 voxels changed in iteration 1 of unlikely voxel relabeling
+50 voxels changed in iteration 2 of unlikely voxel relabeling
+3 voxels changed in iteration 3 of unlikely voxel relabeling
+0 voxels changed in iteration 4 of unlikely voxel relabeling
+7715 voxels changed in iteration 0 of unlikely voxel relabeling
+82 voxels changed in iteration 1 of unlikely voxel relabeling
+0 voxels changed in iteration 2 of unlikely voxel relabeling
+8190 voxels changed in iteration 0 of unlikely voxel relabeling
+146 voxels changed in iteration 1 of unlikely voxel relabeling
+10 voxels changed in iteration 2 of unlikely voxel relabeling
+5 voxels changed in iteration 3 of unlikely voxel relabeling
+0 voxels changed in iteration 4 of unlikely voxel relabeling
+6427 voxels changed in iteration 0 of unlikely voxel relabeling
+44 voxels changed in iteration 1 of unlikely voxel relabeling
+1 voxels changed in iteration 2 of unlikely voxel relabeling
+1 voxels changed in iteration 3 of unlikely voxel relabeling
+0 voxels changed in iteration 4 of unlikely voxel relabeling
+ !!!!!!!!! ventricle segment 2 with volume 24530 above threshold 100 - not erasing !!!!!!!!!!
+ !!!!!!!!! ventricle segment 1 with volume 482 above threshold 100 - not erasing !!!!!!!!!!
+ !!!!!!!!! ventricle segment 0 with volume 20269 above threshold 100 - not erasing !!!!!!!!!!
+ !!!!!!!!! ventricle segment 2 with volume 234 above threshold 100 - not erasing !!!!!!!!!!
+writing labeled volume to aseg.auto_noCCseg.mgz
+mri_ca_label utimesec    1600.108241
+mri_ca_label stimesec    5.231860
+mri_ca_label ru_maxrss   2093984
+mri_ca_label ru_ixrss    0
+mri_ca_label ru_idrss    0
+mri_ca_label ru_isrss    0
+mri_ca_label ru_minflt   3633004
+mri_ca_label ru_majflt   0
+mri_ca_label ru_nswap    0
+mri_ca_label ru_inblock  192
+mri_ca_label ru_oublock  672
+mri_ca_label ru_msgsnd   0
+mri_ca_label ru_msgrcv   0
+mri_ca_label ru_nsignals 0
+mri_ca_label ru_nvcsw    368
+mri_ca_label ru_nivcsw   1052
+mri_ca_label took 26 minutes and 1 seconds.
+mri_ca_label done
+@#@FSTIME  2026:09:11:13:11:42 mri_ca_label N 10 e 1561.45 S 5.41 U 1600.10 P 102% M 2093984 F 0 R 3633016 W 0 c 1053 w 370 I 192 O 672 L 9.89 12.10 16.06
+@#@FSLOADPOST 2026:09:11:13:37:44 mri_ca_label N 10 16.82 14.07 12.62
+#--------------------------------------
+#@# CC Seg Fri Sep 11 13:37:44 EDT 2026
+
+ mri_cc -aseg aseg.auto_noCCseg.mgz -o aseg.auto.mgz -lta /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/cc_up.lta D0359 
+
+will read input aseg from aseg.auto_noCCseg.mgz
+writing aseg with cc labels to aseg.auto.mgz
+will write lta as /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/transforms/cc_up.lta
+reading aseg from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/aseg.auto_noCCseg.mgz
+reading norm from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/norm.mgz
+39659 voxels in left wm, 75618 in right wm, xrange [119, 134]
+searching rotation angles z=[-7  7], y=[-12  2]
+searching scale 1 Z rot -7.3  searching scale 1 Z rot -7.0  searching scale 1 Z rot -6.8  searching scale 1 Z rot -6.5  searching scale 1 Z rot -6.3  searching scale 1 Z rot -6.0  searching scale 1 Z rot -5.8  searching scale 1 Z rot -5.5  searching scale 1 Z rot -5.3  searching scale 1 Z rot -5.0  searching scale 1 Z rot -4.8  searching scale 1 Z rot -4.5  searching scale 1 Z rot -4.3  searching scale 1 Z rot -4.0  searching scale 1 Z rot -3.8  searching scale 1 Z rot -3.5  searching scale 1 Z rot -3.3  searching scale 1 Z rot -3.0  searching scale 1 Z rot -2.8  searching scale 1 Z rot -2.5  searching scale 1 Z rot -2.3  searching scale 1 Z rot -2.0  searching scale 1 Z rot -1.8  searching scale 1 Z rot -1.5  searching scale 1 Z rot -1.3  searching scale 1 Z rot -1.0  searching scale 1 Z rot -0.8  searching scale 1 Z rot -0.5  searching scale 1 Z rot -0.3  searching scale 1 Z rot -0.0  searching scale 1 Z rot 0.2  searching scale 1 Z rot 0.5  searching scale 1 Z rot 0.7  searching scale 1 Z rot 1.0  searching scale 1 Z rot 1.2  searching scale 1 Z rot 1.5  searching scale 1 Z rot 1.7  searching scale 1 Z rot 2.0  searching scale 1 Z rot 2.2  searching scale 1 Z rot 2.5  searching scale 1 Z rot 2.7  searching scale 1 Z rot 3.0  searching scale 1 Z rot 3.2  searching scale 1 Z rot 3.5  searching scale 1 Z rot 3.7  searching scale 1 Z rot 4.0  searching scale 1 Z rot 4.2  searching scale 1 Z rot 4.5  searching scale 1 Z rot 4.7  searching scale 1 Z rot 5.0  searching scale 1 Z rot 5.2  searching scale 1 Z rot 5.5  searching scale 1 Z rot 5.7  searching scale 1 Z rot 6.0  searching scale 1 Z rot 6.2  searching scale 1 Z rot 6.5  searching scale 1 Z rot 6.7  searching scale 1 Z rot 7.0  searching scale 1 Z rot 7.2  searching scale 1 Z rot 7.5  global minimum found at slice 127.0, rotations (-4.19, 0.72)
+final transformation (x=127.0, yr=-4.195, zr=0.723):
+ 0.99724  -0.01261  -0.07314   10.10221;
+ 0.01258   0.99992  -0.00092  -16.49858;
+ 0.07315   0.00000   0.99732   23.96504;
+ 0.00000   0.00000   0.00000   1.00000;
+updating x range to be [126, 131] in xformed coordinates
+best xformed slice 128
+min_x_fornix = 149
+min_x_fornix = 151
+min_x_fornix = 153
+min_x_fornix = 152
+min_x_fornix = 150
+cc center is found at 128 143 95
+eigenvectors:
+-0.00065   0.00477   0.99999;
+-0.42894  -0.90333   0.00403;
+ 0.90333  -0.42893   0.00264;
+error in mid anterior detected - correcting...
+writing aseg with callosum to /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/aseg.auto.mgz...
+corpus callosum segmentation took 0.6 minutes
+#VMPC# mri_cc VmPeak  459648
+mri_cc done
+@#@FSTIME  2026:09:11:13:37:44 mri_cc N 7 e 33.64 S 0.63 U 33.51 P 101% M 341392 F 0 R 386244 W 0 c 58 w 74 I 0 O 656 L 16.82 14.07 12.62
+@#@FSLOADPOST 2026:09:11:13:38:18 mri_cc N 7 20.14 15.16 13.04
+#--------------------------------------
+#@# Merge ASeg Fri Sep 11 13:38:18 EDT 2026
+
+ cp aseg.auto.mgz aseg.presurf.mgz 
+
+#--------------------------------------------
+#@# Intensity Normalization2 Fri Sep 11 13:38:18 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_normalize -seed 1234 -mprage -aseg aseg.presurf.mgz -mask brainmask.mgz norm.mgz brain.mgz 
+
+setting seed for random number genererator to 1234
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+using segmentation for initial intensity normalization
+using MR volume brainmask.mgz to mask input volume...
+reading mri_src from norm.mgz...
+Reading aseg aseg.presurf.mgz
+aseg read with width 256 (src width 256)
+************** resampling aseg to account for mismatch with source image ***************
+normalizing image...
+NOT doing gentle normalization with control points/label
+processing with aseg
+removing outliers in the aseg WM...
+504 control points removed
+Building bias image
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 0...
+Smoothing with sigma 8
+Applying bias correction
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+
+Iterating 2 times
+---------------------------------
+3d normalization pass 1 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 67 (67), valley at 55 (55)
+csf peak at 10, setting threshold to 48
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+---------------------------------
+3d normalization pass 2 of 2
+white matter peak found at 110
+white matter peak found at 110
+gm peak at 66 (66), valley at 38 (38)
+csf peak at 10, setting threshold to 47
+building Voronoi diagram...
+performing soap bubble smoothing, sigma = 8...
+Done iterating ---------------------------------
+writing output to brain.mgz
+3D bias adjustment took 1 minutes and 49 seconds.
+@#@FSTIME  2026:09:11:13:38:18 mri_normalize N 9 e 111.40 S 2.11 U 127.60 P 116% M 1195260 F 0 R 867676 W 0 c 186 w 123 I 648 O 2368 L 20.14 15.16 13.04
+@#@FSLOADPOST 2026:09:11:13:40:09 mri_normalize N 9 17.94 16.29 13.71
+#--------------------------------------------
+#@# Mask BFS Fri Sep 11 13:40:09 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz 
+
+threshold mask volume at 5
+DoAbs = 0
+Found 1486915 voxels in mask (pct=  8.86)
+maskval=0, outval=0
+Writing masked volume to brain.finalsurfs.mgz...done.
+@#@FSTIME  2026:09:11:13:40:09 mri_mask N 5 e 0.74 S 0.04 U 0.89 P 126% M 73728 F 0 R 17264 W 0 c 2 w 74 I 0 O 2336 L 17.94 16.29 13.71
+@#@FSLOADPOST 2026:09:11:13:40:10 mri_mask N 5 17.94 16.29 13.71
+cp brain.finalsurfs.mgz brain.finalsurfs.manedit.mgz
+#--------------------------------------------
+#@# WM Segmentation Fri Sep 11 13:40:10 EDT 2026
+
+ AntsDenoiseImageFs -i brain.mgz -o antsdn.brain.mgz 
+
+@#@FSTIME  2026:09:11:13:40:10 AntsDenoiseImageFs N 4 e 32.26 S 0.33 U 32.02 P 100% M 350208 F 20 R 202274 W 0 c 37 w 90 I 4664 O 2424 L 17.94 16.29 13.71
+@#@FSLOADPOST 2026:09:11:13:40:42 AntsDenoiseImageFs N 4 17.64 16.38 13.83
+
+ mri_segment -wsizemm 13 -mprage antsdn.brain.mgz wm.seg.mgz 
+
+wsizemm = 13, voxres = 1, wsize = 13
+Widening wm low from 89 to 79
+assuming input volume is MGH (Van der Kouwe) MP-RAGE
+wm mean:  110
+wsize:    13
+wm low:   79
+wm hi:    125
+gray low: 30
+gray hi:  99
+Doing initial trinary intensity segmentation 
+MRIintensitySegmentation() wm_low=79, wm_hi=125, gray_hi=99
+white = 384454, nonwhite = 16155084, ambig = 237678, nmask = 0
+Using local statistics to label ambiguous voxels
+Autodetecting stats
+Computing class statistics for intensity windows...
+CCS WM (104.0): 103.9 +- 5.2 [79.0 --> 125.0]
+CCS GM (71.0) : 68.8 +- 10.9 [30.0 --> 95.0]
+ white_mean 103.916
+ white_sigma 5.16091
+ gray_mean 68.8037
+ gray_sigma 10.9079
+setting bottom of white matter range wm_low to 79.7
+setting top of gray matter range gray_hi to 90.6
+ wm_low 79.7116
+ wm_hi  125
+ gray_low 30
+ gray_hi  90.6195
+Redoing initial intensity segmentation...
+MRIintensitySegmentation() wm_low=79.7116, wm_hi=125, gray_hi=90.6195
+white = 484728, nonwhite = 16167345, ambig = 125143, nmask = 0
+Recomputing local statistics to label ambiguous voxels...
+ wm_low 79.7116
+ wm_hi  125
+ gray_low 30
+ gray_hi  90.6195
+using local geometry to label remaining ambiguous voxels...
+polvwsize = 5, polvlen = 3, gray_hi = 90.6195, wm_low = 79.7116
+MRIcpolvMedianCurveSegment(): wsize=5, len=3, gmhi=90.6195, wmlow=79.7116
+    119972 voxels processed (0.72%)
+     53344 voxels white (0.32%)
+     66628 voxels non-white (0.40%)
+
+Reclassifying voxels using Gaussian border classifier niter=1
+MRIreclassify(): wm_low=74.7116, gray_hi=90.6195, wsize=13
+    189907 voxels tested (1.13%)
+     42784 voxels changed (0.26%)
+     39528 multi-scale searches  (0.24%)
+Recovering bright white
+MRIrecoverBrightWhite()
+ wm_low 79.7116
+ wm_hi 125
+ slack 5.16091
+ pct_thresh 0.33
+ intensity_thresh 130.161
+ nvox_thresh 8.58
+      437 voxels tested (0.00%)
+      259 voxels changed (0.00%)
+
+removing voxels with positive offset direction...
+MRIremoveWrongDirection() wsize=3, lowthr=74.7116, hithr=90.6195
+  smoothing input volume with sigma = 0.250
+    74602 voxels tested (0.44%)
+    16211 voxels changed (0.10%)
+thicken = 1
+removing 1-dimensional structures...
+MRIremove1dStructures(): max_iter=10000, thresh=2, WM_MIN_VAL=5
+ 1169 sparsely connected voxels removed in 1 iterations
+thickening thin strands....
+thickness 4
+nsegments 20
+wm_hi 125
+838 diagonally connected voxels added...
+MRIthickenThinWMStrands(): thickness=4, nsegments=20
+  20 segments, 1853 filled
+MRIfindBrightNonWM(): 2490 bright non-wm voxels segmented.
+MRIfilterMorphology() WM_MIN_VAL=5, DIAGONAL_FILL=230
+white matter segmentation took 0.9 minutes
+writing output to wm.seg.mgz...
+@#@FSTIME  2026:09:11:13:40:42 mri_segment N 5 e 51.82 S 0.46 U 51.91 P 101% M 133772 F 0 R 322152 W 0 c 88 w 56 I 0 O 792 L 17.64 16.38 13.83
+@#@FSLOADPOST 2026:09:11:13:41:34 mri_segment N 5 19.36 17.00 14.18
+
+ mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz 
+
+mri_edit_wm_with_aseg -keep-in wm.seg.mgz brain.mgz aseg.presurf.mgz wm.asegedit.mgz 
+preserving editing changes in input volume...
+auto filling took 0.42 minutes
+reading wm segmentation from wm.seg.mgz...
+0 voxels added to wm to prevent paths from MTL structures to cortex
+3396 additional wm voxels added
+0 additional wm voxels added
+SEG EDIT: 83470 voxels turned on, 3987 voxels turned off.
+propagating editing to output volume from wm.seg.mgz
+writing edited volume to wm.asegedit.mgz....
+@#@FSTIME  2026:09:11:13:41:34 mri_edit_wm_with_aseg N 5 e 25.22 S 0.64 U 25.53 P 103% M 456280 F 0 R 374494 W 0 c 54 w 115 I 0 O 776 L 19.36 17.00 14.18
+@#@FSLOADPOST 2026:09:11:13:41:59 mri_edit_wm_with_aseg N 5 20.77 17.49 14.42
+
+ mri_pretess wm.asegedit.mgz wm norm.mgz wm.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):  16 found -  16 modified     |    TOTAL:  16
+pass   2 (xy+):   0 found -  16 modified     |    TOTAL:  16
+pass   1 (xy-):  28 found -  28 modified     |    TOTAL:  44
+pass   2 (xy-):   0 found -  28 modified     |    TOTAL:  44
+pass   1 (yz+):  12 found -  12 modified     |    TOTAL:  56
+pass   2 (yz+):   0 found -  12 modified     |    TOTAL:  56
+pass   1 (yz-):  14 found -  14 modified     |    TOTAL:  70
+pass   2 (yz-):   0 found -  14 modified     |    TOTAL:  70
+pass   1 (xz+):  10 found -  10 modified     |    TOTAL:  80
+pass   2 (xz+):   0 found -  10 modified     |    TOTAL:  80
+pass   1 (xz-):  19 found -  19 modified     |    TOTAL:  99
+pass   2 (xz-):   0 found -  19 modified     |    TOTAL:  99
+Iteration Number : 1
+pass   1 (+++):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (+++):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (+++):   4 found -   4 modified     |    TOTAL:   6
+pass   2 (+++):   0 found -   4 modified     |    TOTAL:   6
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   6
+pass   1 (+++):   1 found -   1 modified     |    TOTAL:   7
+pass   2 (+++):   0 found -   1 modified     |    TOTAL:   7
+Iteration Number : 1
+pass   1 (++):  28 found -  28 modified     |    TOTAL:  28
+pass   2 (++):   0 found -  28 modified     |    TOTAL:  28
+pass   1 (+-):   9 found -   9 modified     |    TOTAL:  37
+pass   2 (+-):   0 found -   9 modified     |    TOTAL:  37
+pass   1 (--):  18 found -  18 modified     |    TOTAL:  55
+pass   2 (--):   0 found -  18 modified     |    TOTAL:  55
+pass   1 (-+):  14 found -  14 modified     |    TOTAL:  69
+pass   2 (-+):   0 found -  14 modified     |    TOTAL:  69
+Iteration Number : 2
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   3 found -   3 modified     |    TOTAL:   4
+pass   2 (xy-):   0 found -   3 modified     |    TOTAL:   4
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   4
+pass   1 (yz-):   2 found -   2 modified     |    TOTAL:   6
+pass   2 (yz-):   0 found -   2 modified     |    TOTAL:   6
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:   8
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:   8
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   8
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (++):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   1
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   2
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   2
+Iteration Number : 3
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 3
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 185 (out of 600794: 0.030793)
+binarizing input wm segmentation...
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+@#@FSTIME  2026:09:11:13:41:59 mri_pretess N 4 e 2.36 S 0.09 U 2.51 P 110% M 53248 F 15 R 21730 W 0 c 4 w 70 I 3872 O 776 L 20.77 17.49 14.42
+@#@FSLOADPOST 2026:09:11:13:42:02 mri_pretess N 4 20.77 17.49 14.42
+#--------------------------------------------
+#@# Fill Fri Sep 11 13:42:02 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+
+ mri_fill -a ../scripts/ponscc.cut.log -xform transforms/talairach.lta -segmentation aseg.presurf.mgz -ctab /home/apps//freesurfer/SubCorticalMassLUT.txt wm.mgz filled.mgz 
+
+logging cutting plane coordinates to ../scripts/ponscc.cut.log...
+INFO: Using transforms/talairach.lta and its offset for Talairach volume ...
+using segmentation aseg.presurf.mgz...
+done.
+searching for cutting planes...voxel to talairach voxel transform
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65341;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+reading input volume... wm.mgzvoxel to talairach voxel transform
+ 1.00918  -0.05592  -0.07971   13.03788;
+ 0.07923   0.92958   0.56702  -92.65341;
+ 0.04471  -0.62453   0.84486   84.69836;
+ 0.00000   0.00000   0.00000   1.00000;
+reading segmented volume aseg.presurf.mgz
+removing CC from segmentation
+Looking for area (min, max) = (350, 1400)
+area[0] = 1788 (min = 350, max = 1400), aspect = 0.47 (min = 0.10, max = 0.75)
+need search nearby
+using seed (126, 122, 156), TAL = (2.0, 28.0, 6.0)
+talairach voxel to voxel transform
+ 0.98271   0.08368   0.03656  -8.15575;
+-0.03586   0.73838  -0.49895   111.14123;
+-0.07852   0.54140   0.81287  -17.66246;
+ 0.00000   0.00000   0.00000   1.00000;
+segmentation indicates cc at (126,  122,  156) --> (2.0, 28.0, 6.0)
+done.
+filling took 0.8 minutes
+talairach cc position changed to (2.00, 28.00, 6.00)
+Erasing brainstem...done.
+seed_search_size = 9, min_neighbors = 5
+search rh wm seed point around talairach space:(20.00, 28.00, 6.00) SRC: (113.89, 119.52, 166.72)
+search lh wm seed point around talairach space (-16.00, 28.00, 6.00), SRC: (149.27, 118.22, 163.89)
+compute mri_fill using aseg
+Erasing Brain Stem and Cerebellum ...
+Define left and right masks using aseg:
+Building Voronoi diagram ...
+Using the Voronoi diagram for separating WM into two hemispheres ...
+Find the largest connected component for each hemisphere ...
+Embedding colortable
+mri_fill done, writing output to filled.mgz...
+@#@FSTIME  2026:09:11:13:42:02 mri_fill N 10 e 49.06 S 2.03 U 47.33 P 100% M 983996 F 0 R 894156 W 0 c 68 w 51 I 8 O 264 L 20.77 17.49 14.42
+@#@FSLOADPOST 2026:09:11:13:42:51 mri_fill N 10 25.23 19.14 15.14
+ cp filled.mgz filled.auto.mgz
+#--------------------------------------------
+#@# Tessellate lh Fri Sep 11 13:42:51 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mri_pretess ../mri/filled.mgz 255 ../mri/norm.mgz ../mri/filled-pretess255.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):  12 found -  12 modified     |    TOTAL:  12
+pass   2 (yz+):   0 found -  12 modified     |    TOTAL:  12
+pass   1 (yz-):  10 found -  10 modified     |    TOTAL:  22
+pass   2 (yz-):   0 found -  10 modified     |    TOTAL:  22
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:  24
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:  24
+pass   1 (xz-):   4 found -   4 modified     |    TOTAL:  28
+pass   2 (xz-):   0 found -   4 modified     |    TOTAL:  28
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   1
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 29 (out of 298161: 0.009726)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+@#@FSTIME  2026:09:11:13:42:51 mri_pretess N 4 e 1.18 S 0.02 U 1.39 P 120% M 36864 F 0 R 8797 W 0 c 1 w 41 I 0 O 256 L 25.23 19.14 15.14
+@#@FSLOADPOST 2026:09:11:13:42:52 mri_pretess N 4 25.23 19.14 15.14
+
+ mri_tessellate ../mri/filled-pretess255.mgz 255 ../surf/lh.orig.nofix 
+
+7.4.1
+  7.4.1
+slice 60: 3163 vertices, 3416 faces
+slice 70: 12548 vertices, 12951 faces
+slice 80: 24859 vertices, 25268 faces
+slice 90: 37784 vertices, 38254 faces
+slice 100: 49547 vertices, 49924 faces
+slice 110: 60116 vertices, 60492 faces
+slice 120: 71181 vertices, 71575 faces
+slice 130: 81686 vertices, 82069 faces
+slice 140: 91221 vertices, 91554 faces
+slice 150: 100610 vertices, 100961 faces
+slice 160: 108844 vertices, 109131 faces
+slice 170: 116455 vertices, 116731 faces
+slice 180: 122343 vertices, 122523 faces
+slice 190: 126905 vertices, 127040 faces
+slice 200: 129541 vertices, 129613 faces
+slice 210: 130292 vertices, 130304 faces
+slice 220: 130292 vertices, 130304 faces
+slice 230: 130292 vertices, 130304 faces
+slice 240: 130292 vertices, 130304 faces
+slice 250: 130292 vertices, 130304 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/lh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+@#@FSTIME  2026:09:11:13:42:52 mri_tessellate N 3 e 1.02 S 0.02 U 1.10 P 109% M 32768 F 0 R 8264 W 0 c 3 w 138 I 0 O 6112 L 25.23 19.14 15.14
+@#@FSLOADPOST 2026:09:11:13:42:53 mri_tessellate N 3 25.61 19.32 15.22
+
+ rm -f ../mri/filled-pretess255.mgz 
+
+
+ mris_extract_main_component ../surf/lh.orig.nofix ../surf/lh.orig.nofix 
+
+
+counting number of connected components...
+   130292 voxel in cpt #1: X=-12 [v=130292,e=390912,f=260608] located at (-28.862324, -11.266916, -5.820365)
+For the whole surface: X=-12 [v=130292,e=390912,f=260608]
+One single component has been found
+nothing to do
+done
+
+@#@FSTIME  2026:09:11:13:42:53 mris_extract_main_component N 2 e 0.63 S 0.19 U 0.63 P 131% M 250916 F 0 R 68522 W 0 c 1 w 189 I 0 O 9168 L 25.61 19.32 15.22
+@#@FSLOADPOST 2026:09:11:13:42:54 mris_extract_main_component N 2 25.61 19.32 15.22
+#--------------------------------------------
+#@# Tessellate rh Fri Sep 11 13:42:54 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mri_pretess ../mri/filled.mgz 127 ../mri/norm.mgz ../mri/filled-pretess127.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (xy-):   0 found -   1 modified     |    TOTAL:   2
+pass   1 (yz+):   7 found -   7 modified     |    TOTAL:   9
+pass   2 (yz+):   0 found -   7 modified     |    TOTAL:   9
+pass   1 (yz-):  15 found -  15 modified     |    TOTAL:  24
+pass   2 (yz-):   0 found -  15 modified     |    TOTAL:  24
+pass   1 (xz+):   2 found -   2 modified     |    TOTAL:  26
+pass   2 (xz+):   0 found -   2 modified     |    TOTAL:  26
+pass   1 (xz-):   1 found -   1 modified     |    TOTAL:  27
+pass   2 (xz-):   0 found -   1 modified     |    TOTAL:  27
+Iteration Number : 1
+pass   1 (+++):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (+++):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   2
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (--):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (-+):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (-+):   0 found -   1 modified     |    TOTAL:   2
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 31 (out of 290919: 0.010656)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+@#@FSTIME  2026:09:11:13:42:54 mri_pretess N 4 e 1.27 S 0.02 U 1.47 P 116% M 36864 F 0 R 8794 W 0 c 2 w 39 I 0 O 256 L 25.61 19.32 15.22
+@#@FSLOADPOST 2026:09:11:13:42:55 mri_pretess N 4 25.61 19.32 15.22
+
+ mri_tessellate ../mri/filled-pretess127.mgz 127 ../surf/rh.orig.nofix 
+
+7.4.1
+  7.4.1
+slice 60: 1838 vertices, 2043 faces
+slice 70: 9989 vertices, 10305 faces
+slice 80: 20998 vertices, 21404 faces
+slice 90: 33009 vertices, 33420 faces
+slice 100: 44694 vertices, 45082 faces
+slice 110: 55602 vertices, 55953 faces
+slice 120: 65883 vertices, 66248 faces
+slice 130: 76587 vertices, 76976 faces
+slice 140: 86824 vertices, 87182 faces
+slice 150: 96122 vertices, 96470 faces
+slice 160: 105124 vertices, 105420 faces
+slice 170: 112829 vertices, 113107 faces
+slice 180: 119943 vertices, 120154 faces
+slice 190: 124879 vertices, 125042 faces
+slice 200: 128490 vertices, 128584 faces
+slice 210: 129594 vertices, 129600 faces
+slice 220: 129594 vertices, 129600 faces
+slice 230: 129594 vertices, 129600 faces
+slice 240: 129594 vertices, 129600 faces
+slice 250: 129594 vertices, 129600 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/rh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+@#@FSTIME  2026:09:11:13:42:55 mri_tessellate N 3 e 1.01 S 0.02 U 1.09 P 109% M 32768 F 0 R 8249 W 0 c 1 w 127 I 0 O 6080 L 25.61 19.32 15.22
+@#@FSLOADPOST 2026:09:11:13:42:56 mri_tessellate N 3 25.61 19.32 15.22
+
+ rm -f ../mri/filled-pretess127.mgz 
+
+
+ mris_extract_main_component ../surf/rh.orig.nofix ../surf/rh.orig.nofix 
+
+
+counting number of connected components...
+   129594 voxel in cpt #1: X=-6 [v=129594,e=388800,f=259200] located at (27.543550, -7.582118, -7.257149)
+For the whole surface: X=-6 [v=129594,e=388800,f=259200]
+One single component has been found
+nothing to do
+done
+
+@#@FSTIME  2026:09:11:13:42:56 mris_extract_main_component N 2 e 0.58 S 0.17 U 0.58 P 128% M 249840 F 0 R 68334 W 0 c 2 w 202 I 0 O 9120 L 25.61 19.32 15.22
+@#@FSLOADPOST 2026:09:11:13:42:57 mris_extract_main_component N 2 25.61 19.32 15.22
+#--------------------------------------------
+#@# Smooth1 lh Fri Sep 11 13:42:57 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/lh.orig.nofix ../surf/lh.smoothwm.nofix 
+
+#--------------------------------------------
+#@# Smooth1 rh Fri Sep 11 13:42:57 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/rh.orig.nofix ../surf/rh.smoothwm.nofix 
+
+Waiting for PID 2280297 of (2280297 2280300) to complete...
+Waiting for PID 2280300 of (2280297 2280300) to complete...
+PIDs (2280297 2280300) completed and logs appended.
+#--------------------------------------------
+#@# Inflation1 lh Fri Sep 11 13:43:00 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_inflate -no-save-sulc ../surf/lh.smoothwm.nofix ../surf/lh.inflated.nofix 
+
+#--------------------------------------------
+#@# Inflation1 rh Fri Sep 11 13:43:00 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_inflate -no-save-sulc ../surf/rh.smoothwm.nofix ../surf/rh.inflated.nofix 
+
+Waiting for PID 2280382 of (2280382 2280385) to complete...
+Waiting for PID 2280385 of (2280382 2280385) to complete...
+PIDs (2280382 2280385) completed and logs appended.
+#--------------------------------------------
+#@# QSphere lh Fri Sep 11 13:43:12 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_sphere -q -p 6 -a 128 -seed 1234 ../surf/lh.inflated.nofix ../surf/lh.qsphere.nofix 
+
+#--------------------------------------------
+#@# QSphere rh Fri Sep 11 13:43:12 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_sphere -q -p 6 -a 128 -seed 1234 ../surf/rh.inflated.nofix ../surf/rh.qsphere.nofix 
+
+Waiting for PID 2280657 of (2280657 2280660) to complete...
+Waiting for PID 2280660 of (2280657 2280660) to complete...
+PIDs (2280657 2280660) completed and logs appended.
+#@# Fix Topology lh Fri Sep 11 13:44:12 EDT 2026
+
+ mris_fix_topology -mgz -sphere qsphere.nofix -inflated inflated.nofix -orig orig.nofix -out orig.premesh -ga -seed 1234 D0359 lh 
+
+#@# Fix Topology rh Fri Sep 11 13:44:12 EDT 2026
+
+ mris_fix_topology -mgz -sphere qsphere.nofix -inflated inflated.nofix -orig orig.nofix -out orig.premesh -ga -seed 1234 D0359 rh 
+
+Waiting for PID 2281232 of (2281232 2281235) to complete...
+Waiting for PID 2281235 of (2281232 2281235) to complete...
+PIDs (2281232 2281235) completed and logs appended.
+
+ mris_euler_number ../surf/lh.orig.premesh 
+
+euler # = v-e+f = 2g-2: 129928 - 389778 + 259852 = 2 --> 0 holes
+      F =2V-4:          259852 = 259856-4 (0)
+      2E=3F:            779556 = 779556 (0)
+
+total defect index = 0
+
+ mris_euler_number ../surf/rh.orig.premesh 
+
+euler # = v-e+f = 2g-2: 129343 - 388023 + 258682 = 2 --> 0 holes
+      F =2V-4:          258682 = 258686-4 (0)
+      2E=3F:            776046 = 776046 (0)
+
+total defect index = 0
+Fri Sep 11 13:44:51 EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+/home/apps//freesurfer/bin/defect2seg --s D0359 --cortex
+
+freesurfer-linux-ubuntu22_x86_64-7.4.1-20230614-7eb8460
+defect2seg 7.4.1
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+pid 2281302
+mri_label2label --label-cortex /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig.nofix /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/aseg.presurf.mgz 0 /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/lh.nofix.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+11 non-cortical segments detected
+only using segment with 7169 vertices
+erasing segment 1 (vno[0] = 76310)
+erasing segment 2 (vno[0] = 77327)
+erasing segment 3 (vno[0] = 83699)
+erasing segment 4 (vno[0] = 95530)
+erasing segment 5 (vno[0] = 95556)
+erasing segment 6 (vno[0] = 98275)
+erasing segment 7 (vno[0] = 98332)
+erasing segment 8 (vno[0] = 99381)
+erasing segment 9 (vno[0] = 101220)
+erasing segment 10 (vno[0] = 116789)
+mri_label2vol --defects /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig.nofix /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.defect_labels /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/orig.mgz 1000 0 /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/surface.defects.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/lh.nofix.cortex.label
+mri_label2vol supposed to be reproducible but seed not set
+Contraining to label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/lh.nofix.cortex.label
+Changing input type 0 to MRI_INT
+Converting defects to volume: offset=1000, merge=0
+Writing to /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/surface.defects.mgz
+mris_defects_pointset -s /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig.nofix -d /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.defect_labels -o /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.defects.pointset --label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/lh.nofix.cortex.label
+Reading in surface /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig.nofix
+Reading in defect segmentation /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.defect_labels
+Reading in label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/lh.nofix.cortex.label
+#VMPC# mris_defects_pointset 542460
+mris_defects_pointset done
+mri_label2label --label-cortex /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig.nofix /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/aseg.presurf.mgz 0 /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/rh.nofix.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+21 non-cortical segments detected
+only using segment with 7193 vertices
+erasing segment 0 (vno[0] = 33856)
+erasing segment 1 (vno[0] = 37490)
+erasing segment 2 (vno[0] = 44175)
+erasing segment 3 (vno[0] = 45292)
+erasing segment 5 (vno[0] = 47630)
+erasing segment 6 (vno[0] = 59913)
+erasing segment 7 (vno[0] = 60857)
+erasing segment 8 (vno[0] = 90433)
+erasing segment 9 (vno[0] = 91329)
+erasing segment 10 (vno[0] = 92234)
+erasing segment 11 (vno[0] = 92250)
+erasing segment 12 (vno[0] = 93110)
+erasing segment 13 (vno[0] = 93966)
+erasing segment 14 (vno[0] = 96668)
+erasing segment 15 (vno[0] = 97687)
+erasing segment 16 (vno[0] = 100559)
+erasing segment 17 (vno[0] = 101601)
+erasing segment 18 (vno[0] = 105582)
+erasing segment 19 (vno[0] = 110235)
+erasing segment 20 (vno[0] = 113207)
+mri_label2vol --defects /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig.nofix /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.defect_labels /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/surface.defects.mgz 2000 1 /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/surface.defects.mgz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/rh.nofix.cortex.label
+mri_label2vol supposed to be reproducible but seed not set
+Contraining to label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/rh.nofix.cortex.label
+Converting defects to volume: offset=2000, merge=1
+Writing to /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri/surface.defects.mgz
+mris_defects_pointset -s /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig.nofix -d /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.defect_labels -o /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.defects.pointset --label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/rh.nofix.cortex.label
+Reading in surface /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig.nofix
+Reading in defect segmentation /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.defect_labels
+Reading in label /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/label/rh.nofix.cortex.label
+#VMPC# mris_defects_pointset 541836
+mris_defects_pointset done
+ 
+Started at Fri Sep 11 13:44:51 EDT 2026 
+Ended   at Fri Sep 11 13:45:10 EDT 2026
+Defect2seg-Run-Time-Sec 19
+Defect2seg-Run-Time-Min 0.38
+Defect2seg-Run-Time-Hours 0.01
+ 
+tkmeditfv D0359 brain.finalsurfs.mgz -defect
+defect2seg Done
+@#@FSTIME  2026:09:11:13:44:50 defect2seg N 3 e 19.56 S 1.41 U 20.09 P 109% M 382036 F 0 R 543545 W 0 c 69 w 996 I 24 O 21776 L 34.07 24.51 17.59
+@#@FSLOADPOST 2026:09:11:13:45:10 defect2seg N 3 32.24 24.72 17.81
+
+ mris_remesh --remesh --iters 3 --input /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig.premesh --output /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/lh.orig 
+
+iters = 3
+standard remeshing without target
+   adjusted l: 0.711316
+remeshing to edge length 0.711316 with 3 iterations
+
+avg qual before   : 0.896273  after: 0.971159
+
+Removing intersections
+Remeshed surface quality stats nv0 = 129928  nv = 136424  1.05
+Area    272844  0.30347  0.03388 0.072540   0.4699
+Corner  818532 60.00000  8.80679 14.628716 147.9137
+Edge    409266  0.84514  0.08256 0.448509   1.2202
+Hinge   409266  9.41959  9.29424 0.000000 121.4586
+mris_remesh done
+@#@FSTIME  2026:09:11:13:45:10 mris_remesh N 7 e 23.93 S 1.09 U 24.69 P 107% M 753292 F 0 R 614960 W 0 c 43 w 222 I 0 O 9600 L 32.24 24.72 17.81
+@#@FSLOADPOST 2026:09:11:13:45:34 mris_remesh N 7 29.19 24.58 17.95
+
+ mris_remesh --remesh --iters 3 --input /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig.premesh --output /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf/rh.orig 
+
+iters = 3
+standard remeshing without target
+   adjusted l: 0.71003
+remeshing to edge length 0.71003 with 3 iterations
+
+avg qual before   : 0.897936  after: 0.971385
+
+Removing intersections
+Remeshed surface quality stats nv0 = 129343  nv = 136126  1.05244
+Area    272248  0.30221  0.03346 0.083703   0.4934
+Corner  816744 60.00000  8.76651 17.384521 144.6660
+Edge    408372  0.84333  0.08197 0.476570   1.2455
+Hinge   408372  9.27047  9.24061 0.000000 159.7793
+mris_remesh done
+@#@FSTIME  2026:09:11:13:45:34 mris_remesh N 7 e 25.17 S 1.16 U 25.44 P 105% M 751640 F 0 R 730741 W 0 c 49 w 215 I 0 O 9576 L 29.19 24.58 17.95
+@#@FSLOADPOST 2026:09:11:13:45:59 mris_remesh N 7 28.53 24.80 18.19
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_remove_intersection ../surf/lh.orig ../surf/lh.orig 
+
+intersection removal took 0.00 hours
+Found 0 intersections
+writing corrected surface to ../surf/lh.orig
+@#@FSTIME  2026:09:11:13:45:59 mris_remove_intersection N 2 e 4.06 S 0.38 U 3.93 P 106% M 327228 F 0 R 229643 W 0 c 5 w 186 I 0 O 9600 L 28.53 24.80 18.19
+@#@FSLOADPOST 2026:09:11:13:46:03 mris_remove_intersection N 2 28.33 24.82 18.24
+
+ rm -f ../surf/lh.inflated 
+
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_remove_intersection ../surf/rh.orig ../surf/rh.orig 
+
+intersection removal took 0.00 hours
+Found 0 intersections
+writing corrected surface to ../surf/rh.orig
+@#@FSTIME  2026:09:11:13:46:03 mris_remove_intersection N 2 e 4.43 S 0.34 U 4.41 P 107% M 326668 F 0 R 229489 W 0 c 7 w 228 I 0 O 9576 L 28.33 24.82 18.24
+@#@FSLOADPOST 2026:09:11:13:46:08 mris_remove_intersection N 2 28.62 24.93 18.31
+
+ rm -f ../surf/rh.inflated 
+
+#--------------------------------------------
+#@# AutoDetGWStats lh Fri Sep 11 13:46:08 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.lh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/lh.orig.premesh
+7.4.1
+
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.lh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/lh.orig.premesh 
+
+border white:    247515 voxels (1.48%)
+border gray      265507 voxels (1.58%)
+Reading in intensity volume brain.finalsurfs.mgz
+Reading in wm volume wm.mgz
+Reading in surf ../surf/lh.orig.premesh
+Auto detecting stats
+MRIclipBrightWM(): nthresh=18243, wmmin=5, clip=110 
+Binarizing thresholding at 5
+computing class statistics... low=30, hi=110.000000
+CCS WM (99.0): 98.4 +- 8.7 [70.0 --> 110.0]
+CCS GM (72.0) : 70.5 +- 11.7 [30.0 --> 110.0]
+white_mean = 98.4048 +/- 8.65671, gray_mean = 70.5397 +/- 11.6971
+using class modes intead of means, discounting robust sigmas....
+MRIScomputeClassModes(): min=0 max=227 nbins=228
+intensity peaks found at WM=104+-7.0,    GM=65+-11.3
+white_mode = 104, gray_mode = 65
+std_scale = 1
+Applying sanity checks, max_scale_down = 0.2
+setting MIN_GRAY_AT_WHITE_BORDER to 53.3 (was 70.000000)
+setting MAX_BORDER_WHITE to 112.7 (was 105.000000)
+setting MIN_BORDER_WHITE to 65.0 (was 85.000000)
+setting MAX_CSF to 41.6 (was 40.000000)
+setting MAX_GRAY to 95.3 (was 95.000000)
+setting MAX_GRAY_AT_CSF_BORDER to 53.3 (was 75.000000)
+setting MIN_GRAY_AT_CSF_BORDER to 29.9 (was 40.000000)
+When placing the white surface
+  white_border_hi   = 112.657;
+  white_border_low  = 65;
+  white_outside_low = 53.3029;
+  white_inside_hi   = 120;
+  white_outside_hi  = 112.657;
+When placing the pial surface
+  pial_border_hi   = 53.3029;
+  pial_border_low  = 29.9087;
+  pial_outside_low = 10;
+  pial_inside_hi   = 95.3433;
+  pial_outside_hi  = 47.4543;
+#VMPC# mris_autodet_gwstats VmPeak  578696
+mris_autodet_gwstats done
+@#@FSTIME  2026:09:11:13:46:08 mris_autodet_gwstats N 8 e 2.92 S 0.23 U 3.25 P 119% M 226396 F 0 R 113975 W 0 c 6 w 55 I 0 O 8 L 28.62 24.93 18.31
+@#@FSLOADPOST 2026:09:11:13:46:11 mris_autodet_gwstats N 8 28.62 24.93 18.31
+#--------------------------------------------
+#@# AutoDetGWStats rh Fri Sep 11 13:46:11 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.rh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/rh.orig.premesh
+7.4.1
+
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+mris_autodet_gwstats --o ../surf/autodet.gw.stats.rh.dat --i brain.finalsurfs.mgz --wm wm.mgz --surf ../surf/rh.orig.premesh 
+
+border white:    247515 voxels (1.48%)
+border gray      265507 voxels (1.58%)
+Reading in intensity volume brain.finalsurfs.mgz
+Reading in wm volume wm.mgz
+Reading in surf ../surf/rh.orig.premesh
+Auto detecting stats
+MRIclipBrightWM(): nthresh=18243, wmmin=5, clip=110 
+Binarizing thresholding at 5
+computing class statistics... low=30, hi=110.000000
+CCS WM (99.0): 98.4 +- 8.7 [70.0 --> 110.0]
+CCS GM (72.0) : 70.5 +- 11.7 [30.0 --> 110.0]
+white_mean = 98.4048 +/- 8.65671, gray_mean = 70.5397 +/- 11.6971
+using class modes intead of means, discounting robust sigmas....
+MRIScomputeClassModes(): min=0 max=227 nbins=228
+intensity peaks found at WM=104+-7.0,    GM=65+-11.3
+white_mode = 104, gray_mode = 65
+std_scale = 1
+Applying sanity checks, max_scale_down = 0.2
+setting MIN_GRAY_AT_WHITE_BORDER to 53.3 (was 70.000000)
+setting MAX_BORDER_WHITE to 112.7 (was 105.000000)
+setting MIN_BORDER_WHITE to 65.0 (was 85.000000)
+setting MAX_CSF to 41.6 (was 40.000000)
+setting MAX_GRAY to 95.3 (was 95.000000)
+setting MAX_GRAY_AT_CSF_BORDER to 53.3 (was 75.000000)
+setting MIN_GRAY_AT_CSF_BORDER to 29.9 (was 40.000000)
+When placing the white surface
+  white_border_hi   = 112.657;
+  white_border_low  = 65;
+  white_outside_low = 53.3029;
+  white_inside_hi   = 120;
+  white_outside_hi  = 112.657;
+When placing the pial surface
+  pial_border_hi   = 53.3029;
+  pial_border_low  = 29.9087;
+  pial_outside_low = 10;
+  pial_inside_hi   = 95.3433;
+  pial_outside_hi  = 47.4543;
+#VMPC# mris_autodet_gwstats VmPeak  578152
+mris_autodet_gwstats done
+@#@FSTIME  2026:09:11:13:46:11 mris_autodet_gwstats N 8 e 3.00 S 0.28 U 3.41 P 123% M 227220 F 0 R 116019 W 0 c 18 w 55 I 0 O 8 L 28.62 24.93 18.31
+@#@FSLOADPOST 2026:09:11:13:46:14 mris_autodet_gwstats N 8 29.05 25.09 18.39
+#--------------------------------------------
+#@# WhitePreAparc lh Fri Sep 11 13:46:14 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.lh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --lh --i ../surf/lh.orig --o ../surf/lh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5
+7.4.1
+7.4.1
+
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.lh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --lh --i ../surf/lh.orig --o ../surf/lh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5 
+
+Reading in input surface ../surf/lh.orig
+Smoothing surface before ripping with 5 iterations
+Area    272844  0.26955  0.06110 0.013174   0.6014
+Corner  818532 60.00000  9.15400 18.969303 139.0396
+Edge    409266  0.79278  0.11039 0.136354   1.3158
+Hinge   409266  6.35609  6.03199 0.000005 104.2724
+Not reading in aparc
+Reading in input volume brain.finalsurfs.mgz
+Reading in seg volume aseg.presurf.mgz
+Reading in wm volume wm.mgz
+MRIclipBrightWM(): nthresh=18243, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 3454 bright non-wm voxels segmented.
+Masking bright non-wm for white surface
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=0
+#FML# MRISripMidline(): nmarked=6746, nmarked2=13, nripped=6746
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 68212: xyz = (-46.6521,-1.34148,-29.1485) oxyz = (-46.6521,-1.34148,-29.1485) wxzy = (-46.6521,-1.34148,-29.1485) pxyz = (0,0,0) 
+CBVO Creating mask 136424
+n_averages 4
+Iteration 0 =========================================
+n_averages=4, current_sigma=2
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6746
+#FML# MRISripMidline(): nmarked=6746, nmarked2=13, nripped=6746
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136424
+  Gdiag_no=-1
+  vno start=0, stop=136424
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 49 vertices, nripped=6746
+mean border=79.1, 112 (112) missing vertices, mean dist 0.3 [0.7 (%37.1)->0.9 (%62.9))]
+%54 local maxima, %41 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0588 min
+
+
+Finding expansion regions
+mean absolute distance = 0.82 +- 1.02
+3696 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=crete, nav=4, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 0
+
+000: dt: 0.0000, sse=4063973.5, rms=12.292
+001: dt: 0.5000, sse=2167835.5, rms=8.833 (28.135%)
+002: dt: 0.5000, sse=1262868.8, rms=6.568 (25.648%)
+003: dt: 0.5000, sse=826980.5, rms=5.125 (21.968%)
+004: dt: 0.5000, sse=614353.1, rms=4.249 (17.092%)
+005: dt: 0.5000, sse=516097.1, rms=3.762 (11.470%)
+006: dt: 0.5000, sse=466536.5, rms=3.494 (7.104%)
+007: dt: 0.5000, sse=446837.6, rms=3.383 (3.193%)
+008: dt: 0.5000, sse=436324.2, rms=3.314 (2.044%)
+rms = 3.3015/3.3137, sse=435216.0/436324.2, time step reduction 1 of 3 to 0.250  0 0 1
+009: dt: 0.5000, sse=435216.0, rms=3.301 (0.367%)
+010: dt: 0.2500, sse=237006.8, rms=1.780 (46.075%)
+011: dt: 0.2500, sse=202706.4, rms=1.355 (23.914%)
+012: dt: 0.2500, sse=194890.4, rms=1.236 (8.718%)
+013: dt: 0.2500, sse=190896.2, rms=1.166 (5.702%)
+rms = 1.1466/1.1660, sse=190402.1/190896.2, time step reduction 2 of 3 to 0.125  0 0 1
+014: dt: 0.2500, sse=190402.1, rms=1.147 (1.664%)
+015: dt: 0.1250, sse=184906.4, rms=1.040 (9.324%)
+rms = 1.0270/1.0397, sse=183006.6/184906.4, time step reduction 3 of 3 to 0.062  0 0 1
+016: dt: 0.1250, sse=183006.6, rms=1.027 (1.225%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.0 minutes
+  done positioning surface
+Iteration 1 =========================================
+n_averages=2, current_sigma=1
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6746
+removing 2 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=6895, nmarked2=21, nripped=6895
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136424
+  Gdiag_no=-1
+  vno start=0, stop=136424
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 33 vertices, nripped=6895
+mean border=82.4, 114 (73) missing vertices, mean dist -0.3 [0.5 (%69.8)->0.2 (%30.2))]
+%64 local maxima, %31 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0413 min
+
+
+Finding expansion regions
+mean absolute distance = 0.44 +- 0.81
+3619 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=crete, nav=2, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=910653.4, rms=5.215
+017: dt: 0.5000, sse=551817.6, rms=3.657 (29.877%)
+018: dt: 0.5000, sse=526286.2, rms=3.523 (3.659%)
+019: dt: 0.5000, sse=489454.1, rms=3.307 (6.130%)
+rms = 3.3921/3.3072, sse=502241.4/489454.1, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+020: dt: 0.2500, sse=326001.1, rms=2.152 (34.919%)
+021: dt: 0.2500, sse=263596.6, rms=1.489 (30.806%)
+022: dt: 0.2500, sse=242829.9, rms=1.188 (20.229%)
+023: dt: 0.2500, sse=236865.0, rms=1.077 (9.331%)
+024: dt: 0.2500, sse=233995.5, rms=1.020 (5.279%)
+rms = 0.9940/1.0203, sse=232474.6/233995.5, time step reduction 2 of 3 to 0.125  0 0 1
+025: dt: 0.2500, sse=232474.6, rms=0.994 (2.582%)
+026: dt: 0.1250, sse=228609.2, rms=0.913 (8.178%)
+rms = 0.9054/0.9127, sse=228152.9/228609.2, time step reduction 3 of 3 to 0.062  0 0 1
+027: dt: 0.1250, sse=228152.9, rms=0.905 (0.794%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.7 minutes
+  done positioning surface
+Iteration 2 =========================================
+n_averages=1, current_sigma=0.5
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6895
+removing 3 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=6959, nmarked2=22, nripped=6959
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136424
+  Gdiag_no=-1
+  vno start=0, stop=136424
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 48 vertices, nripped=6959
+mean border=85.5, 107 (60) missing vertices, mean dist -0.2 [0.4 (%72.9)->0.2 (%27.1))]
+%79 local maxima, %16 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0233 min
+
+
+Finding expansion regions
+mean absolute distance = 0.35 +- 0.54
+4376 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=crete, nav=1, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=658137.8, rms=4.210
+028: dt: 0.5000, sse=430654.0, rms=2.978 (29.274%)
+rms = 3.1261/2.9778, sse=455795.9/430654.0, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+029: dt: 0.2500, sse=310496.7, rms=2.052 (31.105%)
+030: dt: 0.2500, sse=252854.0, rms=1.373 (33.070%)
+031: dt: 0.2500, sse=233519.1, rms=1.074 (21.806%)
+032: dt: 0.2500, sse=227628.8, rms=0.974 (9.320%)
+rms = 0.9438/0.9736, sse=226048.5/227628.7, time step reduction 2 of 3 to 0.125  0 0 1
+033: dt: 0.2500, sse=226048.5, rms=0.944 (3.063%)
+034: dt: 0.1250, sse=220813.8, rms=0.847 (10.215%)
+rms = 0.8388/0.8474, sse=220236.1/220813.8, time step reduction 3 of 3 to 0.062  0 0 1
+035: dt: 0.1250, sse=220236.1, rms=0.839 (1.018%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.5 minutes
+  done positioning surface
+Iteration 3 =========================================
+n_averages=0, current_sigma=0.25
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6959
+removing 3 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=6985, nmarked2=22, nripped=6985
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136424
+  Gdiag_no=-1
+  vno start=0, stop=136424
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 50 vertices, nripped=6985
+mean border=86.6, 102 (49) missing vertices, mean dist -0.1 [0.3 (%60.8)->0.2 (%39.2))]
+%85 local maxima, %10 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0150 min
+
+
+Finding expansion regions
+mean absolute distance = 0.25 +- 0.40
+3398 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=crete, nav=0, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=281989.1, rms=1.824
+rms = 1.7969/1.8243, sse=289599.4/281989.1, time step reduction 1 of 3 to 0.250  0 1 1
+036: dt: 0.5000, sse=289599.4, rms=1.797 (1.504%)
+037: dt: 0.2500, sse=239206.4, rms=1.099 (38.832%)
+038: dt: 0.2500, sse=219922.1, rms=0.882 (19.737%)
+rms = 0.9665/0.8822, sse=231018.7/219922.1, time step reduction 2 of 3 to 0.125  0 1 1
+   RMS increased, rejecting step
+039: dt: 0.1250, sse=215279.6, rms=0.784 (11.141%)
+rms = 0.6583/0.7839, sse=218261.3/215279.6, time step reduction 3 of 3 to 0.062  0 1 0
+040: dt: 0.1250, sse=218261.3, rms=0.658 (16.017%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.3 minutes
+  done positioning surface
+Removing intersections
+#ET# mris_place_surface  2.74 minutes
+
+
+Writing output to ../surf/lh.white.preaparc
+#VMPC# mris_place_surfaces VmPeak  2406524
+mris_place_surface done
+@#@FSTIME  2026:09:11:13:46:14 mris_place_surface N 18 e 170.06 S 3.17 U 338.73 P 201% M 1961904 F 0 R 2167479 W 0 c 567 w 1595 I 0 O 9600 L 29.05 25.09 18.39
+@#@FSLOADPOST 2026:09:11:13:49:04 mris_place_surface N 18 31.71 27.52 20.43
+#--------------------------------------------
+#@# WhitePreAparc rh Fri Sep 11 13:49:04 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --rh --i ../surf/rh.orig --o ../surf/rh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5
+7.4.1
+7.4.1
+
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+mris_place_surface --adgws-in ../surf/autodet.gw.stats.rh.dat --wm wm.mgz --threads 4 --invol brain.finalsurfs.mgz --rh --i ../surf/rh.orig --o ../surf/rh.white.preaparc --white --seg aseg.presurf.mgz --nsmooth 5 
+
+Reading in input surface ../surf/rh.orig
+Smoothing surface before ripping with 5 iterations
+Area    272248  0.26931  0.06059 0.005589   0.6219
+Corner  816744 60.00000  9.09327 14.318606 132.7903
+Edge    408372  0.79238  0.10973 0.105159   1.2902
+Hinge   408372  6.22724  5.98790 0.000000 128.8437
+Not reading in aparc
+Reading in input volume brain.finalsurfs.mgz
+Reading in seg volume aseg.presurf.mgz
+Reading in wm volume wm.mgz
+MRIclipBrightWM(): nthresh=18243, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 3454 bright non-wm voxels segmented.
+Masking bright non-wm for white surface
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=0
+#FML# MRISripMidline(): nmarked=6936, nmarked2=25, nripped=6936
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 68063: xyz = (48.7418,2.19334,-45.7956) oxyz = (48.7418,2.19334,-45.7956) wxzy = (48.7418,2.19334,-45.7956) pxyz = (0,0,0) 
+CBVO Creating mask 136126
+n_averages 4
+Iteration 0 =========================================
+n_averages=4, current_sigma=2
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6936
+#FML# MRISripMidline(): nmarked=6936, nmarked2=25, nripped=6936
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136126
+  Gdiag_no=-1
+  vno start=0, stop=136126
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 63 vertices, nripped=6936
+mean border=79.0, 75 (75) missing vertices, mean dist 0.3 [0.7 (%36.9)->0.9 (%63.1))]
+%55 local maxima, %39 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0587 min
+
+
+Finding expansion regions
+mean absolute distance = 0.81 +- 1.01
+3982 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=crete, nav=4, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 0
+
+000: dt: 0.0000, sse=4008937.5, rms=12.227
+001: dt: 0.5000, sse=2139667.8, rms=8.787 (28.134%)
+002: dt: 0.5000, sse=1273855.8, rms=6.612 (24.753%)
+003: dt: 0.5000, sse=844563.5, rms=5.204 (21.300%)
+004: dt: 0.5000, sse=632888.6, rms=4.343 (16.528%)
+005: dt: 0.5000, sse=525635.1, rms=3.829 (11.848%)
+006: dt: 0.5000, sse=474741.5, rms=3.556 (7.120%)
+007: dt: 0.5000, sse=451061.6, rms=3.417 (3.929%)
+008: dt: 0.5000, sse=440153.5, rms=3.349 (1.966%)
+rms = 3.3248/3.3494, sse=436730.3/440153.5, time step reduction 1 of 3 to 0.250  0 0 1
+009: dt: 0.5000, sse=436730.3, rms=3.325 (0.732%)
+010: dt: 0.2500, sse=239743.0, rms=1.811 (45.546%)
+011: dt: 0.2500, sse=205238.0, rms=1.396 (22.880%)
+012: dt: 0.2500, sse=196761.9, rms=1.266 (9.350%)
+013: dt: 0.2500, sse=192684.1, rms=1.199 (5.294%)
+rms = 1.1699/1.1987, sse=190824.1/192684.1, time step reduction 2 of 3 to 0.125  0 0 1
+014: dt: 0.2500, sse=190824.1, rms=1.170 (2.402%)
+015: dt: 0.1250, sse=185430.8, rms=1.075 (8.137%)
+rms = 1.0632/1.0747, sse=184819.8/185430.8, time step reduction 3 of 3 to 0.062  0 0 1
+016: dt: 0.1250, sse=184819.8, rms=1.063 (1.069%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.2 minutes
+  done positioning surface
+Iteration 1 =========================================
+n_averages=2, current_sigma=1
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=6936
+removing 4 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7068, nmarked2=30, nripped=7068
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136126
+  Gdiag_no=-1
+  vno start=0, stop=136126
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 21 vertices, nripped=7068
+mean border=82.3, 46 (20) missing vertices, mean dist -0.3 [0.5 (%69.9)->0.2 (%30.1))]
+%65 local maxima, %30 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0410 min
+
+
+Finding expansion regions
+mean absolute distance = 0.42 +- 0.80
+3751 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=crete, nav=2, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=909601.4, rms=5.223
+017: dt: 0.5000, sse=544127.2, rms=3.628 (30.544%)
+018: dt: 0.5000, sse=514327.3, rms=3.478 (4.125%)
+019: dt: 0.5000, sse=483515.3, rms=3.303 (5.016%)
+rms = 3.4042/3.3035, sse=501273.4/483515.4, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+020: dt: 0.2500, sse=318452.2, rms=2.114 (35.999%)
+021: dt: 0.2500, sse=258674.4, rms=1.447 (31.582%)
+022: dt: 0.2500, sse=239399.3, rms=1.162 (19.670%)
+023: dt: 0.2500, sse=233974.5, rms=1.064 (8.444%)
+rms = 1.0140/1.0639, sse=231395.6/233974.5, time step reduction 2 of 3 to 0.125  0 0 1
+024: dt: 0.2500, sse=231395.6, rms=1.014 (4.691%)
+025: dt: 0.1250, sse=227205.8, rms=0.921 (9.186%)
+rms = 0.9105/0.9208, sse=226624.0/227205.8, time step reduction 3 of 3 to 0.062  0 0 1
+026: dt: 0.1250, sse=226624.0, rms=0.910 (1.126%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.8 minutes
+  done positioning surface
+Iteration 2 =========================================
+n_averages=1, current_sigma=0.5
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7068
+removing 4 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7092, nmarked2=28, nripped=7092
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136126
+  Gdiag_no=-1
+  vno start=0, stop=136126
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 53 vertices, nripped=7092
+mean border=85.3, 44 (18) missing vertices, mean dist -0.2 [0.4 (%72.0)->0.2 (%28.0))]
+%79 local maxima, %15 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0233 min
+
+
+Finding expansion regions
+mean absolute distance = 0.33 +- 0.51
+3811 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=crete, nav=1, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=643102.2, rms=4.151
+027: dt: 0.5000, sse=430398.2, rms=2.978 (28.265%)
+rms = 3.1469/2.9778, sse=456651.1/430398.2, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+028: dt: 0.2500, sse=307629.8, rms=2.029 (31.873%)
+029: dt: 0.2500, sse=249417.4, rms=1.351 (33.418%)
+030: dt: 0.2500, sse=232213.0, rms=1.066 (21.078%)
+031: dt: 0.2500, sse=227253.9, rms=0.974 (8.606%)
+rms = 0.9519/0.9743, sse=225901.8/227253.9, time step reduction 2 of 3 to 0.125  0 0 1
+032: dt: 0.2500, sse=225901.8, rms=0.952 (2.298%)
+033: dt: 0.1250, sse=221458.5, rms=0.853 (10.409%)
+rms = 0.8461/0.8528, sse=221567.9/221458.5, time step reduction 3 of 3 to 0.062  0 1 1
+034: dt: 0.1250, sse=221567.9, rms=0.846 (0.786%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.5 minutes
+  done positioning surface
+Iteration 3 =========================================
+n_averages=0, current_sigma=0.25
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=7092
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=7147, nmarked2=28, nripped=7147
+Ripping segs (eg, WMSA, BG, frozen)
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 112.6567080;
+  border_low  =  65.0000000;
+  outside_low =  53.3028950;
+  outside_hi  = 112.6567080;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0.5
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=136126
+  Gdiag_no=-1
+  vno start=0, stop=136126
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 29 vertices, nripped=7147
+mean border=86.3, 43 (0) missing vertices, mean dist -0.1 [0.3 (%59.7)->0.2 (%40.3))]
+%85 local maxima, %10 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0152 min
+
+
+Finding expansion regions
+mean absolute distance = 0.24 +- 0.38
+3715 vertices more than 2 sigmas from mean.
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=crete, nav=0, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=277173.4, rms=1.756
+rms = 1.7671/1.7558, sse=284149.3/277173.4, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+035: dt: 0.2500, sse=233128.0, rms=1.169 (33.397%)
+036: dt: 0.2500, sse=212028.8, rms=0.694 (40.651%)
+rms = 0.6584/0.6940, sse=209106.8/212028.7, time step reduction 2 of 3 to 0.125  0 0 1
+037: dt: 0.2500, sse=209106.8, rms=0.658 (5.130%)
+rms = 0.6428/0.6584, sse=209424.5/209106.8, time step reduction 3 of 3 to 0.062  0 1 1
+038: dt: 0.1250, sse=209424.5, rms=0.643 (2.369%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.3 minutes
+  done positioning surface
+Removing intersections
+#ET# mris_place_surface  2.93 minutes
+
+
+Writing output to ../surf/rh.white.preaparc
+#VMPC# mris_place_surfaces VmPeak  2345572
+mris_place_surface done
+@#@FSTIME  2026:09:11:13:49:04 mris_place_surface N 18 e 182.37 S 5.84 U 358.01 P 199% M 1904320 F 0 R 3007596 W 0 c 635 w 1755 I 0 O 9576 L 31.71 27.52 20.43
+@#@FSLOADPOST 2026:09:11:13:52:07 mris_place_surface N 18 30.23 29.66 22.57
+#--------------------------------------------
+#@# CortexLabel lh Fri Sep 11 13:52:07 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mri_label2label --label-cortex ../surf/lh.white.preaparc aseg.presurf.mgz 0 ../label/lh.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+4 non-cortical segments detected
+only using segment with 8394 vertices
+erasing segment 1 (vno[0] = 84728)
+erasing segment 2 (vno[0] = 87282)
+erasing segment 3 (vno[0] = 89538)
+@#@FSTIME  2026:09:11:13:52:07 mri_label2label N 5 e 8.42 S 0.36 U 8.74 P 108% M 311936 F 0 R 147951 W 0 c 16 w 217 I 0 O 11184 L 30.23 29.66 22.57
+@#@FSLOADPOST 2026:09:11:13:52:15 mri_label2label N 5 29.18 29.45 22.58
+#--------------------------------------------
+#@# CortexLabel+HipAmyg lh Fri Sep 11 13:52:15 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mri_label2label --label-cortex ../surf/lh.white.preaparc aseg.presurf.mgz 1 ../label/lh.cortex+hipamyg.label
+
+ Generating cortex label... RemoveHipAmgy=1
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+4 non-cortical segments detected
+only using segment with 6872 vertices
+erasing segment 1 (vno[0] = 84728)
+erasing segment 2 (vno[0] = 87282)
+erasing segment 3 (vno[0] = 89538)
+@#@FSTIME  2026:09:11:13:52:15 mri_label2label N 5 e 8.37 S 0.31 U 8.66 P 107% M 311136 F 0 R 142452 W 0 c 15 w 194 I 0 O 11304 L 29.18 29.45 22.58
+@#@FSLOADPOST 2026:09:11:13:52:24 mri_label2label N 5 28.66 29.34 22.61
+#--------------------------------------------
+#@# CortexLabel rh Fri Sep 11 13:52:24 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mri_label2label --label-cortex ../surf/rh.white.preaparc aseg.presurf.mgz 0 ../label/rh.cortex.label
+
+ Generating cortex label... RemoveHipAmgy=0
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+5 non-cortical segments detected
+only using segment with 8373 vertices
+erasing segment 1 (vno[0] = 40979)
+erasing segment 2 (vno[0] = 83662)
+erasing segment 3 (vno[0] = 83747)
+erasing segment 4 (vno[0] = 85375)
+@#@FSTIME  2026:09:11:13:52:24 mri_label2label N 5 e 8.18 S 0.35 U 8.34 P 106% M 317804 F 0 R 145579 W 0 c 17 w 215 I 0 O 10912 L 28.66 29.34 22.61
+@#@FSLOADPOST 2026:09:11:13:52:32 mri_label2label N 5 28.29 29.25 22.62
+#--------------------------------------------
+#@# CortexLabel+HipAmyg rh Fri Sep 11 13:52:32 EDT 2026
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/mri
+mri_label2label --label-cortex ../surf/rh.white.preaparc aseg.presurf.mgz 1 ../label/rh.cortex+hipamyg.label
+
+ Generating cortex label... RemoveHipAmgy=1
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+7 non-cortical segments detected
+only using segment with 6382 vertices
+erasing segment 1 (vno[0] = 40979)
+erasing segment 2 (vno[0] = 79079)
+erasing segment 3 (vno[0] = 79850)
+erasing segment 4 (vno[0] = 83662)
+erasing segment 5 (vno[0] = 83747)
+erasing segment 6 (vno[0] = 85375)
+@#@FSTIME  2026:09:11:13:52:32 mri_label2label N 5 e 8.13 S 0.34 U 8.43 P 107% M 323612 F 0 R 151200 W 0 c 26 w 164 I 0 O 11088 L 28.29 29.25 22.62
+@#@FSLOADPOST 2026:09:11:13:52:40 mri_label2label N 5 27.48 29.04 22.63
+#--------------------------------------------
+#@# Smooth2 lh Fri Sep 11 13:52:40 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/lh.white.preaparc ../surf/lh.smoothwm 
+
+#--------------------------------------------
+#@# Smooth2 rh Fri Sep 11 13:52:40 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_smooth -n 3 -nw -seed 1234 ../surf/rh.white.preaparc ../surf/rh.smoothwm 
+
+Waiting for PID 2286631 of (2286631 2286634) to complete...
+Waiting for PID 2286634 of (2286631 2286634) to complete...
+PIDs (2286631 2286634) completed and logs appended.
+#--------------------------------------------
+#@# Inflation2 lh Fri Sep 11 13:52:43 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_inflate ../surf/lh.smoothwm ../surf/lh.inflated 
+
+#--------------------------------------------
+#@# Inflation2 rh Fri Sep 11 13:52:43 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_inflate ../surf/rh.smoothwm ../surf/rh.inflated 
+
+Waiting for PID 2286717 of (2286717 2286720) to complete...
+Waiting for PID 2286720 of (2286717 2286720) to complete...
+PIDs (2286717 2286720) completed and logs appended.
+#--------------------------------------------
+#@# Curv .H and .K lh Fri Sep 11 13:53:00 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf
+
+ mris_curvature -w -seed 1234 lh.white.preaparc 
+
+rm -f lh.white.H
+ln -s lh.white.preaparc.H lh.white.H
+rm -f lh.white.K
+ln -s lh.white.preaparc.K lh.white.K
+
+ mris_curvature -seed 1234 -thresh .999 -n -a 5 -w -distances 10 10 lh.inflated 
+
+#--------------------------------------------
+#@# Curv .H and .K rh Fri Sep 11 13:53:00 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf
+
+ mris_curvature -w -seed 1234 rh.white.preaparc 
+
+rm -f rh.white.H
+ln -s rh.white.preaparc.H rh.white.H
+rm -f rh.white.K
+ln -s rh.white.preaparc.K rh.white.K
+
+ mris_curvature -seed 1234 -thresh .999 -n -a 5 -w -distances 10 10 rh.inflated 
+
+cd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/surf
+reconbatchjobs /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts/recon-all.log mris_curvature_white_lh.cmd rm_curvature_white_lh.H.cmd ln_curvature_white_lh.H.cmd rm_curvature_white_lh.K.cmd ln_curvature_white_lh.K.cmd mris_curvature_inflated_lh.cmd mris_curvature_white_rh.cmd rm_curvature_white_rh.H.cmd ln_curvature_white_rh.H.cmd rm_curvature_white_rh.K.cmd ln_curvature_white_rh.K.cmd mris_curvature_inflated_rh.cmd
+Waiting for PID 2286919 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286922 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286925 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286928 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286931 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286934 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286937 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286940 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286943 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286946 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286949 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+Waiting for PID 2286952 of (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) to complete...
+PIDs (2286919 2286922 2286925 2286928 2286931 2286934 2286937 2286940 2286943 2286946 2286949 2286952) completed and logs appended.
+#--------------------------------------------
+#@# Sphere lh Fri Sep 11 13:53:46 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_sphere -seed 1234 ../surf/lh.inflated ../surf/lh.sphere 
+
+#--------------------------------------------
+#@# Sphere rh Fri Sep 11 13:53:46 EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0359/scripts
+
+ mris_sphere -seed 1234 ../surf/rh.inflated ../surf/rh.sphere 
+
+Waiting for PID 2287425 of (2287425 2287428) to complete...

@@ -14,18 +14,22 @@ set -euo pipefail
 PIPELINE_DIR="/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis"
 RAW_ROOT="/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE"
 OUTPUT_ROOT="/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi"
-SUBJECT_LIST="$PIPELINE_DIR/adrc_30_new_test.csv"
+RESULTS_ROOT="/mnt/newStor/paros/paros_WORK/xintong/results/column_analysis"
+SUBJECT_LIST="$PIPELINE_DIR/data_preparation/data_inventory/adrc_preprocessing_pending_manifest.csv"
 PREPROCESS="$PIPELINE_DIR/preprocessing/dwi/ADRC_v2/preprocess_dwi.sh"
 RECONALL="$PIPELINE_DIR/preprocessing/t1/run_freesurfer.sh"
+COLUMN_RUNNER="$PIPELINE_DIR/pipeline/run_subject.py"
 FREESURFER_ROOT="/mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer"
 MONITOR="$PIPELINE_DIR/monitor_job_resources.sh"
 LOG_DIR="$PIPELINE_DIR/logs"
 
 : "${SLURM_ARRAY_TASK_ID:?Submit as a Slurm array}"
 mkdir -p "$LOG_DIR"
+START_EPOCH=$(date +%s)
+START_ISO=$(date --iso-8601=seconds)
 
 CSV_ROW=$((SLURM_ARRAY_TASK_ID + 2))
-SUBJECT=$(awk -F',' -v row="$CSV_ROW" 'NR == row {gsub(/\r/,"",$2); print $2}' "$SUBJECT_LIST")
+SUBJECT=$(awk -F',' -v row="$CSV_ROW" 'NR == row {gsub(/\r/,"",$1); print $1}' "$SUBJECT_LIST")
 [[ "$SUBJECT" =~ ^D[0-9]+$ ]] || { echo "Invalid subject: $SUBJECT"; exit 1; }
 
 SUBJECT_ROOT="$RAW_ROOT/$SUBJECT"
@@ -72,6 +76,8 @@ export MRTRIX_NTHREADS="${SLURM_CPUS_PER_TASK}"
 export MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 
 echo "Subject=$SUBJECT Node=$(hostname) CPUs=$SLURM_CPUS_PER_TASK"
+echo "Start time=$START_ISO"
+echo "Allocated memory=${SLURM_MEM_PER_NODE:-${SLURM_MEM_PER_CPU:-unknown}}"
 echo "T1=$T1"
 echo "DWI=$DWI"
 echo "Reverse=$REV PE=PA Readout=$READOUT"
@@ -99,5 +105,43 @@ if wait "$PIPELINE_PID"; then
 else
     STATUS=$?
 fi
-echo "Pipeline exit status: $STATUS" | tee "$TIME_LOG"
+
+if (( STATUS == 0 )); then
+    echo "Preprocessing succeeded; starting column analysis before cleaning."
+    python "$COLUMN_RUNNER" \
+        --subject-id "$SUBJECT" \
+        --t1 "$T1" \
+        --dwi "$DWI" \
+        --bvec "$BVEC" \
+        --bval "$BVAL" \
+        --reverse-phase "$REV" \
+        --pe-dir PA \
+        --readout-time "$READOUT" \
+        --output-dir "$RESULTS_ROOT/$SUBJECT" \
+        --processed-dwi-root "$OUTPUT_ROOT" \
+        --processed-freesurfer-root "$FREESURFER_ROOT" \
+        --analysis-root "$RESULTS_ROOT" \
+        --skip-dwi-preprocess \
+        --skip-freesurfer \
+        --before-clean
+    STATUS=$?
+else
+    echo "Preprocessing failed; column analysis will not run."
+fi
+END_EPOCH=$(date +%s)
+END_ISO=$(date --iso-8601=seconds)
+ELAPSED=$((END_EPOCH - START_EPOCH))
+{
+    echo "Subject: $SUBJECT"
+    echo "Node: $(hostname)"
+    echo "Job ID: ${SLURM_JOB_ID:-unknown}"
+    echo "Array task: ${SLURM_ARRAY_TASK_ID:-unknown}"
+    echo "Allocated CPUs: ${SLURM_CPUS_PER_TASK:-unknown}"
+    echo "Allocated memory: ${SLURM_MEM_PER_NODE:-${SLURM_MEM_PER_CPU:-unknown}}"
+    echo "Start time: $START_ISO"
+    echo "End time: $END_ISO"
+    echo "Elapsed seconds: $ELAPSED"
+    echo "Elapsed hours: $(awk -v s="$ELAPSED" 'BEGIN {printf "%.2f", s/3600}')"
+    echo "Pipeline exit status: $STATUS"
+} | tee "$TIME_LOG"
 exit "$STATUS"

@@ -327,6 +327,19 @@ def parse_args():
         ),
     )
 
+    parser.add_argument(
+        "--processed-dwi-root",
+        help="Root containing processed DWI subject directories.",
+    )
+    parser.add_argument(
+        "--processed-freesurfer-root",
+        help="FreeSurfer SUBJECTS_DIR containing processed subject directories.",
+    )
+    parser.add_argument(
+        "--analysis-root",
+        help="Root for subject-level downstream analysis outputs.",
+    )
+
     # ------------------------------------------------------------------
     # D-series / ADRC only
     # ------------------------------------------------------------------
@@ -357,6 +370,12 @@ def parse_args():
             "Total readout time in seconds. "
             "Required for D-series subjects."
         ),
+    )
+
+    parser.add_argument(
+        "--before-clean",
+        action="store_true",
+        help="Generate all four raw metric profiles and stop before cleaning.",
     )
 
     # ------------------------------------------------------------------
@@ -501,24 +520,21 @@ def main():
         .resolve()
     )
 
-    preprocess_dir = (
-        output_dir
-        / "preprocess"
-    )
-
+    preprocess_dir = output_dir / "preprocess"
     diffusion_dir = (
-        preprocess_dir
-        / "diffusion"
+        Path(args.processed_dwi_root).expanduser().resolve() / subject_id
+        if args.processed_dwi_root
+        else preprocess_dir / "diffusion"
     )
-
     subjects_dir = (
-        preprocess_dir
-        / "freesurfer"
+        Path(args.processed_freesurfer_root).expanduser().resolve()
+        if args.processed_freesurfer_root
+        else preprocess_dir / "freesurfer"
     )
-
     analysis_dir = (
-        output_dir
-        / "analysis"
+        Path(args.analysis_root).expanduser().resolve() / subject_id
+        if args.analysis_root
+        else output_dir / "analysis"
     )
 
     registration_dir = (
@@ -702,10 +718,17 @@ def main():
     # ==================================================================
 
     adc_image = require_file(
-        diffusion_dir
-        / f"{subject_id}_adc.nii.gz",
-        "ADC / MD image",
+        diffusion_dir / f"{subject_id}_md.nii.gz",
+        "MD image (used as the legacy ADC input)",
     )
+
+    metric_images = {
+        metric: require_file(
+            diffusion_dir / f"{subject_id}_{metric}.nii.gz",
+            f"{metric.upper()} image",
+        )
+        for metric in ("md", "fa", "ad", "rd")
+    }
 
 
     # ==================================================================
@@ -729,13 +752,13 @@ def main():
 
         registration_dwi = require_file(
             diffusion_dir
-            / f"{subject_id}_05_dwi_biascorrected.mif",
+            / f"{subject_id}_05_biascorrected.mif",
             "ADRC preprocessed DWI",
         )
 
         registration_mask = require_file(
             diffusion_dir
-            / f"{subject_id}_eddy_mask.nii.gz",
+            / f"{subject_id}_corrected_mean_b0_brain_mask.nii.gz",
             "ADRC registration mask",
         )
 
@@ -847,6 +870,15 @@ def main():
             registration_reference,
             "--analysis-dir",
             analysis_dir,
+            "--md-image",
+            metric_images["md"],
+            "--fa-image",
+            metric_images["fa"],
+            "--ad-image",
+            metric_images["ad"],
+            "--rd-image",
+            metric_images["rd"],
+            *( ["--before-clean"] if args.before_clean else [] ),
         ],
         "STEP 5: CORTICAL COLUMN ANALYSIS",
     )
