@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-p = Path('validation/column_badpoint_pattern_analysis.ipynb')
+p = Path('validation/bad_point_cleaning/column_badpoint_pattern_analysis.ipynb')
 nb = json.loads(p.read_text())
 nb['cells'] = [c for c in nb['cells'] if 'Top five subject-specific heatmaps' not in ''.join(c.get('source', []))]
 nb['cells'].extend([

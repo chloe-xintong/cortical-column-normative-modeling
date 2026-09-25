@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-p=Path('validation/column_badpoint_pattern_analysis.ipynb')
+p=Path('validation/bad_point_cleaning/column_badpoint_pattern_analysis.ipynb')
 n=json.loads(p.read_text())
 markdown={
 0:"# Column 坏点模式与可靠性质量控制\n\n本 Notebook 只分析 `profiles_before_clean`，不删除、不插值、不覆盖原始 column profile。\n\n分析顺序为：\n1. 坏点所在的 cortical depth；\n2. 每条 column 的坏点数量；\n3. 坏点是否连续；\n4. MD、FA、AD、RD 之间的坏点重合；\n5. subject、半球和脑区分组。",

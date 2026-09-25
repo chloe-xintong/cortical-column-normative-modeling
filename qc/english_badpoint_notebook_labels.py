@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-p = Path('validation/column_badpoint_pattern_analysis.ipynb')
+p = Path('validation/bad_point_cleaning/column_badpoint_pattern_analysis.ipynb')
 nb = json.loads(p.read_text())
 replacements = {
     '请先运行 extract_column_badpoint_table.py 生成两个 CSV。': 'Run extract_column_badpoint_table.py first to generate the two CSV files.',

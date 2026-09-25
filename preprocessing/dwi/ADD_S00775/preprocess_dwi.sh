@@ -24,6 +24,11 @@
 
 set -o pipefail
 
+# BET's imtest helper is a Python wrapper.  On the cluster, the regular
+# analysis environment does not expose FSL's Python packages, so expose the
+# version-matched FSL site-packages explicitly.
+export PYTHONPATH="/home/apps/fsl/6.0.7.6/lib/python3.11/site-packages${PYTHONPATH:+:${PYTHONPATH}}"
+
 
 if [[ $# -ne 5 ]]; then
     echo "Usage:"

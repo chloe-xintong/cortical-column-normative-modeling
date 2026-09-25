@@ -642,6 +642,12 @@ def main():
         ],
     )
 
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Validate and save the bad-trajectory mask without modifying inputs.",
+    )
+
     args = parser.parse_args()
 
     print(
@@ -688,6 +694,11 @@ def main():
         region_dir=args.region_dir,
         bad_by_region=bad_by_region,
     )
+
+    if args.dry_run:
+        print()
+        print("Dry run complete. No profiles or coordinates were modified.")
+        return
 
     clean_all_profiles(
         subject_id=args.subject_id,

@@ -718,7 +718,10 @@ def main():
             "--profile-dir",
             profile_dir,
             "--metrics",
-            "adc",
+            "md",
+            "fa",
+            "ad",
+            "rd",
         ],
         "STEP 6: REMOVE BAD CORTICAL COLUMNS",
     )

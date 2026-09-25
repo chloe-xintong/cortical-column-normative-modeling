@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-p = Path('validation/column_badpoint_pattern_analysis.ipynb')
+p = Path('validation/bad_point_cleaning/column_badpoint_pattern_analysis.ipynb')
 nb = json.loads(p.read_text())
 for cell in nb['cells']:
     if cell.get('cell_type') == 'code':
