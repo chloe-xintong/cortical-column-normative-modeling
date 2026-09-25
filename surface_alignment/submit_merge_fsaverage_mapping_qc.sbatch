@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=fsavgqcmerge
+#SBATCH --partition=normal
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=16G
+#SBATCH --time=01:00:00
+#SBATCH --output=/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/logs/%x_%j.out
+#SBATCH --error=/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/logs/%x_%j.err
+set -euo pipefail
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+source /home/apps/ubuntu-22.04/anaconda3/etc/profile.d/conda.sh
+conda activate cortical_trajectory_analysis
+python -u surface_alignment/merge_fsaverage_mapping_qc.py \
+  --shards-root /mnt/newStor/paros/paros_WORK/xintong/results/fsaverage_mapping_qc/shards \
+  --output-dir /mnt/newStor/paros/paros_WORK/xintong/results/fsaverage_mapping_qc \
+  --fsaverage-dir /home/apps/freesurfer/subjects/fsaverage \
+  --coverage-dir /mnt/newStor/paros/paros_WORK/xintong/results/cross_subject_fsaverage_qc
