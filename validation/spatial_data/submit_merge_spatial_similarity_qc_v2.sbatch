@@ -13,4 +13,4 @@ cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
 python -u validation/spatial_data/merge_spatial_similarity_qc_v2.py \
   --shards-root /mnt/newStor/paros/paros_WORK/xintong/results/spatial_similarity_qc_v2/shards \
   --output-dir /mnt/newStor/paros/paros_WORK/xintong/results/spatial_similarity_qc_v2 \
-  --expected-shards 4
+  --expected-shards 
