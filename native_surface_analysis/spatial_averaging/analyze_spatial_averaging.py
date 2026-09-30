@@ -8,7 +8,6 @@ import pandas as pd
 import nibabel as nib
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import connected_components, dijkstra
-from sklearn.model_selection import KFold
 from ..common.config import SUBJECTS_DIR, PROFILES_ROOT, FSAVERAGE6_MAPPING_ROOT
 from ..common.io import mapping_files, mapping_frame, read_surface
 
@@ -57,13 +56,22 @@ def metric(y,p):
     e=y-p
     return float(np.mean(np.abs(e))), float(np.sqrt(np.mean(e*e)))
 
+def make_folds(n, n_splits, seed):
+    indices = np.arange(n)
+    rng = np.random.default_rng(seed)
+    rng.shuffle(indices)
+    folds = np.empty(n, dtype=int)
+    for position, index in enumerate(indices):
+        folds[index] = position % n_splits
+    return folds
+
 def save_overlay(out, subject, hemi, region, name, nverts, ids, vals):
     a=np.full(nverts,np.nan,dtype=np.float32); a[np.asarray(ids,dtype=int)]=np.asarray(vals,dtype=np.float32)
     path=out/"overlays"/f"{subject}_{hemi}_{region}_{name}.mgh"
     nib.save(nib.freesurfer.mghformat.MGHImage(a[:,None,None],np.eye(4)),str(path))
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--subjects',nargs='+',default=['D0231','D0330','D0097','D0388','D0163']); ap.add_argument('--regions',nargs='+',default=['precentral','superiorfrontal','supramarginal','superiortemporal']); ap.add_argument('--hemispheres',nargs='+',default=['lh','rh']); ap.add_argument('--output-dir',type=Path,default=Path('/mnt/newStor/paros/paros_WORK/xintong/results/native_surface_analysis/spatial_averaging_pilot')); ap.add_argument('--seed',type=int,default=20260924); ap.add_argument('--folds',type=int,default=5); ap.add_argument('--random-repeats',type=int,default=20); ap.add_argument('--min-train-per-group',type=int,default=10); args=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument('--subjects',nargs='+',default=['D0231','D0330','D0097','D0388','D0163']); ap.add_argument('--regions',nargs='+',default=['precentral','superiorfrontal','supramarginal','superiortemporal']); ap.add_argument('--hemispheres',nargs='+',default=['lh','rh']); ap.add_argument('--output-dir',type=Path,default=Path('/mnt/newStor/paros/paros_WORK/xintong/results/native_surface_analysis/spatial_averaging_pilot')); ap.add_argument('--seed',type=int,default=20260924); ap.add_argument('--folds',type=int,default=5); ap.add_argument('--random-repeats',type=int,default=20); ap.add_argument('--ks',nargs='+',type=int,default=list(KS)); ap.add_argument('--min-train-per-group',type=int,default=10); args=ap.parse_args()
     for d in ('tables','overlays','figures','logs'): (args.output_dir/d).mkdir(parents=True,exist_ok=True)
     rows=[]; pred_rows=[]; groups_rows=[]; rng=np.random.default_rng(args.seed); total=len(args.subjects)*len(args.hemispheres)*len(args.regions); done=0
     for subject in args.subjects:
@@ -75,10 +83,11 @@ def main():
         if len(paths)!=1: print('  skipped: mapping file count',len(paths),flush=True); continue
         f=mapping_frame(paths[0]); f=f[valid_bool(f['column_valid'])].copy(); md=pd.to_numeric(f['MD_depth_10'],errors='coerce'); f=f.assign(md50=md).dropna(subset=['md50']); f=f.drop_duplicates('native_vertex_id')
         if len(f)<args.folds: print('  skipped: insufficient valid columns',len(f),flush=True); continue
-        ids=f.native_vertex_id.to_numpy(int); y=f.md50.to_numpy(float); folds=np.full(len(f),-1); folds[KFold(args.folds,shuffle=True,random_state=args.seed).split(f).__next__()[0]]=0
-        for fold,(tr,te) in enumerate(KFold(args.folds,shuffle=True,random_state=args.seed).split(f)): folds[te]=fold
+        ids = f.native_vertex_id.to_numpy(int)
+        y = f.md50.to_numpy(float)
+        folds = make_folds(len(f), args.folds, args.seed)
         full_region=float(np.mean(y)); nverts=len(verts); groups_by_k={}
-        for k in KS:
+        for k in args.ks:
           if k==1: groups_by_k[k]={int(v):0 for v in ids}; diag={'status':'valid','components':1,'group_sizes':[len(ids)]}
           else: groups_by_k[k],diag=spatial_groups(verts,faces,ids,k)
           if groups_by_k[k] is not None:
