@@ -4,7 +4,7 @@
 # Remove invalid cortical trajectories consistently across diffusion metrics.
 #
 # A trajectory is marked as bad if any of its 21 depth samples
-# is zero, NaN, or Inf in any requested metric.
+# is non-positive, NaN, or Inf in any requested metric.
 #
 # The same trajectory is then removed from:
 # 1. all metric profile CSV files
@@ -119,7 +119,7 @@ def find_profile_files(
 def find_bad_trajectories(values):
     invalid = (
         ~np.isfinite(values)
-        | (values == 0)
+        | (values <= 0)
     )
 
     bad_indices = np.flatnonzero(
@@ -677,7 +677,7 @@ def main():
     if not bad_by_region:
         print()
         print(
-            "No zero or non-finite "
+            "No non-positive or non-finite "
             "trajectories found."
         )
         return
