@@ -1,5 +1,33 @@
 #!/usr/bin/env bash
 
+# Preprocess ADRC / D-series diffusion MRI.
+#
+# Usage:
+#   bash preprocess_dwi.sh \
+#       DWI BVEC BVAL REVERSE_B0 OUTPUT_DIR SUBJECT_ID PE_DIR READOUT_TIME
+#
+# Required inputs:
+#   DWI          Raw 4D diffusion image.
+#   BVEC/BVAL    FSL-format diffusion gradient files.
+#   REVERSE_B0   Reverse phase-encoded b0 image.
+#   PE_DIR       Phase-encoding direction: AP, PA, LR, RL, IS, or SI.
+#   READOUT_TIME Total readout time in seconds.
+#
+# Processing steps:
+#   1. Import gradients into MRtrix format.
+#   2. MP-PCA denoising and Gibbs-ringing correction.
+#   3. Build the forward/reverse b0 pair.
+#   4. Run topup and eddy correction through dwifslpreproc.
+#   5. Create a BET brain mask from the corrected mean b0.
+#   6. Apply ANTs bias-field correction.
+#   7. Fit the diffusion tensor and write FA, ADC, AD, and RD maps.
+#
+# Final metric outputs:
+#   <SUBJECT_ID>_fa.nii.gz
+#   <SUBJECT_ID>_adc.nii.gz
+#   <SUBJECT_ID>_ad.nii.gz
+#   <SUBJECT_ID>_rd.nii.gz
+
 set -euo pipefail
 
 if [[ "$#" -ne 8 ]]; then

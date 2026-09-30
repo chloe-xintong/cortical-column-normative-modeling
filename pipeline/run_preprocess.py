@@ -46,27 +46,24 @@ S-series / ADD
 
     Raw DWI
         ↓
-    Mean b=1000 image
+    MRtrix import with bvec / bval
+        ↓
+    MP-PCA denoising
+        ↓
+    Gibbs ringing correction
+        ↓
+    Motion / eddy correction with rpe_none
         ↓
     BET brain mask
         ↓
-    Mask raw 4D DWI
-        ↓
-    Historical DTC MP-PCA denoising
-
-The historical cortical-column tensor branch uses:
-
-    Raw DWI
-        ↓
-    0.5-mm regridding
-        +
-    Diffusion brain mask
-        ↓
-    0.5-mm regridding
+    ANTs bias-field correction
         ↓
     Tensor fitting
         ↓
     ADC / FA / AD / RD
+
+The AD-Decode protocol uses PA encoding and a total readout time of
+0.119063 seconds.  No reverse b0 or topup is used for ADD.
 
 
 ======================================================================
@@ -181,13 +178,13 @@ DWI_PREPROCESS_ROOT = (
 
 ADRC_PREPROCESS_SCRIPT = (
     DWI_PREPROCESS_ROOT
-    / "ADRC_v2"
+    / "ADRC"
     / "preprocess_dwi.sh"
 )
 
 ADD_PREPROCESS_SCRIPT = (
     DWI_PREPROCESS_ROOT
-    / "ADD_S00775"
+    / "ADD"
     / "preprocess_dwi.sh"
 )
 
@@ -469,7 +466,7 @@ def run_add_preprocessing(
 ):
 
     # ------------------------------------------------------------------
-    # Run the reconstructed historical ADD preprocessing workflow.
+    # Run the modern ADD workflow without reverse-b0 or topup.
     # ------------------------------------------------------------------
 
     run_command(
@@ -485,48 +482,6 @@ def run_add_preprocessing(
         "DWI PREPROCESSING: ADD / S-SERIES",
     )
 
-    # ------------------------------------------------------------------
-    # Historical S-series tensor fitting used the 0.5-mm upsampled raw
-    # DWI and the corresponding 0.5-mm diffusion brain mask.
-    # ------------------------------------------------------------------
-
-    tensor_dwi = (
-        diffusion_dir
-        / f"{args.subject_id}_05_4D_upsampled.nii.gz"
-    )
-
-    tensor_mask = (
-        diffusion_dir
-        / f"{args.subject_id}_05_subjspace_mask_upsampled.nii.gz"
-    )
-
-    require_file(
-        tensor_dwi,
-        "0.5-mm ADD tensor DWI",
-    )
-
-    require_file(
-        tensor_mask,
-        "0.5-mm ADD tensor mask",
-    )
-
-    # ------------------------------------------------------------------
-    # S-series gradients are supplied explicitly in FSL format.
-    # ------------------------------------------------------------------
-
-    run_command(
-        [
-            "bash",
-            TENSOR_SCRIPT,
-            tensor_dwi,
-            tensor_mask,
-            diffusion_dir,
-            args.subject_id,
-            args.bvec,
-            args.bval,
-        ],
-        "TENSOR FITTING: ADD / S-SERIES",
-    )
 
 
 # ======================================================================

@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+# Fit the diffusion tensor and generate scalar diffusion metrics from a
+# preprocessed DWI image and brain mask.
+#
+# Usage with embedded MRtrix gradients (ADRC / D-series):
+#   bash fit_tensor_and_metrics.sh \
+#       PREPROCESSED_DWI BRAIN_MASK OUTPUT_DIR SUBJECT_ID
+#
+# Usage with external FSL gradients (ADD / S-series):
+#   bash fit_tensor_and_metrics.sh \
+#       PREPROCESSED_DWI BRAIN_MASK OUTPUT_DIR SUBJECT_ID BVEC BVAL
+#
+# Processing steps:
+#   1. Fit the voxel-wise diffusion tensor with dwi2tensor.
+#   2. Derive FA, ADC, AD, and RD with tensor2metric.
+#
+# The input DWI must already have completed the cohort-specific
+# preprocessing, including denoising, distortion/motion correction,
+# bias-field correction, and brain-mask generation.
+#
+# Outputs:
+#   <SUBJECT_ID>_tensor.mif
+#   <SUBJECT_ID>_fa.nii.gz
+#   <SUBJECT_ID>_adc.nii.gz
+#   <SUBJECT_ID>_ad.nii.gz
+#   <SUBJECT_ID>_rd.nii.gz
+
 # Fit the diffusion tensor and generate diffusion metric maps.
 #
 # Two gradient modes are supported:

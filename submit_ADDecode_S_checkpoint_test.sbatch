@@ -30,4 +30,5 @@ python -u pipeline/run_preprocess.py \
   --bval "$RAW_ROOT/${SUBJECT}_DWI_nii4D.bvals" \
   --output-dir "$OUTPUT_ROOT/$SUBJECT"
 
-bash preprocessing/dwi/ADDcode/check_outputs.sh "$SUBJECT" "$OUTPUT_ROOT/$SUBJECT" "$RAW_ROOT"
+bash preprocessing/dwi/ADD/ADDcode/check_outputs.sh \
+  "$SUBJECT" "$OUTPUT_ROOT/$SUBJECT" "$RAW_ROOT"
