@@ -56,7 +56,7 @@ cells = [
         Run the calculation-heavy step on a compute node:
 
         ```bash
-        python -u surface_resampling/analysis/py/compare_o3_template_resolution.py \\
+        python -u surface_resampling/template_registration_comparison/py/compare_o3_template_resolution.py \\
             --output-root \
                 /mnt/newStor/paros/paros_WORK/xintong/results/o3_template_resolution_comparison
         ```
@@ -358,7 +358,7 @@ cells = [
 
 def main() -> None:
     output = Path(
-        "surface_resampling/analysis/notebooks/compare_o3_template_resolution.ipynb"
+        "surface_resampling/template_registration_comparison/notebooks/compare_o3_template_resolution.ipynb"
     )
     output.parent.mkdir(parents=True, exist_ok=True)
     notebook = nbf.v4.new_notebook()

@@ -44,7 +44,7 @@ methods above.
 
 ## O3 template-resolution comparison
 
-`analysis/py/compare_o3_template_resolution.py` compares the existing
+`template_registration_comparison/py/compare_o3_template_resolution.py` compares the existing
 O3-Coordinate profiles on `fsaverage` and `fsaverage6`. It builds a fixed
 nearest correspondence from normalized `sphere.reg` directions, summarizes
 within-cell variation, compares adjacent profiles, and evaluates spatial
@@ -56,12 +56,12 @@ sampling or surface mapping.
 Run the calculation on a compute node with:
 
 ```bash
-python -u surface_resampling/analysis/py/compare_o3_template_resolution.py \
+python -u surface_resampling/template_registration_comparison/py/compare_o3_template_resolution.py \
     --output-root /mnt/newStor/paros/paros_WORK/xintong/results/o3_template_resolution_comparison
 ```
 
 The summary notebook is
-`analysis/notebooks/compare_o3_template_resolution.ipynb`. It reads the
+`template_registration_comparison/notebooks/compare_o3_template_resolution.ipynb`. It reads the
 generated tables and writes comparison figures under the output `figures`
 directory.
 
@@ -77,7 +77,7 @@ and depth-wise tables under the selected external output directory.
 Only vertices valid in both methods are included in the paired metrics.
 
 The extended interpolation-order calculation is owned by
-`surface_resampling/analysis/py/compare_o2_column_o3_coordinate.py`. Submit the
+`surface_resampling/template_registration_comparison/py/compare_o2_column_o3_coordinate.py`. Submit the
 fsaverage calculation with:
 
 ```bash
@@ -92,17 +92,14 @@ fixed group memberships when available; it does not rerun surface mapping or
 MD-volume sampling.
 
 The summary-only notebook is
-`surface_resampling/analysis/notebooks/compare_md_interpolation_order_fsaverage.ipynb`.
+`surface_resampling/template_registration_comparison/notebooks/compare_md_interpolation_order_fsaverage.ipynb`.
 It reads the Python-generated CSV tables and overlays and produces the three
 main figures plus supplementary spatial-structure and O2-FS comparisons. The
 supplementary calculations are implemented in
-`surface_resampling/analysis/py/supplementary_interpolation_order_analysis.py`.
-The previous calculation-heavy notebook is preserved as
-`surface_resampling/analysis/archive/compare_md_interpolation_order_fsaverage.pre_python_backup.ipynb`.
-
+`surface_resampling/template_registration_comparison/py/supplementary_interpolation_order_analysis.py`.
 ## Regional profile method comparison
 
-`analysis/py/compare_method_regional_profiles.py` compares four regional
+`template_registration_comparison/py/compare_method_regional_profiles.py` compares four regional
 MD profile methods: Native, FS DepthMap, Profile Interp., and Coordinate
 Interp. It aggregates fsaverage maps to the 34 cortical DK regions per
 hemisphere and reports the resulting 68 bilateral regions across 21 depths.
@@ -122,7 +119,7 @@ sbatch slurm/submit_method_regional_comparison_fsaverage.sbatch
 ```
 
 The summary-only notebook is
-`surface_resampling/analysis/notebooks/compare_method_regional_profiles_fsaverage.ipynb`.
+`surface_resampling/template_registration_comparison/notebooks/compare_method_regional_profiles_fsaverage.ipynb`.
 Formal outputs are written to
 `/mnt/newStor/paros/paros_WORK/xintong/results/method_comparison_regional_profiles_fsaverage_common30`.
 The previous output root with the old method labels is retained for traceability

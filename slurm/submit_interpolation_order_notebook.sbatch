@@ -24,6 +24,6 @@ jupyter nbconvert \
     --ExecutePreprocessor.kernel_name=python3 \
     --output-dir "$NOTEBOOK_OUTPUT_DIR" \
     --output summary_notebook_executed.ipynb \
-    surface_resampling/analysis/notebooks/compare_md_interpolation_order_fsaverage.ipynb
+    surface_resampling/template_registration_comparison/notebooks/compare_md_interpolation_order_fsaverage.ipynb
 
 echo "COMPLETED $(date -Is)"

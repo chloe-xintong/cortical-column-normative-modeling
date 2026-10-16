@@ -22,7 +22,7 @@ echo "HOST $(hostname)"
 echo "TEMPLATE ${TEMPLATE}"
 echo "OUTPUT_ROOT ${OUTPUT_ROOT}"
 
-python -u surface_resampling/analysis/py/compare_o2_column_o3_coordinate.py \
+python -u surface_resampling/template_registration_comparison/py/compare_o2_column_o3_coordinate.py \
     --manifest "$PROJECT_ROOT/manifests/method_comparison_common_30_subjects.csv" \
     --o2-root "$RESULTS_ROOT/o2_column_native_profiles" \
     --o3-root "$RESULTS_ROOT/o3_coordinate_profiles" \

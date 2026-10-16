@@ -21,7 +21,7 @@ echo "HOST $(hostname)"
 echo "TEMPLATE ${TEMPLATE}"
 echo "OUTPUT_ROOT ${OUTPUT_ROOT}"
 
-python -u surface_resampling/analysis/py/supplementary_interpolation_order_analysis.py \
+python -u surface_resampling/template_registration_comparison/py/supplementary_interpolation_order_analysis.py \
     --manifest "$PROJECT_ROOT/manifests/method_comparison_common_30_subjects.csv" \
     --o2-root "$RESULTS_ROOT/o2_column_native_profiles" \
     --o3-root "$RESULTS_ROOT/o3_coordinate_profiles" \

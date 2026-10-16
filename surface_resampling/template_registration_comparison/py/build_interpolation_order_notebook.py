@@ -28,7 +28,7 @@ cells = [
         depth-wise metrics, cross-subject metrics, fixed spatial groups, and
         difference maps are computed by the Python analysis script:
 
-        `surface_resampling/analysis/py/compare_o2_column_o3_coordinate.py`
+        `surface_resampling/template_registration_comparison/py/compare_o2_column_o3_coordinate.py`
 
         The primary comparison uses 30 common ADRC subjects, both hemispheres,
         21 cortical depths from white matter (`0.00`) to pial surface (`1.00`),
@@ -478,7 +478,7 @@ notebook = nbf.v4.new_notebook(
 )
 
 output = Path(
-    "surface_resampling/analysis/notebooks/compare_md_interpolation_order_fsaverage.ipynb"
+    "surface_resampling/template_registration_comparison/notebooks/compare_md_interpolation_order_fsaverage.ipynb"
 )
 output.parent.mkdir(parents=True, exist_ok=True)
 with output.open("w", encoding="utf-8") as handle:

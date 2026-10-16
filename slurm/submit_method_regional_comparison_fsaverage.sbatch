@@ -18,7 +18,7 @@ mkdir -p logs
 
 OUTPUT_ROOT=/mnt/newStor/paros/paros_WORK/xintong/results/method_comparison_regional_profiles_fsaverage_common30
 
-python -u surface_resampling/analysis/py/compare_method_regional_profiles.py \
+python -u surface_resampling/template_registration_comparison/py/compare_method_regional_profiles.py \
     --manifest manifests/method_comparison_common_30_subjects.csv \
     --native-profile-root /mnt/newStor/paros/paros_WORK/xintong/results/column_profiles \
     --o2-root /mnt/newStor/paros/paros_WORK/xintong/results/surface_resampling \

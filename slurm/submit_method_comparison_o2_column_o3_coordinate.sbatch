@@ -17,7 +17,7 @@ echo "HOST $(hostname)"
 template="${TEMPLATE:-fsaverage6}"
 output_root="${OUTPUT_ROOT:-/mnt/newStor/paros/paros_WORK/xintong/results/method_comparison_o2_column_o3_coordinate_fsaverage6}"
 
-python -u surface_resampling/analysis/py/compare_o2_column_o3_coordinate.py \
+python -u surface_resampling/template_registration_comparison/py/compare_o2_column_o3_coordinate.py \
     --manifest manifests/method_comparison_common_30_subjects.csv \
     --o2-root /mnt/newStor/paros/paros_WORK/xintong/results/o2_column_native_profiles \
     --o3-root /mnt/newStor/paros/paros_WORK/xintong/results/o3_coordinate_profiles \
