@@ -16,6 +16,7 @@ import numpy as np
 
 
 EXPECTED_VERTICES = {"fsaverage": 163842, "fsaverage6": 40962}
+METHOD_NAME = "O2-FS"
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,9 +37,13 @@ def parse_args() -> argparse.Namespace:
 def run_command(command: list[str], log_path: Path) -> None:
     logging.info("Running: %s", " ".join(command))
     with log_path.open("w") as log_file:
-        result = subprocess.run(command, text=True, stdout=log_file, stderr=subprocess.STDOUT)
+        result = subprocess.run(
+            command, text=True, stdout=log_file, stderr=subprocess.STDOUT
+        )
     if result.returncode:
-        raise RuntimeError(f"Command failed with status {result.returncode}: {log_path}")
+        raise RuntimeError(
+            f"Command failed with status {result.returncode}: {log_path}"
+        )
 
 
 def validate_mgh(path: Path, expected_vertices: int) -> None:
@@ -46,14 +51,18 @@ def validate_mgh(path: Path, expected_vertices: int) -> None:
         raise FileNotFoundError(f"Missing or empty output: {path}")
     values = np.asarray(nib.load(str(path)).dataobj).reshape(-1)
     if values.size != expected_vertices:
-        raise ValueError(f"Expected {expected_vertices} vertices in {path}, got {values.size}")
+        raise ValueError(
+            f"Expected {expected_vertices} vertices in {path}, got {values.size}"
+        )
 
 
 def main() -> None:
     args = parse_args()
     if args.srcsubject is None:
         args.srcsubject = args.subject_id
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
+    )
     depths = [float(value) for value in args.depths.split(",")]
     expected = EXPECTED_VERTICES[args.template]
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -72,7 +81,9 @@ def main() -> None:
         if output_path.exists():
             try:
                 validate_mgh(output_path, expected)
-                logging.info("[%d/%d] Existing valid output: %s", index, len(depths), output_path)
+                logging.info(
+                    "[%d/%d] Existing valid output: %s", index, len(depths), output_path
+                )
                 status = "skipped_existing"
             except (OSError, ValueError):
                 output_path.unlink()
@@ -82,18 +93,33 @@ def main() -> None:
         if not output_path.exists():
             command = [
                 "mri_vol2surf",
-                "--mov", str(args.metric_image),
-                "--reg", str(args.reg),
-                "--srcsubject", args.srcsubject,
-                "--hemi", args.hemisphere,
-                "--trgsubject", args.template,
-                "--projfrac", f"{depth:.2f}",
-                "--interp", args.interp,
-                "--o", str(output_path),
+                "--mov",
+                str(args.metric_image),
+                "--reg",
+                str(args.reg),
+                "--srcsubject",
+                args.srcsubject,
+                "--hemi",
+                args.hemisphere,
+                "--trgsubject",
+                args.template,
+                "--projfrac",
+                f"{depth:.2f}",
+                "--interp",
+                args.interp,
+                "--o",
+                str(output_path),
             ]
             run_command(command, log_path)
         validate_mgh(output_path, expected)
-        manifest.append({"depth": depth, "output": str(output_path), "status": status, "elapsed_s": time.time() - started})
+        manifest.append(
+            {
+                "depth": depth,
+                "output": str(output_path),
+                "status": status,
+                "elapsed_s": time.time() - started,
+            }
+        )
         logging.info("[%d/%d] Validated %s", index, len(depths), output_path.name)
 
     metadata = {
@@ -101,13 +127,16 @@ def main() -> None:
         "template": args.template,
         "hemisphere": args.hemisphere,
         "metric": "md",
+        "method": METHOD_NAME,
         "metric_image": str(args.metric_image),
         "registration": str(args.reg),
         "interp": args.interp,
         "expected_vertices": expected,
         "outputs": manifest,
     }
-    (args.output_dir / "vol2surf_manifest.json").write_text(json.dumps(metadata, indent=2))
+    (args.output_dir / "vol2surf_manifest.json").write_text(
+        json.dumps(metadata, indent=2)
+    )
 
 
 if __name__ == "__main__":
