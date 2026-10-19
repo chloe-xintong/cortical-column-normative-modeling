@@ -9,6 +9,7 @@ cohort-level Option 3 QC.
 - `py/`: calculation and plotting scripts;
 - `notebooks/`: summary-only notebooks that read Python-generated tables and
   overlays;
+- `notebooks/option1/`: retained supplementary native-surface QC notebooks;
 - Slurm submission scripts remain in the repository-level `slurm/` directory.
 
 The main comparisons are:
@@ -21,6 +22,10 @@ The main comparisons are:
 The notebooks do not regenerate surface mappings, construct columns, or sample
 MD volumes. Large outputs are written outside the repository under the paths
 specified by the corresponding Slurm scripts.
+
+The Option 1 supplementary notebooks are summary-only and read existing
+external results. They document boundary disagreement and fsaverage6 collision
+groups; their legacy calculation scripts are not part of this cleaned branch.
 
 ## Main entry points
 
