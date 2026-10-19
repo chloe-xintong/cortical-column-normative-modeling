@@ -450,9 +450,8 @@ cells = [
         as O2-FS sensitivity and additional spatial-smoothness summaries remain
         supplementary and do not block the primary comparison.
 
-        The previous notebook with in-cell calculations is preserved as
-        `surface_resampling/analysis/archive/compare_md_interpolation_order_fsaverage.pre_python_backup.ipynb` and
-        must not be used as the final summary notebook.
+        This notebook is summary-only. The expensive calculations are kept in
+        the comparison Python modules in this directory.
         """
     ),
     code(
