@@ -53,7 +53,6 @@ bash "$PROJECT_DIR/preprocessing/dwi/ADRC/preprocess_dwi.sh" \
 python "$PROJECT_DIR/pipeline/run_analysis.py" \
     --subject-id "$SUBJECT" \
     --subjects-dir "$FREESURFER_ROOT" \
-    --adc-image "$OUT/${SUBJECT}_md.nii.gz" \
     --md-image "$OUT/${SUBJECT}_md.nii.gz" \
     --fa-image "$OUT/${SUBJECT}_fa.nii.gz" \
     --ad-image "$OUT/${SUBJECT}_ad.nii.gz" \

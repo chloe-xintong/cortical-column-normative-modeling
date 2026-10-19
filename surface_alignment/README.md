@@ -19,7 +19,12 @@ its `bad_indices` are 0-based region-row indices before cleaning.
 
 ## Row reconstruction
 
-For a region, native IDs are recovered exactly as in `assign_regions.py`:
+The current primary pipeline is template-driven. It creates one column for
+each fsaverage vertex and stores the original source triangle and barycentric
+mapping provenance in the column NPZ files. Older region-row reconstruction
+described below applies only to legacy native-column outputs.
+
+For a legacy region output, native IDs were recovered as:
 
 ```python
 native_vertex_ids = np.where(labels == region_index)[0]

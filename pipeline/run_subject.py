@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Run the complete cortical trajectory pipeline for one subject.
+Run the complete cortical column pipeline for one subject.
 
 This is the top-level single-subject runner.
 
@@ -25,13 +25,9 @@ The workflow is:
         ↓
     DWI -> T1 registration
         ↓
-    Cortical trajectory generation
+    Build fsaverage-driven native-T1 cortical columns
         ↓
-    Transform trajectories to DWI space
-        ↓
-    Cortical region assignment
-        ↓
-    ADC profile sampling
+    Sample MD/FA/AD/RD profiles along template columns
         ↓
     Bad-column removal
         ↓
@@ -61,8 +57,8 @@ OUTPUT STRUCTURE
 │
 └── analysis/
     ├── registration/
-    ├── trajectories/
-    ├── regions/
+    ├── columns/
+    ├── profiles_before_clean/
     ├── profiles/
     └── regional_profiles/
 
@@ -279,7 +275,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser(
         description=(
-            "Run the complete cortical trajectory pipeline "
+            "Run the complete cortical column pipeline "
             "for one subject."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -376,6 +372,13 @@ def parse_args():
         "--before-clean",
         action="store_true",
         help="Generate all four raw metric profiles and stop before cleaning.",
+    )
+
+    parser.add_argument(
+        "--template",
+        choices=("fsaverage", "fsaverage6"),
+        default="fsaverage",
+        help="Template whose vertices define the subject-specific columns.",
     )
 
     # ------------------------------------------------------------------
@@ -562,7 +565,7 @@ def main():
     # ==================================================================
 
     print_section(
-        "CORTICAL TRAJECTORY SUBJECT PIPELINE"
+        "CORTICAL COLUMN SUBJECT PIPELINE"
     )
 
     print(
@@ -864,12 +867,12 @@ def main():
             subject_id,
             "--subjects-dir",
             subjects_dir,
-            "--adc-image",
-            adc_image,
             "--registration-reference",
             registration_reference,
             "--analysis-dir",
             analysis_dir,
+            "--template",
+            args.template,
             "--md-image",
             metric_images["md"],
             "--fa-image",
@@ -878,7 +881,7 @@ def main():
             metric_images["ad"],
             "--rd-image",
             metric_images["rd"],
-            *( ["--before-clean"] if args.before_clean else [] ),
+            *(["--before-clean"] if args.before_clean else []),
         ],
         "STEP 5: CORTICAL COLUMN ANALYSIS",
     )

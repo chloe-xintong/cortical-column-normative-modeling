@@ -568,7 +568,7 @@ def main():
     # ------------------------------------------------------------------
 
     print_section(
-        "CORTICAL TRAJECTORY PREPROCESSING"
+        "CORTICAL COLUMN PREPROCESSING"
     )
 
     print(f"Subject:      {args.subject_id}")
