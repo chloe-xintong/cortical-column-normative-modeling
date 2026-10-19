@@ -6,56 +6,11 @@ diffusion processing, registration, and template-driven column generation.
 
 ## Data Preparation
 
-The `data_preparation` module is used to identify and inspect MRI acquisitions before downstream processing.
-
-### `identify_scans.py`
-
-Identifies candidate MRI scans from BXH metadata and provides a preliminary classification of structural, diffusion, QSM, and other acquisitions.
-
-```bash
-python data_preparation/identify_scans.py \
-    /path/to/raw_subject
-```
-
-Optional output:
-
-```bash
-python data_preparation/identify_scans.py \
-    /path/to/raw_subject \
-    --output /path/to/scan_inventory.csv
-```
-
-### `inspect_bxh_details.py`
-
-Displays detailed BXH metadata for one acquisition or compares two BXH files.
-
-```bash
-python data_preparation/inspect_bxh_details.py \
-    /path/to/scan.bxh
-```
-
-### `compare_images.py`
-
-Compares image geometry and voxel intensities between two MRI images.
-
-```bash
-python data_preparation/compare_images.py \
-    /path/to/image_1.nii.gz \
-    /path/to/image_2.nii.gz
-```
-
-### `extract_diffusion_gradients.py`
-
-Extracts diffusion b-values and gradient vectors from BXH metadata and saves them in FSL `.bval` and `.bvec` format.
-
-```bash
-python data_preparation/extract_diffusion_gradients.py \
-    /path/to/diffusion.bxh \
-    --nifti /path/to/diffusion.nii.gz \
-    --output-prefix /path/to/output_prefix
-```
-
-The gradient coordinate convention should be validated before tensor fitting.
+The current ADRC pipeline uses the generated inventory in
+`data_preparation/data_inventory/`. The inventory records the available T1,
+DWI, gradient, reverse-b0, and JSON inputs used by the template-column batch
+runner. The reproducible inventory builder is
+`data_preparation/data_inventory/build_adrc_data_inventory.py`.
 
 ## Cortical Reconstruction
 
@@ -81,29 +36,19 @@ python qc/check_freesurfer_outputs.py \
 
 ## Diffusion Processing
 
-### Initial Preprocessing
+### Preprocessing and tensor metrics
 
-The current preprocessing script performs DWI denoising, b0 extraction, and brain-mask generation.
+The current preprocessing entry point is `pipeline/run_preprocess.py`. It
+calls the protocol-specific script in `preprocessing/dwi/ADRC/` or
+`preprocessing/dwi/ADD/`. Each protocol-specific script is self-contained and
+generates the tensor metrics. The optional reusable tensor-fitting helper is
+kept in `preprocessing/dwi/common/` for workflows that already have a
+preprocessed DWI and brain mask.
 
-```bash
-bash diffusion_processing/preprocess_dwi.sh \
-    <input_dwi.mif> \
-    <output_dir>
-```
-
-The complete preprocessing strategy for the MUSE diffusion data is still being validated.
-
-### Diffusion Tensor Metrics
-
-After a validated preprocessed DWI and diffusion gradients are available, tensor fitting can be performed with:
+For ADRC D-series data, the complete batch entry point is:
 
 ```bash
-bash diffusion_processing/fit_tensor_and_metrics.sh \
-    --dwi <preprocessed_dwi> \
-    --bvec <bvec_file> \
-    --bval <bval_file> \
-    --mask <brain_mask> \
-    --output-dir <output_directory>
+sbatch submit_adrc_template_columns_all.sbatch
 ```
 
 The script generates:
@@ -121,7 +66,7 @@ rd.nii.gz
 Diffusion MRI is registered to the FreeSurfer subject using boundary-based registration.
 
 ```bash
-bash registration/run_bbregister.sh \
+bash registration/register_dwi_to_t1.sh \
     <subject_id> \
     <freesurfer_subjects_dir> \
     <masked_dwi.nii.gz> \
@@ -174,18 +119,6 @@ The output structure is:
 ├── profiles/
 └── regional_profiles/
 ```
-
-## Image Space QC
-
-Spatial geometry between two NIfTI images can be compared using:
-
-```bash
-python visualization/check_image_space.py \
-    --image1 <image_1> \
-    --image2 <image_2>
-```
-
-The script compares image shape, voxel size, orientation, and affine transformation.
 
 ## Column-Level Data Structure
 
