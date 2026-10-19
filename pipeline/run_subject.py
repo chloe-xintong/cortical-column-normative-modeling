@@ -717,20 +717,46 @@ def main():
 
 
     # ==================================================================
-    # VALIDATE COMMON DIFFUSION OUTPUT
+    # VALIDATE DIFFUSION METRIC OUTPUTS
     # ==================================================================
 
-    adc_image = require_file(
-        diffusion_dir / f"{subject_id}_md.nii.gz",
-        "MD image (used as the legacy ADC input)",
-    )
+    adc_path = diffusion_dir / f"{subject_id}_adc.nii.gz"
+    legacy_md_path = diffusion_dir / f"{subject_id}_md.nii.gz"
+
+    if adc_path.is_file():
+        adc_image = require_file(
+            adc_path,
+            "MD image stored in the ADC output file",
+        )
+    elif legacy_md_path.is_file():
+        adc_image = require_file(
+            legacy_md_path,
+            "legacy MD image",
+        )
+        print(
+            "Using legacy MD filename for existing preprocessing output: "
+            f"{legacy_md_path}"
+        )
+    else:
+        adc_image = require_file(
+            adc_path,
+            "MD image stored in the ADC output file",
+        )
 
     metric_images = {
-        metric: require_file(
-            diffusion_dir / f"{subject_id}_{metric}.nii.gz",
-            f"{metric.upper()} image",
-        )
-        for metric in ("md", "fa", "ad", "rd")
+        "md": adc_image,
+        "fa": require_file(
+            diffusion_dir / f"{subject_id}_fa.nii.gz",
+            "FA image",
+        ),
+        "ad": require_file(
+            diffusion_dir / f"{subject_id}_ad.nii.gz",
+            "AD image",
+        ),
+        "rd": require_file(
+            diffusion_dir / f"{subject_id}_rd.nii.gz",
+            "RD image",
+        ),
     }
 
 

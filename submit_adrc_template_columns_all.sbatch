@@ -56,17 +56,25 @@ with inventory_path.open(newline="", encoding="utf-8") as stream:
             row["dwi_json_path"],
         )
         dwi_dir = dwi_root / subject
-        dwi_paths = tuple(
+        dwi_metric_paths = tuple(
             dwi_dir / f"{subject}_{metric}.nii.gz"
-            for metric in ("md", "fa", "ad", "rd")
-        ) + (
+            for metric in ("fa", "ad", "rd")
+        )
+        md_paths = (
+            dwi_dir / f"{subject}_adc.nii.gz",
+            dwi_dir / f"{subject}_md.nii.gz",
+        )
+        dwi_paths = dwi_metric_paths + (
             dwi_dir / f"{subject}_05_biascorrected.mif",
             dwi_dir / f"{subject}_corrected_mean_b0_brain_mask.nii.gz",
         )
         fs_dir = freesurfer_root / subject
         fs_paths = tuple(fs_dir / suffix for suffix in required_fs_suffixes)
         if all(Path(path).is_file() and Path(path).stat().st_size > 0 for path in raw_paths):
-            if all(path.is_file() and path.stat().st_size > 0 for path in dwi_paths + fs_paths):
+            if (
+                all(path.is_file() and path.stat().st_size > 0 for path in dwi_paths + fs_paths)
+                and any(path.is_file() and path.stat().st_size > 0 for path in md_paths)
+            ):
                 print(subject)
 PY
 )

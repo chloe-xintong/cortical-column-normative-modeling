@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Run cohort-specific diffusion preprocessing and tensor fitting.
+Run cohort-specific diffusion preprocessing and tensor metric generation.
 
 The preprocessing method is selected automatically from the first
 character of the subject ID:
@@ -9,8 +9,9 @@ character of the subject ID:
     D-series subjects -> ADRC preprocessing
     S-series subjects -> ADD preprocessing
 
-The two cohorts retain their original diffusion preprocessing methods
-and are joined at the common tensor-fitting stage.
+Each cohort-specific script is self-contained and writes its own tensor
+metrics. This entry point dispatches to the appropriate script and validates
+the final outputs.
 
 
 ======================================================================
@@ -188,13 +189,6 @@ ADD_PREPROCESS_SCRIPT = (
     / "preprocess_dwi.sh"
 )
 
-TENSOR_SCRIPT = (
-    DWI_PREPROCESS_ROOT
-    / "common"
-    / "fit_tensor_and_metrics.sh"
-)
-
-
 # ======================================================================
 # UTILITIES
 # ======================================================================
@@ -288,7 +282,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description=(
             "Run cohort-specific diffusion preprocessing "
-            "and common tensor fitting."
+            "and tensor metric generation."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -415,47 +409,6 @@ def run_adrc_preprocessing(
         "DWI PREPROCESSING: ADRC / D-SERIES",
     )
 
-    # ------------------------------------------------------------------
-    # The final ADRC DWI is an MRtrix image with embedded gradients.
-    # ------------------------------------------------------------------
-
-    preprocessed_dwi = (
-        diffusion_dir
-        / f"{args.subject_id}_05_biascorrected.mif"
-    )
-
-    brain_mask = (
-        diffusion_dir
-        / f"{args.subject_id}_corrected_mean_b0_brain_mask.nii.gz"
-    )
-
-    require_file(
-        preprocessed_dwi,
-        "Preprocessed ADRC DWI",
-    )
-
-    require_file(
-        brain_mask,
-        "ADRC brain mask",
-    )
-
-    # ------------------------------------------------------------------
-    # Tensor fitting uses the embedded MRtrix gradients.
-    # ------------------------------------------------------------------
-
-    run_command(
-        [
-            "bash",
-            TENSOR_SCRIPT,
-            preprocessed_dwi,
-            brain_mask,
-            diffusion_dir,
-            args.subject_id,
-        ],
-        "TENSOR FITTING: ADRC / D-SERIES",
-    )
-
-
 # ======================================================================
 # ADD / S-SERIES PREPROCESSING
 # ======================================================================
@@ -525,11 +478,6 @@ def main():
     require_file(
         ADD_PREPROCESS_SCRIPT,
         "ADD preprocessing script",
-    )
-
-    require_file(
-        TENSOR_SCRIPT,
-        "Tensor-fitting script",
     )
 
     require_command("bash")

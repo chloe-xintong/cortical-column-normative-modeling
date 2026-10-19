@@ -89,7 +89,7 @@ BRAIN_MASK="$OUTPUT_DIR/${SUBJECT_ID}_corrected_mean_b0_brain_mask.nii.gz"
 
 TENSOR_MIF="$OUTPUT_DIR/${SUBJECT_ID}_tensor.mif"
 FA="$OUTPUT_DIR/${SUBJECT_ID}_fa.nii.gz"
-MD="$OUTPUT_DIR/${SUBJECT_ID}_md.nii.gz"
+ADC="$OUTPUT_DIR/${SUBJECT_ID}_adc.nii.gz"
 AD="$OUTPUT_DIR/${SUBJECT_ID}_ad.nii.gz"
 RD="$OUTPUT_DIR/${SUBJECT_ID}_rd.nii.gz"
 
@@ -197,7 +197,7 @@ dwi2tensor \
 tensor2metric \
     "$TENSOR_MIF" \
     -fa "$FA" \
-    -adc "$MD" \
+    -adc "$ADC" \
     -ad "$AD" \
     -rd "$RD" \
     -mask "$BRAIN_MASK" \
@@ -212,7 +212,7 @@ for output in \
     "$BIASCORRECTED_MIF" \
     "$TENSOR_MIF" \
     "$FA" \
-    "$MD" \
+    "$ADC" \
     "$AD" \
     "$RD"
 do
@@ -248,6 +248,6 @@ echo "Brain mask: $BRAIN_MASK"
 echo "Eddy scratch: $OUTPUT_DIR/eddy_scratch"
 echo "Bias-corrected DWI: $BIASCORRECTED_MIF"
 echo "FA: $FA"
-echo "MD: $MD"
+echo "ADC / MD: $ADC"
 echo "AD: $AD"
 echo "RD: $RD"

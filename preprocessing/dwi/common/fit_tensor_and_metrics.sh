@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-# Fit the diffusion tensor and generate scalar diffusion metrics from a
-# preprocessed DWI image and brain mask.
+# Optional helper to fit the diffusion tensor and generate scalar diffusion
+# metrics from an already preprocessed DWI image and brain mask.
+#
+# The ADRC and ADD protocol-specific scripts already perform this step when
+# run directly. Do not run this helper after either complete script unless a
+# separate workflow intentionally needs to refit the tensor.
 #
 # Usage with embedded MRtrix gradients (ADRC / D-series):
 #   bash fit_tensor_and_metrics.sh \
