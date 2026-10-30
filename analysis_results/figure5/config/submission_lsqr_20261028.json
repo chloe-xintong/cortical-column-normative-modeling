@@ -1,0 +1,27 @@
+{
+  "submitted_at_local_date": "2026-10-28",
+  "purpose": "Fixed-LSQR rerun, auto-vs-LSQR stability, alpha-boundary audit, predefined paired bootstrap with FDR, and foldwise cBAG",
+  "shared_inputs": {
+    "n_subjects": 196,
+    "feature_root": "/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/features",
+    "fold_root": "/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/folds",
+    "alpha_grid": "logspace(-4, 6, 21)"
+  },
+  "outputs": {
+    "lsqr_models": "/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/models_lsqr",
+    "lsqr_summary": "/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/summary_lsqr",
+    "stability_and_inference": "/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/stability_lsqr"
+  },
+  "jobs": {
+    "lsqr_ridge_array_0_to_7_max_4_concurrent": 342824,
+    "lsqr_ico5": 342825,
+    "lsqr_analysis": 342826,
+    "crossfit_cbag_array_0_to_7_max_4_concurrent": 342834,
+    "crossfit_cbag_ico5": 342835,
+    "crossfit_cbag_summary": 342836
+  },
+  "dependencies": {
+    "342826": "afterok:342824_* and afterok:342825",
+    "342836": "afterok:342834_* and afterok:342835"
+  }
+}
