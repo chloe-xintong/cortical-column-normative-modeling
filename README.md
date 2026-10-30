@@ -1,195 +1,179 @@
-# Cortical Column Analysis
+# Cortical Trajectory Analysis
 
-This repository contains the current implementation of the cortical column
-processing pipeline, including MRI data preparation, cortical reconstruction,
-diffusion processing, registration, and template-driven column generation.
+This repository implements a template-driven cortical-column pipeline for
+sampling diffusion MRI across cortical depth. It covers subject inventory,
+FreeSurfer reconstruction, DWI preprocessing, DWI-to-T1 registration,
+column construction, multi-metric profile sampling, quality control, and the
+analyses used for Figures 2, 4, and 5.
 
-## Data Preparation
-
-The current ADRC pipeline uses the generated inventory in
-`data_preparation/data_inventory/`. The inventory records the available T1,
-DWI, gradient, reverse-b0, and JSON inputs used by the template-column batch
-runner. The reproducible inventory builder is
-`data_preparation/data_inventory/build_adrc_data_inventory.py`.
-
-## Cortical Reconstruction
-
-Cortical surfaces and anatomical parcellations are generated using FreeSurfer.
-
-```bash
-bash cortical_reconstruction/run_freesurfer.sh \
-    <subject_id> \
-    <t1_image> \
-    <subjects_dir> \
-    [threads]
-```
-
-The main outputs used by the column pipeline include the white and pial
-surfaces, cortical thickness, and anatomical parcellation.
-
-FreeSurfer outputs can be checked with:
-
-```bash
-python qc/check_freesurfer_outputs.py \
-    <freesurfer_subject_dir>
-```
-
-## Diffusion Processing
-
-### Preprocessing and tensor metrics
-
-The current preprocessing entry point is `pipeline/run_preprocess.py`. It
-calls the protocol-specific script in `preprocessing/dwi/ADRC/` or
-`preprocessing/dwi/ADD/`. Each protocol-specific script is self-contained and
-generates the tensor metrics. The optional reusable tensor-fitting helper is
-kept in `preprocessing/dwi/common/` for workflows that already have a
-preprocessed DWI and brain mask.
-
-For ADRC D-series data, the complete batch entry point is:
-
-```bash
-sbatch submit_adrc_template_columns_all.sbatch
-```
-
-The script generates:
+## Pipeline overview
 
 ```text
-tensor.mif
-adc.nii.gz
-fa.nii.gz
-ad.nii.gz
-rd.nii.gz
+raw T1 ──> FreeSurfer surfaces and parcellation ─┐
+                                                 ├─> template-driven columns
+raw DWI ──> preprocessing and tensor metrics ────┤   in native T1 space
+                                                 └─> DWI-to-T1 registration
+                                                          │
+                                                          v
+                                              depth profiles and regional means
 ```
 
-## Registration
+The current column definition is target-driven. For every vertex on the
+selected FreeSurfer template (`fsaverage` or `fsaverage6`), the nearest point
+on the subject's registered spherical mesh is found with
+`vtkStaticCellLocator`. The source triangle and barycentric weights are then
+applied to the native white and pial surfaces to create a subject-specific
+column.
 
-Diffusion MRI is registered to the FreeSurfer subject using boundary-based registration.
+Each column has 21 points in **pial-to-white** order:
+
+```text
+depth_index 0   / depth_fraction 0.00 = pial surface
+depth_index 20  / depth_fraction 1.00 = white surface (GM/WM boundary)
+```
+
+## Main entry points
+
+| Task | Entry point |
+| --- | --- |
+| Complete single-subject workflow | `pipeline/run_subject.py` |
+| Preprocessing only | `pipeline/run_preprocess.py` |
+| Analysis from existing FreeSurfer and DWI metrics | `pipeline/run_analysis.py` |
+| ADRC batch processing | `submit_adrc_template_columns_all.sbatch` |
+| Build template columns directly | `column/build_template_columns.py` |
+| Check required FreeSurfer outputs | `qc/check_freesurfer_outputs.py` |
+| Check generated columns | `qc/check_columns.py` |
+| Full-cohort preflight and report | `qc/submit_full_cohort.sh` |
+
+The complete runner automatically selects ADRC preprocessing for `Dxxxx`
+subjects and ADD preprocessing for `Sxxxx` subjects. Example:
 
 ```bash
-bash registration/register_dwi_to_t1.sh \
-    <subject_id> \
-    <freesurfer_subjects_dir> \
-    <masked_dwi.nii.gz> \
-    <output_transform.dat>
+python pipeline/run_subject.py \
+    --subject-id D0007 \
+    --t1 /path/to/T1.nii.gz \
+    --dwi /path/to/dwi.nii.gz \
+    --bvec /path/to/D0007.bvec \
+    --bval /path/to/D0007.bval \
+    --reverse-phase /path/to/reverse_b0.nii.gz \
+    --pe-dir PA \
+    --readout-time 0.076191 \
+    --output-dir /path/to/output/D0007
 ```
 
-The resulting transformation is used to relate native-T1 column coordinates to
-diffusion-image space.
+Use `--skip-freesurfer` or `--skip-dwi-preprocess` to resume from existing
+outputs. Run `python pipeline/run_subject.py --help` for all cohort-specific
+options.
 
-## Template-Driven Cortical Column Generation
+## Run analysis from prepared inputs
 
-The primary column definition is driven by the selected FreeSurfer template.
-For each template vertex, `vtkStaticCellLocator` finds the closest point on
-the subject's registered spherical mesh. The corresponding source triangle and
-its barycentric weights are then applied to the subject's native white and
-pial surfaces. The interpolated endpoints define one subject-specific column
-in native T1 coordinates.
-
-Each column contains 21 equally spaced points from pial to white, including
-both endpoints. The saved column file also retains the source face, source
-vertex IDs, barycentric weights, sphere QC, and mapping validity.
-
-```bash
-python column/build_template_columns.py \
-    --subject-id <subject_id> \
-    --subjects-dir <freesurfer_subjects_dir> \
-    --template fsaverage \
-    --output-dir <columns_output_dir>
-```
-
-Diffusion profiles are sampled from these native-T1 columns after the DWI to
-T1 registration. The end-to-end runner is:
+When FreeSurfer reconstruction and tensor metrics already exist:
 
 ```bash
 python pipeline/run_analysis.py \
-    --subject-id <subject_id> \
-    --subjects-dir <freesurfer_subjects_dir> \
-    --md-image <md.nii.gz> \
-    --registration-reference <masked_dwi.nii.gz> \
-    --analysis-dir <analysis_dir>
+    --subject-id D0007 \
+    --subjects-dir /path/to/freesurfer_subjects \
+    --md-image /path/to/md.nii.gz \
+    --fa-image /path/to/fa.nii.gz \
+    --ad-image /path/to/ad.nii.gz \
+    --rd-image /path/to/rd.nii.gz \
+    --registration-reference /path/to/masked_dwi.nii.gz \
+    --analysis-dir /path/to/analysis/D0007
 ```
 
-The output structure is:
+MD is required; FA, AD, and RD are optional. The analysis runner performs
+registration, column generation, metric sampling, shared-mask cleaning, and
+MD aggregation over the template Desikan--Killiany regions.
+
+The output layout is:
 
 ```text
 <analysis_dir>/
-├── registration/
-├── columns/
-├── profiles_before_clean/
-├── profiles/
+├── registration/             # bbregister DWI-to-T1 transform
+├── columns/                  # hemisphere NPZ files and mapping-QC JSON
+├── profiles_before_clean/    # raw metric profiles
+├── profiles/                 # profiles after the shared validity mask
 └── regional_profiles/
+    ├── region_mean/          # 68 regional MD profiles
+    └── <subject>_profiles_QA_md.csv
 ```
 
-## Column-Level Data Structure
+Column NPZ files retain template vertex and annotation identifiers, native
+triangle vertices, barycentric weights, pial/white endpoints, 21-point
+coordinates, cortical thickness, column length, mapping errors, and validity
+masks. Profile NPZ files retain sampled values and DWI voxel coordinates so
+that mapping and sampling decisions remain auditable.
 
-This project organizes cortical column data into two linked tables. The first
-table stores column-level anatomical and geometric information, while the
-second table stores depth-resolved imaging measurements sampled along each
-column. Together, these tables support cortical depth profiling, sampling
-experiments, and column-level graph construction.
+## Data preparation and preprocessing
 
-## Table 1 — Column-Level Information
+ADRC input inventories are built with
+`data_preparation/data_inventory/build_adrc_data_inventory.py`. The inventory
+records T1, DWI, gradient, reverse-b0, and JSON inputs consumed by the batch
+runner.
 
-Each row represents one cortical column.
+FreeSurfer reconstruction can also be run directly:
 
-| Field                | Description                                            |
-| -------------------- | ------------------------------------------------------ |
-| `subject_id`         | Subject identifier                                     |
-| `hemisphere`         | Hemisphere (`lh` / `rh`)                               |
-| `column_id`          | Stable column identifier within each hemisphere        |
-| `region_label`       | Cortical anatomical region                             |
-| `white_x`            | X coordinate at the gray matter/white matter interface |
-| `white_y`            | Y coordinate at the gray matter/white matter interface |
-| `white_z`            | Z coordinate at the gray matter/white matter interface |
-| `pial_x`             | X coordinate at the pial surface                       |
-| `pial_y`             | Y coordinate at the pial surface                       |
-| `pial_z`             | Z coordinate at the pial surface                       |
-| `cortical_thickness` | Cortical thickness associated with the column          |
-| `local_surface_area` | Local pial surface area associated with the column     |
-| `coordinate_space`   | Coordinate space of the column coordinates             |
-
-The column identifier is defined by:
-
-```text
-subject_id + hemisphere + column_id
+```bash
+bash preprocessing/t1/run_freesurfer.sh \
+    <subject_id> <t1_image> <subjects_dir> [threads]
 ```
 
-Example:
+DWI preprocessing is coordinated by `pipeline/run_preprocess.py` and delegates
+to the protocol-specific workflows under `preprocessing/dwi/ADRC/` and
+`preprocessing/dwi/ADD/`. Expected tensor products include MD/ADC, FA, AD, and
+RD images.
 
-```text
-S00775 + lh + 154
-```
+The pipeline expects the required FreeSurfer, FSL, MRtrix, ANTs, and Python
+environments to be loaded by the caller. Python analysis code uses packages
+including NumPy, SciPy, pandas, nibabel, VTK, scikit-learn, matplotlib, and
+seaborn; individual workflows may use only a subset.
 
-## Table 2 — Column Depth-Level Information
+## Quality control and cohort execution
 
-Each row represents one sampling point along a cortical column.
+Current QC entry points and full-cohort tooling live under [`qc/`](qc/README.md):
 
-| Field              | Description                                        |
-| ------------------ | -------------------------------------------------- |
-| `subject_id`       | Subject identifier                                 |
-| `hemisphere`       | Hemisphere (`lh` / `rh`)                           |
-| `column_id`        | Corresponding column identifier                    |
-| `depth_index`      | Sampling-point index along the column (`0–20`)      |
-| `normalized_depth` | Normalized cortical depth (`0.00–1.00`)            |
-| `x`                | X coordinate of the depth sampling point           |
-| `y`                | Y coordinate of the depth sampling point           |
-| `z`                | Z coordinate of the depth sampling point           |
-| `ADC`              | Apparent diffusion coefficient                     |
-| `FA`               | Fractional anisotropy                              |
-| `AD`               | Axial diffusivity                                  |
-| `RD`               | Radial diffusivity                                 |
-| `QSM`              | Quantitative susceptibility mapping value          |
+- `qc/check_freesurfer_outputs.py` validates surfaces, thickness, and labels.
+- `qc/check_columns.py` validates template-column geometry and mapping.
+- `qc/option3/` contains alignment QC for the active template-driven method.
+- `qc/full_cohort/` contains preflight and cohort-report scripts.
+- `qc/archive/` contains superseded experiments and validation workflows.
 
-### Depth Convention
-
-```text
-normalized_depth = 0.00   GM/WM interface
-normalized_depth = 1.00   Pial surface
-```
-
+Frozen cohort lists and exclusion tables are stored in `manifests/`. See
+[`qc/FULL_COHORT_EXECUTION.md`](qc/FULL_COHORT_EXECUTION.md) for the cohort
+execution procedure.
 
 ## Figure analyses
 
-Figure-specific analysis code, notebooks, and local outputs are grouped under
-[`analysis_results/`](analysis_results/README.md): `figure2`, `figure4`, and
-`figure5`. The former `qc/` locations remain compatibility links.
+Figure-specific code, notebooks, configurations, and SLURM scripts are grouped
+under [`analysis_results/`](analysis_results/README.md):
+
+- `figure2/`: mapping validation, method comparisons, curvature, and
+  registration QC.
+- `figure4/`: spatial similarity, null models, correlation length, and matched
+  cortical-boundary analyses.
+- `figure5/`: age-prediction feature construction, model evaluation, and
+  ablation analyses.
+- `cohort_audit/`: cross-figure participant flow and exclusion auditing.
+
+The former `qc/figure4`, `qc/figure5`, and
+`qc/template_registration_comparison` paths are compatibility symlinks.
+
+## Repository layout
+
+| Directory | Purpose |
+| --- | --- |
+| `column/` | Template-to-subject column construction and geometry helpers |
+| `profile_sampling/` | Metric sampling, cleaning, and regional aggregation |
+| `pipeline/` | Single-subject preprocessing and analysis orchestration |
+| `preprocessing/` | Cohort-specific DWI and T1 workflows |
+| `registration/` | DWI-to-T1 registration |
+| `qc/` | Active QC, cohort execution, and archived validation |
+| `analysis_results/` | Figure analyses and cohort audit code |
+| `manifests/` | Frozen subject lists and QC inclusion/exclusion tables |
+| `visualization/` | Column and method-figure visualization utilities |
+| `presentations/` | Reproducible presentation-building scripts and assets |
+
+External result locations and the distinction between current production and
+legacy native-space outputs are documented in
+[`RESULTS_LAYOUT.md`](RESULTS_LAYOUT.md). Large imaging data, generated outputs,
+logs, and subject-level surface files are intentionally excluded from Git.
