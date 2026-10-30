@@ -90,7 +90,7 @@ both endpoints. The saved column file also retains the source face, source
 vertex IDs, barycentric weights, sphere QC, and mapping validity.
 
 ```bash
-python trajectory_processing/build_template_columns.py \
+python column/build_template_columns.py \
     --subject-id <subject_id> \
     --subjects-dir <freesurfer_subjects_dir> \
     --template fsaverage \
@@ -186,3 +186,10 @@ Each row represents one sampling point along a cortical column.
 normalized_depth = 0.00   GM/WM interface
 normalized_depth = 1.00   Pial surface
 ```
+
+
+## Figure analyses
+
+Figure-specific analysis code, notebooks, and local outputs are grouped under
+[`analysis_results/`](analysis_results/README.md): `figure2`, `figure4`, and
+`figure5`. The former `qc/` locations remain compatibility links.

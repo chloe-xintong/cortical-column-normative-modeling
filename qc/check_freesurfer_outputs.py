@@ -1,5 +1,5 @@
 """
-Check FreeSurfer outputs required for cortical trajectory generation.
+Check FreeSurfer outputs required for cortical column generation.
 
 This script verifies that the white and pial surfaces, cortical thickness,
 and aparc annotation files are present and aligned for both hemispheres.
@@ -11,7 +11,7 @@ For each hemisphere, it checks:
 - aparc annotation labels match the number of surface vertices
 
 These checks confirm the vertex-wise correspondence used later in the
-trajectory pipeline:
+column pipeline:
 
     white[i] <-> pial[i] <-> thickness[i] <-> aparc[i]
 
@@ -133,7 +133,7 @@ def check_hemisphere(subject_dir, hemi):
 def main():
     parser = argparse.ArgumentParser(
         description=(
-            "Check FreeSurfer outputs required for cortical trajectory "
+            "Check FreeSurfer outputs required for cortical column "
             "generation."
         )
     )

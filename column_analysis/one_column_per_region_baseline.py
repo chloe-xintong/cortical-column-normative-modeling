@@ -6,7 +6,7 @@ computes the mean MD profile across valid native columns and a regional
 cortical-thickness summary.  The profile contains 21 depth values, with
 depth 0 at the white-matter surface and depth 20 at the pial surface.
 
-The script validates the relationship between the region trajectory file and
+The script validates the relationship between the region column file and
 the MD profile file.  It does not assume that files from different regions or
 hemispheres can be combined.
 """
@@ -112,17 +112,17 @@ def load_profile(path: Path, depth_points: int) -> np.ndarray:
     return values
 
 
-def load_region_trajectory(path: Path, n_columns: int, depth_points: int) -> np.ndarray:
-    trajectory = np.loadtxt(path, delimiter=",")
-    if trajectory.ndim != 2 or trajectory.shape[0] != 4:
-        raise ValueError(f"Expected a 4 x N region trajectory in {path}")
+def load_region_columns(path: Path, n_columns: int, depth_points: int) -> np.ndarray:
+    columns = np.loadtxt(path, delimiter=",")
+    if columns.ndim != 2 or columns.shape[0] != 4:
+        raise ValueError(f"Expected a 4 x N region column array in {path}")
     expected_points = n_columns * depth_points
-    if trajectory.shape[1] != expected_points:
+    if columns.shape[1] != expected_points:
         raise ValueError(
-            f"Profile/trajectory mismatch for {path}: "
-            f"{n_columns} x {depth_points} != {trajectory.shape[1]}"
+            f"Profile/column mismatch for {path}: "
+            f"{n_columns} x {depth_points} != {columns.shape[1]}"
         )
-    return trajectory[:3].reshape(3, n_columns, depth_points).transpose(1, 2, 0)
+    return columns[:3].reshape(3, n_columns, depth_points).transpose(1, 2, 0)
 
 
 def load_surface_thickness(
@@ -138,7 +138,7 @@ def load_surface_thickness(
     return white_coords, thickness, cKDTree(white_coords)
 
 
-def thickness_from_trajectory(
+def thickness_from_columns(
     coordinates: np.ndarray,
     white_coords: np.ndarray,
     thickness_values: np.ndarray,
@@ -147,8 +147,8 @@ def thickness_from_trajectory(
     white_points = coordinates[:, 0, :]
     _, vertex_ids = white_tree.query(white_points)
     freesurfer_thickness = thickness_values[vertex_ids]
-    trajectory_thickness = np.linalg.norm(np.diff(coordinates, axis=1), axis=2).sum(axis=1)
-    return freesurfer_thickness, trajectory_thickness
+    column_thickness = np.linalg.norm(np.diff(coordinates, axis=1), axis=2).sum(axis=1)
+    return freesurfer_thickness, column_thickness
 
 
 def build_row(
@@ -165,7 +165,7 @@ def build_row(
         raise ValueError("No valid MD profiles")
 
     white_coords, thickness_values, white_tree = surface_data
-    freesurfer_thickness, trajectory_thickness = thickness_from_trajectory(
+    freesurfer_thickness, column_thickness = thickness_from_columns(
         coordinates[valid_profile],
         white_coords,
         thickness_values,
@@ -182,9 +182,9 @@ def build_row(
         "freesurfer_thickness_sd_mm": float(np.nanstd(freesurfer_thickness, ddof=1))
         if len(freesurfer_thickness) > 1
         else np.nan,
-        "trajectory_thickness_mean_mm": float(np.nanmean(trajectory_thickness)),
-        "trajectory_thickness_sd_mm": float(np.nanstd(trajectory_thickness, ddof=1))
-        if len(trajectory_thickness) > 1
+        "column_thickness_mean_mm": float(np.nanmean(column_thickness)),
+        "column_thickness_sd_mm": float(np.nanstd(column_thickness, ddof=1))
+        if len(column_thickness) > 1
         else np.nan,
     }
     for depth in range(profiles.shape[1]):
@@ -227,8 +227,14 @@ def main() -> None:
             clean_marker = (
                 subject_root
                 / args.profile_dir_name
-                / "bad_trajectories.json"
+                / "bad_columns.json"
             )
+            if not clean_marker.is_file():
+                clean_marker = (
+                    subject_root
+                    / args.profile_dir_name
+                    / "bad_trajectories.json"
+                )
             if not clean_marker.is_file():
                 raise FileNotFoundError(
                     "Bad-point cleaning marker is missing; subject was not "
@@ -241,7 +247,7 @@ def main() -> None:
             )
             region_path = subject_root / "regions" / f"{hemisphere}_{region}.csv"
             profiles = load_profile(profile_path, args.depth_points)
-            coordinates = load_region_trajectory(
+            coordinates = load_region_columns(
                 region_path,
                 n_columns=profiles.shape[0],
                 depth_points=args.depth_points,

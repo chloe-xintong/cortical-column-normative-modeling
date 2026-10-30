@@ -184,7 +184,7 @@ def main() -> None:
         "Registration script",
     )
     build_columns_script = require_file(
-        repo_root / "trajectory_processing" / "build_template_columns.py",
+        repo_root / "column" / "build_template_columns.py",
         "Template-column builder",
     )
     sample_columns_script = require_file(

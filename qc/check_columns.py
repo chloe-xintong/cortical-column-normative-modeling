@@ -1,33 +1,33 @@
 #!/usr/bin/env python
 
 """
-Check cortical trajectory outputs generated from FreeSurfer surfaces.
+Check cortical column outputs generated from FreeSurfer surfaces.
 
-This script verifies that the generated pair and trajectory files are
+This script verifies that the generated pair and column files are
 internally consistent for both hemispheres.
 
 For each hemisphere, it checks:
 - pair data have shape (N, 6)
-- trajectory points have shape (N * points_num, 3)
-- trajectory points can be reshaped to (N, points_num, 3)
-- the first trajectory point matches the white endpoint
-- the last trajectory point matches the pial endpoint
+- column points have shape (N * points_num, 3)
+- column points can be reshaped to (N, points_num, 3)
+- the first column point matches the pial endpoint
+- the last column point matches the white endpoint
 - the midpoint matches the expected linear interpolation
-- all trajectory points follow the expected straight-line interpolation
+- all column points follow the expected straight-line interpolation
 
-These checks confirm that each cortical trajectory was constructed correctly
+These checks confirm that each cortical column was constructed correctly
 from the corresponding white and pial surface vertices.
 
 Usage:
-    python qc/check_trajectories.py \
-        --trajectory-dir <trajectory_output_dir> \
+    python qc/check_columns.py \
+        --column-dir <column_output_dir> \
         --subject-id <subject_id>
 
 Optional:
     --points <number_of_points>
 
 Default:
-    21 points per trajectory
+    21 points per column
 """
 
 import argparse
@@ -55,7 +55,7 @@ def check_file(path):
 
 
 def check_hemisphere(
-    trajectory_dir,
+    column_dir,
     subject_id,
     hemisphere,
     points_num,
@@ -64,18 +64,18 @@ def check_hemisphere(
     print(f"Checking {hemisphere.upper()} hemisphere")
 
     pair_file = (
-        trajectory_dir
+        column_dir
         / f"{subject_id}_pair_{hemisphere}.mat"
     )
 
-    trajectory_file = (
-        trajectory_dir
-        / f"{subject_id}_trajectory_{hemisphere}.mat"
+    column_file = (
+        column_dir
+        / f"{subject_id}_column_{hemisphere}.mat"
     )
 
     files_ok = True
 
-    for path in [pair_file, trajectory_file]:
+    for path in [pair_file, column_file]:
         if not check_file(path):
             files_ok = False
 
@@ -84,13 +84,13 @@ def check_hemisphere(
         return False
 
     pair_variable = f"{hemisphere}_pair"
-    trajectory_variable = (
-        f"{hemisphere}_trajectory_points"
+    column_variable = (
+        f"{hemisphere}_column_points"
     )
 
     try:
         pair_data = loadmat(pair_file)
-        trajectory_data = loadmat(trajectory_file)
+        column_data = loadmat(column_file)
 
     except Exception as exc:
         print(f"  [FAIL] Could not read MAT files: {exc}")
@@ -105,10 +105,10 @@ def check_hemisphere(
         print(f"{hemisphere.upper()}: FAIL")
         return False
 
-    if trajectory_variable not in trajectory_data:
+    if column_variable not in column_data:
         print(
-            f"  [FAIL] Variable '{trajectory_variable}' "
-            f"not found in {trajectory_file.name}"
+            f"  [FAIL] Variable '{column_variable}' "
+            f"not found in {column_file.name}"
         )
         print(f"{hemisphere.upper()}: FAIL")
         return False
@@ -118,8 +118,8 @@ def check_hemisphere(
         dtype=float,
     )
 
-    trajectory = np.asarray(
-        trajectory_data[trajectory_variable],
+    column = np.asarray(
+        column_data[column_variable],
         dtype=float,
     )
 
@@ -136,22 +136,22 @@ def check_hemisphere(
         print(f"{hemisphere.upper()}: FAIL")
         return False
 
-    n_trajectories = pair.shape[0]
+    n_columns = pair.shape[0]
 
-    expected_trajectory_shape = (
-        n_trajectories * points_num,
+    expected_column_shape = (
+        n_columns * points_num,
         3,
     )
 
-    trajectory_shape_ok = (
-        trajectory.shape
-        == expected_trajectory_shape
+    column_shape_ok = (
+        column.shape
+        == expected_column_shape
     )
 
     print(f"  pair shape:              {pair.shape}")
-    print(f"  trajectory shape:        {trajectory.shape}")
-    print(f"  number of trajectories:  {n_trajectories}")
-    print(f"  points per trajectory:   {points_num}")
+    print(f"  column shape:        {column.shape}")
+    print(f"  number of columns:  {n_columns}")
+    print(f"  points per column:   {points_num}")
 
     print(
         "  pair shape:",
@@ -159,20 +159,20 @@ def check_hemisphere(
     )
 
     print(
-        "  trajectory shape:",
-        "PASS" if trajectory_shape_ok else "FAIL",
+        "  column shape:",
+        "PASS" if column_shape_ok else "FAIL",
     )
 
-    if not trajectory_shape_ok:
+    if not column_shape_ok:
         print(
-            f"  expected trajectory shape: "
-            f"{expected_trajectory_shape}"
+            f"  expected column shape: "
+            f"{expected_column_shape}"
         )
         print(f"{hemisphere.upper()}: FAIL")
         return False
 
-    points = trajectory.reshape(
-        n_trajectories,
+    points = column.reshape(
+        n_columns,
         points_num,
         3,
     )
@@ -180,17 +180,17 @@ def check_hemisphere(
     white = pair[:, 0:3]
     pial = pair[:, 3:6]
 
-    white_error = np.max(
+    pial_error = np.max(
         np.abs(
             points[:, 0, :]
-            - white
+            - pial
         )
     )
 
-    pial_error = np.max(
+    white_error = np.max(
         np.abs(
             points[:, -1, :]
-            - pial
+            - white
         )
     )
 
@@ -202,9 +202,9 @@ def check_hemisphere(
     )
 
     expected_points = (
-        white[:, None, :]
+        pial[:, None, :]
         * (1.0 - depth)[None, :, None]
-        + pial[:, None, :]
+        + white[:, None, :]
         * depth[None, :, None]
     )
 
@@ -222,9 +222,9 @@ def check_hemisphere(
     midpoint_depth = depth[midpoint_index]
 
     expected_midpoint = (
-        white
+        pial
         * (1.0 - midpoint_depth)
-        + pial
+        + white
         * midpoint_depth
     )
 
@@ -293,7 +293,7 @@ def check_hemisphere(
 
     hemisphere_pass = (
         pair_shape_ok
-        and trajectory_shape_ok
+        and column_shape_ok
         and white_pass
         and pial_pass
         and midpoint_pass
@@ -311,16 +311,16 @@ def check_hemisphere(
 def main():
     parser = argparse.ArgumentParser(
         description=(
-            "Check cortical trajectory outputs."
+            "Check cortical column outputs."
         )
     )
 
     parser.add_argument(
-        "--trajectory-dir",
+        "--column-dir",
         required=True,
         type=Path,
         help=(
-            "Directory containing pair and trajectory MAT files."
+            "Directory containing pair and column MAT files."
         ),
     )
 
@@ -335,53 +335,53 @@ def main():
         type=int,
         default=POINTS_NUM,
         help=(
-            "Number of points per trajectory. "
+            "Number of points per column. "
             "Default: 21."
         ),
     )
 
     args = parser.parse_args()
 
-    trajectory_dir = (
-        args.trajectory_dir
+    column_dir = (
+        args.column_dir
         .expanduser()
         .resolve()
     )
 
-    if not trajectory_dir.is_dir():
+    if not column_dir.is_dir():
         print(
-            f"Trajectory directory does not exist: "
-            f"{trajectory_dir}"
+            f"Column directory does not exist: "
+            f"{column_dir}"
         )
         sys.exit(1)
 
     if args.points < 2:
         print(
-            "Number of points per trajectory "
+            "Number of points per column "
             "must be at least 2."
         )
         sys.exit(1)
 
-    print("Cortical trajectory QC")
+    print("Cortical column QC")
     print(f"Subject: {args.subject_id}")
     print(
-        f"Trajectory directory: "
-        f"{trajectory_dir}"
+        f"Column directory: "
+        f"{column_dir}"
     )
     print(
-        f"Expected points per trajectory: "
+        f"Expected points per column: "
         f"{args.points}"
     )
 
     lh_pass = check_hemisphere(
-        trajectory_dir=trajectory_dir,
+        column_dir=column_dir,
         subject_id=args.subject_id,
         hemisphere="lh",
         points_num=args.points,
     )
 
     rh_pass = check_hemisphere(
-        trajectory_dir=trajectory_dir,
+        column_dir=column_dir,
         subject_id=args.subject_id,
         hemisphere="rh",
         points_num=args.points,
@@ -395,7 +395,7 @@ def main():
     print()
     print("Overall result:")
     print(
-        "Cortical trajectory QC:",
+        "Cortical column QC:",
         "PASS" if overall_pass else "FAIL",
     )
 

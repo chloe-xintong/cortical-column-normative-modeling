@@ -3,7 +3,7 @@
 The current QC entry points are kept at this level:
 
 - `check_freesurfer_outputs.py`
-- `check_trajectories.py`
+- `check_columns.py`
 
 Historical QC and validation work is consolidated under `archive/` and is not
 part of the current template-column production pipeline.

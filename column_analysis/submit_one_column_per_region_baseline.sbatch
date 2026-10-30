@@ -13,7 +13,7 @@ cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
 mkdir -p logs
 
 python -u column_analysis/one_column_per_region_baseline.py \
-    --analysis-root /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis \
+    --analysis-root /mnt/newStor/paros/paros_WORK/xintong/results/native_unmapped_column_results/column_analysis \
     --freesurfer-root /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer \
-    --output-dir /mnt/newStor/paros/paros_WORK/xintong/results/column_analysis/one_column_per_region_baseline \
+    --output-dir /mnt/newStor/paros/paros_WORK/xintong/results/native_unmapped_column_results/column_analysis/one_column_per_region_baseline \
     --log-every 25
