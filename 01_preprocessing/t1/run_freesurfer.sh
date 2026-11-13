@@ -1,13 +1,39 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+# Reconstruct Native Cortical Surfaces with FreeSurfer
+#
+# ## Description
+#
+# Run `recon-all` to generate the native cortical surfaces required for column
+# construction.
+#
+# ## Methods
+#
+# 1. Validate the FreeSurfer environment and T1 input.
+# 2. Run the complete FreeSurfer reconstruction for one subject.
+# 3. Verify the subject output directory.
+#
+# ## Inputs
+#
+# - Subject ID, T1-weighted image, and FreeSurfer SUBJECTS_DIR
+# - Optional OpenMP thread count
+#
+# ## Outputs
+#
+# - FreeSurfer subject directory containing white, pial, thickness, sphere.reg,
+#   annotation, and orig.mgz files
+#
+# ## Usage
+#
+# bash 01_preprocessing/t1/run_freesurfer.sh \
+#     SUBJECT_ID T1_IMAGE SUBJECTS_DIR [THREADS]
+#
+# ## Notes
+#
+# - FreeSurfer must be installed and sourced before execution.
+# - Existing subject data in the target SUBJECTS_DIR are not removed.
 
-# Usage:
-# bash cortical_reconstruction/run_freesurfer.sh \
-#   <subject_id> \
-#   <t1_image> \
-#   <subjects_dir> \
-#   [threads]
+set -euo pipefail
 
 if [ "$#" -lt 3 ]; then
     echo "Usage:"

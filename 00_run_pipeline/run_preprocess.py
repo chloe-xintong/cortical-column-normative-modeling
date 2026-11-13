@@ -1,162 +1,41 @@
 #!/usr/bin/env python3
+"""Run Cohort-Specific DWI Preprocessing
 
-"""
-Run cohort-specific diffusion preprocessing and tensor metric generation.
+Description
+-----------
+Dispatch one raw diffusion scan to the ADRC or ADD preprocessing workflow and
+validate the final tensor-derived metric images.
 
-The preprocessing method is selected automatically from the first
-character of the subject ID:
+Methods
+-------
+1. Identify the cohort from the subject ID prefix (D=ADRC, S=ADD).
+2. Validate the raw DWI and FSL gradient files.
+3. Run denoising, Gibbs-ringing correction, eddy correction, masking, and
+   bias-field correction with the cohort-specific script.
+4. Use reverse-phase topup for ADRC; use ``rpe_none`` for ADD.
+5. Fit the diffusion tensor and verify ADC/MD, FA, AD, and RD outputs.
 
-    D-series subjects -> ADRC preprocessing
-    S-series subjects -> ADD preprocessing
+Inputs
+------
+- Subject ID, raw 4D DWI, bvec, and bval files
+- Output directory or exact diffusion output directory
+- ADRC only: reverse-phase b0, phase-encoding direction, and readout time
 
-Each cohort-specific script is self-contained and writes its own tensor
-metrics. This entry point dispatches to the appropriate script and validates
-the final outputs.
+Outputs
+-------
+- Bias-corrected DWI and corrected mean-b0 brain mask
+- Diffusion tensor image
+- ADC/MD, FA, AD, and RD scalar images
 
+Usage
+-----
+python 00_run_pipeline/run_preprocess.py     --subject-id D0007     --dwi /path/to/D0007_dwi.nii.gz     --bvec /path/to/D0007.bvec     --bval /path/to/D0007.bval     --reverse-phase /path/to/D0007_reverse_b0.nii.gz     --pe-dir PA     --readout-time 0.076191     --output-dir /path/to/D0007
 
-======================================================================
-PREPROCESSING WORKFLOWS
-======================================================================
-
-D-series / ADRC
----------------
-
-    Raw DWI
-        ↓
-    MRtrix import with bvec / bval
-        ↓
-    MP-PCA denoising
-        ↓
-    Gibbs ringing correction
-        ↓
-    Forward / reverse phase-encoded b0 preparation
-        ↓
-    BET eddy mask
-        ↓
-    Motion / eddy / susceptibility correction
-        ↓
-    ANTs bias-field correction
-        ↓
-    Tensor fitting
-        ↓
-    ADC / FA / AD / RD
-
-
-S-series / ADD
---------------
-
-    Raw DWI
-        ↓
-    MRtrix import with bvec / bval
-        ↓
-    MP-PCA denoising
-        ↓
-    Gibbs ringing correction
-        ↓
-    Motion / eddy correction with rpe_none
-        ↓
-    BET brain mask
-        ↓
-    ANTs bias-field correction
-        ↓
-    Tensor fitting
-        ↓
-    ADC / FA / AD / RD
-
-The AD-Decode protocol uses PA encoding and a total readout time of
-0.119063 seconds.  No reverse b0 or topup is used for ADD.
-
-
-======================================================================
-COHORT IDENTIFICATION
-======================================================================
-
-The cohort is determined automatically from the subject ID:
-
-    Dxxxx -> ADRC
-    Sxxxx -> ADD
-
-Examples:
-
-    D0007 -> ADRC
-    S00775 -> ADD
-
-
-======================================================================
-EXPECTED OUTPUT STRUCTURE
-======================================================================
-
-<subject_output_dir>/
-└── preprocess/
-    └── diffusion/
-        ├── cohort-specific preprocessing outputs
-        ├── tensor
-        ├── adc
-        ├── fa
-        ├── ad
-        └── rd
-
-
-======================================================================
-REQUIRED INPUTS
-======================================================================
-
-All subjects require:
-
-    --subject-id
-    --dwi
-    --bvec
-    --bval
-    --output-dir
-
-
-D-series subjects additionally require:
-
-    --reverse-phase
-    --pe-dir
-    --readout-time
-
-
-S-series subjects do not require reverse-phase inputs.
-
-
-======================================================================
-USAGE
-======================================================================
-
-S-series example:
-
-python pipeline/run_preprocess.py \
-    --subject-id S00775 \
-    --dwi /path/to/S00775_raw_dwi.nii.gz \
-    --bvec /path/to/S00775_bvecs.txt \
-    --bval /path/to/S00775_bvals.txt \
-    --output-dir /path/to/S00775
-
-
-D-series example:
-
-python pipeline/run_preprocess.py \
-    --subject-id D0007 \
-    --dwi /path/to/D0007_raw_dwi.nii.gz \
-    --bvec /path/to/D0007_bvecs.txt \
-    --bval /path/to/D0007_bvals.txt \
-    --reverse-phase /path/to/D0007_reverse_phase.nii.gz \
-    --pe-dir PA \
-    --readout-time 0.076191 \
-    --output-dir /path/to/D0007
-
-
-======================================================================
-IMPORTANT
-======================================================================
-
-The required FSL, MRtrix, and ANTs environments must already be
-available before running this script.
-
-The runner does not source software environments automatically because
-the available installations differ across machines.
-
+Notes
+-----
+- ADD uses fixed protocol values PA and 0.119063 seconds in its shell script.
+- FSL, MRtrix, and ANTs must already be available in the environment.
+- This runner does not perform FreeSurfer reconstruction or column building.
 """
 
 import argparse
@@ -173,7 +52,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 DWI_PREPROCESS_ROOT = (
     PROJECT_ROOT
-    / "preprocessing"
+    / "01_preprocessing"
     / "dwi"
 )
 
@@ -321,6 +200,13 @@ def parse_args():
         help=(
             "Subject output directory. "
             "Preprocessing outputs are written to "
+            "<output-dir>/preprocess/diffusion/."
+        ),
+    )
+    parser.add_argument(
+        "--diffusion-dir",
+        help=(
+            "Optional exact diffusion output directory. When omitted, use "
             "<output-dir>/preprocess/diffusion/."
         ),
     )
@@ -501,9 +387,9 @@ def main():
     )
 
     diffusion_dir = (
-        output_dir
-        / "preprocess"
-        / "diffusion"
+        Path(args.diffusion_dir).expanduser().resolve()
+        if args.diffusion_dir
+        else output_dir / "preprocess" / "diffusion"
     )
 
     diffusion_dir.mkdir(

@@ -1,18 +1,43 @@
 #!/usr/bin/env python3
-"""Run the template-driven cortical column analysis for one subject.
+"""Run Column Construction and Metric-Profile Analysis
 
-The column definition is target-driven. For every vertex of the selected
-FreeSurfer template, the subject's registered spherical mesh is queried with
-``vtkStaticCellLocator``. The selected source triangle and its barycentric
-weights are applied to the native white and pial surfaces, and 21 points are
-generated from pial to white in native T1 coordinates.
+Description
+-----------
+Run registration, fsaverage-indexed cortical-column construction, optional
+multi-metric sampling, shared profile cleaning, and regional aggregation for
+one subject with prepared FreeSurfer and DWI inputs.
 
-The downstream steps sample diffusion metrics along those columns, apply one
-shared validity mask across metrics, and aggregate cleaned MD profiles by the
-template's Desikan--Killiany annotation.
+Methods
+-------
+1. Register the DWI reference to the subject's native T1 space.
+2. Map every fsaverage vertex to the subject's registered spherical surface.
+3. Construct pial-to-white columns in native T1 surface RAS.
+4. Sample supplied scalar metric images at every column depth.
+5. Optionally apply a shared validity mask and aggregate regional profiles.
 
-The script does not perform T1 or DWI preprocessing. FreeSurfer and the
-registration tools must already be available in the active environment.
+Inputs
+------
+- FreeSurfer SUBJECTS_DIR containing the subject and template
+- Masked DWI registration reference
+- MD/ADC image and optional FA, AD, and RD images
+- Subject ID, template name, and analysis output directory
+
+Outputs
+-------
+- DWI-to-T1 registration transform
+- Left/right fsaverage-indexed column NPZ files
+- Raw metric profiles for every fsaverage vertex
+- Optional cleaned profiles and regional summaries
+
+Usage
+-----
+python 00_run_pipeline/run_analysis.py     --subject-id D0007     --subjects-dir /path/to/freesurfer     --registration-reference /path/to/D0007_dwi_masked.nii.gz     --md-image /path/to/D0007_adc.nii.gz     --analysis-dir /path/to/output/D0007
+
+Notes
+-----
+- This entry point does not perform T1 or DWI preprocessing.
+- Use ``--before-clean`` to stop after vertex-level raw profile output.
+- FreeSurfer, registration tools, and Python dependencies must be available.
 """
 
 from __future__ import annotations
@@ -180,23 +205,23 @@ def main() -> None:
     require_command("bbregister")
 
     register_script = require_file(
-        repo_root / "registration" / "register_dwi_to_t1.sh",
+        repo_root / "02_registration" / "register_dwi_to_t1.sh",
         "Registration script",
     )
     build_columns_script = require_file(
-        repo_root / "column" / "build_template_columns.py",
+        repo_root / "03_column" / "build_template_columns.py",
         "Template-column builder",
     )
     sample_columns_script = require_file(
-        repo_root / "profile_sampling" / "sample_template_columns.py",
+        repo_root / "04_profile_sampling" / "sample_template_columns.py",
         "Template-column sampling script",
     )
     clean_profiles_script = require_file(
-        repo_root / "profile_sampling" / "clean_template_profiles.py",
+        repo_root / "04_profile_sampling" / "clean_template_profiles.py",
         "Template-profile cleaning script",
     )
     regional_profiles_script = require_file(
-        repo_root / "profile_sampling" / "regional_template_profiles.py",
+        repo_root / "04_profile_sampling" / "regional_template_profiles.py",
         "Template regional-profile script",
     )
 

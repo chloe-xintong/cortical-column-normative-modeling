@@ -1,4 +1,36 @@
-"""Shared coordinate transforms for native T1-space cortical columns."""
+"""Transform Native-T1 Column Coordinates to DWI Voxels
+
+Description
+-----------
+Provide coordinate-transform helpers used to sample DWI-space scalar images
+along cortical columns stored in native FreeSurfer surface RAS.
+
+Methods
+-------
+1. Parse the 4x4 matrix from a FreeSurfer register.dat file.
+2. Reconstruct the moving DWI tkregister voxel-to-RAS matrix.
+3. Convert native-T1 surface-RAS points into DWI voxel coordinates.
+
+Inputs
+------
+- FreeSurfer registration transform
+- DWI image dimensions and voxel sizes
+- Native-T1 column coordinates
+
+Outputs
+-------
+- Registration and tkregister matrices
+- Floating-point DWI voxel coordinates for each column point
+
+Usage
+-----
+Import the helpers from ``transform_t1_columns_to_dwi`` in Step 04 scripts.
+
+Notes
+-----
+- This module does not perform fsaverage template mapping.
+- Index-convention adjustment is applied by the sampling script.
+"""
 
 from __future__ import annotations
 

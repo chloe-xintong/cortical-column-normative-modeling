@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
-"""Export selected native-surface-RAS columns as FreeSurfer tube surfaces."""
+"""Export selected native-surface-RAS columns as FreeSurfer tube surfaces.
+
+Description
+-----------
+Export selected native-surface-RAS columns as FreeSurfer tube surfaces.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--columns-npz`` command-line input
+- ``--md-profiles-npz`` command-line input
+- ``--reference-t1`` command-line input
+- ``--white-surface`` command-line input
+- ``--pial-surface`` command-line input
+- ``--vertex-ids`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python visualization/export_freeview_columns.py --help
+"""
 from __future__ import annotations
 import argparse, json
 from pathlib import Path

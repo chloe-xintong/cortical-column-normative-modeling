@@ -1,25 +1,36 @@
 #!/usr/bin/env bash
 
-# Prepare the 3D diffusion reference image used for DWI-to-T1 registration.
+# Prepare the DWI Registration Reference
 #
-# This reproduces the registration-reference construction used in the
-# historical pipeline:
+# ## Description
 #
-#   4D preprocessed DWI
-#       -> remove volume 0
-#       -> sum remaining diffusion volumes
-#       -> apply the supplied registration mask
-#       -> 3D masked DWI
+# Create the masked 3D diffusion image used as the bbregister moving image.
 #
-# The registration mask should already be generated during DWI preprocessing.
+# ## Methods
 #
-# Usage:
+# 1. Remove volume index 0 from the preprocessed 4D DWI.
+# 2. Sum all remaining volumes into one 3D image.
+# 3. Confirm that the image and registration mask dimensions match.
+# 4. Apply the mask to produce the final registration reference.
 #
-# bash registration/prepare_registration_reference.sh \
-#     PREPROCESSED_DWI \
-#     OUTPUT_DIR \
-#     SUBJECT_ID \
-#     REGISTRATION_MASK
+# ## Inputs
+#
+# - Preprocessed 4D DWI and matching registration mask
+# - Output directory and subject ID
+#
+# ## Outputs
+#
+# - DWI without volume 0, summed DWI, and `<SUBJECT_ID>_dwi_masked.nii.gz`
+#
+# ## Usage
+#
+# bash 02_registration/prepare_registration_reference.sh \
+#     PREPROCESSED_DWI OUTPUT_DIR SUBJECT_ID REGISTRATION_MASK
+#
+# ## Notes
+#
+# - Volume removal follows the historical index-based procedure, not b-values.
+# - The supplied mask must already be in the DWI grid.
 
 set -euo pipefail
 
@@ -30,7 +41,7 @@ set -euo pipefail
 
 if [[ "$#" -ne 4 ]]; then
     echo "Usage:"
-    echo "bash registration/prepare_registration_reference.sh \\"
+    echo "bash 02_registration/prepare_registration_reference.sh \\"
     echo "    PREPROCESSED_DWI \\"
     echo "    OUTPUT_DIR \\"
     echo "    SUBJECT_ID \\"

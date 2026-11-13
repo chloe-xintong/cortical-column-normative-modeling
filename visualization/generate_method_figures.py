@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
-"""Generate publication-ready cortical-column method illustrations from real data."""
+"""Generate publication-ready cortical-column method illustrations from real data.
+
+Description
+-----------
+Generate publication-ready cortical-column method illustrations from real data.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subjects-dir`` command-line input
+- ``--subject-id`` command-line input
+- ``--columns-npz`` command-line input
+- ``--md-profiles-npz`` command-line input
+- ``--hemisphere`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python visualization/generate_method_figures.py --help
+"""
 
 from __future__ import annotations
 

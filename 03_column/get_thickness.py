@@ -1,10 +1,37 @@
 #!/usr/bin/env python3
-"""Export geometry and thickness metadata from template-driven columns.
+"""Export Column Endpoints and Cortical Thickness
 
-The column builder already interpolates FreeSurfer vertexwise thickness with
-the same triangle weights used for the white and pial endpoints. This utility
-validates and exports those per-fsaverage-vertex values without reconstructing
-native surface pairs or assuming that row numbers are native vertex IDs.
+Description
+-----------
+Validate and export per-fsaverage-vertex endpoint, length, thickness, label,
+and analysis-mask metadata from generated column files.
+
+Methods
+-------
+1. Load each hemisphere column NPZ.
+2. Validate required fields and subject/hemisphere identity.
+3. Preserve explicit fsaverage vertex IDs and template labels.
+4. Export compact NPZ and tabular CSV representations.
+
+Inputs
+------
+- Subject ID and directory containing left/right column NPZ files
+- Output directory and optional hemisphere selection
+
+Outputs
+-------
+- Per-hemisphere column-geometry NPZ files
+- Per-hemisphere column-geometry CSV tables
+
+Usage
+-----
+python 03_column/get_thickness.py     --subject-id D0007     --columns-dir /path/to/columns     --output-dir /path/to/column_metadata
+
+Notes
+-----
+- Thickness is the barycentrically interpolated FreeSurfer thickness saved by
+  the column builder.
+- Rows must be interpreted using ``fsaverage_vertex_id``.
 """
 
 from __future__ import annotations

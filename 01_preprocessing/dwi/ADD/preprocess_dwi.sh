@@ -1,4 +1,38 @@
 #!/usr/bin/env bash
+
+# Preprocess ADD Diffusion MRI
+#
+# ## Description
+#
+# Preprocess one ADD/S-series DWI scan without a reverse phase-encoded b0.
+#
+# ## Methods
+#
+# 1. Import FSL gradients and perform MP-PCA denoising and degibbs correction.
+# 2. Run eddy correction with `dwifslpreproc -rpe_none`.
+# 3. Create a corrected mean-b0 BET mask and apply ANTs bias correction.
+# 4. Fit the tensor and derive ADC/MD, FA, AD, and RD.
+#
+# ## Inputs
+#
+# - Raw 4D DWI and FSL bvec/bval files
+# - Output directory and ADD subject ID
+#
+# ## Outputs
+#
+# - Bias-corrected DWI and corrected mean-b0 brain mask
+# - Tensor image and `<SUBJECT_ID>_{adc,fa,ad,rd}.nii.gz`
+#
+# ## Usage
+#
+# bash 01_preprocessing/dwi/ADD/preprocess_dwi.sh \
+#     DWI BVEC BVAL OUTPUT_DIR SUBJECT_ID
+#
+# ## Notes
+#
+# - The current ADD protocol uses PA encoding and readout time 0.119063 s.
+# - No topup susceptibility correction is performed because reverse b0 is absent.
+
 set -euo pipefail
 
 if [[ "$#" -ne 5 ]]; then

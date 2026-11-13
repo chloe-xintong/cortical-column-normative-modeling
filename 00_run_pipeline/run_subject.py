@@ -1,123 +1,45 @@
 #!/usr/bin/env python3
+"""Run the Complete Single-Subject Cortical-Column Pipeline
 
-"""
-Run the complete cortical column pipeline for one subject.
+Description
+-----------
+Run T1 reconstruction, cohort-specific DWI preprocessing, DWI-to-T1
+registration, fsaverage-indexed column construction, metric sampling, and
+optional regional profile generation for one subject.
 
-This is the top-level single-subject runner.
+Methods
+-------
+1. Identify ADRC or ADD from the subject ID prefix.
+2. Run or reuse the FreeSurfer cortical reconstruction.
+3. Run or reuse DWI preprocessing and tensor-derived metrics.
+4. Create the masked DWI registration reference and run bbregister.
+5. Construct native-T1 columns indexed by fsaverage vertices.
+6. Sample MD, FA, AD, and RD along the columns.
+7. Optionally clean profiles and calculate regional means.
 
-The workflow is:
+Inputs
+------
+- Subject ID, raw T1 image, raw DWI, bvec, and bval
+- Subject output directory and optional external processed-data roots
+- ADRC only: reverse-phase b0, phase-encoding direction, and readout time
+- Optional template, thread count, and resume flags
 
-    Raw T1
-        ↓
-    FreeSurfer reconstruction
+Outputs
+-------
+- FreeSurfer reconstruction and processed diffusion metrics
+- DWI registration reference and DWI-to-T1 transform
+- Left/right fsaverage-indexed column files
+- Raw and optional cleaned vertex-level profiles and regional profiles
 
-    Raw DWI
-        ↓
-    Cohort-specific diffusion preprocessing
-        ↓
-    Tensor fitting
-        ↓
-    ADC / MD
+Usage
+-----
+python 00_run_pipeline/run_subject.py     --subject-id D0007     --t1 /path/to/T1.nii.gz     --dwi /path/to/DWI.nii.gz     --bvec /path/to/D0007.bvec     --bval /path/to/D0007.bval     --reverse-phase /path/to/reverse_b0.nii.gz     --pe-dir PA     --readout-time 0.076191     --output-dir /path/to/output/D0007
 
-    Preprocessed DWI
-        ↓
-    Registration reference preparation
-        ↓
-    DWI -> T1 registration
-        ↓
-    Build fsaverage-driven native-T1 cortical columns
-        ↓
-    Sample MD/FA/AD/RD profiles along template columns
-        ↓
-    Bad-column removal
-        ↓
-    Regional mean profiles
-
-
-======================================================================
-COHORT IDENTIFICATION
-======================================================================
-
-The diffusion preprocessing method is selected automatically from the
-subject ID:
-
-    Dxxxx -> ADRC preprocessing
-    Sxxxx -> ADD preprocessing
-
-
-======================================================================
-OUTPUT STRUCTURE
-======================================================================
-
-<output-dir>/
-├── preprocess/
-│   ├── freesurfer/
-│   │   └── <subject-id>/
-│   └── diffusion/
-│
-└── analysis/
-    ├── registration/
-    ├── columns/
-    ├── profiles_before_clean/
-    ├── profiles/
-    └── regional_profiles/
-
-
-======================================================================
-USAGE
-======================================================================
-
-D-series / ADRC example:
-
-python pipeline/run_subject.py \
-    --subject-id D0007 \
-    --t1 /path/to/T1.nii.gz \
-    --dwi /path/to/raw_dwi.nii.gz \
-    --bvec /path/to/D0007.bvec \
-    --bval /path/to/D0007.bval \
-    --reverse-phase /path/to/reverse_phase.nii.gz \
-    --pe-dir PA \
-    --readout-time 0.076191 \
-    --output-dir /path/to/output/D0007
-
-
-S-series / ADD example:
-
-python pipeline/run_subject.py \
-    --subject-id S00775 \
-    --t1 /path/to/T1.nii.gz \
-    --dwi /path/to/raw_dwi.nii.gz \
-    --bvec /path/to/S00775.bvec \
-    --bval /path/to/S00775.bval \
-    --output-dir /path/to/output/S00775
-
-
-======================================================================
-OPTIONAL RESUME MODES
-======================================================================
-
-If FreeSurfer has already been completed:
-
-    --skip-freesurfer
-
-If diffusion preprocessing has already been completed:
-
-    --skip-dwi-preprocess
-
-These options are useful when preprocessing steps must be run on
-different systems because of software-environment requirements.
-
-
-======================================================================
-IMPORTANT
-======================================================================
-
-Required software environments must already be loaded before running
-the corresponding steps.
-
-This runner does not automatically source FreeSurfer, FSL, MRtrix,
-or ANTs environments.
-
+Notes
+-----
+- ``--skip-freesurfer`` and ``--skip-dwi-preprocess`` reuse existing outputs.
+- ``--before-clean`` stops after raw fsaverage vertex profile generation.
+- Required neuroimaging software environments must already be loaded.
 """
 
 import argparse
@@ -139,26 +61,26 @@ PROJECT_ROOT = (
 
 RUN_PREPROCESS = (
     PROJECT_ROOT
-    / "pipeline"
+    / "00_run_pipeline"
     / "run_preprocess.py"
 )
 
 RUN_ANALYSIS = (
     PROJECT_ROOT
-    / "pipeline"
+    / "00_run_pipeline"
     / "run_analysis.py"
 )
 
 RUN_FREESURFER = (
     PROJECT_ROOT
-    / "preprocessing"
+    / "01_preprocessing"
     / "t1"
     / "run_freesurfer.sh"
 )
 
 PREPARE_REGISTRATION_REFERENCE = (
     PROJECT_ROOT
-    / "registration"
+    / "02_registration"
     / "prepare_registration_reference.sh"
 )
 
@@ -695,6 +617,8 @@ def main():
             bval,
             "--output-dir",
             output_dir,
+            "--diffusion-dir",
+            diffusion_dir,
         ]
 
         if cohort == "ADRC":
@@ -795,53 +719,24 @@ def main():
     # ------------------------------------------------------------------
     # ADD / S-series
     #
-    # Historical S-series tensor / column processing uses the 0.5-mm
-    # upsampled DWI and corresponding 0.5-mm mask.
-    #
-    # The NIfTI image does not contain embedded MRtrix gradient metadata,
-    # so convert it to MIF and explicitly attach the original bvec/bval
-    # before calling dwiextract.
+    # The current ADD workflow writes the final bias-corrected DWI as MIF,
+    # with gradients embedded, plus a mask in the same grid.  Use those
+    # products directly; the removed legacy workflow expected 0.5-mm files
+    # that the current preprocessor never creates.
     # ------------------------------------------------------------------
 
     else:
 
-        s_dwi = require_file(
+        registration_dwi = require_file(
             diffusion_dir
-            / f"{subject_id}_05_4D_upsampled.nii.gz",
-            "ADD 0.5-mm DWI",
+            / f"{subject_id}_05_biascorrected.mif",
+            "ADD bias-corrected DWI",
         )
 
         registration_mask = require_file(
             diffusion_dir
-            / f"{subject_id}_05_subjspace_mask_upsampled.nii.gz",
-            "ADD 0.5-mm registration mask",
-        )
-
-        require_command(
-            "mrconvert"
-        )
-
-        registration_dwi = (
-            registration_dir
-            / f"{subject_id}_registration_4D.mif"
-        )
-
-        run_command(
-            [
-                "mrconvert",
-                s_dwi,
-                registration_dwi,
-                "-fslgrad",
-                bvec,
-                bval,
-                "-force",
-            ],
-            "STEP 3A: ATTACH S-SERIES GRADIENTS FOR REGISTRATION",
-        )
-
-        require_file(
-            registration_dwi,
-            "S-series registration DWI",
+            / f"{subject_id}_corrected_mean_b0_brain_mask.nii.gz",
+            "ADD registration mask",
         )
 
 
@@ -923,11 +818,24 @@ def main():
         "Final DWI-to-T1 transform",
     )
 
-    regional_profile_dir = require_dir(
-        analysis_dir
-        / "regional_profiles",
-        "Regional profile directory",
-    )
+    if args.before_clean:
+        raw_profile_dir = require_dir(
+            analysis_dir / "profiles_before_clean",
+            "Raw fsaverage vertex profile directory",
+        )
+        for metric_name in metric_images:
+            for hemisphere in ("lh", "rh"):
+                require_file(
+                    raw_profile_dir
+                    / f"{subject_id}_{hemisphere}_{metric_name}_profiles.npz",
+                    "Raw fsaverage vertex profile",
+                )
+        regional_profile_dir = None
+    else:
+        regional_profile_dir = require_dir(
+            analysis_dir / "regional_profiles",
+            "Regional profile directory",
+        )
 
 
     # ==================================================================
@@ -998,13 +906,12 @@ def main():
 
     print()
 
-    print(
-        "Regional profiles:"
-    )
-
-    print(
-        regional_profile_dir
-    )
+    if regional_profile_dir is not None:
+        print("Regional profiles:")
+        print(regional_profile_dir)
+    else:
+        print("Raw fsaverage vertex profiles:")
+        print(raw_profile_dir)
 
 
 if __name__ == "__main__":

@@ -1,24 +1,52 @@
 #!/usr/bin/env python3
-"""Sample diffusion metrics along fsaverage-driven native columns."""
+"""Sample a Scalar Image Along Fsaverage-Indexed Columns
+
+Description
+-----------
+Sample any 3D scalar image along native-T1 cortical columns after transforming
+their coordinates into the registered DWI voxel grid.
+
+Methods
+-------
+1. Load hemisphere column coordinates and mapping metadata.
+2. Verify that the metric and DWI-reference grids and affines match.
+3. Transform native-T1 column points to DWI voxel coordinates.
+4. Perform trilinear interpolation at every in-bounds depth point.
+5. Save profiles, coordinates, validity masks, and column metadata.
+
+Inputs
+------
+- Subject column NPZ files and arbitrary 3D scalar metric image
+- Metric name, DWI-to-T1 registration, and DWI reference image
+- Output directory and optional hemisphere selection
+
+Outputs
+-------
+- One vertex-by-depth metric profile NPZ per hemisphere
+- DWI voxel coordinates and sampling-validity masks
+
+Usage
+-----
+python 04_profile_sampling/sample_template_columns.py     --subject-id D0007     --columns-dir /path/to/columns     --metric-image /path/to/metric.nii.gz     --metric-name md     --registration /path/to/D0007_DWI2T1.dat     --dwi /path/to/D0007_dwi_masked.nii.gz     --output-dir /path/to/profiles_before_clean
+
+Notes
+-----
+- The metric is not restricted to MD.
+- Metric and reference affine mismatches are rejected before sampling.
+- Output rows retain fsaverage vertex IDs.
+"""
 
 from __future__ import annotations
 
 import argparse
 import logging
 from pathlib import Path
-import sys
 
 import nibabel as nib
 import numpy as np
 from scipy.ndimage import map_coordinates
 
-# The pipeline invokes this file by absolute path.  Add the repository root
-# explicitly so imports work independently of the caller's working directory.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from column.geometry import (
+from transform_t1_columns_to_dwi import (
     load_dwi_geometry,
     load_transform_matrix,
     transform_points_to_dwi,
@@ -42,15 +70,29 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_metric(path: Path) -> np.ndarray:
-    image = nib.load(str(path)).get_fdata(dtype=np.float64)
-    if image.ndim == 4:
-        if image.shape[3] != 1:
-            raise ValueError(f"Expected a 3D metric image, got {image.shape}")
-        image = image[..., 0]
-    if image.ndim != 3:
-        raise ValueError(f"Expected a 3D metric image, got {image.shape}")
-    return image
+def load_metric(path: Path, dwi_path: Path) -> np.ndarray:
+    """Load a scalar image and require the registration-reference grid."""
+
+    metric_image = nib.load(str(path))
+    dwi_image = nib.load(str(dwi_path))
+    metric = metric_image.get_fdata(dtype=np.float64)
+    if metric.ndim == 4:
+        if metric.shape[3] != 1:
+            raise ValueError(f"Expected a 3D metric image, got {metric.shape}")
+        metric = metric[..., 0]
+    if metric.ndim != 3:
+        raise ValueError(f"Expected a 3D metric image, got {metric.shape}")
+    if metric.shape != dwi_image.shape[:3]:
+        raise ValueError(
+            "Metric and DWI-reference dimensions differ: "
+            f"{metric.shape} != {dwi_image.shape[:3]}"
+        )
+    if not np.allclose(metric_image.affine, dwi_image.affine, atol=1e-4):
+        raise ValueError(
+            "Metric and DWI-reference affines differ; resample the metric "
+            "to the registration-reference grid before column sampling."
+        )
+    return metric
 
 
 def sample_columns(
@@ -99,7 +141,7 @@ def process_hemisphere(args: argparse.Namespace, hemisphere: str) -> None:
     with np.load(column_path, allow_pickle=True) as data:
         column_data = {key: data[key] for key in data.files}
 
-    metric = load_metric(args.metric_image)
+    metric = load_metric(args.metric_image, args.dwi)
     transform = load_transform_matrix(args.registration)
     _, t_mov = load_dwi_geometry(args.dwi)
     profiles, dwi_points, in_bounds, sampled_finite, sampling_valid = sample_columns(

@@ -1,12 +1,38 @@
 #!/usr/bin/env python3
-"""Build fsaverage-driven cortical columns in native T1 space.
+"""Build Fsaverage-Indexed Cortical Columns in Native T1 Space
 
-For every vertex on the target template sphere, the script finds the closest
-point on the subject's registered spherical mesh with
-``vtkStaticCellLocator``. The source triangle and barycentric weights are then
-applied to the subject's native white and pial surfaces. Each target vertex
-therefore receives one subject-specific column with 21 points sampled from
-pial to white, including both endpoints.
+Description
+-----------
+Map every fsaverage vertex to a subject's registered spherical surface and
+construct a subject-specific pial-to-white cortical column.
+
+Methods
+-------
+1. Load subject sphere.reg, white, pial, thickness, and template annotation.
+2. Locate the closest subject-sphere triangle for every template vertex.
+3. Calculate barycentric weights at the mapped point.
+4. Interpolate native white/pial endpoints and cortical thickness.
+5. Generate equally spaced pial-to-white column points and validity masks.
+
+Inputs
+------
+- Subject ID and FreeSurfer SUBJECTS_DIR
+- Template name, hemispheres, depth-point count, and output directory
+
+Outputs
+-------
+- One ``*_columns.npz`` file per hemisphere
+- Mapping-QC JSON with coverage, error, and barycentric-weight summaries
+
+Usage
+-----
+python 03_column/build_template_columns.py     --subject-id D0007     --subjects-dir /path/to/freesurfer     --template fsaverage     --output-dir /path/to/output/columns     --points 21
+
+Notes
+-----
+- No DWI or diffusion metric is required.
+- Output rows follow fsaverage vertex order.
+- Depth fraction 0 is pial and depth fraction 1 is white.
 """
 
 from __future__ import annotations

@@ -1,5 +1,38 @@
 #!/usr/bin/env python3
-"""Apply one shared validity mask to template-column metric profiles."""
+"""Apply a Shared Validity Mask to Column Profiles
+
+Description
+-----------
+Create cleaned vertex-level profiles by applying one common validity mask
+across all requested metrics for each hemisphere.
+
+Methods
+-------
+1. Load matching metric-profile NPZ files.
+2. Confirm consistent vertex ordering and profile dimensions.
+3. Combine mapping, bounds, finite-value, analysis, and column-valid masks.
+4. Mark a column invalid in every metric if it fails any requested metric.
+5. Save cleaned profiles and a cleaning summary.
+
+Inputs
+------
+- Subject ID, raw profile directory, and requested metric names
+- Output directory and optional hemisphere selection
+
+Outputs
+-------
+- Cleaned per-metric profile NPZ files
+- Per-hemisphere shared-mask cleaning JSON summaries
+
+Usage
+-----
+python 04_profile_sampling/clean_template_profiles.py     --subject-id D0007     --input-dir /path/to/profiles_before_clean     --output-dir /path/to/profiles     --metrics md fa ad rd
+
+Notes
+-----
+- The same retained vertices are used for every requested metric.
+- Raw input profiles are not overwritten.
+"""
 
 from __future__ import annotations
 

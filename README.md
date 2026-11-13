@@ -32,15 +32,18 @@ depth_index 0   / depth_fraction 0.00 = pial surface
 depth_index 20  / depth_fraction 1.00 = white surface (GM/WM boundary)
 ```
 
+
+
 ## Main entry points
 
 | Task | Entry point |
 | --- | --- |
-| Complete single-subject workflow | `pipeline/run_subject.py` |
-| Preprocessing only | `pipeline/run_preprocess.py` |
-| Analysis from existing FreeSurfer and DWI metrics | `pipeline/run_analysis.py` |
+| Complete single-subject workflow | `00_run_pipeline/run_subject.py` |
+| Preprocessing only | `00_run_pipeline/run_preprocess.py` |
+| Columns only, with optional metric sampling | `00_run_pipeline/run_column_calculation.py` |
+| Analysis from existing FreeSurfer and DWI metrics | `00_run_pipeline/run_analysis.py` |
 | ADRC batch processing | `submit_adrc_template_columns_all.sbatch` |
-| Build template columns directly | `column/build_template_columns.py` |
+| Build template columns directly | `03_column/build_template_columns.py` |
 | Check required FreeSurfer outputs | `qc/check_freesurfer_outputs.py` |
 | Check generated columns | `qc/check_columns.py` |
 | Full-cohort preflight and report | `qc/submit_full_cohort.sh` |
@@ -49,7 +52,7 @@ The complete runner automatically selects ADRC preprocessing for `Dxxxx`
 subjects and ADD preprocessing for `Sxxxx` subjects. Example:
 
 ```bash
-python pipeline/run_subject.py \
+python 00_run_pipeline/run_subject.py \
     --subject-id D0007 \
     --t1 /path/to/T1.nii.gz \
     --dwi /path/to/dwi.nii.gz \
@@ -62,15 +65,32 @@ python pipeline/run_subject.py \
 ```
 
 Use `--skip-freesurfer` or `--skip-dwi-preprocess` to resume from existing
-outputs. Run `python pipeline/run_subject.py --help` for all cohort-specific
+outputs. Run `python 00_run_pipeline/run_subject.py --help` for all cohort-specific
 options.
+
+## Calculate columns without requiring MD
+
+The short runner stops after the two fsaverage-indexed hemisphere column
+files. It needs an existing FreeSurfer reconstruction but does not require a
+DWI or MD image:
+
+```bash
+python 00_run_pipeline/run_column_calculation.py \
+    --subject-id D0007 \
+    --subjects-dir /path/to/freesurfer_subjects \
+    --output-dir /path/to/column_output/D0007
+```
+
+To sample an optional scalar image, add `--metric-image`, `--metric-name`,
+`--registration`, and `--dwi-reference`. The image can be any 3D metric in
+the registration-reference grid; it is not restricted to MD.
 
 ## Run analysis from prepared inputs
 
 When FreeSurfer reconstruction and tensor metrics already exist:
 
 ```bash
-python pipeline/run_analysis.py \
+python 00_run_pipeline/run_analysis.py \
     --subject-id D0007 \
     --subjects-dir /path/to/freesurfer_subjects \
     --md-image /path/to/md.nii.gz \
@@ -114,13 +134,13 @@ runner.
 FreeSurfer reconstruction can also be run directly:
 
 ```bash
-bash preprocessing/t1/run_freesurfer.sh \
+bash 01_preprocessing/t1/run_freesurfer.sh \
     <subject_id> <t1_image> <subjects_dir> [threads]
 ```
 
-DWI preprocessing is coordinated by `pipeline/run_preprocess.py` and delegates
-to the protocol-specific workflows under `preprocessing/dwi/ADRC/` and
-`preprocessing/dwi/ADD/`. Expected tensor products include MD/ADC, FA, AD, and
+DWI preprocessing is coordinated by `00_run_pipeline/run_preprocess.py` and delegates
+to the protocol-specific workflows under `01_preprocessing/dwi/ADRC/` and
+`01_preprocessing/dwi/ADD/`. Expected tensor products include MD/ADC, FA, AD, and
 RD images.
 
 The pipeline expects the required FreeSurfer, FSL, MRtrix, ANTs, and Python
@@ -162,11 +182,11 @@ The former `qc/figure4`, `qc/figure5`, and
 
 | Directory | Purpose |
 | --- | --- |
-| `column/` | Template-to-subject column construction and geometry helpers |
-| `profile_sampling/` | Metric sampling, cleaning, and regional aggregation |
-| `pipeline/` | Single-subject preprocessing and analysis orchestration |
-| `preprocessing/` | Cohort-specific DWI and T1 workflows |
-| `registration/` | DWI-to-T1 registration |
+| `01_preprocessing/` | Cohort-specific DWI and T1 workflows |
+| `02_registration/` | DWI-to-T1 registration |
+| `03_column/` | Template-to-subject mapping and cortical-column construction |
+| `04_profile_sampling/` | T1-to-DWI coordinate conversion and optional metric sampling |
+| `00_run_pipeline/` | Numbered `run_*.py` workflow entry points |
 | `qc/` | Active QC, cohort execution, and archived validation |
 | `analysis_results/` | Figure analyses and cohort audit code |
 | `manifests/` | Frozen subject lists and QC inclusion/exclusion tables |

@@ -1,5 +1,39 @@
 #!/usr/bin/env python3
-"""Aggregate cleaned fsaverage-column profiles by template DK labels."""
+"""Aggregate Vertex Profiles by Template DK Region
+
+Description
+-----------
+Calculate regional mean depth profiles from cleaned fsaverage-indexed vertex
+profiles using the template Desikan-Killiany annotation.
+
+Methods
+-------
+1. Load cleaned hemisphere profiles and saved template labels.
+2. Validate vertex ordering against the template annotation.
+3. Group valid vertices by cortical DK region.
+4. Calculate the mean profile and contributing vertex count per region.
+5. Write regional profiles and quality-assurance tables.
+
+Inputs
+------
+- Subject ID and cleaned profile directory
+- FreeSurfer SUBJECTS_DIR, template name, and metric name
+- Output directory and optional hemisphere selection
+
+Outputs
+-------
+- Regional mean depth-profile CSV files
+- Subject-level regional profile QA summary
+
+Usage
+-----
+python 04_profile_sampling/regional_template_profiles.py     --subject-id D0007     --profile-dir /path/to/profiles     --subjects-dir /path/to/freesurfer     --template fsaverage     --metric-name md     --output-dir /path/to/regional_profiles
+
+Notes
+-----
+- Medial-wall and invalid vertices are excluded through saved masks.
+- Aggregation preserves the pial-to-white depth order.
+"""
 
 from __future__ import annotations
 
