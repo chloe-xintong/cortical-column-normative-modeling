@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
-"""Build Figure 2A/B method-comparison tables for fsaverage profiles."""
+"""Build Figure 2A/B method-comparison tables for fsaverage profiles.
+
+Description
+-----------
+Build Figure 2A/B method-comparison tables for fsaverage profiles.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--method-a`` command-line input
+- ``--method-b`` command-line input
+- ``--results-root`` command-line input
+- ``--freesurfer-subjects-dir`` command-line input
+- ``--subjects-file`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/figure2_method_comparison.py --help
+"""
 
 from __future__ import annotations
 

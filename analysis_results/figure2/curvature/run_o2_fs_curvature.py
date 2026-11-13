@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Resample native FreeSurfer curvature to fsaverage with mri_surf2surf."""
+"""Resample native FreeSurfer curvature to fsaverage with mri_surf2surf.
+
+Description
+-----------
+Resample native FreeSurfer curvature to fsaverage with mri_surf2surf.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject-id`` command-line input
+- ``--hemisphere`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/curvature/run_o2_fs_curvature.py --help
+"""
 
 from __future__ import annotations
 

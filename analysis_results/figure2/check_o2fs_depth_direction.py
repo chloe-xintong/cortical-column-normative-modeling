@@ -1,6 +1,33 @@
 #!/usr/bin/env python3
 
-"""Check O2-FS depth direction and quantify method-comparison scale."""
+"""Check O2-FS depth direction and quantify method-comparison scale.
+
+Description
+-----------
+Check O2-FS depth direction and quantify method-comparison scale.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subjects-file`` command-line input
+- ``--results-root`` command-line input
+- ``--freesurfer-subjects-dir`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/check_o2fs_depth_direction.py --help
+"""
 
 import argparse
 import gc
@@ -606,10 +633,10 @@ def representative_profiles(args, subject, cortex_masks):
         sharex=True,
     )
     styles = {
-        "O2-Column": ("#009E73", "-"),
-        "O2-FS original": ("#D55E00", "-"),
-        "O2-FS reversed": ("#CC79A7", "--"),
-        "O3": ("#0072B2", "-"),
+        "O2-Column": ("#90BEE0", "-"),
+        "O2-FS original": ("#FC8C5A", "-"),
+        "O2-FS reversed": ("#FC8C5A", "--"),
+        "O3": ("#4B74B2", "-"),
     }
     for axis, (hemisphere, vertex_id, profiles) in zip(axes.ravel(), panels):
         for method_name, profile in profiles.items():
@@ -690,7 +717,7 @@ def surface_correlation_distribution(args):
                 "pct_below_0": 100.0 * np.mean(values < 0.0),
             }
         )
-        axis.hist(values, bins=80, color="#0072B2", edgecolor="none")
+        axis.hist(values, bins=80, color="#4B74B2", edgecolor="none")
         axis.axvline(0.8, color="black", linestyle="--", linewidth=0.8)
         axis.axvline(0.9, color="black", linestyle=":", linewidth=0.8)
         title = (

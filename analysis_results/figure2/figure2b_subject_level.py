@@ -1,10 +1,32 @@
 #!/usr/bin/env python3
 """Build Figure 2B subject-level summaries from cached vertex metrics.
 
+Description
+-----------
 This intentionally does not reload profile inputs or recompute per-vertex MAE.
 It reads the existing Figure 2 vertex-metrics Parquet files, pools valid LH/RH
 vertices within each subject, and writes subject-weighted curvature-bin and
 Spearman summaries.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--input-dir`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/figure2b_subject_level.py --help
 """
 
 from __future__ import annotations

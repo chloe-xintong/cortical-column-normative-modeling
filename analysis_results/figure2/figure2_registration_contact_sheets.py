@@ -1,8 +1,32 @@
 #!/usr/bin/env python3
 """Render b0 contact sheets with T1 surfaces transformed into DWI space.
 
-The transform implementation intentionally reuses ``column.geometry`` so the
-white/pial vertices use the same FreeSurfer register.dat convention as O3.
+Description
+-----------
+The transform implementation intentionally reuses
+``04_profile_sampling/transform_t1_columns_to_dwi.py`` so the white/pial
+vertices use the same FreeSurfer register.dat convention as O3.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--review-queue`` command-line input
+- ``--registration-qc`` command-line input
+- ``--output-dir`` command-line input
+- ``--subject-id`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/figure2_registration_contact_sheets.py --help
 """
 
 from __future__ import annotations
@@ -57,8 +81,8 @@ def projected_surface_points(vertices: np.ndarray, axis: int, index: int, width:
 def main() -> None:
     args = parse_args()
     repo_root = Path(__file__).resolve().parents[2]
-    sys.path.insert(0, str(repo_root))
-    from column.geometry import load_dwi_geometry, load_transform_matrix, transform_points_to_dwi
+    sys.path.insert(0, str(repo_root / "04_profile_sampling"))
+    from transform_t1_columns_to_dwi import load_dwi_geometry, load_transform_matrix, transform_points_to_dwi
 
     queue = pd.read_csv(args.review_queue, dtype={"subject_id": str}).set_index("subject_id")
     qc = pd.read_csv(args.registration_qc, dtype={"subject_id": str}).set_index("subject_id")
@@ -87,7 +111,7 @@ def main() -> None:
             ax = axes[row, column]
             ax.imshow(image_plane(b0_data, axis, index), cmap="gray", origin="lower", vmin=lo, vmax=hi, interpolation="nearest")
             for hemi in ("lh", "rh"):
-                for boundary, color, name in (("white", "#B2182B", "white"), ("pial", "#E69F00", "pial")):
+                for boundary, color, name in (("white", "#DB3124", "white"), ("pial", "#FC8C5A", "pial")):
                     x, y = projected_surface_points(surfaces[f"{hemi}_{boundary}"], axis, index)
                     ax.scatter(x, y, s=.22, c=color, linewidths=0, alpha=.90, rasterized=True, label=name if row == 0 and column == 0 else None)
             ax.set_title(f"{orientation}: voxel {index}", fontsize=9)

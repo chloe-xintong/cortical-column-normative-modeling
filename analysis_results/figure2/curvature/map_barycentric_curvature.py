@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Map native FreeSurfer curvature to template vertices with saved weights."""
+"""Map native FreeSurfer curvature to template vertices with saved weights.
+
+Description
+-----------
+Map native FreeSurfer curvature to template vertices with saved weights.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject-id`` command-line input
+- ``--hemisphere`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--mapping-file`` command-line input
+- ``--output`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/curvature/map_barycentric_curvature.py --help
+"""
 
 from __future__ import annotations
 

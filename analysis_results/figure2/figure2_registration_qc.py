@@ -1,6 +1,31 @@
 #!/usr/bin/env python3
 
-"""Summarize existing bbregister minimum-cost outputs for Figure 2C."""
+"""Summarize existing bbregister minimum-cost outputs for Figure 2C.
+
+Description
+-----------
+Summarize existing bbregister minimum-cost outputs for Figure 2C.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/figure2_registration_qc.py --help
+"""
 
 import argparse
 import shlex
@@ -318,10 +343,10 @@ def plot_registration_cost(table, summary, output_dir, threshold):
 
     fig, ax = plt.subplots(figsize=(10, 4.8))
     styles = {
-        "included/pass": ("#0072B2", "o"),
-        "review": ("#E69F00", "o"),
+        "included/pass": ("#4B74B2", "o"),
+        "review": ("#FC8C5A", "o"),
         "not reviewed": ("#8C8C8C", "o"),
-        "excluded/fail": ("#D55E00", "x"),
+        "excluded/fail": ("#FC8C5A", "x"),
     }
     for status, (color, marker) in styles.items():
         part = valid.loc[valid["plot_status"].eq(status)]
@@ -377,8 +402,8 @@ def plot_registration_cost(table, summary, output_dir, threshold):
     mad = np.median(np.abs(valid["bbregister_mincost"] - median))
     robust_cost_threshold = median + threshold * mad / 0.6745
 
-    ax.axhspan(q25, q75, color="#0072B2", alpha=0.10, label="cohort IQR")
-    ax.axhline(median, color="#0072B2", linestyle="--", linewidth=1.2)
+    ax.axhspan(q25, q75, color="#4B74B2", alpha=0.10, label="cohort IQR")
+    ax.axhline(median, color="#4B74B2", linestyle="--", linewidth=1.2)
     ax.axhline(
         robust_cost_threshold,
         color="black",
@@ -388,7 +413,7 @@ def plot_registration_cost(table, summary, output_dir, threshold):
     )
     ax.axhline(
         0.5,
-        color="#CC79A7",
+        color="#FC8C5A",
         linestyle=":",
         linewidth=1.0,
         label="0.5 tutorial reference only",

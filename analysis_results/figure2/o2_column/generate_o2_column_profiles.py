@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Generate O2-Column profiles from native-column profiles and mapping weights."""
+"""Generate O2-Column profiles from native-column profiles and mapping weights.
+
+Description
+-----------
+Generate O2-Column profiles from native-column profiles and mapping weights.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject-id`` command-line input
+- ``--hemisphere`` command-line input
+- ``--template`` command-line input
+- ``--mapping-root`` command-line input
+- ``--output`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure2/o2_column/generate_o2_column_profiles.py --help
+"""
 
 from __future__ import annotations
 
