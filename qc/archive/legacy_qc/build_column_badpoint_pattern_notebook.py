@@ -1,3 +1,27 @@
+"""Build Column Badpoint Pattern Notebook
+
+Description
+-----------
+Build Column Badpoint Pattern Notebook
+
+Methods
+-------
+1. Provide the reusable computations defined in this module.
+2. Return results to the calling analysis code.
+
+Inputs
+------
+- Data supplied through the module's public function arguments.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+Import this module from the calling analysis code; it has no command-line entry point.
+"""
+
 import json
 from pathlib import Path
 

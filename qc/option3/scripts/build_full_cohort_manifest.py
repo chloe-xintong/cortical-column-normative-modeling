@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Inventory the complete fsaverage O3 cohort without changing its outputs."""
+"""Inventory the complete fsaverage O3 cohort without changing its outputs.
+
+Description
+-----------
+Inventory the complete fsaverage O3 cohort without changing its outputs.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--o3-root`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--dwi-root`` command-line input
+- ``--output-manifest`` command-line input
+- ``--inventory-output`` command-line input
+- ``--missing-output`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/option3/scripts/build_full_cohort_manifest.py --help
+"""
 
 from __future__ import annotations
 

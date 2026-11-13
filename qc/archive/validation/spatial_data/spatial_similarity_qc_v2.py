@@ -1,11 +1,34 @@
 #!/usr/bin/env python3
 """Physical-space column spatial QC with paired and continuous summaries.
 
+Description
+-----------
 This preserves the original nearby-versus-distant definition: 20 nearest
 columns versus 20 columns sampled from the farthest 25% within the same
 subject, hemisphere, and aparc region.  It additionally reports cleaning
 exclusion, paired-unit counts, sampled continuous distance trends, and
 within-group Spearman correlations.  It does not change any profile data.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--input-root`` command-line input
+- ``--dwi-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/spatial_data/spatial_similarity_qc_v2.py --help
 """
 from __future__ import annotations
 

@@ -1,5 +1,28 @@
 #!/usr/bin/env python
-"""Normalize method labels in existing surface-resampling outputs."""
+"""Normalize method labels in existing surface-resampling outputs.
+
+Description
+-----------
+Normalize method labels in existing surface-resampling outputs.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--results-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/interpolation_order/py/normalize_method_metadata.py --help
+"""
 
 from __future__ import annotations
 

@@ -1,9 +1,34 @@
 #!/usr/bin/env python3
 """Extract bad-point locations from raw cortical profiles before cleaning.
 
+Description
+-----------
 The script is deliberately independent of Jupyter. It reads one profile CSV
 at a time and writes only bad columns by default, so it does not keep the
 cohort in memory and does not modify any input profile.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--profiles-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--depths`` command-line input
+- ``--include-valid`` command-line input
+- ``--overwrite`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/bad_point_cleaning/extract_column_badpoint_table.py --help
 """
 from __future__ import annotations
 

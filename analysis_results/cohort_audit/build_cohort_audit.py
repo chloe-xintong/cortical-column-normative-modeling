@@ -1,10 +1,41 @@
 #!/usr/bin/env python3
 """Build one auditable subject-flow record for Figures 2, 4, and 5.
 
+Description
+-----------
 This script reports the currently implemented cohort rules.  It does not
 change any analysis cohort.  In particular, the source label
 ``REVIEW (ambiguous)`` is preserved as supplied; it is not re-derived because
 the supplied QIAL table has no scan date or exact scan-to-visit day gap.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--metadata`` command-line input
+- ``--figure5-manifest`` command-line input
+- ``--figure4-historical-manifest`` command-line input
+- ``--figure4-active-manifest`` command-line input
+- ``--registration-exclusions`` command-line input
+- ``--figure2-ab-subjects`` command-line input
+- ``--figure2-registration-manifest`` command-line input
+- ``--figure5-candidate-coverage`` command-line input
+- ``--figure5-final-subjects`` command-line input
+- ``--profile-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/cohort_audit/build_cohort_audit.py --help
 """
 
 from __future__ import annotations

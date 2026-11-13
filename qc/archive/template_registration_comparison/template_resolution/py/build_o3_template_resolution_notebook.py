@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
-"""Build the summary-only O3 fsaverage versus fsaverage6 notebook."""
+"""Build the summary-only O3 fsaverage versus fsaverage6 notebook.
+
+Description
+-----------
+Build the summary-only O3 fsaverage versus fsaverage6 notebook.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- No required command-line inputs; optional inputs are defined by the script.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/template_resolution/py/build_o3_template_resolution_notebook.py --help
+"""
 
 from __future__ import annotations
 

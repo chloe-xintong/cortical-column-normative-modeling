@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Run cleaning on a copied subject and write the formal column output."""
+"""Run cleaning on a copied subject and write the formal column output.
+
+Description
+-----------
+Run cleaning on a copied subject and write the formal column output.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject`` command-line input
+- ``--analysis-root`` command-line input
+- ``--output-root`` command-line input
+- ``--staging-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/bad_point_cleaning/dry_run_cleaned_column_output.py --help
+"""
 import argparse
 import os
 import shutil

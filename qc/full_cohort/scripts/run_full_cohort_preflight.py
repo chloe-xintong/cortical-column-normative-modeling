@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Run the two-subject automatic gate before full-cohort submission."""
+"""Run the two-subject automatic gate before full-cohort submission.
+
+Description
+-----------
+Run the two-subject automatic gate before full-cohort submission.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--output-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/full_cohort/scripts/run_full_cohort_preflight.py --help
+"""
 
 from __future__ import annotations
 

@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Compute within-region nearby-versus-distant column profile similarity."""
+"""Compute within-region nearby-versus-distant column profile similarity.
+
+Description
+-----------
+Compute within-region nearby-versus-distant column profile similarity.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--input-root`` command-line input
+- ``--dwi-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--k`` command-line input
+- ``--seed`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/spatial_data/spatial_similarity_qc.py --help
+"""
 import argparse
 import csv
 import subprocess

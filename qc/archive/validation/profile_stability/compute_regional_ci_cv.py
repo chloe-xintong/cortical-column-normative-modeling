@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Compute cleaned-profile CI/CV summaries outside Jupyter."""
+"""Compute cleaned-profile CI/CV summaries outside Jupyter.
+
+Description
+-----------
+Compute cleaned-profile CI/CV summaries outside Jupyter.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--input-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/profile_stability/compute_regional_ci_cv.py --help
+"""
 import argparse
 import csv
 import re

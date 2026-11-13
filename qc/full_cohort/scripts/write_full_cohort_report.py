@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Write a final machine-readable status report without running notebooks."""
+"""Write a final machine-readable status report without running notebooks.
+
+Description
+-----------
+Write a final machine-readable status report without running notebooks.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--option3-summary-dir`` command-line input
+- ``--figure4-real-summary-dir`` command-line input
+- ``--figure4-null-summary-dir`` command-line input
+- ``--method-comparison-manifest`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/full_cohort/scripts/write_full_cohort_report.py --help
+"""
 
 from __future__ import annotations
 

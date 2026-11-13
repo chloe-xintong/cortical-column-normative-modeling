@@ -1,22 +1,27 @@
-"""
-Check FreeSurfer outputs required for cortical column generation.
+"""Check FreeSurfer outputs required for cortical column generation.
 
+Description
+-----------
 This script verifies that the white and pial surfaces, cortical thickness,
 and aparc annotation files are present and aligned for both hemispheres.
 
-For each hemisphere, it checks:
-- white and pial surfaces have the same number of vertices
-- white and pial surfaces have the same mesh topology
-- cortical thickness values match the number of surface vertices
-- aparc annotation labels match the number of surface vertices
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
 
-These checks confirm the vertex-wise correspondence used later in the
-column pipeline:
+Inputs
+------
+- ``subject_dir`` command-line input
 
-    white[i] <-> pial[i] <-> thickness[i] <-> aparc[i]
+Outputs
+-------
+- In-memory values returned to the calling code.
 
-Usage:
-    python qc/check_freesurfer_outputs.py <freesurfer_subject_dir>
+Usage
+-----
+python qc/check_freesurfer_outputs.py --help
 """
 from pathlib import Path
 import argparse

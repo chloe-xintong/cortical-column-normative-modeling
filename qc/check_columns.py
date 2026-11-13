@@ -1,33 +1,31 @@
 #!/usr/bin/env python
 
-"""
-Check cortical column outputs generated from FreeSurfer surfaces.
+"""Check cortical column outputs generated from FreeSurfer surfaces.
 
+Description
+-----------
 This script verifies that the generated pair and column files are
 internally consistent for both hemispheres.
 
-For each hemisphere, it checks:
-- pair data have shape (N, 6)
-- column points have shape (N * points_num, 3)
-- column points can be reshaped to (N, points_num, 3)
-- the first column point matches the pial endpoint
-- the last column point matches the white endpoint
-- the midpoint matches the expected linear interpolation
-- all column points follow the expected straight-line interpolation
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
 
-These checks confirm that each cortical column was constructed correctly
-from the corresponding white and pial surface vertices.
+Inputs
+------
+- ``--column-dir`` command-line input
+- ``--subject-id`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
 
-Usage:
-    python qc/check_columns.py \
-        --column-dir <column_output_dir> \
-        --subject-id <subject_id>
+Outputs
+-------
+- In-memory values returned to the calling code.
 
-Optional:
-    --points <number_of_points>
-
-Default:
-    21 points per column
+Usage
+-----
+python qc/check_columns.py --help
 """
 
 import argparse

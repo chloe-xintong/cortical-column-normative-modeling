@@ -1,9 +1,34 @@
 #!/usr/bin/env python
 """Compute the interpolation-order comparison outside the notebook.
 
+Description
+-----------
 The script compares O2-Column and O3-Coordinate in template space. It owns
 the expensive array, vertex, group, and cross-subject calculations. The
 companion notebook only reads the tables and figures produced here.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--o2-root`` command-line input
+- ``--o3-root`` command-line input
+- ``--template`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/interpolation_order/py/compare_o2_column_o3_coordinate.py --help
 """
 
 from __future__ import annotations

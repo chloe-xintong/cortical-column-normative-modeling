@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
-"""Compare four fsaverage regional MD profile methods."""
+"""Compare four fsaverage regional MD profile methods.
+
+Description
+-----------
+Compare four fsaverage regional MD profile methods.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--native-profile-root`` command-line input
+- ``--o2-root`` command-line input
+- ``--o2-column-root`` command-line input
+- ``--o3-root`` command-line input
+- ``--freesurfer-subjects-dir`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/regional_profiles/py/compare_method_regional_profiles.py --help
+"""
 
 from __future__ import annotations
 

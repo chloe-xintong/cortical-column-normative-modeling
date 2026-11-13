@@ -1,8 +1,30 @@
 #!/usr/bin/env python3
 """Build a file-level inventory for ADRC DWI/T1 preprocessing inputs.
 
+Description
+-----------
 This script only reads raw folders and optional Excel metadata. It does not
 run preprocessing or alter any files.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--raw-root`` command-line input
+- ``--output`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python data_preparation/data_inventory/build_adrc_data_inventory.py --help
 """
 
 import argparse

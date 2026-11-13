@@ -1,9 +1,35 @@
 #!/usr/bin/env python
 """Compute provenance QC and supplementary interpolation-order analyses.
 
+Description
+-----------
 This script reads the existing fsaverage O2-Column, O3-Coordinate, and O2-FS
 profiles. It does not rerun volume sampling or surface mapping. Outputs are
 written beside the primary Python comparison results for the summary notebook.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--o2-root`` command-line input
+- ``--o3-root`` command-line input
+- ``--o2fs-root`` command-line input
+- ``--template`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/interpolation_order/py/supplementary_interpolation_order_analysis.py --help
 """
 
 from __future__ import annotations

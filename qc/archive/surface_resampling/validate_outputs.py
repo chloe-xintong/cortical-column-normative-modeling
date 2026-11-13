@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Validate surface-resampling profiles and summarize each subject output."""
+"""Validate surface-resampling profiles and summarize each subject output.
+
+Description
+-----------
+Validate surface-resampling profiles and summarize each subject output.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--profiles`` command-line input
+- ``--template`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/surface_resampling/validate_outputs.py --help
+"""
 
 from __future__ import annotations
 

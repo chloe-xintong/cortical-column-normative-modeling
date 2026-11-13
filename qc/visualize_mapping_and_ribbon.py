@@ -1,29 +1,34 @@
 #!/usr/bin/env python3
 """Create presentation figures from a real template-to-subject mapping.
 
+Description
+-----------
 The script intentionally *reads* the mapping recorded by
 ``build_template_columns.py`` rather than recomputing it.  It produces two
 figures for one fsaverage vertex:
 
-1. ``*_sphere_mapping``: fsaverage and subject ``sphere.reg`` meshes, the
-   template target vertex, its mapped source triangle, and barycentric point.
-2. ``*_cortical_ribbon``: a local native white/pial patch and the recorded
-   pial-to-white column (including every saved depth point).
-
-Example
+Methods
 -------
-python qc/visualize_mapping_and_ribbon.py \
-    --subjects-dir /path/to/freesurfer/subjects \
-    --subject-id S00775 \
-    --columns-npz /path/to/S00775_lh_columns.npz \
-    --hemisphere lh \
-    --vertex-id 154 \
-    --output-dir figures/S00775_lh_v154
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
 
-The default output is PNG (300 dpi) and SVG, suitable for inserting into a
-slide.  ``--vertex-id`` is a fsaverage vertex ID, which is the row index in
-the columns file.  If it is omitted, the first valid in-analysis column is
-used.
+Inputs
+------
+- ``--subjects-dir`` command-line input
+- ``--subject-id`` command-line input
+- ``--columns-npz`` command-line input
+- ``--hemisphere`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/visualize_mapping_and_ribbon.py --help
 """
 
 from __future__ import annotations

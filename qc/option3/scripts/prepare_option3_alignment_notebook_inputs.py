@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Prepare Option 3 Alignment QC notebook tables from completed cohort caches."""
+"""Prepare Option 3 Alignment QC notebook tables from completed cohort caches.
+
+Description
+-----------
+Prepare Option 3 Alignment QC notebook tables from completed cohort caches.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--source-dir`` command-line input
+- ``--output-dir`` command-line input
+- ``--coverage-review-pct`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/option3/scripts/prepare_option3_alignment_notebook_inputs.py --help
+"""
 
 from __future__ import annotations
 

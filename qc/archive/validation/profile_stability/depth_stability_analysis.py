@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Streaming MD depth and within-region profile stability summaries."""
+"""Streaming MD depth and within-region profile stability summaries.
+
+Description
+-----------
+Streaming MD depth and within-region profile stability summaries.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--input-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--max-subjects`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+python qc/archive/validation/profile_stability/depth_stability_analysis.py --help
+"""
 import argparse, csv
 from pathlib import Path
 import numpy as np

@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Combine per-subject O3 QC caches and report cohort completion."""
+"""Combine per-subject O3 QC caches and report cohort completion.
+
+Description
+-----------
+Combine per-subject O3 QC caches and report cohort completion.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/option3/scripts/summarize_option3_qc.py --help
+"""
 
 from __future__ import annotations
 

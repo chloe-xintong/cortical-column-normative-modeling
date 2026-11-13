@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Build LOW/ambiguous subject and visit lists for hospital data review."""
+"""Build LOW/ambiguous subject and visit lists for hospital data review.
+
+Description
+-----------
+Build LOW/ambiguous subject and visit lists for hospital data review.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--metadata`` command-line input
+- ``--visit-audit`` command-line input
+- ``--exclusions`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/cohort_audit/build_low_ambiguous_hospital_review.py --help
+"""
 
 from __future__ import annotations
 

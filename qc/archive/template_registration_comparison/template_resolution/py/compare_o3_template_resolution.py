@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
 """Compare fsaverage and fsaverage6 using existing O3-Coordinate profiles.
 
+Description
+-----------
 This script does not run surface mapping or sample an MD volume. It reads the
 already generated O3 profiles, builds one fixed fsaverage-to-fsaverage6
 correspondence from the registration spheres, and calculates resolution and
 surface-area-matched spatial-group summaries.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/template_resolution/py/compare_o3_template_resolution.py --help
 """
 
 from __future__ import annotations

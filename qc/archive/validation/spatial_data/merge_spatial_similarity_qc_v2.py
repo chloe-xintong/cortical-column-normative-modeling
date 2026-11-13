@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Merge completed spatial-QC v2 shards without requiring every shard to succeed."""
+"""Merge completed spatial-QC v2 shards without requiring every shard to succeed.
+
+Description
+-----------
+Merge completed spatial-QC v2 shards without requiring every shard to succeed.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--shards-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--expected-shards`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/validation/spatial_data/merge_spatial_similarity_qc_v2.py --help
+"""
 import argparse
 from pathlib import Path
 import pandas as pd

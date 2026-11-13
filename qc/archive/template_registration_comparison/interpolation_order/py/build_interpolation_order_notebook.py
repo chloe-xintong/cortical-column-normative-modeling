@@ -1,5 +1,27 @@
 #!/usr/bin/env python
-"""Build the summary-only interpolation-order comparison notebook."""
+"""Build the summary-only interpolation-order comparison notebook.
+
+Description
+-----------
+Build the summary-only interpolation-order comparison notebook.
+
+Methods
+-------
+1. Provide the reusable computations defined in this module.
+2. Return results to the calling analysis code.
+
+Inputs
+------
+- Data supplied through the module's public function arguments.
+
+Outputs
+-------
+- In-memory values returned to the calling code.
+
+Usage
+-----
+Import this module and call ``markdown(...)``; it has no command-line entry point.
+"""
 
 from __future__ import annotations
 

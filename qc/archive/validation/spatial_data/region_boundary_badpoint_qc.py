@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Compare bad-column rates at cortical region boundaries versus interiors."""
+"""Compare bad-column rates at cortical region boundaries versus interiors.
+
+Description
+-----------
+Compare bad-column rates at cortical region boundaries versus interiors.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--profiles-root`` command-line input
+- ``--subjects-root`` command-line input
+- ``--qc-root`` command-line input
+- ``--boundary-layers`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/validation/spatial_data/region_boundary_badpoint_qc.py --help
+"""
 from __future__ import annotations
 
 import argparse

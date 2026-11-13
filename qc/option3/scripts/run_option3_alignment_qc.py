@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
-"""Compute revised Option 3 QC tables and figures outside the presentation notebook."""
+"""Compute revised Option 3 QC tables and figures outside the presentation notebook.
+
+Description
+-----------
+Compute revised Option 3 QC tables and figures outside the presentation notebook.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--output-dir`` command-line input
+- ``--covariates`` command-line input
+- ``--limit`` command-line input
+- ``--zero-length-tolerance-mm`` command-line input
+- ``--coverage-review-pct`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/option3/scripts/run_option3_alignment_qc.py --help
+"""
 import argparse
 from pathlib import Path
 import matplotlib

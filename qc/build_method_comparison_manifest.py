@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Inventory subjects with complete O2-Column, O2-FS, and O3 fsaverage data."""
+"""Inventory subjects with complete O2-Column, O2-FS, and O3 fsaverage data.
+
+Description
+-----------
+Inventory subjects with complete O2-Column, O2-FS, and O3 fsaverage data.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject-list`` command-line input
+- ``--o3-root`` command-line input
+- ``--o2-column-root`` command-line input
+- ``--o2-fs-root`` command-line input
+- ``--output`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/build_method_comparison_manifest.py --help
+"""
 
 from __future__ import annotations
 

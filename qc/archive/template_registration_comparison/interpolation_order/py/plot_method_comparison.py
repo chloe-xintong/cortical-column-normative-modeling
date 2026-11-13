@@ -1,5 +1,28 @@
 #!/usr/bin/env python
-"""Plot the paired O2-Column versus O3-Coordinate comparison tables."""
+"""Plot the paired O2-Column versus O3-Coordinate comparison tables.
+
+Description
+-----------
+Plot the paired O2-Column versus O3-Coordinate comparison tables.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--comparison-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python qc/archive/template_registration_comparison/interpolation_order/py/plot_method_comparison.py --help
+"""
 
 from __future__ import annotations
 

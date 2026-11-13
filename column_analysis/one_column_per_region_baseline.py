@@ -1,14 +1,33 @@
 #!/usr/bin/env python3
 """Build one regional baseline column per subject and hemisphere.
 
+Description
+-----------
 For every subject, hemisphere, and FreeSurfer cortical region, this script
 computes the mean MD profile across valid native columns and a regional
 cortical-thickness summary.  The profile contains 21 depth values, with
 depth 0 at the white-matter surface and depth 20 at the pial surface.
 
-The script validates the relationship between the region column file and
-the MD profile file.  It does not assume that files from different regions or
-hemispheres can be combined.
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--analysis-root`` command-line input
+- ``--freesurfer-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python column_analysis/one_column_per_region_baseline.py --help
 """
 
 from __future__ import annotations
