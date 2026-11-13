@@ -31,6 +31,7 @@ Each column has 21 points in **pial-to-white** order:
 depth_index 0   / depth_fraction 0.00 = pial surface
 depth_index 20  / depth_fraction 1.00 = white surface (GM/WM boundary)
 ```
+<img width="1061" height="556" alt="image" src="https://github.com/user-attachments/assets/8aee232d-3cfe-46f8-8629-3f20b9f35201" />
 
 
 
