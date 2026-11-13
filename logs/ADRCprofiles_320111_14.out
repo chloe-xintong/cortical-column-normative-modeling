@@ -1,0 +1,1810 @@
+Job 320126 started at Thu Sep 10 12:06:00 PM EDT 2026
+Job Name: ADRCprofiles
+Running on node: kythira
+Subject=D0114 Node=kythira.cluster.local
+Using existing DWI and FreeSurfer outputs; preprocessing disabled
+
+Summed DWI size:
+164 328 122
+
+Registration mask size:
+164 328 122
+
+Registration reference preparation completed.
+
+Registration mask:
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_corrected_mean_b0_brain_mask.nii.gz
+
+Summed DWI:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_sum.nii.gz
+
+3D masked DWI for registration:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz
+
+Final registration DWI size:
+164 328 122
+Subject:      D0114
+Moving image: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz
+SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Output:       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat
+tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469
+Log file is /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.log
+Thu Sep 10 12:07:10 PM EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+/home/apps//freesurfer/bin/bbregister --s D0114 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat --sd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --dti --init-fsl --12
+
+bbregister 7.4.1
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+FREESURFER_HOME /home/apps//freesurfer
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii...
+fslregister --s D0114 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+
+Log file is /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat.fslregister.log
+
+Thu Sep 10 12:07:11 PM EDT 2026
+--s D0114 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+fslregister 7.4.1
+kythira.cluster.local
+Linux kythira.cluster.local 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+nIters 1
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/refvol.fslregister.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/refvol.fslregister.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/brainmask.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/refvol.fslregister.nii...
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii --frame 0
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii --frame 0 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+keeping frame 0
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii...
+Mov determinant is 1
+Swapping dims for pos det
+WARNING:: Flipping Left/Right orientation (as det < 0)
+target  volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/swapreg.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+INFO: target does not conform to COR format, so I'm going to
+reslice to COR. This will not affect the final registration.
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant -1
+subject = subject-unknown
+RegMat ---------------------------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   1.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+tkregister2_cmdl --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/reg0.826891.dat --targ brainmask --fstarg --regheader --fslregout /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat.fsl.mat0 --s D0114 --noedit
+target  volume brainmask
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/reg0.826891.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/brainmask.mgz
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   1.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   1.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant 1
+subject = D0114
+RegMat ---------------------------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   1.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+FSLOUTPUTTYPE NIFTI 
+tkreg2FSL: mov det = -1, ref det = -1
+Thu Sep 10 12:07:13 PM EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/fsl.5.0.2.xyztrans.sch -init /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat.fsl.mat0
+Thu Sep 10 12:07:42 PM EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat.fsl.mat -init /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/flirt.newdefault.20080811.sch
+tkregister2_cmdl --s D0114 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii --targ brainmask --fstarg --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --fslreg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat.fsl.mat --noedit
+---- FSL registration matrix --------
+ 0.99930   0.00504  -0.03700   49.25390;
+-0.03723   0.05951  -0.99753   175.32201;
+-0.00283   0.99822   0.05966  -37.74920;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+target  volume brainmask
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/brainmask.mgz
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/movvol.fslregister.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 0, float2int = 0
+FSLOUTPUTTYPE NIFTI 
+fsl2TkReg: mov det = -1, ref det = -1
+---- Input registration matrix (computed) --------
+ 0.99930   0.00283  -0.03723   2.01574;
+ 0.03700   0.05966   0.99753  -6.81961;
+ 0.00504  -0.99821   0.05951   0.96593;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+ 0.99930   0.00283  -0.03723   2.01574;
+ 0.03700   0.05966   0.99753  -6.81961;
+ 0.00504  -0.99821   0.05951   0.96593;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant 0.999999
+subject = D0114
+RegMat ---------------------------
+ 0.99930   0.00283  -0.03723   2.01574;
+ 0.03700   0.05966   0.99753  -6.81961;
+ 0.00504  -0.99821   0.05951   0.96593;
+ 0.00000   0.00000   0.00000   1.00000;
+mri_matrix_multiply -im /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/fslregister/swapreg.dat -im /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat -om /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat
+ 
+Started at Thu Sep 10 12:07:11 PM EDT 2026 
+Ended   at Thu Sep 10 12:08:15 PM EDT 2026
+ 
+fslregister Done
+ 
+To check results, run:
+tkregisterfv --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --surf orig
+ 
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white --gm-proj-frac 0.5 --gm-gt-wm 0.5
+7.4.1
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white --gm-proj-frac 0.5 --gm-gt-wm 0.5 
+sysname  Linux
+hostname kythira.cluster.local
+machine  x86_64
+user     xintong
+movvol /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii
+regfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.init.dat
+subject D0114
+dof 6
+outregfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 100
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000100
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1789710241
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+-0.99930  -0.00283   0.03723  -1.01574;
+ 0.03700   0.05966   0.99753  -6.81961;
+ 0.00504  -0.99822   0.05951   0.96593;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Loading mov
+ExcludeZeroVoxels 1
+Reading in targ vol /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/orig.mgz
+Projecting LH Surfs
+Loading lh.white surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white surf
+Loading rh.thickness for GM
+Projecting RH Surfs
+Using lh.cortex.label
+Using rh.cortex.label
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.005505
+ 1  -25.0 -25.0  25.0   1.068757
+ 2  -25.0  25.0 -25.0   1.040845
+ 3  -25.0  25.0  25.0   1.012617
+ 4   25.0 -25.0 -25.0   1.015948
+ 5   25.0 -25.0  25.0   1.007577
+ 6   25.0  25.0 -25.0   1.007057
+ 7   25.0  25.0  25.0   1.023214
+REL:  8  0.803145    8.181521  1.022690 rel = 0.785326 
+Initial costs ----------------
+Number of surface hits 2646
+WM  Intensity 158732493.4769 +/- 39274164.8711
+Ctx Intensity 163537724.9101 +/- 39720744.4746
+Pct Contrast      3.0440 +/-  18.4734
+Cost   0.8031
+RelCost   0.7853
+
+------------------------------------
+Brute force preopt -4 4 4, n = 729
+     0  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000      1.0212   1.0212  0.0
+     1  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000   0.0000      1.0140   1.0140  0.0
+     2  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000   4.0000      0.9968   0.9968  0.0
+     8  -4.0000  -4.0000  -4.0000  -4.0000   4.0000   4.0000      0.9233   0.9233  0.0
+    42  -4.0000  -4.0000   0.0000   0.0000   4.0000  -4.0000      0.9223   0.9223  0.0
+    43  -4.0000  -4.0000   0.0000   0.0000   4.0000   0.0000      0.8691   0.8691  0.0
+   133  -4.0000   0.0000   0.0000   4.0000   4.0000   0.0000      0.8556   0.8556  0.0
+   272   0.0000  -4.0000   0.0000  -4.0000  -4.0000   4.0000      0.8479   0.8479  0.0
+   283   0.0000  -4.0000   0.0000   0.0000   0.0000   0.0000      0.6864   0.6864  0.0
+Brute Force --------------------------
+Min cost was 0.686358
+Number of iterations   729
+Search time 1.271128 sec
+Parameters at best (transmm, rotdeg)
+  0.000  -4.000   0.000  0.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 6
+0 0
+1 -4
+2 0
+3 0
+4 0
+5 0
+fs_powell::minimize
+  nparams 6
+  maxfev 36
+  ftol   0.000100
+  linmin_xtol_   0.001000
+  powell nthiter 0: fret = 0.686358
+   9 -0.056 -4.000  0.000  0.000  0.000  0.000   0.6859553362
+  10 -0.053 -4.000  0.000  0.000  0.000  0.000   0.6859452504
+  11 -0.044 -4.000  0.000  0.000  0.000  0.000   0.6859153942
+  14 -0.041 -4.000  0.000  0.000  0.000  0.000   0.6859082854
+  15 -0.040 -4.000  0.000  0.000  0.000  0.000   0.6859050926
+  19 -0.040 -3.000  0.000  0.000  0.000  0.000   0.6259525803
+  22 -0.040 -2.382  0.000  0.000  0.000  0.000   0.6081470635
+  24 -0.040 -2.498  0.000  0.000  0.000  0.000   0.6051320796
+  27 -0.040 -2.504  0.000  0.000  0.000  0.000   0.6051078161
+  29 -0.040 -2.531  0.000  0.000  0.000  0.000   0.6050501372
+  34 -0.040 -2.533  0.000  0.000  0.000  0.000   0.6050486231
+  37 -0.040 -2.533  1.000  0.000  0.000  0.000   0.4790835842
+  40 -0.040 -2.533  1.618  0.000  0.000  0.000   0.4613898247
+  42 -0.040 -2.533  1.494  0.000  0.000  0.000   0.4564196381
+  43 -0.040 -2.533  1.412  0.000  0.000  0.000   0.4534660606
+  45 -0.040 -2.533  1.369  0.000  0.000  0.000   0.4529484096
+  47 -0.040 -2.533  1.372  0.000  0.000  0.000   0.4529481239
+  49 -0.040 -2.533  1.371  0.000  0.000  0.000   0.4529479463
+  56 -0.040 -2.533  1.371  0.143  0.000  0.000   0.4520285494
+  57 -0.040 -2.533  1.371  0.115  0.000  0.000   0.4514156126
+  58 -0.040 -2.533  1.371  0.085  0.000  0.000   0.4514055131
+  60 -0.040 -2.533  1.371  0.099  0.000  0.000   0.4513234653
+  62 -0.040 -2.533  1.371  0.098  0.000  0.000   0.4513228220
+  72 -0.040 -2.533  1.371  0.098  0.129  0.000   0.4468126612
+  77 -0.040 -2.533  1.371  0.098  0.120  0.000   0.4468053036
+  78 -0.040 -2.533  1.371  0.098  0.119  0.000   0.4468043768
+  79 -0.040 -2.533  1.371  0.098  0.116  0.000   0.4468034591
+  80 -0.040 -2.533  1.371  0.098  0.117  0.000   0.4468029877
+  83 -0.040 -2.533  1.371  0.098  0.117  1.000   0.2597539293
+  84 -0.040 -2.533  1.371  0.098  0.117  2.618   0.1649190205
+  85 -0.040 -2.533  1.371  0.098  0.117  2.406   0.1607999969
+  88 -0.040 -2.533  1.371  0.098  0.117  2.201   0.1590136702
+  89 -0.040 -2.533  1.371  0.098  0.117  2.245   0.1587433346
+  91 -0.040 -2.533  1.371  0.098  0.117  2.243   0.1587429712
+  powell nthiter 1: fret = 0.158743
+ 100 -0.267 -2.533  1.371  0.098  0.117  2.243   0.1525729836
+ 101 -0.271 -2.533  1.371  0.098  0.117  2.243   0.1525716482
+ 102 -0.270 -2.533  1.371  0.098  0.117  2.243   0.1525712969
+ 105 -0.270 -1.533  1.371  0.098  0.117  2.243   0.1496462997
+ 109 -0.270 -1.915  1.371  0.098  0.117  2.243   0.1196864066
+ 111 -0.270 -1.963  1.371  0.098  0.117  2.243   0.1187087793
+ 112 -0.270 -1.977  1.371  0.098  0.117  2.243   0.1186360349
+ 113 -0.270 -1.981  1.371  0.098  0.117  2.243   0.1186239519
+ 114 -0.270 -1.987  1.371  0.098  0.117  2.243   0.1186152900
+ 116 -0.270 -1.991  1.371  0.098  0.117  2.243   0.1186129727
+ 126 -0.270 -1.991  1.394  0.098  0.117  2.243   0.1184756646
+ 128 -0.270 -1.991  1.395  0.098  0.117  2.243   0.1184748076
+ 135 -0.270 -1.991  1.395  0.480  0.117  2.243   0.1143721025
+ 136 -0.270 -1.991  1.395  0.338  0.117  2.243   0.1117942142
+ 137 -0.270 -1.991  1.395  0.334  0.117  2.243   0.1117786102
+ 138 -0.270 -1.991  1.395  0.318  0.117  2.243   0.1117723801
+ 140 -0.270 -1.991  1.395  0.325  0.117  2.243   0.1117595075
+ 141 -0.270 -1.991  1.395  0.326  0.117  2.243   0.1117587416
+ 142 -0.270 -1.991  1.395  0.328  0.117  2.243   0.1117587007
+ 149 -0.270 -1.991  1.395  0.328 -0.501  2.243   0.1094183706
+ 151 -0.270 -1.991  1.395  0.328 -0.216  2.243   0.0994874107
+ 152 -0.270 -1.991  1.395  0.328 -0.209  2.243   0.0994643931
+ 154 -0.270 -1.991  1.395  0.328 -0.205  2.243   0.0994621429
+ 163 -0.270 -1.991  1.395  0.328 -0.205  2.417   0.0993706565
+ 164 -0.270 -1.991  1.395  0.328 -0.205  2.352   0.0983523946
+ 165 -0.270 -1.991  1.395  0.328 -0.205  2.332   0.0982374205
+  powell nthiter 2: fret = 0.098237
+ 179 -0.280 -1.991  1.395  0.328 -0.205  2.332   0.0982220725
+ 180 -0.279 -1.991  1.395  0.328 -0.205  2.332   0.0982212425
+ 181 -0.278 -1.991  1.395  0.328 -0.205  2.332   0.0982208930
+ 190 -0.278 -1.968  1.395  0.328 -0.205  2.332   0.0979840535
+ 192 -0.278 -1.964  1.395  0.328 -0.205  2.332   0.0979724538
+ 193 -0.278 -1.962  1.395  0.328 -0.205  2.332   0.0979700123
+ 194 -0.278 -1.961  1.395  0.328 -0.205  2.332   0.0979696757
+ 202 -0.278 -1.961  1.471  0.328 -0.205  2.332   0.0975097421
+ 203 -0.278 -1.961  1.463  0.328 -0.205  2.332   0.0974452989
+ 204 -0.278 -1.961  1.447  0.328 -0.205  2.332   0.0973759576
+ 205 -0.278 -1.961  1.443  0.328 -0.205  2.332   0.0973752159
+ 206 -0.278 -1.961  1.445  0.328 -0.205  2.332   0.0973748187
+ 214 -0.278 -1.961  1.445  0.429 -0.205  2.332   0.0964567793
+ 216 -0.278 -1.961  1.445  0.391 -0.205  2.332   0.0963828095
+ 218 -0.278 -1.961  1.445  0.409 -0.205  2.332   0.0962826699
+ 221 -0.278 -1.961  1.445  0.411 -0.205  2.332   0.0962786822
+ 222 -0.278 -1.961  1.445  0.412 -0.205  2.332   0.0962785264
+ 231 -0.278 -1.961  1.445  0.412 -0.200  2.332   0.0962624660
+ 233 -0.278 -1.961  1.445  0.412 -0.198  2.332   0.0962608964
+ 243 -0.278 -1.961  1.445  0.412 -0.198  2.379   0.0959548221
+ 245 -0.278 -1.961  1.445  0.412 -0.198  2.377   0.0959498858
+ 246 -0.278 -1.961  1.445  0.412 -0.198  2.360   0.0959477932
+ 247 -0.278 -1.961  1.445  0.412 -0.198  2.368   0.0959379045
+ 249 -0.278 -1.961  1.445  0.412 -0.198  2.366   0.0959363366
+ 251 -0.278 -1.961  1.445  0.412 -0.198  2.365   0.0959358666
+  powell nthiter 3: fret = 0.095936
+ 261 -0.298 -1.961  1.445  0.412 -0.198  2.365   0.0958776554
+ 262 -0.295 -1.961  1.445  0.412 -0.198  2.365   0.0958719740
+ 263 -0.293 -1.961  1.445  0.412 -0.198  2.365   0.0958704238
+ 264 -0.292 -1.961  1.445  0.412 -0.198  2.365   0.0958702996
+ 275 -0.292 -1.962  1.445  0.412 -0.198  2.365   0.0958695199
+ 286 -0.292 -1.962  1.453  0.412 -0.198  2.365   0.0958518173
+ 287 -0.292 -1.962  1.456  0.412 -0.198  2.365   0.0958505751
+ 299 -0.292 -1.962  1.456  0.415 -0.198  2.365   0.0958447608
+ 309 -0.292 -1.962  1.456  0.415 -0.213  2.365   0.0958007365
+ 311 -0.292 -1.962  1.456  0.415 -0.210  2.365   0.0957958839
+ 322 -0.292 -1.962  1.456  0.415 -0.210  2.394   0.0957813832
+ 323 -0.292 -1.962  1.456  0.415 -0.210  2.383   0.0957522140
+ 324 -0.292 -1.962  1.456  0.415 -0.210  2.381   0.0957521981
+ 325 -0.292 -1.962  1.456  0.415 -0.210  2.380   0.0957519662
+  powell nthiter 4: fret = 0.095752
+ 338 -0.295 -1.962  1.456  0.415 -0.210  2.380   0.0957510855
+ 339 -0.294 -1.962  1.456  0.415 -0.210  2.380   0.0957510164
+ 348 -0.294 -1.955  1.456  0.415 -0.210  2.380   0.0957261099
+ 350 -0.294 -1.952  1.456  0.415 -0.210  2.380   0.0957227251
+ 351 -0.294 -1.951  1.456  0.415 -0.210  2.380   0.0957224828
+ 361 -0.294 -1.951  1.450  0.415 -0.210  2.380   0.0957140646
+ 362 -0.294 -1.951  1.449  0.415 -0.210  2.380   0.0957136438
+ 363 -0.294 -1.951  1.448  0.415 -0.210  2.380   0.0957135686
+ 372 -0.294 -1.951  1.448  0.416 -0.210  2.380   0.0957119790
+ 374 -0.294 -1.951  1.448  0.420 -0.210  2.380   0.0957110519
+ 375 -0.294 -1.951  1.448  0.418 -0.210  2.380   0.0957107416
+ 384 -0.294 -1.951  1.448  0.418 -0.211  2.380   0.0957067205
+ 386 -0.294 -1.951  1.448  0.418 -0.214  2.380   0.0956993440
+ 387 -0.294 -1.951  1.448  0.418 -0.215  2.380   0.0956988679
+ 396 -0.294 -1.951  1.448  0.418 -0.215  2.390   0.0956359903
+ 397 -0.294 -1.951  1.448  0.418 -0.215  2.417   0.0956305319
+ 399 -0.294 -1.951  1.448  0.418 -0.215  2.405   0.0956110568
+ 402 -0.294 -1.951  1.448  0.418 -0.215  2.403   0.0956109080
+ 404 -0.296 -1.940  1.440  0.421 -0.221  2.426   0.0953769190
+ 407 -0.299 -1.922  1.428  0.426 -0.230  2.463   0.0949474417
+ 408 -0.303 -1.893  1.407  0.434 -0.244  2.524   0.0945424851
+ 413 -0.303 -1.893  1.407  0.435 -0.245  2.524   0.0945422819
+ 414 -0.303 -1.893  1.407  0.435 -0.245  2.525   0.0945420982
+ 416 -0.303 -1.892  1.406  0.435 -0.245  2.527   0.0945418429
+ 420 -0.303 -1.892  1.406  0.435 -0.245  2.527   0.0945418191
+  powell nthiter 5: fret = 0.094542
+ 432 -0.306 -1.892  1.406  0.435 -0.245  2.527   0.0945342522
+ 435 -0.320 -1.892  1.406  0.435 -0.245  2.527   0.0944993247
+ 437 -0.327 -1.892  1.406  0.435 -0.245  2.527   0.0944913738
+ 447 -0.327 -1.861  1.406  0.435 -0.245  2.527   0.0944682761
+ 448 -0.327 -1.875  1.406  0.435 -0.245  2.527   0.0944511536
+ 449 -0.327 -1.873  1.406  0.435 -0.245  2.527   0.0944506385
+ 450 -0.327 -1.872  1.406  0.435 -0.245  2.527   0.0944506200
+ 460 -0.327 -1.872  1.417  0.435 -0.245  2.527   0.0944353638
+ 461 -0.327 -1.872  1.415  0.435 -0.245  2.527   0.0944338580
+ 462 -0.327 -1.872  1.414  0.435 -0.245  2.527   0.0944338290
+ 480 -0.327 -1.872  1.414  0.435 -0.261  2.527   0.0944158555
+ 481 -0.327 -1.872  1.414  0.435 -0.259  2.527   0.0944094031
+ 482 -0.327 -1.872  1.414  0.435 -0.255  2.527   0.0944078481
+ 484 -0.327 -1.872  1.414  0.435 -0.256  2.527   0.0944070747
+ 485 -0.327 -1.872  1.414  0.435 -0.257  2.527   0.0944069740
+ 492 -0.326 -1.875  1.416  0.434 -0.256  2.521   0.0944053666
+ 493 -0.326 -1.874  1.416  0.434 -0.256  2.522   0.0944052319
+  powell nthiter 6: fret = 0.094405
+ 509 -0.323 -1.874  1.416  0.434 -0.256  2.522   0.0944022761
+ 511 -0.322 -1.874  1.416  0.434 -0.256  2.522   0.0944020751
+ 523 -0.322 -1.873  1.416  0.434 -0.256  2.522   0.0944020119
+ 534 -0.322 -1.873  1.417  0.434 -0.256  2.522   0.0944018049
+ 544 -0.322 -1.873  1.417  0.433 -0.256  2.522   0.0944014858
+ 552 -0.322 -1.873  1.417  0.433 -0.260  2.522   0.0944014818
+ 553 -0.322 -1.873  1.417  0.433 -0.258  2.522   0.0944003418
+ 563 -0.322 -1.873  1.416  0.433 -0.258  2.523   0.0944003151
+ 564 -0.322 -1.873  1.416  0.433 -0.258  2.523   0.0944002812
+ 565 -0.322 -1.873  1.416  0.433 -0.258  2.523   0.0944001563
+Powell done niters = 6
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.019977
+ 1  -25.0 -25.0  25.0   1.031993
+ 2  -25.0  25.0 -25.0   1.050009
+ 3  -25.0  25.0  25.0   1.011373
+ 4   25.0 -25.0 -25.0   1.009231
+ 5   25.0 -25.0  25.0   0.986138
+ 6   25.0  25.0 -25.0   1.012256
+ 7   25.0  25.0  25.0   1.052800
+REL:  8  0.094400    8.173778  1.021722 rel = 0.0923932 
+Number of iterations     6
+Min cost was 0.094400
+Number of FunctionCalls   569
+TolPowell 0.000100
+nMaxItersPowell 36
+OptimizationTime 1.039297 sec
+Parameters at optimum (transmm) -0.32191 -1.87318  1.41641
+Parameters at optimum (rotdeg)  0.43329 -0.25824  2.52274 
+Final costs ----------------
+Number of surface hits 2638
+WM  Intensity 147026144.6399 +/- 34159633.6169
+Ctx Intensity 179257197.8461 +/- 40932299.6129
+Pct Contrast     19.6945 +/-  12.7864
+Cost   0.0944
+RelCost   0.7853
+Reg at min cost was 
+-0.99997  -0.00129  -0.00699  -1.04028;
+-0.00707   0.06721   0.99771  -8.73818;
+ 0.00082  -0.99774   0.06722   2.32615;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Writing optimal reg to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat, type = 14 
+Original Reg 
+-0.99930  -0.00283   0.03723  -1.01574;
+ 0.03700   0.05966   0.99753  -6.81961;
+ 0.00504  -0.99822   0.05951   0.96593;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Original Reg - Optimal Reg
+ 0.00067  -0.00154   0.04422   0.02454;
+ 0.04406  -0.00756  -0.00018   1.91856;
+ 0.00422  -0.00048  -0.00771  -1.36022;
+ 0.00000   0.00000   0.00000   0.00000;
+
+Computing change in lh position
+LH rmsDiffMean 2.164644
+Computing change in rh position
+Surface-RMS-Diff-mm 2.925499 0.949622 5.072197
+mri_segreg done
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat.mincost --dof 12 --nmax 36 --param /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat.param --surf white --brute -0.1 0.1 0.1 --cur-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --gm-gt-wm 0.5
+7.4.1
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat.mincost --dof 12 --nmax 36 --param /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat.param --surf white --brute -0.1 0.1 0.1 --cur-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --gm-gt-wm 0.5 
+sysname  Linux
+hostname kythira.cluster.local
+machine  x86_64
+user     xintong
+movvol /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/template.nii
+regfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/tmp.bbregister.826469/bbr.pass1.dat
+subject D0114
+dof 12
+outregfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 1
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000000
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1789101277
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+-0.99997  -0.00129  -0.00699  -1.04028;
+-0.00707   0.06721   0.99771  -8.73818;
+ 0.00082  -0.99774   0.06722   2.32615;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Loading mov
+ExcludeZeroVoxels 1
+Reading in targ vol /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/mri/orig.mgz
+Projecting LH Surfs
+Loading lh.white surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white surf
+Loading rh.thickness for GM
+Projecting RH Surfs
+Using lh.cortex.label
+Using rh.cortex.label
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.010403
+ 1  -25.0 -25.0  25.0   1.026833
+ 2  -25.0  25.0 -25.0   1.019159
+ 3  -25.0  25.0  25.0   1.017413
+ 4   25.0 -25.0 -25.0   1.033999
+ 5   25.0 -25.0  25.0   1.008265
+ 6   25.0  25.0 -25.0   1.026952
+ 7   25.0  25.0  25.0   1.010387
+REL:  8  0.101067    8.153411  1.019176 rel = 0.0991658 
+Initial costs ----------------
+Number of surface hits 263823
+WM  Intensity 147421187.0931 +/- 34356409.1413
+Ctx Intensity 179744448.7221 +/- 41086444.0052
+Pct Contrast     19.6652 +/-  13.3930
+Cost   0.1011
+RelCost   0.0992
+
+------------------------------------
+Brute force preopt -0.1 0.1 0.1, n = 729
+     0  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000      0.1060   0.1060  0.0
+     1  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000   0.0000      0.1055   0.1055  0.0
+     3  -0.1000  -0.1000  -0.1000  -0.1000   0.0000  -0.1000      0.1024   0.1024  0.0
+     6  -0.1000  -0.1000  -0.1000  -0.1000   0.1000  -0.1000      0.1012   0.1012  0.0
+    13  -0.1000  -0.1000  -0.1000   0.0000   0.0000   0.0000      0.1007   0.1007  0.0
+    15  -0.1000  -0.1000  -0.1000   0.0000   0.1000  -0.1000      0.0998   0.0998  0.0
+    16  -0.1000  -0.1000  -0.1000   0.0000   0.1000   0.0000      0.0997   0.0997  0.0
+    30  -0.1000  -0.1000   0.0000  -0.1000   0.0000  -0.1000      0.0987   0.0987  0.0
+    33  -0.1000  -0.1000   0.0000  -0.1000   0.1000  -0.1000      0.0986   0.0986  0.0
+    39  -0.1000  -0.1000   0.0000   0.0000   0.0000  -0.1000      0.0985   0.0985  0.0
+    40  -0.1000  -0.1000   0.0000   0.0000   0.0000   0.0000      0.0984   0.0984  0.0
+    42  -0.1000  -0.1000   0.0000   0.0000   0.1000  -0.1000      0.0977   0.0977  0.0
+    97  -0.1000   0.0000  -0.1000   0.0000   0.1000   0.0000      0.0975   0.0975  0.0
+   121  -0.1000   0.0000   0.0000   0.0000   0.0000   0.0000      0.0963   0.0963  0.0
+   124  -0.1000   0.0000   0.0000   0.0000   0.1000   0.0000      0.0959   0.0959  0.0
+   355   0.0000   0.0000   0.0000  -0.1000   0.0000   0.0000      0.0958   0.0958  0.0
+   364   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000      0.0944   0.0944  0.0
+Brute Force --------------------------
+Min cost was 0.094400
+Number of iterations   729
+Search time 1.318741 sec
+Parameters at best (transmm, rotdeg)
+  0.000   0.000   0.000  0.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 12
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 1
+7 1
+8 1
+9 0
+10 0
+11 0
+fs_powell::minimize
+  nparams 12
+  maxfev 36
+  ftol   0.000000
+  linmin_xtol_   0.001000
+  powell nthiter 0: fret = 0.101067
+   7  0.119  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1002185404
+   8  0.104  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1002045428
+   9  0.105  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1001974113
+  21  0.105 -0.006  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1001879513
+  22  0.105 -0.007  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1001866222
+  31  0.105 -0.007  0.089  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0998059048
+  32  0.105 -0.007  0.076  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0998007352
+  33  0.105 -0.007  0.079  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0997999445
+  43  0.105 -0.007  0.079 -0.015  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0997874190
+  44  0.105 -0.007  0.079 -0.012  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0997864649
+  53  0.105 -0.007  0.079 -0.012 -0.027  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0997020317
+  54  0.105 -0.007  0.079 -0.012 -0.030  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0996977287
+  55  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.0996908358
+  82  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 1.000 sh:  0.000  0.000  0.000   0.0993839754
+ 104  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.999 sh:  0.000  0.000  0.000   0.0990201663
+ 106  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.000  0.000   0.0989949886
+ 128  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.000   0.0988355476
+ 140  0.105 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0988196250
+  powell nthiter 1: fret = 0.098820
+ 151  0.104 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0988188596
+ 152  0.101 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0988183440
+ 153  0.102 -0.007  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0988182862
+ 161  0.102 -0.032  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0987953618
+ 162  0.102 -0.024  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0987911559
+ 163  0.102 -0.025  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0987884048
+ 164  0.102 -0.027  0.079 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0987852262
+ 173  0.102 -0.027  0.145 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985740131
+ 174  0.102 -0.027  0.134 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985606669
+ 175  0.102 -0.027  0.132 -0.012 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985459343
+ 188  0.102 -0.027  0.132  0.003 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985422006
+ 189  0.102 -0.027  0.132 -0.002 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985340633
+ 190  0.102 -0.027  0.132 -0.004 -0.042  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0985313901
+ 199  0.102 -0.027  0.132 -0.004 -0.067  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0984509967
+ 200  0.102 -0.027  0.132 -0.004 -0.071  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0984463088
+ 201  0.102 -0.027  0.132 -0.004 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.001  0.001   0.0984439396
+ 268  0.102 -0.027  0.132 -0.004 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0984204387
+  powell nthiter 2: fret = 0.098420
+ 289  0.098 -0.027  0.132 -0.004 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0984188019
+ 310  0.098 -0.027  0.133 -0.004 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0984186926
+ 319  0.098 -0.027  0.133  0.007 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0984038359
+ 320  0.098 -0.027  0.133  0.008 -0.077  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0984003361
+ 330  0.098 -0.027  0.133  0.008 -0.107  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983263175
+ 331  0.098 -0.027  0.133  0.008 -0.105  0.000 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983206653
+ 344  0.098 -0.027  0.133  0.008 -0.105  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983138062
+  powell nthiter 3: fret = 0.098314
+ 422  0.107 -0.027  0.133  0.008 -0.105  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983074876
+ 423  0.106 -0.027  0.133  0.008 -0.105  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983073638
+ 442  0.106 -0.027  0.141  0.008 -0.105  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0983034042
+ 462  0.106 -0.027  0.141  0.008 -0.110  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982977132
+ 463  0.106 -0.027  0.141  0.008 -0.113  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982963305
+ 464  0.106 -0.027  0.141  0.008 -0.115  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982958806
+ 465  0.106 -0.027  0.141  0.008 -0.116  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982957973
+  powell nthiter 4: fret = 0.098296
+ 552  0.111 -0.027  0.141  0.008 -0.116  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982937918
+ 573  0.111 -0.027  0.142  0.008 -0.116  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982935280
+ 574  0.111 -0.027  0.143  0.008 -0.116  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982934470
+ 596  0.111 -0.027  0.143  0.008 -0.117  0.003 sc: 1.002 1.000 0.998 sh:  0.000  0.002  0.001   0.0982933623
+  powell nthiter 5: fret = 0.098293
+Powell done niters = 5
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.008746
+ 1  -25.0 -25.0  25.0   1.025424
+ 2  -25.0  25.0 -25.0   1.017805
+ 3  -25.0  25.0  25.0   1.017806
+ 4   25.0 -25.0 -25.0   1.034512
+ 5   25.0 -25.0  25.0   1.007316
+ 6   25.0  25.0 -25.0   1.024912
+ 7   25.0  25.0  25.0   1.010482
+REL:  8  0.098293    8.147001  1.018375 rel = 0.0965198 
+Number of iterations     5
+Min cost was 0.098293
+Number of FunctionCalls   803
+TolPowell 0.000000
+nMaxItersPowell 36
+OptimizationTime 37.743061 sec
+Parameters at optimum (transmm)  0.11068 -0.02715  0.14275
+Parameters at optimum (rotdeg)  0.00814 -0.11686  0.00326 
+Parameters at optimum (scale)  1.00178  1.00000  0.99770
+Parameters at optimum (shear)  0.00000  0.00200  0.00100
+Final costs ----------------
+Number of surface hits 263820
+WM  Intensity 147367976.0245 +/- 34320687.6003
+Ctx Intensity 179875791.7522 +/- 41041071.4484
+Pct Contrast     19.7850 +/-  13.2752
+Cost   0.0983
+RelCost   0.0992
+Reg at min cost was 
+-1.00176  -0.00125  -0.00707  -0.93059;
+-0.00712   0.06636   0.99777  -8.76325;
+-0.00122  -0.99543   0.06719   2.45985;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Writing optimal reg to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat, type = 14 
+Original Reg 
+-0.99997  -0.00129  -0.00699  -1.04028;
+-0.00707   0.06721   0.99771  -8.73818;
+ 0.00082  -0.99774   0.06722   2.32615;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Original Reg - Optimal Reg
+ 0.00178  -0.00004   0.00007  -0.10969;
+ 0.00006   0.00085  -0.00006   0.02508;
+ 0.00204  -0.00230   0.00003  -0.13371;
+ 0.00000   0.00000   0.00000   0.00000;
+
+Computing change in lh position
+LH rmsDiffMean 0.229281
+Computing change in rh position
+Surface-RMS-Diff-mm 0.174487 0.092694 0.416036
+mri_segreg done
+MinCost: 0.098293 147367976.024477 179875791.752204 19.785009 
+Cleaning up
+ 
+Started at Thu Sep 10 12:07:10 PM EDT 2026 
+Ended   at Thu Sep 10 12:09:06 PM EDT 2026
+BBR-Run-Time-Sec 116
+ 
+bbregister Done
+To check results, run:
+tkregisterfv --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat --surfs  --sd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+ 
+Registration finished.
+Transform saved to:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat
+Subject: D0114
+FreeSurfer subject directory: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114
+Output directory: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories
+Points per trajectory: 21
+
+Processing hemisphere: lh
+Loaded lh.white: 141550 vertices, 283096 faces
+Loaded lh.pial: 141550 vertices, 283096 faces
+Pair shape: (141550, 6)
+Trajectory points shape: (2972550, 3)
+Points per trajectory: 21
+Saved pair: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_pair_lh.mat
+Saved trajectory: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_trajectory_lh.mat
+
+Processing hemisphere: rh
+Loaded rh.white: 142860 vertices, 285716 faces
+Loaded rh.pial: 142860 vertices, 285716 faces
+Pair shape: (142860, 6)
+Trajectory points shape: (3000060, 3)
+Points per trajectory: 21
+Saved pair: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_pair_rh.mat
+Saved trajectory: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_trajectory_rh.mat
+
+Trajectory construction complete.
+Subject: D0114
+DWI shape: (164, 328, 122)
+DWI voxel size: (1.0, 1.0, 1.0)
+
+Transform:
+[[-1.00175512e+00 -1.24918413e-03 -7.06722168e-03 -9.30588365e-01]
+ [-7.12405704e-03  6.63598031e-02  9.97770727e-01 -8.76325226e+00]
+ [-1.22014340e-03 -9.95433629e-01  6.71934858e-02  2.45985317e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+
+T_mov:
+[[ -1.  -0.  -0.  83.]
+ [  0.   0.   1. -62.]
+ [ -0.  -1.  -0. 165.]
+ [  0.   0.   0.   1.]]
+
+Hemisphere: lh
+Input shape: (2972550, 3)
+Output shape: (4, 2972550)
+i: 22.18 to 93.82
+j: 70.17 to 246.11
+k: -9.12 to 108.25
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_trajectory_lh_dwi.mat
+
+Hemisphere: rh
+Input shape: (3000060, 3)
+Output shape: (4, 3000060)
+i: 80.48 to 151.95
+j: 72.67 to 248.77
+k: -7.21 to 108.90
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories/D0114_trajectory_rh_dwi.mat
+
+Trajectory transformation complete.
+Subject: D0114
+
+Hemisphere: lh
+Annotation: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/label/lh.aparc.annot
+Vertices: 141550
+Regions in annotation: 36
+DWI trajectory shape: (4, 2972550)
+Expected trajectory points: 2972550
+Actual trajectory points: 2972550
+lh_bankssts: 1467 trajectories, 30807 points
+lh_caudalanteriorcingulate: 1353 trajectories, 28413 points
+lh_caudalmiddlefrontal: 4534 trajectories, 95214 points
+lh_cuneus: 2159 trajectories, 45339 points
+lh_entorhinal: 645 trajectories, 13545 points
+lh_fusiform: 5177 trajectories, 108717 points
+lh_inferiorparietal: 7877 trajectories, 165417 points
+lh_inferiortemporal: 4419 trajectories, 92799 points
+lh_isthmuscingulate: 1441 trajectories, 30261 points
+lh_lateraloccipital: 8391 trajectories, 176211 points
+lh_lateralorbitofrontal: 3972 trajectories, 83412 points
+lh_lingual: 4722 trajectories, 99162 points
+lh_medialorbitofrontal: 3411 trajectories, 71631 points
+lh_middletemporal: 4100 trajectories, 86100 points
+lh_parahippocampal: 1132 trajectories, 23772 points
+lh_paracentral: 2289 trajectories, 48069 points
+lh_parsopercularis: 2344 trajectories, 49224 points
+lh_parsorbitalis: 1039 trajectories, 21819 points
+lh_parstriangularis: 2174 trajectories, 45654 points
+lh_pericalcarine: 2006 trajectories, 42126 points
+lh_postcentral: 6019 trajectories, 126399 points
+lh_posteriorcingulate: 1731 trajectories, 36351 points
+lh_precentral: 8084 trajectories, 169764 points
+lh_precuneus: 5200 trajectories, 109200 points
+lh_rostralanteriorcingulate: 1159 trajectories, 24339 points
+lh_rostralmiddlefrontal: 8585 trajectories, 180285 points
+lh_superiorfrontal: 11639 trajectories, 244419 points
+lh_superiorparietal: 7492 trajectories, 157332 points
+lh_superiortemporal: 6108 trajectories, 128268 points
+lh_supramarginal: 6517 trajectories, 136857 points
+lh_frontalpole: 436 trajectories, 9156 points
+lh_temporalpole: 720 trajectories, 15120 points
+lh_transversetemporal: 781 trajectories, 16401 points
+lh_insula: 3637 trajectories, 76377 points
+
+LH regions written: 34
+
+Hemisphere: rh
+Annotation: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114/label/rh.aparc.annot
+Vertices: 142860
+Regions in annotation: 36
+DWI trajectory shape: (4, 3000060)
+Expected trajectory points: 3000060
+Actual trajectory points: 3000060
+rh_bankssts: 1283 trajectories, 26943 points
+rh_caudalanteriorcingulate: 1426 trajectories, 29946 points
+rh_caudalmiddlefrontal: 2852 trajectories, 59892 points
+rh_cuneus: 2353 trajectories, 49413 points
+rh_entorhinal: 627 trajectories, 13167 points
+rh_fusiform: 4052 trajectories, 85092 points
+rh_inferiorparietal: 8249 trajectories, 173229 points
+rh_inferiortemporal: 4528 trajectories, 95088 points
+rh_isthmuscingulate: 1213 trajectories, 25473 points
+rh_lateraloccipital: 9496 trajectories, 199416 points
+rh_lateralorbitofrontal: 3702 trajectories, 77742 points
+rh_lingual: 5760 trajectories, 120960 points
+rh_medialorbitofrontal: 3169 trajectories, 66549 points
+rh_middletemporal: 5178 trajectories, 108738 points
+rh_parahippocampal: 1035 trajectories, 21735 points
+rh_paracentral: 2324 trajectories, 48804 points
+rh_parsopercularis: 1962 trajectories, 41202 points
+rh_parsorbitalis: 1266 trajectories, 26586 points
+rh_parstriangularis: 2765 trajectories, 58065 points
+rh_pericalcarine: 2775 trajectories, 58275 points
+rh_postcentral: 6143 trajectories, 129003 points
+rh_posteriorcingulate: 1682 trajectories, 35322 points
+rh_precentral: 8049 trajectories, 169029 points
+rh_precuneus: 5398 trajectories, 113358 points
+rh_rostralanteriorcingulate: 924 trajectories, 19404 points
+rh_rostralmiddlefrontal: 9697 trajectories, 203637 points
+rh_superiorfrontal: 11243 trajectories, 236103 points
+rh_superiorparietal: 7466 trajectories, 156786 points
+rh_superiortemporal: 6138 trajectories, 128898 points
+rh_supramarginal: 5511 trajectories, 115731 points
+rh_frontalpole: 468 trajectories, 9828 points
+rh_temporalpole: 701 trajectories, 14721 points
+rh_transversetemporal: 651 trajectories, 13671 points
+rh_insula: 3821 trajectories, 80241 points
+
+RH regions written: 34
+
+Region assignment complete.
+Metric image: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz
+Shape: (164, 328, 122)
+
+LH regions: 34
+lh_bankssts: 1467 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_bankssts_adc.csv
+lh_caudalanteriorcingulate: 1353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalanteriorcingulate_adc.csv
+lh_caudalmiddlefrontal: 4534 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalmiddlefrontal_adc.csv
+lh_cuneus: 2159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_cuneus_adc.csv
+lh_entorhinal: 645 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_entorhinal_adc.csv
+lh_frontalpole: 436 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_frontalpole_adc.csv
+lh_fusiform: 5177 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_fusiform_adc.csv
+lh_inferiorparietal: 7877 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiorparietal_adc.csv
+lh_inferiortemporal: 4419 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiortemporal_adc.csv
+lh_insula: 3637 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_insula_adc.csv
+lh_isthmuscingulate: 1441 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_isthmuscingulate_adc.csv
+lh_lateraloccipital: 8391 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateraloccipital_adc.csv
+lh_lateralorbitofrontal: 3972 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateralorbitofrontal_adc.csv
+lh_lingual: 4722 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lingual_adc.csv
+lh_medialorbitofrontal: 3411 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_medialorbitofrontal_adc.csv
+lh_middletemporal: 4100 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_middletemporal_adc.csv
+lh_paracentral: 2289 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_paracentral_adc.csv
+lh_parahippocampal: 1132 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parahippocampal_adc.csv
+lh_parsopercularis: 2344 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsopercularis_adc.csv
+lh_parsorbitalis: 1039 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsorbitalis_adc.csv
+lh_parstriangularis: 2174 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parstriangularis_adc.csv
+lh_pericalcarine: 2006 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_pericalcarine_adc.csv
+lh_postcentral: 6019 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_postcentral_adc.csv
+lh_posteriorcingulate: 1731 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_posteriorcingulate_adc.csv
+lh_precentral: 8084 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precentral_adc.csv
+lh_precuneus: 5200 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precuneus_adc.csv
+lh_rostralanteriorcingulate: 1159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralanteriorcingulate_adc.csv
+lh_rostralmiddlefrontal: 8585 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralmiddlefrontal_adc.csv
+lh_superiorfrontal: 11639 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorfrontal_adc.csv
+lh_superiorparietal: 7492 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorparietal_adc.csv
+lh_superiortemporal: 6108 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiortemporal_adc.csv
+lh_supramarginal: 6517 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_supramarginal_adc.csv
+lh_temporalpole: 720 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_temporalpole_adc.csv
+lh_transversetemporal: 781 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_transversetemporal_adc.csv
+
+RH regions: 34
+rh_bankssts: 1283 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_bankssts_adc.csv
+rh_caudalanteriorcingulate: 1426 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalanteriorcingulate_adc.csv
+rh_caudalmiddlefrontal: 2852 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalmiddlefrontal_adc.csv
+rh_cuneus: 2353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_cuneus_adc.csv
+rh_entorhinal: 627 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_entorhinal_adc.csv
+rh_frontalpole: 468 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_frontalpole_adc.csv
+rh_fusiform: 4052 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_fusiform_adc.csv
+rh_inferiorparietal: 8249 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiorparietal_adc.csv
+rh_inferiortemporal: 4528 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiortemporal_adc.csv
+rh_insula: 3821 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_insula_adc.csv
+rh_isthmuscingulate: 1213 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_isthmuscingulate_adc.csv
+rh_lateraloccipital: 9496 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateraloccipital_adc.csv
+rh_lateralorbitofrontal: 3702 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateralorbitofrontal_adc.csv
+rh_lingual: 5760 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lingual_adc.csv
+rh_medialorbitofrontal: 3169 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_medialorbitofrontal_adc.csv
+rh_middletemporal: 5178 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_middletemporal_adc.csv
+rh_paracentral: 2324 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_paracentral_adc.csv
+rh_parahippocampal: 1035 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parahippocampal_adc.csv
+rh_parsopercularis: 1962 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsopercularis_adc.csv
+rh_parsorbitalis: 1266 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsorbitalis_adc.csv
+rh_parstriangularis: 2765 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parstriangularis_adc.csv
+rh_pericalcarine: 2775 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_pericalcarine_adc.csv
+rh_postcentral: 6143 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_postcentral_adc.csv
+rh_posteriorcingulate: 1682 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_posteriorcingulate_adc.csv
+rh_precentral: 8049 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precentral_adc.csv
+rh_precuneus: 5398 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precuneus_adc.csv
+rh_rostralanteriorcingulate: 924 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralanteriorcingulate_adc.csv
+rh_rostralmiddlefrontal: 9697 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralmiddlefrontal_adc.csv
+rh_superiorfrontal: 11243 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorfrontal_adc.csv
+rh_superiorparietal: 7466 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorparietal_adc.csv
+rh_superiortemporal: 6138 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiortemporal_adc.csv
+rh_supramarginal: 5511 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_supramarginal_adc.csv
+rh_temporalpole: 701 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_temporalpole_adc.csv
+rh_transversetemporal: 651 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_transversetemporal_adc.csv
+
+Profile sampling complete.
+Metric image: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz
+Shape: (164, 328, 122)
+
+LH regions: 34
+lh_bankssts: 1467 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_bankssts_md.csv
+lh_caudalanteriorcingulate: 1353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalanteriorcingulate_md.csv
+lh_caudalmiddlefrontal: 4534 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalmiddlefrontal_md.csv
+lh_cuneus: 2159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_cuneus_md.csv
+lh_entorhinal: 645 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_entorhinal_md.csv
+lh_frontalpole: 436 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_frontalpole_md.csv
+lh_fusiform: 5177 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_fusiform_md.csv
+lh_inferiorparietal: 7877 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiorparietal_md.csv
+lh_inferiortemporal: 4419 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiortemporal_md.csv
+lh_insula: 3637 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_insula_md.csv
+lh_isthmuscingulate: 1441 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_isthmuscingulate_md.csv
+lh_lateraloccipital: 8391 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateraloccipital_md.csv
+lh_lateralorbitofrontal: 3972 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateralorbitofrontal_md.csv
+lh_lingual: 4722 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lingual_md.csv
+lh_medialorbitofrontal: 3411 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_medialorbitofrontal_md.csv
+lh_middletemporal: 4100 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_middletemporal_md.csv
+lh_paracentral: 2289 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_paracentral_md.csv
+lh_parahippocampal: 1132 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parahippocampal_md.csv
+lh_parsopercularis: 2344 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsopercularis_md.csv
+lh_parsorbitalis: 1039 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsorbitalis_md.csv
+lh_parstriangularis: 2174 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parstriangularis_md.csv
+lh_pericalcarine: 2006 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_pericalcarine_md.csv
+lh_postcentral: 6019 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_postcentral_md.csv
+lh_posteriorcingulate: 1731 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_posteriorcingulate_md.csv
+lh_precentral: 8084 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precentral_md.csv
+lh_precuneus: 5200 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precuneus_md.csv
+lh_rostralanteriorcingulate: 1159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralanteriorcingulate_md.csv
+lh_rostralmiddlefrontal: 8585 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralmiddlefrontal_md.csv
+lh_superiorfrontal: 11639 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorfrontal_md.csv
+lh_superiorparietal: 7492 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorparietal_md.csv
+lh_superiortemporal: 6108 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiortemporal_md.csv
+lh_supramarginal: 6517 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_supramarginal_md.csv
+lh_temporalpole: 720 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_temporalpole_md.csv
+lh_transversetemporal: 781 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_transversetemporal_md.csv
+
+RH regions: 34
+rh_bankssts: 1283 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_bankssts_md.csv
+rh_caudalanteriorcingulate: 1426 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalanteriorcingulate_md.csv
+rh_caudalmiddlefrontal: 2852 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalmiddlefrontal_md.csv
+rh_cuneus: 2353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_cuneus_md.csv
+rh_entorhinal: 627 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_entorhinal_md.csv
+rh_frontalpole: 468 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_frontalpole_md.csv
+rh_fusiform: 4052 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_fusiform_md.csv
+rh_inferiorparietal: 8249 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiorparietal_md.csv
+rh_inferiortemporal: 4528 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiortemporal_md.csv
+rh_insula: 3821 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_insula_md.csv
+rh_isthmuscingulate: 1213 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_isthmuscingulate_md.csv
+rh_lateraloccipital: 9496 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateraloccipital_md.csv
+rh_lateralorbitofrontal: 3702 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateralorbitofrontal_md.csv
+rh_lingual: 5760 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lingual_md.csv
+rh_medialorbitofrontal: 3169 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_medialorbitofrontal_md.csv
+rh_middletemporal: 5178 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_middletemporal_md.csv
+rh_paracentral: 2324 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_paracentral_md.csv
+rh_parahippocampal: 1035 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parahippocampal_md.csv
+rh_parsopercularis: 1962 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsopercularis_md.csv
+rh_parsorbitalis: 1266 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsorbitalis_md.csv
+rh_parstriangularis: 2765 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parstriangularis_md.csv
+rh_pericalcarine: 2775 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_pericalcarine_md.csv
+rh_postcentral: 6143 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_postcentral_md.csv
+rh_posteriorcingulate: 1682 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_posteriorcingulate_md.csv
+rh_precentral: 8049 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precentral_md.csv
+rh_precuneus: 5398 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precuneus_md.csv
+rh_rostralanteriorcingulate: 924 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralanteriorcingulate_md.csv
+rh_rostralmiddlefrontal: 9697 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralmiddlefrontal_md.csv
+rh_superiorfrontal: 11243 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorfrontal_md.csv
+rh_superiorparietal: 7466 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorparietal_md.csv
+rh_superiortemporal: 6138 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiortemporal_md.csv
+rh_supramarginal: 5511 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_supramarginal_md.csv
+rh_temporalpole: 701 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_temporalpole_md.csv
+rh_transversetemporal: 651 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_transversetemporal_md.csv
+
+Profile sampling complete.
+Metric image: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_fa.nii.gz
+Shape: (164, 328, 122)
+
+LH regions: 34
+lh_bankssts: 1467 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_bankssts_fa.csv
+lh_caudalanteriorcingulate: 1353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalanteriorcingulate_fa.csv
+lh_caudalmiddlefrontal: 4534 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalmiddlefrontal_fa.csv
+lh_cuneus: 2159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_cuneus_fa.csv
+lh_entorhinal: 645 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_entorhinal_fa.csv
+lh_frontalpole: 436 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_frontalpole_fa.csv
+lh_fusiform: 5177 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_fusiform_fa.csv
+lh_inferiorparietal: 7877 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiorparietal_fa.csv
+lh_inferiortemporal: 4419 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiortemporal_fa.csv
+lh_insula: 3637 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_insula_fa.csv
+lh_isthmuscingulate: 1441 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_isthmuscingulate_fa.csv
+lh_lateraloccipital: 8391 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateraloccipital_fa.csv
+lh_lateralorbitofrontal: 3972 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateralorbitofrontal_fa.csv
+lh_lingual: 4722 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lingual_fa.csv
+lh_medialorbitofrontal: 3411 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_medialorbitofrontal_fa.csv
+lh_middletemporal: 4100 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_middletemporal_fa.csv
+lh_paracentral: 2289 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_paracentral_fa.csv
+lh_parahippocampal: 1132 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parahippocampal_fa.csv
+lh_parsopercularis: 2344 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsopercularis_fa.csv
+lh_parsorbitalis: 1039 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsorbitalis_fa.csv
+lh_parstriangularis: 2174 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parstriangularis_fa.csv
+lh_pericalcarine: 2006 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_pericalcarine_fa.csv
+lh_postcentral: 6019 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_postcentral_fa.csv
+lh_posteriorcingulate: 1731 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_posteriorcingulate_fa.csv
+lh_precentral: 8084 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precentral_fa.csv
+lh_precuneus: 5200 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precuneus_fa.csv
+lh_rostralanteriorcingulate: 1159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralanteriorcingulate_fa.csv
+lh_rostralmiddlefrontal: 8585 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralmiddlefrontal_fa.csv
+lh_superiorfrontal: 11639 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorfrontal_fa.csv
+lh_superiorparietal: 7492 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorparietal_fa.csv
+lh_superiortemporal: 6108 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiortemporal_fa.csv
+lh_supramarginal: 6517 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_supramarginal_fa.csv
+lh_temporalpole: 720 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_temporalpole_fa.csv
+lh_transversetemporal: 781 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_transversetemporal_fa.csv
+
+RH regions: 34
+rh_bankssts: 1283 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_bankssts_fa.csv
+rh_caudalanteriorcingulate: 1426 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalanteriorcingulate_fa.csv
+rh_caudalmiddlefrontal: 2852 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalmiddlefrontal_fa.csv
+rh_cuneus: 2353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_cuneus_fa.csv
+rh_entorhinal: 627 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_entorhinal_fa.csv
+rh_frontalpole: 468 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_frontalpole_fa.csv
+rh_fusiform: 4052 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_fusiform_fa.csv
+rh_inferiorparietal: 8249 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiorparietal_fa.csv
+rh_inferiortemporal: 4528 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiortemporal_fa.csv
+rh_insula: 3821 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_insula_fa.csv
+rh_isthmuscingulate: 1213 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_isthmuscingulate_fa.csv
+rh_lateraloccipital: 9496 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateraloccipital_fa.csv
+rh_lateralorbitofrontal: 3702 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateralorbitofrontal_fa.csv
+rh_lingual: 5760 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lingual_fa.csv
+rh_medialorbitofrontal: 3169 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_medialorbitofrontal_fa.csv
+rh_middletemporal: 5178 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_middletemporal_fa.csv
+rh_paracentral: 2324 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_paracentral_fa.csv
+rh_parahippocampal: 1035 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parahippocampal_fa.csv
+rh_parsopercularis: 1962 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsopercularis_fa.csv
+rh_parsorbitalis: 1266 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsorbitalis_fa.csv
+rh_parstriangularis: 2765 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parstriangularis_fa.csv
+rh_pericalcarine: 2775 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_pericalcarine_fa.csv
+rh_postcentral: 6143 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_postcentral_fa.csv
+rh_posteriorcingulate: 1682 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_posteriorcingulate_fa.csv
+rh_precentral: 8049 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precentral_fa.csv
+rh_precuneus: 5398 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precuneus_fa.csv
+rh_rostralanteriorcingulate: 924 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralanteriorcingulate_fa.csv
+rh_rostralmiddlefrontal: 9697 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralmiddlefrontal_fa.csv
+rh_superiorfrontal: 11243 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorfrontal_fa.csv
+rh_superiorparietal: 7466 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorparietal_fa.csv
+rh_superiortemporal: 6138 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiortemporal_fa.csv
+rh_supramarginal: 5511 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_supramarginal_fa.csv
+rh_temporalpole: 701 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_temporalpole_fa.csv
+rh_transversetemporal: 651 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_transversetemporal_fa.csv
+
+Profile sampling complete.
+Metric image: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_ad.nii.gz
+Shape: (164, 328, 122)
+
+LH regions: 34
+lh_bankssts: 1467 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_bankssts_ad.csv
+lh_caudalanteriorcingulate: 1353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalanteriorcingulate_ad.csv
+lh_caudalmiddlefrontal: 4534 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalmiddlefrontal_ad.csv
+lh_cuneus: 2159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_cuneus_ad.csv
+lh_entorhinal: 645 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_entorhinal_ad.csv
+lh_frontalpole: 436 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_frontalpole_ad.csv
+lh_fusiform: 5177 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_fusiform_ad.csv
+lh_inferiorparietal: 7877 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiorparietal_ad.csv
+lh_inferiortemporal: 4419 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiortemporal_ad.csv
+lh_insula: 3637 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_insula_ad.csv
+lh_isthmuscingulate: 1441 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_isthmuscingulate_ad.csv
+lh_lateraloccipital: 8391 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateraloccipital_ad.csv
+lh_lateralorbitofrontal: 3972 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateralorbitofrontal_ad.csv
+lh_lingual: 4722 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lingual_ad.csv
+lh_medialorbitofrontal: 3411 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_medialorbitofrontal_ad.csv
+lh_middletemporal: 4100 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_middletemporal_ad.csv
+lh_paracentral: 2289 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_paracentral_ad.csv
+lh_parahippocampal: 1132 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parahippocampal_ad.csv
+lh_parsopercularis: 2344 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsopercularis_ad.csv
+lh_parsorbitalis: 1039 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsorbitalis_ad.csv
+lh_parstriangularis: 2174 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parstriangularis_ad.csv
+lh_pericalcarine: 2006 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_pericalcarine_ad.csv
+lh_postcentral: 6019 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_postcentral_ad.csv
+lh_posteriorcingulate: 1731 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_posteriorcingulate_ad.csv
+lh_precentral: 8084 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precentral_ad.csv
+lh_precuneus: 5200 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precuneus_ad.csv
+lh_rostralanteriorcingulate: 1159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralanteriorcingulate_ad.csv
+lh_rostralmiddlefrontal: 8585 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralmiddlefrontal_ad.csv
+lh_superiorfrontal: 11639 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorfrontal_ad.csv
+lh_superiorparietal: 7492 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorparietal_ad.csv
+lh_superiortemporal: 6108 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiortemporal_ad.csv
+lh_supramarginal: 6517 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_supramarginal_ad.csv
+lh_temporalpole: 720 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_temporalpole_ad.csv
+lh_transversetemporal: 781 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_transversetemporal_ad.csv
+
+RH regions: 34
+rh_bankssts: 1283 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_bankssts_ad.csv
+rh_caudalanteriorcingulate: 1426 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalanteriorcingulate_ad.csv
+rh_caudalmiddlefrontal: 2852 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalmiddlefrontal_ad.csv
+rh_cuneus: 2353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_cuneus_ad.csv
+rh_entorhinal: 627 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_entorhinal_ad.csv
+rh_frontalpole: 468 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_frontalpole_ad.csv
+rh_fusiform: 4052 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_fusiform_ad.csv
+rh_inferiorparietal: 8249 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiorparietal_ad.csv
+rh_inferiortemporal: 4528 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiortemporal_ad.csv
+rh_insula: 3821 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_insula_ad.csv
+rh_isthmuscingulate: 1213 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_isthmuscingulate_ad.csv
+rh_lateraloccipital: 9496 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateraloccipital_ad.csv
+rh_lateralorbitofrontal: 3702 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateralorbitofrontal_ad.csv
+rh_lingual: 5760 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lingual_ad.csv
+rh_medialorbitofrontal: 3169 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_medialorbitofrontal_ad.csv
+rh_middletemporal: 5178 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_middletemporal_ad.csv
+rh_paracentral: 2324 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_paracentral_ad.csv
+rh_parahippocampal: 1035 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parahippocampal_ad.csv
+rh_parsopercularis: 1962 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsopercularis_ad.csv
+rh_parsorbitalis: 1266 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsorbitalis_ad.csv
+rh_parstriangularis: 2765 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parstriangularis_ad.csv
+rh_pericalcarine: 2775 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_pericalcarine_ad.csv
+rh_postcentral: 6143 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_postcentral_ad.csv
+rh_posteriorcingulate: 1682 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_posteriorcingulate_ad.csv
+rh_precentral: 8049 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precentral_ad.csv
+rh_precuneus: 5398 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precuneus_ad.csv
+rh_rostralanteriorcingulate: 924 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralanteriorcingulate_ad.csv
+rh_rostralmiddlefrontal: 9697 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralmiddlefrontal_ad.csv
+rh_superiorfrontal: 11243 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorfrontal_ad.csv
+rh_superiorparietal: 7466 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorparietal_ad.csv
+rh_superiortemporal: 6138 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiortemporal_ad.csv
+rh_supramarginal: 5511 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_supramarginal_ad.csv
+rh_temporalpole: 701 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_temporalpole_ad.csv
+rh_transversetemporal: 651 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_transversetemporal_ad.csv
+
+Profile sampling complete.
+Metric image: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_rd.nii.gz
+Shape: (164, 328, 122)
+
+LH regions: 34
+lh_bankssts: 1467 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_bankssts_rd.csv
+lh_caudalanteriorcingulate: 1353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalanteriorcingulate_rd.csv
+lh_caudalmiddlefrontal: 4534 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_caudalmiddlefrontal_rd.csv
+lh_cuneus: 2159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_cuneus_rd.csv
+lh_entorhinal: 645 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_entorhinal_rd.csv
+lh_frontalpole: 436 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_frontalpole_rd.csv
+lh_fusiform: 5177 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_fusiform_rd.csv
+lh_inferiorparietal: 7877 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiorparietal_rd.csv
+lh_inferiortemporal: 4419 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_inferiortemporal_rd.csv
+lh_insula: 3637 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_insula_rd.csv
+lh_isthmuscingulate: 1441 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_isthmuscingulate_rd.csv
+lh_lateraloccipital: 8391 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateraloccipital_rd.csv
+lh_lateralorbitofrontal: 3972 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lateralorbitofrontal_rd.csv
+lh_lingual: 4722 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_lingual_rd.csv
+lh_medialorbitofrontal: 3411 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_medialorbitofrontal_rd.csv
+lh_middletemporal: 4100 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_middletemporal_rd.csv
+lh_paracentral: 2289 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_paracentral_rd.csv
+lh_parahippocampal: 1132 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parahippocampal_rd.csv
+lh_parsopercularis: 2344 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsopercularis_rd.csv
+lh_parsorbitalis: 1039 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parsorbitalis_rd.csv
+lh_parstriangularis: 2174 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_parstriangularis_rd.csv
+lh_pericalcarine: 2006 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_pericalcarine_rd.csv
+lh_postcentral: 6019 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_postcentral_rd.csv
+lh_posteriorcingulate: 1731 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_posteriorcingulate_rd.csv
+lh_precentral: 8084 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precentral_rd.csv
+lh_precuneus: 5200 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_precuneus_rd.csv
+lh_rostralanteriorcingulate: 1159 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralanteriorcingulate_rd.csv
+lh_rostralmiddlefrontal: 8585 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_rostralmiddlefrontal_rd.csv
+lh_superiorfrontal: 11639 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorfrontal_rd.csv
+lh_superiorparietal: 7492 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiorparietal_rd.csv
+lh_superiortemporal: 6108 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_superiortemporal_rd.csv
+lh_supramarginal: 6517 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_supramarginal_rd.csv
+lh_temporalpole: 720 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_temporalpole_rd.csv
+lh_transversetemporal: 781 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_lh_transversetemporal_rd.csv
+
+RH regions: 34
+rh_bankssts: 1283 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_bankssts_rd.csv
+rh_caudalanteriorcingulate: 1426 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalanteriorcingulate_rd.csv
+rh_caudalmiddlefrontal: 2852 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_caudalmiddlefrontal_rd.csv
+rh_cuneus: 2353 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_cuneus_rd.csv
+rh_entorhinal: 627 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_entorhinal_rd.csv
+rh_frontalpole: 468 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_frontalpole_rd.csv
+rh_fusiform: 4052 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_fusiform_rd.csv
+rh_inferiorparietal: 8249 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiorparietal_rd.csv
+rh_inferiortemporal: 4528 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_inferiortemporal_rd.csv
+rh_insula: 3821 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_insula_rd.csv
+rh_isthmuscingulate: 1213 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_isthmuscingulate_rd.csv
+rh_lateraloccipital: 9496 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateraloccipital_rd.csv
+rh_lateralorbitofrontal: 3702 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lateralorbitofrontal_rd.csv
+rh_lingual: 5760 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_lingual_rd.csv
+rh_medialorbitofrontal: 3169 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_medialorbitofrontal_rd.csv
+rh_middletemporal: 5178 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_middletemporal_rd.csv
+rh_paracentral: 2324 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_paracentral_rd.csv
+rh_parahippocampal: 1035 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parahippocampal_rd.csv
+rh_parsopercularis: 1962 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsopercularis_rd.csv
+rh_parsorbitalis: 1266 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parsorbitalis_rd.csv
+rh_parstriangularis: 2765 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_parstriangularis_rd.csv
+rh_pericalcarine: 2775 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_pericalcarine_rd.csv
+rh_postcentral: 6143 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_postcentral_rd.csv
+rh_posteriorcingulate: 1682 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_posteriorcingulate_rd.csv
+rh_precentral: 8049 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precentral_rd.csv
+rh_precuneus: 5398 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_precuneus_rd.csv
+rh_rostralanteriorcingulate: 924 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralanteriorcingulate_rd.csv
+rh_rostralmiddlefrontal: 9697 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_rostralmiddlefrontal_rd.csv
+rh_superiorfrontal: 11243 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorfrontal_rd.csv
+rh_superiorparietal: 7466 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiorparietal_rd.csv
+rh_superiortemporal: 6138 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_superiortemporal_rd.csv
+rh_supramarginal: 5511 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_supramarginal_rd.csv
+rh_temporalpole: 701 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_temporalpole_rd.csv
+rh_transversetemporal: 651 trajectories × 21 depths
+Saved: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean/D0114_rh_transversetemporal_rd.csv
+
+Profile sampling complete.
+
+==============================================================================
+CORTICAL COLUMN ANALYSIS
+==============================================================================
+Subject:                 D0114
+Repository:              /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+FreeSurfer SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+ADC image:               /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz
+Registration reference:  /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz
+Analysis directory:      /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114
+
+==============================================================================
+STEP 1: DWI -> T1 REGISTRATION
+==============================================================================
+Command:
+bash /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/registration/register_dwi_to_t1.sh D0114 /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat
+
+
+==============================================================================
+STEP 2: BUILD CORTICAL TRAJECTORIES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/build_trajectories.py --subject-id D0114 --subject-dir /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0114 --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories --points 21
+
+
+==============================================================================
+STEP 3: TRANSFORM TRAJECTORIES TO DWI SPACE
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/transform_trajectories.py --subject-id D0114 --trajectory-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories --transform /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat --dwi /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories
+
+
+==============================================================================
+STEP 4: ASSIGN CORTICAL REGIONS
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/assign_regions.py --subject-id D0114 --subjects-dir /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --trajectory-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/trajectories --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions
+
+
+==============================================================================
+STEP 5: SAMPLE ADC PROFILES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py --subject-id D0114 --region-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions --metric-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz --metric-name adc --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+
+
+==============================================================================
+STEP 5: SAMPLE MD PROFILES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py --subject-id D0114 --region-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions --metric-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz --metric-name md --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+
+
+==============================================================================
+STEP 5: SAMPLE FA PROFILES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py --subject-id D0114 --region-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions --metric-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_fa.nii.gz --metric-name fa --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+
+
+==============================================================================
+STEP 5: SAMPLE AD PROFILES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py --subject-id D0114 --region-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions --metric-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_ad.nii.gz --metric-name ad --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+
+
+==============================================================================
+STEP 5: SAMPLE RD PROFILES
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py --subject-id D0114 --region-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regions --metric-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_rd.nii.gz --metric-name rd --output-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+
+
+==============================================================================
+STOP BEFORE CLEANING
+==============================================================================
+Raw profiles saved in: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/profiles_before_clean
+No bad-column cleaning was performed.
+
+==============================================================================
+CORTICAL TRAJECTORY SUBJECT PIPELINE
+==============================================================================
+Subject:          D0114
+Cohort:           ADRC
+T1:               /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0114/T1.nii.gz
+Raw DWI:          /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0114/bia5_01254_012.nii.gz
+bvec:             /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0114/bia5_01254_012.bvec
+bval:             /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0114/bia5_01254_012.bval
+Output directory: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114
+FreeSurfer dir:   /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Diffusion dir:    /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114
+Analysis dir:     /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114
+
+==============================================================================
+STEP 1: FREESURFER — SKIPPED
+==============================================================================
+Using existing FreeSurfer reconstruction.
+
+==============================================================================
+STEP 2: DWI PREPROCESSING — SKIPPED
+==============================================================================
+Using existing diffusion preprocessing outputs.
+
+==============================================================================
+STEP 3: PREPARE REGISTRATION INPUTS
+==============================================================================
+
+Registration DWI:  /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_05_biascorrected.mif
+Registration mask: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_corrected_mean_b0_brain_mask.nii.gz
+
+==============================================================================
+STEP 4: CREATE REGISTRATION REFERENCE
+==============================================================================
+Command:
+bash /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/registration/prepare_registration_reference.sh /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_05_biascorrected.mif /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration D0114 /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_corrected_mean_b0_brain_mask.nii.gz
+
+
+==============================================================================
+STEP 5: CORTICAL COLUMN ANALYSIS
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py --subject-id D0114 --subjects-dir /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --adc-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz --registration-reference /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz --analysis-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114 --md-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz --fa-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_fa.nii.gz --ad-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_ad.nii.gz --rd-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_rd.nii.gz --before-clean
+
+
+==============================================================================
+D0114 PIPELINE COMPLETE
+==============================================================================
+Subject: D0114
+Cohort:  ADRC
+
+ADC / MD:
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0114/D0114_md.nii.gz
+
+Registration reference:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_dwi_masked.nii.gz
+
+DWI -> T1 transform:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/registration/D0114_DWI2T1.dat
+
+Preprocessing output:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/preprocess
+
+Analysis output:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114
+
+Regional profiles:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0114/regional_profiles

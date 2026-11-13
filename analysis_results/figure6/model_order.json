@@ -1,0 +1,43 @@
+{
+  "ordering_principle": "prespecified reasoning sequence, not numerical performance rank",
+  "models": [
+    {
+      "order": 1,
+      "model": "M0",
+      "directory": "models/01_M0_linear_age_no_thickness",
+      "notebook": null,
+      "formula": "MD ~ linear age + categorical sex_code",
+      "role": "Baseline model. Establish Gaussian BLR calibration before adding nonlinear age or thickness.",
+      "conclusion": "Retained as the prespecified no-thickness sensitivity model."
+    },
+    {
+      "order": 2,
+      "model": "M1",
+      "directory": "models/02_M1_spline_age_no_thickness",
+      "notebook": null,
+      "formula": "MD ~ natural_cubic_spline(age, df=3) + categorical sex_code",
+      "role": "First age-form test: compare M1 with M0 before considering thickness.",
+      "conclusion": "Not selected: spline age did not improve held-out NLPD or calibration consistently."
+    },
+    {
+      "order": 3,
+      "model": "M2",
+      "directory": "models/03_M2_linear_age_with_thickness",
+      "notebook": null,
+      "formula": "MD ~ linear age + categorical sex_code + local FreeSurfer cortical thickness",
+      "role": "Thickness test under the selected linear age form: compare M2 with M0.",
+      "conclusion": "Selected uniform mean model for the future ico4 analysis, subject to the Gaussian-tail QC gate."
+    },
+    {
+      "order": 4,
+      "model": "M3",
+      "directory": "models/04_M3_spline_age_with_thickness",
+      "notebook": null,
+      "formula": "MD ~ natural_cubic_spline(age, df=3) + categorical sex_code + local FreeSurfer cortical thickness",
+      "role": "Cross-check the age-form decision after thickness adjustment: compare M3 with M2.",
+      "conclusion": "Not selected: spline age added no stable OOF benefit over M2."
+    }
+  ],
+  "summary_notebook": null,
+  "notebook_status": "Historical 188-participant notebooks removed after consolidation; use notebooks/figure6_DK_region_model_selection_186.ipynb for the frozen analysis."
+}

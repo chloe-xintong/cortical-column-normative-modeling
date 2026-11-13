@@ -1,0 +1,942 @@
+Job 320200 started at Thu Sep 10 12:16:04 PM EDT 2026
+Job Name: ADRCprofiles
+Running on node: crete
+Subject=D0205 Node=crete
+Using existing DWI and FreeSurfer outputs; preprocessing disabled
+
+Summed DWI size:
+164 328 122
+
+Registration mask size:
+164 328 122
+
+Registration reference preparation completed.
+
+Registration mask:
+/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_corrected_mean_b0_brain_mask.nii.gz
+
+Summed DWI:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_sum.nii.gz
+
+3D masked DWI for registration:
+/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz
+
+Final registration DWI size:
+164 328 122
+Subject:      D0205
+Moving image: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz
+SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Output:       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat
+tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043
+Log file is /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.log
+Thu Sep 10 12:16:17 PM EDT 2026
+
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+/home/apps//freesurfer/bin/bbregister --s D0205 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat --sd /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --dti --init-fsl --12
+
+bbregister 7.4.1
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+FREESURFER_HOME /home/apps//freesurfer
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii...
+fslregister --s D0205 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+
+Log file is /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat.fslregister.log
+
+Thu Sep 10 12:16:17 PM EDT 2026
+--s D0205 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --niters 1 --maxangle 90 --tmp /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister --dof 6 --fsvol brainmask.mgz --nobetmov
+fslregister 7.4.1
+crete
+Linux crete 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+nIters 1
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/refvol.fslregister.nii
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/brainmask.mgz /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/refvol.fslregister.nii 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/brainmask.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 0, -1)
+k_ras = (0, 1, 0)
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/refvol.fslregister.nii...
+--------------------------------------
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii --frame 0
+mri_convert /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii --frame 0 
+reading from /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+keeping frame 0
+writing to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii...
+Mov determinant is 1
+Swapping dims for pos det
+WARNING:: Flipping Left/Right orientation (as det < 0)
+target  volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/swapreg.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+INFO: target does not conform to COR format, so I'm going to
+reslice to COR. This will not affect the final registration.
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000  -1.00000   0.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant -1
+subject = subject-unknown
+RegMat ---------------------------
+-1.00000   0.00000   0.00000   1.00000;
+ 0.00000   1.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+tkregister2_cmdl --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/reg0.1947127.dat --targ brainmask --fstarg --regheader --fslregout /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat.fsl.mat0 --s D0205 --noedit
+target  volume brainmask
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/reg0.1947127.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/brainmask.mgz
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 1, float2int = 0
+Computing reg from header (and possibly input matrix)
+---- Input registration matrix (computed) --------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.80000;
+ 0.00000  -1.00000   0.00000   2.89999;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.80000;
+ 0.00000  -1.00000   0.00000   2.89999;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant 1
+subject = D0205
+RegMat ---------------------------
+ 1.00000   0.00000   0.00000   0.00000;
+ 0.00000   0.00000   1.00000   0.80000;
+ 0.00000  -1.00000   0.00000   2.89999;
+ 0.00000   0.00000   0.00000   1.00000;
+FSLOUTPUTTYPE NIFTI 
+tkreg2FSL: mov det = -1, ref det = -1
+Thu Sep 10 12:16:18 PM EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/fsl.5.0.2.xyztrans.sch -init /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat.fsl.mat0
+Thu Sep 10 12:16:50 PM EDT 2026
+/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+flirt.fsl -ref /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/refvol.fslregister.nii -in /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii -bins 256 -cost corratio -dof 6 -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -verbose 0 -omat /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat.fsl.mat -init /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/fslmat0.trans.mat -schedule /home/apps//freesurfer/bin/flirt.newdefault.20080811.sch
+tkregister2_cmdl --s D0205 --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii --targ brainmask --fstarg --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --fslreg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat.fsl.mat --noedit
+---- FSL registration matrix --------
+ 1.00000  -0.00101   0.00000   46.62120;
+ 0.00000   0.00000  -1.00000   185.62801;
+ 0.00101   1.00000   0.00000  -34.57170;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+target  volume brainmask
+movable volume /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+reg file       /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat
+LoadVol        0
+ZeroCRAS       0
+7.4.1
+Diagnostic Level -1
+INFO: loading target /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/brainmask.mgz
+Ttarg: --------------------
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+INFO: loading movable /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/movvol.fslregister.nii
+Tmov: --------------------
+-1.00000   0.00000   0.00000   82.00000;
+ 0.00000   0.00000   1.00000  -61.00000;
+ 0.00000  -1.00000   0.00000   164.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+mkheaderreg = 0, float2int = 0
+FSLOUTPUTTYPE NIFTI 
+fsl2TkReg: mov det = -1, ref det = -1
+---- Input registration matrix (computed) --------
+ 1.00000  -0.00101   0.00000   0.45709;
+ 0.00000   0.00000   1.00000  -3.37198;
+-0.00101  -1.00000   0.00000   1.51044;
+ 0.00000   0.00000   0.00000   1.00000;
+---------------------------------------
+---- Input registration matrix --------
+ 1.00000  -0.00101   0.00000   0.45709;
+ 0.00000   0.00000   1.00000  -3.37198;
+-0.00101  -1.00000   0.00000   1.51044;
+ 0.00000   0.00000   0.00000   1.00000;
+Determinant 1
+subject = D0205
+RegMat ---------------------------
+ 1.00000  -0.00101   0.00000   0.45709;
+ 0.00000   0.00000   1.00000  -3.37198;
+-0.00101  -1.00000   0.00000   1.51044;
+ 0.00000   0.00000   0.00000   1.00000;
+mri_matrix_multiply -im /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/fslregister/swapreg.dat -im /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat -om /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat
+ 
+Started at Thu Sep 10 12:16:17 PM EDT 2026 
+Ended   at Thu Sep 10 12:17:14 PM EDT 2026
+ 
+fslregister Done
+ 
+To check results, run:
+tkregisterfv --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --surf orig
+ 
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white --gm-proj-frac 0.5 --gm-gt-wm 0.5
+7.4.1
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white --gm-proj-frac 0.5 --gm-gt-wm 0.5 
+sysname  Linux
+hostname crete
+machine  x86_64
+user     xintong
+movvol /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii
+regfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.init.dat
+subject D0205
+dof 6
+outregfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 100
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000100
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1789628199
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+-1.00000   0.00101   0.00000   0.54291;
+ 0.00000   0.00000   1.00000  -3.37198;
+-0.00101  -1.00000   0.00000   1.51044;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Loading mov
+ExcludeZeroVoxels 1
+Reading in targ vol /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/orig.mgz
+Projecting LH Surfs
+Loading lh.white surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white surf
+Loading rh.thickness for GM
+Projecting RH Surfs
+Using lh.cortex.label
+Using rh.cortex.label
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.076225
+ 1  -25.0 -25.0  25.0   1.015447
+ 2  -25.0  25.0 -25.0   1.015400
+ 3  -25.0  25.0  25.0   1.040477
+ 4   25.0 -25.0 -25.0   1.040087
+ 5   25.0 -25.0  25.0   1.001460
+ 6   25.0  25.0 -25.0   1.027710
+ 7   25.0  25.0  25.0   1.071221
+REL:  8  0.296582    8.288027  1.036003 rel = 0.286275 
+Initial costs ----------------
+Number of surface hits 2206
+WM  Intensity 128364002.1179 +/- 13872687.7752
+Ctx Intensity 148038674.4461 +/- 17553328.1403
+Pct Contrast     14.0028 +/-  14.3900
+Cost   0.2966
+RelCost   0.2863
+
+------------------------------------
+Brute force preopt -4 4 4, n = 729
+     0  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000      1.0106   1.0106  0.0
+     2  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000   4.0000      0.9877   0.9877  0.0
+     7  -4.0000  -4.0000  -4.0000  -4.0000   4.0000   0.0000      0.9827   0.9827  0.0
+    11  -4.0000  -4.0000  -4.0000   0.0000  -4.0000   4.0000      0.9827   0.9827  0.0
+    19  -4.0000  -4.0000  -4.0000   4.0000  -4.0000   0.0000      0.9681   0.9681  0.0
+    33  -4.0000  -4.0000   0.0000  -4.0000   4.0000  -4.0000      0.9645   0.9645  0.0
+    35  -4.0000  -4.0000   0.0000  -4.0000   4.0000   4.0000      0.9628   0.9628  0.0
+    45  -4.0000  -4.0000   0.0000   4.0000  -4.0000  -4.0000      0.9537   0.9537  0.0
+    47  -4.0000  -4.0000   0.0000   4.0000  -4.0000   4.0000      0.9273   0.9273  0.0
+   118  -4.0000   0.0000   0.0000   0.0000  -4.0000   0.0000      0.9141   0.9141  0.0
+   249   0.0000  -4.0000  -4.0000  -4.0000   4.0000  -4.0000      0.9075   0.9075  0.0
+   292   0.0000  -4.0000   0.0000   4.0000   0.0000   0.0000      0.8827   0.8827  0.0
+   355   0.0000   0.0000   0.0000  -4.0000   0.0000   0.0000      0.7656   0.7656  0.0
+   364   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000      0.2966   0.2966  0.0
+Brute Force --------------------------
+Min cost was 0.296582
+Number of iterations   729
+Search time 0.796607 sec
+Parameters at best (transmm, rotdeg)
+  0.000   0.000   0.000  0.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 6
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+fs_powell::minimize
+  nparams 6
+  maxfev 36
+  ftol   0.000100
+  linmin_xtol_   0.001000
+  powell nthiter 0: fret = 0.296582
+   6  0.382  0.000  0.000  0.000  0.000  0.000   0.2926120952
+   7  0.265  0.000  0.000  0.000  0.000  0.000   0.2919794448
+   8  0.278  0.000  0.000  0.000  0.000  0.000   0.2918993951
+   9  0.300  0.000  0.000  0.000  0.000  0.000   0.2917562899
+  11  0.312  0.000  0.000  0.000  0.000  0.000   0.2917019566
+  12  0.314  0.000  0.000  0.000  0.000  0.000   0.2917004600
+  13  0.316  0.000  0.000  0.000  0.000  0.000   0.2916995248
+  16  0.316  1.000  0.000  0.000  0.000  0.000   0.2565976622
+  20  0.316  0.618  0.000  0.000  0.000  0.000   0.2500828920
+  21  0.316  0.737  0.000  0.000  0.000  0.000   0.2467373545
+  22  0.316  0.759  0.000  0.000  0.000  0.000   0.2463706204
+  24  0.316  0.784  0.000  0.000  0.000  0.000   0.2462869272
+  25  0.316  0.778  0.000  0.000  0.000  0.000   0.2462703726
+  27  0.316  0.779  0.000  0.000  0.000  0.000   0.2462702152
+  31  0.316  0.779  1.000  0.000  0.000  0.000   0.1579187574
+  36  0.316  0.779  0.990  0.000  0.000  0.000   0.1577758602
+  37  0.316  0.779  0.949  0.000  0.000  0.000   0.1573522889
+  39  0.316  0.779  0.909  0.000  0.000  0.000   0.1571847194
+  42  0.316  0.779  0.908  0.000  0.000  0.000   0.1571840786
+  44  0.316  0.779  0.907  0.000  0.000  0.000   0.1571838591
+  50  0.316  0.779  0.907 -0.618  0.000  0.000   0.1308325817
+  53  0.316  0.779  0.907 -0.640  0.000  0.000   0.1307514864
+  56  0.316  0.779  0.907 -0.656  0.000  0.000   0.1307281439
+  63  0.316  0.779  0.907 -0.656 -0.618  0.000   0.1171966714
+  71  0.316  0.779  0.907 -0.656 -0.610  0.000   0.1171963729
+  72  0.316  0.779  0.907 -0.656 -0.607  0.000   0.1171962389
+  82  0.316  0.779  0.907 -0.656 -0.607 -0.122   0.1158456029
+  85  0.316  0.779  0.907 -0.656 -0.607 -0.124   0.1158447900
+  powell nthiter 1: fret = 0.115845
+  94  0.227  0.779  0.907 -0.656 -0.607 -0.124   0.1135620003
+  97  0.231  0.779  0.907 -0.656 -0.607 -0.124   0.1135435272
+  98  0.238  0.779  0.907 -0.656 -0.607 -0.124   0.1135407173
+ 102  0.237  0.779  0.907 -0.656 -0.607 -0.124   0.1135403151
+ 109  0.237  0.569  0.907 -0.656 -0.607 -0.124   0.1135046857
+ 110  0.237  0.672  0.907 -0.656 -0.607 -0.124   0.1116991189
+ 111  0.237  0.673  0.907 -0.656 -0.607 -0.124   0.1116918274
+ 112  0.237  0.696  0.907 -0.656 -0.607 -0.124   0.1116599176
+ 114  0.237  0.689  0.907 -0.656 -0.607 -0.124   0.1116433181
+ 123  0.237  0.689  0.973 -0.656 -0.607 -0.124   0.1116354753
+ 124  0.237  0.689  0.941 -0.656 -0.607 -0.124   0.1115886581
+ 128  0.237  0.689  0.939 -0.656 -0.607 -0.124   0.1115879401
+ 136  0.237  0.689  0.939 -0.698 -0.607 -0.124   0.1108034904
+ 138  0.237  0.689  0.939 -0.745 -0.607 -0.124   0.1105953148
+ 139  0.237  0.689  0.939 -0.736 -0.607 -0.124   0.1105768395
+ 140  0.237  0.689  0.939 -0.735 -0.607 -0.124   0.1105757981
+ 142  0.237  0.689  0.939 -0.730 -0.607 -0.124   0.1105740640
+ 145  0.237  0.689  0.939 -0.729 -0.607 -0.124   0.1105739520
+ 158  0.237  0.689  0.939 -0.729 -0.612 -0.124   0.1105618168
+ 159  0.237  0.689  0.939 -0.729 -0.613 -0.124   0.1105609485
+ 160  0.237  0.689  0.939 -0.729 -0.614 -0.124   0.1105599408
+ 170  0.237  0.689  0.939 -0.729 -0.614 -0.106   0.1105242028
+ 171  0.237  0.689  0.939 -0.729 -0.614 -0.099   0.1105221064
+ 174  0.158  0.599  0.971 -0.802 -0.621 -0.075   0.1098504066
+  powell nthiter 2: fret = 0.110522
+ 231  0.217  0.648  0.949 -0.766 -0.503 -0.099   0.1097388158
+ 237  0.217  0.648  0.949 -0.766 -0.500 -0.099   0.1097348054
+ 247  0.217  0.648  0.949 -0.766 -0.500 -0.080   0.1097278231
+ 249  0.217  0.648  0.949 -0.766 -0.500 -0.088   0.1097226020
+  powell nthiter 3: fret = 0.109723
+ 259  0.168  0.648  0.949 -0.766 -0.500 -0.088   0.1087268809
+ 261  0.107  0.648  0.949 -0.766 -0.500 -0.088   0.1080179888
+ 262  0.100  0.648  0.949 -0.766 -0.500 -0.088   0.1079784252
+ 264  0.089  0.648  0.949 -0.766 -0.500 -0.088   0.1079453120
+ 275  0.089  0.618  0.949 -0.766 -0.500 -0.088   0.1079284286
+ 276  0.089  0.630  0.949 -0.766 -0.500 -0.088   0.1079248541
+ 277  0.089  0.627  0.949 -0.766 -0.500 -0.088   0.1079243273
+ 279  0.089  0.628  0.949 -0.766 -0.500 -0.088   0.1079241791
+ 286  0.089  0.628  0.976 -0.766 -0.500 -0.088   0.1076008549
+ 287  0.089  0.628  1.014 -0.766 -0.500 -0.088   0.1074791307
+ 288  0.089  0.628  1.007 -0.766 -0.500 -0.088   0.1074673432
+ 289  0.089  0.628  1.005 -0.766 -0.500 -0.088   0.1074654627
+ 291  0.089  0.628  1.002 -0.766 -0.500 -0.088   0.1074639441
+ 292  0.089  0.628  1.001 -0.766 -0.500 -0.088   0.1074638712
+ 302  0.089  0.628  1.001 -0.823 -0.500 -0.088   0.1071337272
+ 304  0.089  0.628  1.001 -0.809 -0.500 -0.088   0.1071255849
+ 306  0.089  0.628  1.001 -0.815 -0.500 -0.088   0.1071195112
+ 316  0.089  0.628  1.001 -0.815 -0.486 -0.088   0.1070615977
+ 317  0.089  0.628  1.001 -0.815 -0.480 -0.088   0.1070574084
+ 318  0.089  0.628  1.001 -0.815 -0.481 -0.088   0.1070573256
+ 326  0.089  0.628  1.001 -0.815 -0.481 -0.060   0.1066715462
+ 327  0.089  0.628  1.001 -0.815 -0.481  0.006   0.1062212270
+ 328  0.089  0.628  1.001 -0.815 -0.481  0.020   0.1062131885
+ 331  0.089  0.628  1.001 -0.815 -0.481  0.019   0.1062130023
+ 332  0.089  0.628  1.001 -0.815 -0.481  0.018   0.1062129920
+  powell nthiter 4: fret = 0.106213
+ 340  0.104  0.628  1.001 -0.815 -0.481  0.018   0.1062064001
+ 341  0.098  0.628  1.001 -0.815 -0.481  0.018   0.1062018998
+ 342  0.097  0.628  1.001 -0.815 -0.481  0.018   0.1062018207
+ 351  0.097  0.645  1.001 -0.815 -0.481  0.018   0.1061074439
+ 353  0.097  0.646  1.001 -0.815 -0.481  0.018   0.1061059780
+ 354  0.097  0.648  1.001 -0.815 -0.481  0.018   0.1061051441
+ 356  0.097  0.649  1.001 -0.815 -0.481  0.018   0.1061051213
+ 366  0.097  0.649  0.998 -0.815 -0.481  0.018   0.1061002159
+ 367  0.097  0.649  0.996 -0.815 -0.481  0.018   0.1061000829
+ 377  0.097  0.649  0.996 -0.820 -0.481  0.018   0.1060806371
+ 378  0.097  0.649  0.996 -0.830 -0.481  0.018   0.1060580087
+ 382  0.097  0.649  0.996 -0.831 -0.481  0.018   0.1060576704
+ 389  0.097  0.649  0.996 -0.831 -0.470  0.018   0.1060364600
+ 400  0.097  0.649  0.996 -0.831 -0.470  0.031   0.1060154177
+ 401  0.097  0.649  0.996 -0.831 -0.470  0.034   0.1060147039
+ 402  0.097  0.649  0.996 -0.831 -0.470  0.035   0.1060138602
+ 407  0.097  0.649  0.996 -0.831 -0.470  0.038   0.1060135321
+ 409  0.097  0.649  0.996 -0.831 -0.470  0.037   0.1060133472
+  powell nthiter 5: fret = 0.106013
+ 419  0.082  0.649  0.996 -0.831 -0.470  0.037   0.1060077761
+ 420  0.089  0.649  0.996 -0.831 -0.470  0.037   0.1060008130
+ 421  0.088  0.649  0.996 -0.831 -0.470  0.037   0.1060005795
+ 430  0.088  0.648  0.996 -0.831 -0.470  0.037   0.1059988207
+ 431  0.088  0.643  0.996 -0.831 -0.470  0.037   0.1059978409
+ 433  0.088  0.645  0.996 -0.831 -0.470  0.037   0.1059975653
+ 443  0.088  0.645  0.995 -0.831 -0.470  0.037   0.1059974616
+ 454  0.088  0.645  0.995 -0.838 -0.470  0.037   0.1059865942
+ 457  0.088  0.645  0.995 -0.839 -0.470  0.037   0.1059863606
+ 464  0.088  0.645  0.995 -0.839 -0.468  0.037   0.1059858306
+ 473  0.088  0.645  0.995 -0.839 -0.468  0.039   0.1059844342
+ 474  0.088  0.645  0.995 -0.839 -0.468  0.042   0.1059834225
+ 475  0.088  0.645  0.995 -0.839 -0.468  0.041   0.1059831607
+  powell nthiter 6: fret = 0.105983
+ 488  0.089  0.645  0.995 -0.839 -0.468  0.041   0.1059831529
+ 498  0.089  0.639  0.995 -0.839 -0.468  0.041   0.1059829081
+ 500  0.089  0.642  0.995 -0.839 -0.468  0.041   0.1059802855
+ 513  0.089  0.642  0.994 -0.839 -0.468  0.041   0.1059802512
+ 523  0.089  0.642  0.994 -0.843 -0.468  0.041   0.1059789673
+ 524  0.089  0.642  0.994 -0.842 -0.468  0.041   0.1059786055
+ 532  0.089  0.642  0.994 -0.842 -0.470  0.041   0.1059784925
+Powell done niters = 6
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.069506
+ 1  -25.0 -25.0  25.0   1.046562
+ 2  -25.0  25.0 -25.0   1.040559
+ 3  -25.0  25.0  25.0   0.992989
+ 4   25.0 -25.0 -25.0   1.026771
+ 5   25.0 -25.0  25.0   1.022482
+ 6   25.0  25.0 -25.0   1.072169
+ 7   25.0  25.0  25.0   1.062738
+REL:  8  0.105978    8.333776  1.041722 rel = 0.101734 
+Number of iterations     6
+Min cost was 0.105978
+Number of FunctionCalls   544
+TolPowell 0.000100
+nMaxItersPowell 36
+OptimizationTime 0.580447 sec
+Parameters at optimum (transmm)  0.08917  0.64214  0.99413
+Parameters at optimum (rotdeg) -0.84205 -0.46968  0.04130 
+Final costs ----------------
+Number of surface hits 2206
+WM  Intensity 126388329.8858 +/- 12750716.6488
+Ctx Intensity 152993520.3554 +/- 15793243.4241
+Pct Contrast     18.9351 +/-  11.4630
+Cost   0.1060
+RelCost   0.2863
+Reg at min cost was 
+-0.99996   0.00922  -0.00060   0.62168;
+-0.00074  -0.01469   0.99989  -2.70690;
+-0.00921  -0.99985  -0.01470   2.55837;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Writing optimal reg to /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat, type = 14 
+Original Reg 
+-1.00000   0.00101   0.00000   0.54291;
+ 0.00000   0.00000   1.00000  -3.37198;
+-0.00101  -1.00000   0.00000   1.51044;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Original Reg - Optimal Reg
+-0.00004  -0.00821   0.00060  -0.07878;
+ 0.00074   0.01469   0.00011  -0.66508;
+ 0.00820  -0.00015   0.01470  -1.04792;
+ 0.00000   0.00000   0.00000   0.00000;
+
+Computing change in lh position
+LH rmsDiffMean 1.583298
+Computing change in rh position
+Surface-RMS-Diff-mm 1.437057 0.434228 2.440192
+mri_segreg done
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat.mincost --dof 12 --nmax 36 --param /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat.param --surf white --brute -0.1 0.1 0.1 --cur-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --gm-gt-wm 0.5
+7.4.1
+setenv SUBJECTS_DIR /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+cd /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+mri_segreg --mov /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii --init-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat --out-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat.mincost --dof 12 --nmax 36 --param /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat.param --surf white --brute -0.1 0.1 0.1 --cur-reg /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --gm-gt-wm 0.5 
+sysname  Linux
+hostname crete
+machine  x86_64
+user     xintong
+movvol /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/template.nii
+regfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/tmp.bbregister.1947043/bbr.pass1.dat
+subject D0205
+dof 12
+outregfile /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 1
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000000
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1789700405
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+-0.99996   0.00922  -0.00060   0.62168;
+-0.00074  -0.01469   0.99989  -2.70690;
+-0.00921  -0.99985  -0.01470   2.55837;
+ 0.00000   0.00000   0.00000   1.00000;
+
+Loading mov
+ExcludeZeroVoxels 1
+Reading in targ vol /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer/D0205/mri/orig.mgz
+Projecting LH Surfs
+Loading lh.white surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white surf
+Loading rh.thickness for GM
+Projecting RH Surfs
+Using lh.cortex.label
+Using rh.cortex.label
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   1.032871
+ 1  -25.0 -25.0  25.0   1.026001
+ 2  -25.0  25.0 -25.0   1.041962
+ 3  -25.0  25.0  25.0   1.023889
+ 4   25.0 -25.0 -25.0   1.031053
+ 5   25.0 -25.0  25.0   1.020749
+ 6   25.0  25.0 -25.0   1.027503
+ 7   25.0  25.0  25.0   1.050986
+REL:  8  0.110615    8.255016  1.031877 rel = 0.107198 
+Initial costs ----------------
+Number of surface hits 220876
+WM  Intensity 126117136.9966 +/- 12409652.4898
+Ctx Intensity 152786448.3338 +/- 15869742.1416
+Pct Contrast     18.9766 +/-  11.7146
+Cost   0.1106
+RelCost   0.1072
+
+------------------------------------
+Brute force preopt -0.1 0.1 0.1, n = 729
+     0  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000      0.1157   0.1157  0.0
+     1  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000   0.0000      0.1145   0.1145  0.0
+     2  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000   0.1000      0.1138   0.1138  0.0
+     3  -0.1000  -0.1000  -0.1000  -0.1000   0.0000  -0.1000      0.1114   0.1114  0.0
+     4  -0.1000  -0.1000  -0.1000  -0.1000   0.0000   0.0000      0.1110   0.1110  0.0
+     6  -0.1000  -0.1000  -0.1000  -0.1000   0.1000  -0.1000      0.1106   0.1106  0.0
+     7  -0.1000  -0.1000  -0.1000  -0.1000   0.1000   0.0000      0.1104   0.1104  0.0
+    12  -0.1000  -0.1000  -0.1000   0.0000   0.0000  -0.1000      0.1101   0.1101  0.0
+    15  -0.1000  -0.1000  -0.1000   0.0000   0.1000  -0.1000      0.1097   0.1097  0.0
+    39  -0.1000  -0.1000   0.0000   0.0000   0.0000  -0.1000      0.1093   0.1093  0.0
+    42  -0.1000  -0.1000   0.0000   0.0000   0.1000  -0.1000      0.1091   0.1091  0.0
+   103  -0.1000   0.0000  -0.1000   0.1000   0.0000   0.0000      0.1088   0.1088  0.0
+   121  -0.1000   0.0000   0.0000   0.0000   0.0000   0.0000      0.1078   0.1078  0.0
+   282   0.0000  -0.1000   0.0000   0.0000   0.0000  -0.1000      0.1077   0.1077  0.0
+   363   0.0000   0.0000   0.0000   0.0000   0.0000  -0.1000      0.1068   0.1068  0.0
+   364   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000      0.1060   0.1060  0.0
+Brute Force --------------------------
+Min cost was 0.105978
+Number of iterations   729
+Search time 0.764967 sec
+Parameters at best (transmm, rotdeg)
+  0.000   0.000   0.000  0.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 12
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 1
+7 1
+8 1
+9 0
+10 0
+11 0
+fs_powell::minimize
+  nparams 12
+  maxfev 36
+  ftol   0.000000
+  linmin_xtol_   0.001000
+  powell nthiter 0: fret = 0.110615
+   7  0.073  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1102117024
+   8  0.072  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1102112965
+   9  0.070  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1102107987
+  12  0.069  0.000  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1102107119
+  19  0.069 -0.100  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1094475958
+  20  0.069 -0.093  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1094443592
+  21  0.069 -0.094  0.000  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1094442133
+  29  0.069 -0.094 -0.047  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1092310738
+  30  0.069 -0.094 -0.050  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1092293962
+  31  0.069 -0.094 -0.052  0.000  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1092292369
+  39  0.069 -0.094 -0.052  0.097  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088227531
+  40  0.069 -0.094 -0.052  0.083  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088069226
+  41  0.069 -0.094 -0.052  0.081  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088062997
+  42  0.069 -0.094 -0.052  0.079  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088062489
+  44  0.069 -0.094 -0.052  0.080  0.000  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088061777
+  51  0.069 -0.094 -0.052  0.080 -0.001  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1088030439
+  52  0.069 -0.094 -0.052  0.080 -0.019  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1087869762
+  54  0.069 -0.094 -0.052  0.080 -0.017  0.000 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1087866366
+  63  0.069 -0.094 -0.052  0.080 -0.017 -0.222 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1067891980
+  65  0.069 -0.094 -0.052  0.080 -0.017 -0.248 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1067745385
+  67  0.069 -0.094 -0.052  0.080 -0.017 -0.241 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1067728875
+  69  0.069 -0.094 -0.052  0.080 -0.017 -0.239 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1067728791
+  72  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.000 1.000 1.000 sh:  0.000  0.000  0.000   0.1067727771
+  81  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.004 1.000 1.000 sh:  0.000  0.000  0.000   0.1051892269
+  82  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.006 1.000 1.000 sh:  0.000  0.000  0.000   0.1050787929
+  84  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.000 1.000 sh:  0.000  0.000  0.000   0.1050461044
+  94  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.000   0.1049520884
+ 138  0.069 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1049126689
+  powell nthiter 1: fret = 0.104913
+ 146  0.096 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048391565
+ 147  0.100 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048364099
+ 148  0.104 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048359430
+ 149  0.103 -0.094 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048358752
+ 157  0.103 -0.095 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048349767
+ 158  0.103 -0.100 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048340126
+ 160  0.103 -0.098 -0.052  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048336708
+ 168  0.103 -0.098 -0.068  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048198162
+ 169  0.103 -0.098 -0.065  0.080 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1048186163
+ 178  0.103 -0.098 -0.065  0.148 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046884988
+ 179  0.103 -0.098 -0.065  0.130 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046652117
+regio_write_register: No such file or directory
+ 180  0.103 -0.098 -0.065  0.129 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046650247
+regio_write_register: No such file or directory
+ 181  0.103 -0.098 -0.065  0.128 -0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046650104
+regio_write_register: No such file or directory
+ 189  0.103 -0.098 -0.065  0.128  0.017 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046141997
+regio_write_register: No such file or directory
+ 191  0.103 -0.098 -0.065  0.128  0.015 -0.240 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046139297
+regio_write_register: No such file or directory
+ 199  0.103 -0.098 -0.065  0.128  0.015 -0.222 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046131941
+regio_write_register: No such file or directory
+ 200  0.103 -0.098 -0.065  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.000  0.000  0.001   0.1046102281
+regio_write_register: No such file or directory
+ 243  0.103 -0.098 -0.065  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001  0.000  0.001   0.1046020794
+regio_write_register: No such file or directory
+ 255  0.103 -0.098 -0.065  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045585929
+regio_write_register: No such file or directory
+  powell nthiter 2: fret = 0.104559
+ 275  0.107 -0.098 -0.065  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045555470
+regio_write_register: No such file or directory
+ 276  0.109 -0.098 -0.065  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045554035
+regio_write_register: No such file or directory
+ 294  0.109 -0.098 -0.073  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045477365
+regio_write_register: No such file or directory
+ 295  0.109 -0.098 -0.074  0.128  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045474395
+regio_write_register: No such file or directory
+ 304  0.109 -0.098 -0.074  0.135  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045449571
+regio_write_register: No such file or directory
+ 305  0.109 -0.098 -0.074  0.134  0.015 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1045448688
+regio_write_register: No such file or directory
+ 313  0.109 -0.098 -0.074  0.134  0.053 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044793063
+regio_write_register: No such file or directory
+ 314  0.109 -0.098 -0.074  0.134  0.048 -0.231 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044776461
+regio_write_register: No such file or directory
+ 323  0.109 -0.098 -0.074  0.134  0.048 -0.201 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044577429
+regio_write_register: No such file or directory
+ 324  0.109 -0.098 -0.074  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044564775
+regio_write_register: No such file or directory
+  powell nthiter 3: fret = 0.104456
+ 399  0.097 -0.098 -0.074  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044468498
+regio_write_register: No such file or directory
+ 400  0.098 -0.098 -0.074  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044468449
+regio_write_register: No such file or directory
+ 409  0.098 -0.096 -0.074  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044463417
+regio_write_register: No such file or directory
+ 410  0.098 -0.095 -0.074  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044463058
+regio_write_register: No such file or directory
+ 419  0.098 -0.095 -0.080  0.134  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044430503
+regio_write_register: No such file or directory
+ 430  0.098 -0.095 -0.080  0.141  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044408773
+regio_write_register: No such file or directory
+ 431  0.098 -0.095 -0.080  0.140  0.048 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044408355
+regio_write_register: No such file or directory
+ 439  0.098 -0.095 -0.080  0.140  0.054 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044401134
+regio_write_register: No such file or directory
+ 440  0.098 -0.095 -0.080  0.140  0.052 -0.207 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044397058
+regio_write_register: No such file or directory
+ 450  0.098 -0.095 -0.080  0.140  0.052 -0.205 sc: 1.005 1.001 1.000 sh:  0.001 -0.001  0.001   0.1044394450
+regio_write_register: No such file or directory
+ 473  0.098 -0.095 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.001   0.1044310659
+regio_write_register: No such file or directory
+ 518  0.098 -0.095 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044198684
+regio_write_register: No such file or directory
+  powell nthiter 4: fret = 0.104420
+ 526  0.096 -0.095 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044184968
+regio_write_register: No such file or directory
+ 527  0.093 -0.095 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044178937
+regio_write_register: No such file or directory
+ 536  0.093 -0.084 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044170749
+regio_write_register: No such file or directory
+ 537  0.093 -0.089 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044154022
+regio_write_register: No such file or directory
+ 538  0.093 -0.088 -0.080  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044153197
+regio_write_register: No such file or directory
+ 546  0.093 -0.088 -0.071  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044144924
+regio_write_register: No such file or directory
+ 547  0.093 -0.088 -0.075  0.140  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1044135458
+regio_write_register: No such file or directory
+ 556  0.093 -0.088 -0.075  0.198  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042960615
+regio_write_register: No such file or directory
+ 557  0.093 -0.088 -0.075  0.185  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042886785
+regio_write_register: No such file or directory
+ 558  0.093 -0.088 -0.075  0.187  0.052 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042885197
+regio_write_register: No such file or directory
+ 566  0.093 -0.088 -0.075  0.187  0.056 -0.205 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042875631
+regio_write_register: No such file or directory
+ 576  0.093 -0.088 -0.075  0.187  0.056 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042872462
+regio_write_register: No such file or directory
+ 578  0.093 -0.088 -0.075  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042872435
+regio_write_register: No such file or directory
+  powell nthiter 5: fret = 0.104287
+ 652  0.089 -0.088 -0.075  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042868815
+regio_write_register: No such file or directory
+ 654  0.090 -0.088 -0.075  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042867810
+regio_write_register: No such file or directory
+ 663  0.090 -0.086 -0.075  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042865844
+regio_write_register: No such file or directory
+ 665  0.090 -0.087 -0.075  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042865701
+regio_write_register: No such file or directory
+ 672  0.090 -0.087 -0.076  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042854947
+regio_write_register: No such file or directory
+ 673  0.090 -0.087 -0.082  0.187  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042820787
+regio_write_register: No such file or directory
+ 684  0.090 -0.087 -0.082  0.189  0.056 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042818441
+regio_write_register: No such file or directory
+ 693  0.090 -0.087 -0.082  0.189  0.057 -0.201 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042817186
+regio_write_register: No such file or directory
+ 702  0.090 -0.087 -0.082  0.189  0.057 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042816071
+regio_write_register: No such file or directory
+ 775  0.090 -0.087 -0.083  0.189  0.057 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042814759
+regio_write_register: No such file or directory
+ 781  0.090 -0.087 -0.083  0.189  0.057 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042814757
+regio_write_register: No such file or directory
+ 782  0.090 -0.087 -0.083  0.189  0.057 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042814696
+regio_write_register: No such file or directory
+  powell nthiter 6: fret = 0.104281
+ 790  0.088 -0.087 -0.083  0.189  0.057 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042814444
+regio_write_register: No such file or directory
+ 827  0.088 -0.087 -0.083  0.189  0.059 -0.202 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042813352
+regio_write_register: No such file or directory
+ 838  0.088 -0.087 -0.083  0.189  0.059 -0.204 sc: 1.005 1.002 1.000 sh:  0.001 -0.001  0.002   0.1042813159
+regio_write_register: No such file or directory
+ 873  0.088 -0.087 -0.083  0.189  0.059 -0.204 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1041374695
+regio_write_register: No such file or directory
+ 897  0.086 -0.086 -0.090  0.192  0.060 -0.205 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1041135552
+regio_write_register: No such file or directory
+ 898  0.083 -0.084 -0.102  0.195  0.061 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040942903
+regio_write_register: No such file or directory
+ 899  0.081 -0.084 -0.105  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930616
+regio_write_register: No such file or directory
+ 900  0.081 -0.084 -0.105  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930273
+regio_write_register: No such file or directory
+ 901  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930251
+regio_write_register: No such file or directory
+ 906  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930243
+regio_write_register: No such file or directory
+ 907  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930221
+regio_write_register: No such file or directory
+ 908  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930190
+regio_write_register: No such file or directory
+ 909  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930163
+regio_write_register: No such file or directory
+ 910  0.081 -0.084 -0.106  0.197  0.062 -0.208 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040930149
+regio_write_register: No such file or directory
+ 919  0.078 -0.082 -0.115  0.200  0.064 -0.211 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040896513
+regio_write_register: No such file or directory
+ 920  0.079 -0.083 -0.111  0.199  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040872553
+regio_write_register: No such file or directory
+ 923  0.079 -0.083 -0.111  0.199  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040872509
+regio_write_register: No such file or directory
+  powell nthiter 7: fret = 0.104087
+ 936  0.080 -0.083 -0.111  0.199  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040871790
+regio_write_register: No such file or directory
+ 945  0.080 -0.077 -0.111  0.199  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040855650
+regio_write_register: No such file or directory
+ 946  0.080 -0.078 -0.111  0.199  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040855029
+regio_write_register: No such file or directory
+ 966  0.080 -0.078 -0.111  0.195  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040841760
+regio_write_register: No such file or directory
+ 967  0.080 -0.078 -0.111  0.193  0.063 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040838394
+regio_write_register: No such file or directory
+ 977  0.080 -0.078 -0.111  0.193  0.065 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040833416
+regio_write_register: No such file or directory
+ 979  0.080 -0.078 -0.111  0.193  0.067 -0.210 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040832178
+regio_write_register: No such file or directory
+ 988  0.080 -0.078 -0.111  0.193  0.067 -0.196 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040817902
+regio_write_register: No such file or directory
+ 989  0.080 -0.078 -0.111  0.193  0.067 -0.202 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808928
+regio_write_register: No such file or directory
+ 990  0.080 -0.078 -0.111  0.193  0.067 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808844
+regio_write_register: No such file or directory
+1019  0.080 -0.078 -0.111  0.193  0.067 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808837
+regio_write_register: No such file or directory
+1020  0.080 -0.078 -0.111  0.193  0.067 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808799
+regio_write_register: No such file or directory
+1022  0.080 -0.078 -0.111  0.193  0.067 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808719
+regio_write_register: No such file or directory
+1029  0.080 -0.078 -0.111  0.193  0.067 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040808640
+regio_write_register: No such file or directory
+1058  0.080 -0.078 -0.113  0.194  0.068 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040804875
+regio_write_register: No such file or directory
+1059  0.080 -0.078 -0.113  0.194  0.068 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040804872
+regio_write_register: No such file or directory
+  powell nthiter 8: fret = 0.104080
+1069  0.079 -0.078 -0.113  0.194  0.068 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040803173
+regio_write_register: No such file or directory
+1070  0.078 -0.078 -0.113  0.194  0.068 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040803065
+regio_write_register: No such file or directory
+1102  0.078 -0.078 -0.113  0.193  0.068 -0.201 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040802939
+regio_write_register: No such file or directory
+1120  0.078 -0.078 -0.113  0.193  0.067 -0.200 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040802489
+regio_write_register: No such file or directory
+1149  0.078 -0.078 -0.112  0.192  0.067 -0.200 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040802012
+regio_write_register: No such file or directory
+1150  0.078 -0.078 -0.112  0.192  0.067 -0.200 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040801926
+regio_write_register: No such file or directory
+1156  0.078 -0.078 -0.112  0.192  0.067 -0.200 sc: 1.005 1.002 1.001 sh:  0.001 -0.001  0.002   0.1040801872
+regio_write_register: No such file or directory
+
+==============================================================================
+CORTICAL COLUMN ANALYSIS
+==============================================================================
+Subject:                 D0205
+Repository:              /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis
+FreeSurfer SUBJECTS_DIR: /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+ADC image:               /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_md.nii.gz
+Registration reference:  /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz
+Analysis directory:      /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205
+
+==============================================================================
+STEP 1: DWI -> T1 REGISTRATION
+==============================================================================
+Command:
+bash /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/registration/register_dwi_to_t1.sh D0205 /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_DWI2T1.dat
+
+
+==============================================================================
+CORTICAL TRAJECTORY SUBJECT PIPELINE
+==============================================================================
+Subject:          D0205
+Cohort:           ADRC
+T1:               /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0205/T1.nii.gz
+Raw DWI:          /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0205/bia5_01654_011.nii.gz
+bvec:             /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0205/bia5_01654_011.bvec
+bval:             /mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0205/bia5_01654_011.bval
+Output directory: /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205
+FreeSurfer dir:   /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer
+Diffusion dir:    /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205
+Analysis dir:     /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205
+
+==============================================================================
+STEP 1: FREESURFER — SKIPPED
+==============================================================================
+Using existing FreeSurfer reconstruction.
+
+==============================================================================
+STEP 2: DWI PREPROCESSING — SKIPPED
+==============================================================================
+Using existing diffusion preprocessing outputs.
+
+==============================================================================
+STEP 3: PREPARE REGISTRATION INPUTS
+==============================================================================
+
+Registration DWI:  /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_05_biascorrected.mif
+Registration mask: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_corrected_mean_b0_brain_mask.nii.gz
+
+==============================================================================
+STEP 4: CREATE REGISTRATION REFERENCE
+==============================================================================
+Command:
+bash /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/registration/prepare_registration_reference.sh /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_05_biascorrected.mif /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration D0205 /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_corrected_mean_b0_brain_mask.nii.gz
+
+
+==============================================================================
+STEP 5: CORTICAL COLUMN ANALYSIS
+==============================================================================
+Command:
+/home/apps/ubuntu-22.04/anaconda3/bin/python /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py --subject-id D0205 --subjects-dir /mnt/newStor/paros/paros_WORK/xintong/data/processed/t1_freesurfer --adc-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_md.nii.gz --registration-reference /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205/registration/D0205_dwi_masked.nii.gz --analysis-dir /mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0205 --md-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_md.nii.gz --fa-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_fa.nii.gz --ad-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_ad.nii.gz --rd-image /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0205/D0205_rd.nii.gz --before-clean
+

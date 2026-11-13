@@ -1,0 +1,42 @@
+/home/apps//perl5/etc/bashrc: line 118: /home/xintong/.perlbrew/init: No such file or directory
+mrconvert: [WARNING] existing output files will be overwritten
+mrconvert: copying from "/mnt/newSt.../D0192_05_biascorrected.mif" to "/mnt/newSt...ation/D0192_dwi4D_no_b0.mif"... [==================================================]
+mrmath: [WARNING] existing output files will be overwritten
+mrmath: preloading data for "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/registration/D0192_dwi4D_no_b0.mif"... [==================================================]
+mrmath: computing sum along axis 3...... [==================================================]
+mrmath: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/registration/D0192_dwi_sum.nii.gz"... [==================================================]
+mrcalc: [WARNING] existing output files will be overwritten
+mrcalc: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/registration/D0192_dwi_sum.nii.gz"... [==================================================]
+mrcalc: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0192/D0192_corrected_mean_b0_brain_mask.nii.gz"... [==================================================]
+mrcalc: computing: (/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/registration/D0192_dwi_sum.nii.gz * /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0192/D0192_corrected_mean_b0_brain_mask.nii.gz)... []
+mrcalc: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/registration/D0192_dwi_masked.nii.gz"... [==================================================]
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/assign_regions.py", line 352, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/assign_regions.py", line 339, in main
+    process_hemisphere(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/assign_regions.py", line 277, in process_hemisphere
+    save_region(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/trajectory_processing/assign_regions.py", line 195, in save_region
+    np.savetxt(
+  File "<__array_function__ internals>", line 200, in savetxt
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/site-packages/numpy/lib/npyio.py", line 1541, in savetxt
+    open(fname, 'wt').close()
+    ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0192/regions/rh_parahippocampal.csv'
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 858, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 622, in main
+    run_command(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 193, in run_command
+    raise RuntimeError(
+RuntimeError: STEP 4: ASSIGN CORTICAL REGIONS failed with exit code 1
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 982, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 859, in main
+    run_command(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 240, in run_command
+    raise RuntimeError(
+RuntimeError: STEP 5: CORTICAL COLUMN ANALYSIS failed with exit code 1

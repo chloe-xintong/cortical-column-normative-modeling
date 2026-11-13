@@ -1,0 +1,31 @@
+null_method: surface_pca_independent_component_surrogate
+seed: 20261021
+n_realizations: 5
+# Retain all components, then restore zero-lag 21-depth covariance after
+# component-wise spatial randomization.
+variance_explained: 1.0
+rank_remap: false
+rotation_mode: independent_components
+rotation_family: fsaverage_icosahedral_orientation_preserving
+mask_handling: harmonic_extension_on_full_sphere_then_subject_valid_mask
+covariance_recoloring: subject_and_hemisphere_specific
+smoothness_calibration:
+  status: graph_filter_rejected_spectral_surrogate_required
+  objective: distance_resolved_final_depth_map_acf_shape
+  loss: weighted_squared_acf_error_by_distance_bin
+  report_ranges_mm: [[0, 6], [8, 20], [20, 30]]
+  graph_filter_pilot:
+    candidates: [0.0, -0.05, -0.10, -0.20, -0.30]
+    best_strength: -0.20
+    best_mean_distance_bin_acf_rmse: 0.048554
+    accepted: false
+    reason: cannot_match_short_mid_and_long_range_acf_simultaneously
+deprecated_shared_rotation:
+  status: invalid_for_profile_similarity_distance_inference
+  reason: full_profile_field_is_nearly_rotated_intact_when_all_components_share_one_permutation
+distance_bins_mm: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+acf_bins_mm: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+anchor_set_id: current_2048_per_hemisphere
+pair_table_id: current_frozen_pair_table
+preliminary: true
+validation_status: preliminary_spectral_surrogate_pending

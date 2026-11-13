@@ -1,0 +1,58 @@
+mrconvert: [WARNING] existing output files will be overwritten
+mrconvert: copying from "/mnt/newSt.../D0180_05_biascorrected.mif" to "/mnt/newSt...ation/D0180_dwi4D_no_b0.mif"... [==================================================]
+mrmath: [WARNING] existing output files will be overwritten
+mrmath: preloading data for "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/registration/D0180_dwi4D_no_b0.mif"... [==================================================]
+mrmath: computing sum along axis 3...... [==================================================]
+mrmath: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/registration/D0180_dwi_sum.nii.gz"... [==================================================]
+mrcalc: [WARNING] existing output files will be overwritten
+mrcalc: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/registration/D0180_dwi_sum.nii.gz"... [==================================================]
+mrcalc: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0180/D0180_corrected_mean_b0_brain_mask.nii.gz"... [==================================================]
+mrcalc: computing: (/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/registration/D0180_dwi_sum.nii.gz * /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0180/D0180_corrected_mean_b0_brain_mask.nii.gz)... []
+mrcalc: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/registration/D0180_dwi_masked.nii.gz"... [==================================================]
+Traceback (most recent call last):
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/site-packages/scipy/io/matlab/_mio.py", line 39, in _open_file
+    return open(file_like, mode), True
+           ^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/regions/rh_rostralmiddlefrontal.mat'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py", line 300, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py", line 286, in main
+    process_region_file(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py", line 171, in process_region_file
+    coordinates = load_region_coordinates(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/profile_sampling/sample_profiles.py", line 65, in load_region_coordinates
+    data = loadmat(str(mat_path))
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/site-packages/scipy/io/matlab/_mio.py", line 225, in loadmat
+    with _open_file_context(file_name, appendmat) as f:
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/site-packages/scipy/io/matlab/_mio.py", line 17, in _open_file_context
+    f, opened = _open_file(file_like, appendmat, mode)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/apps/ubuntu-22.04/anaconda3/lib/python3.11/site-packages/scipy/io/matlab/_mio.py", line 45, in _open_file
+    return open(file_like, mode), True
+           ^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/newStor/paros/paros_WORK/xintong/data/results/column_analysis/D0180/regions/rh_rostralmiddlefrontal.mat'
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 858, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 670, in main
+    run_command(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_analysis.py", line 193, in run_command
+    raise RuntimeError(
+RuntimeError: STEP 5: SAMPLE ADC PROFILES failed with exit code 1
+Traceback (most recent call last):
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 982, in <module>
+    main()
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 859, in main
+    run_command(
+  File "/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/pipeline/run_subject.py", line 240, in run_command
+    raise RuntimeError(
+RuntimeError: STEP 5: CORTICAL COLUMN ANALYSIS failed with exit code 1

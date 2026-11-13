@@ -1,0 +1,66 @@
+null_method: acquisition_sampling
+seed: 20261020
+paired_noise_across_psf_conditions: true
+preliminary: true
+random_field_grid: exact_subject_md_shape_affine_and_voxel_size
+random_field_support: complete_native_dwi_fov
+sampling_coordinates: real_o3_coordinates_already_transformed_to_dwi_voxel_space
+interpolation: trilinear
+valid_mask: exact_real_final_valid_vertex_mask
+
+# Fixed before examining null D(r). The processed MD grid is isotropic 1 mm
+# and the preprocessing pipeline applies denoising, Gibbs correction, eddy/
+# susceptibility correction, and bias correction without explicit smoothing.
+# Because effective PSF is not independently measured, report the full family
+# rather than selecting the member that best matches the real curve.
+psf_fwhm_mm: [0.0, 1.0, 2.0, 3.0]
+psf_interpretation:
+  0.0: interpolation_only
+  1.0: mild_one_voxel
+  2.0: moderate_two_voxel
+  3.0: conservative_three_voxel
+
+pilot_1:
+  subjects: 5
+  realizations: 5
+pilot_2:
+  subjects: 20
+  realizations: 20
+formal_target_realizations: [50, 100]
+formal_primary:
+  anchor_set: official_fsaverage5_vertices_mapped_to_fsaverage
+  candidates: same_hemisphere_and_same_DK_region
+  neighbors_per_anchor_distance_bin: 15
+  pair_sampling_seed: 0
+  pair_sampling_rule: nested_without_replacement
+  psf_fwhm_mm: 0.0
+  subjects: 325
+  realizations_per_subject: 100
+  seed_scheme: blake2b64_F4AcqNullV2_base_seed_subject_id_replicate
+  require_unique_subject_seeds: true
+  require_unique_subject_realization_seeds: true
+  primary_far_reference_mm: [20, 30]
+  far_reference_sensitivity_mm:
+    - [10, 20]
+    - [16, 30]
+    - [24, 30]
+acceptance_thresholds:
+  count_mismatch_rows: 0
+  maximum_depth_mean_mae: 1.0e-6
+  maximum_depth_sd_mae: 1.0e-6
+  maximum_covariance_mae: 1.0e-12
+  maximum_50_to_100_curve_change: 1.0e-3
+
+laminar_matching:
+  pooled_hemispheres_within_subject: true
+  mean_profile: exact_affine_recoloring
+  covariance_21x21: exact
+  depth_mean_and_variance: exact
+  median_profile: validate_approximately
+  marginal_distribution: validate_approximately
+
+distance_bins_mm: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+far_reference_mm: [20, 30]
+anchor_set_id: official_fsaverage5_fixed
+pair_table_id: ico5_within_DK_K15_seed0
+parameter_selection_uses_real_D_curve: false

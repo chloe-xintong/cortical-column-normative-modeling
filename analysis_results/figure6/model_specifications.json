@@ -1,0 +1,31 @@
+{
+  "models": {
+    "M0": {
+      "age_form": "linear",
+      "thickness": false,
+      "formula": "MD ~ age + sex_code"
+    },
+    "M1": {
+      "age_form": "natural_cubic_spline_df3",
+      "thickness": false,
+      "formula": "MD ~ natural_cubic_spline(age, df=3) + sex_code"
+    },
+    "M2": {
+      "age_form": "linear",
+      "thickness": true,
+      "formula": "MD ~ age + sex_code + local_thickness"
+    },
+    "M3": {
+      "age_form": "natural_cubic_spline_df3",
+      "thickness": true,
+      "formula": "MD ~ natural_cubic_spline(age, df=3) + sex_code + local_thickness"
+    }
+  },
+  "residual_distribution": "Gaussian",
+  "residual_scale": "constant",
+  "sex_encoding": "categorical code 1 reference plus sex_code_2 indicator; no male/female labels",
+  "spline": "patsy natural cubic regression spline cr(age, df=3, constraints='center'); fitted on each training fold and applied unchanged to held-out data",
+  "standardization": "age/spline columns, local thickness, and response are standardized with training-fold parameters only; sex indicator remains 0/1",
+  "blr": "official PCNToolkit BLR; no ARD, homoskedastic Gaussian, no warp, L-BFGS-B",
+  "predictive_variance": "PCNToolkit BLR ys_s2: 1/beta + diag(Phi @ A^-1 @ Phi.T), transformed back to MD units"
+}

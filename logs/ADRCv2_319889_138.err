@@ -1,0 +1,80 @@
+mrconvert: [WARNING] existing output files will be overwritten
+mrconvert: uncompressing image "/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0262/bia5_02010_011.nii.gz"... [==================================================]
+mrconvert: copying from "/mnt/newSt...D0262/bia5_02010_011.nii.gz" to "/mnt/newSt.../dwi/D0262/D0262_01_raw.mif"... [==================================================]
+dwidenoise: [WARNING] existing output files will be overwritten
+dwidenoise: preloading data for "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_01_raw.mif"... [==================================================]
+dwidenoise: running MP-PCA denoising... [==================================================]
+mrcalc: [WARNING] existing output files will be overwritten
+mrcalc: computing: (/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_01_raw.mif - /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_02_denoised.mif)... [==================================================]
+mrdegibbs: [WARNING] existing output files will be overwritten
+mrdegibbs: performing Gibbs ringing removal... [==================================================]
+mrmath: [WARNING] existing output files will be overwritten
+dwiextract: extracting volumes... [==================================================]
+mrmath: preloading data for "/tmp/mrtrix-tmp-zbaj2g.mif"... [==================================================]
+mrmath: computing mean along axis 3...... [==================================================]
+mrmath: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_forward_b0.nii.gz"... [==================================================]
+mrcat: [WARNING] existing output files will be overwritten
+mrcat: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_forward_b0.nii.gz"... [==================================================]
+mrcat: concatenating "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_forward_b0.nii.gz"... [==================================================]
+mrcat: uncompressing image "/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0262/bia5_02010_011_revphase.nii.gz"... [==================================================]
+mrcat: concatenating "/mnt/newStor/paros/paros_WORK/tmp_ADRC_MUSE/D0262/bia5_02010_011_revphase.nii.gz"... [==================================================]
+mrcat: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_se_epi_pair.nii.gz"... [==================================================]
+dwifslpreproc: 
+dwifslpreproc: Note that this script makes use of commands / algorithms that have relevant articles for citation; INCLUDING FROM EXTERNAL SOFTWARE PACKAGES. Please consult the help page (-help option) for more information.
+dwifslpreproc: 
+dwifslpreproc: Generated scratch directory: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/
+Command:  mrconvert /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_03_degibbs.mif /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/dwi.mif -json_export /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/dwi.json
+Command:  mrconvert /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_se_epi_pair.nii.gz /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/se_epi.mif
+dwifslpreproc: Changing to scratch directory (/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/)
+Command:  mrinfo dwi.mif -export_grad_mrtrix grad.b
+Command:  mrconvert se_epi.mif topup_in.nii -import_pe_table se_epi_manual_pe_scheme.txt -strides -1,+2,+3,+4 -export_pe_table topup_datain.txt
+Command:  topup --imain=topup_in.nii --datain=topup_datain.txt --out=field --fout=field_map.nii.gz --config=/home/apps//fsl/6.0.7.6/etc/flirtsch/b02b0.cnf --verbose
+Command:  mrconvert dwi.mif -import_pe_table dwi_manual_pe_scheme.txt - | mrinfo - -export_pe_eddy applytopup_config.txt applytopup_indices.txt
+Command:  mrconvert dwi.mif dwi_pe_0.nii -coord 3 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 -strides -1,+2,+3,+4 -json_export dwi_pe_0.json
+Command:  applytopup --imain=dwi_pe_0.nii --datain=applytopup_config.txt --inindex=1 --topup=field --out=dwi_pe_0_applytopup.nii --method=jac
+Command:  mrconvert dwi_pe_0_applytopup.nii.gz dwi_pe_0_applytopup.mif -json_import dwi_pe_0.json
+Command:  dwi2mask dwi_pe_0_applytopup.mif - | maskfilter - dilate - | mrconvert - eddy_mask.nii -datatype float32 -strides -1,+2,+3
+Command:  mrconvert dwi.mif -import_pe_table dwi_manual_pe_scheme.txt eddy_in.nii -strides -1,+2,+3,+4 -export_grad_fsl bvecs bvals -export_pe_eddy eddy_config.txt eddy_indices.txt
+Command:  eddy_cuda10.2 --imain=eddy_in.nii --mask=eddy_mask.nii --acqp=eddy_config.txt --index=eddy_indices.txt --bvecs=bvecs --bvals=bvals --topup=field --repol --slm=linear --out=dwi_post_eddy --verbose
+Command:  mrconvert dwi_post_eddy.nii.gz result.mif -strides 1,2,3,4 -fslgrad dwi_post_eddy.eddy_rotated_bvecs bvals
+Command:  mrconvert result.mif /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_04_preprocessed.mif
+dwifslpreproc: Changing back to original directory (/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis)
+dwifslpreproc: Scratch directory retained; location: /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/eddy_scratch/dwifslpreproc-tmp-8PT7IR/
+mrmath: [WARNING] existing output files will be overwritten
+dwiextract: extracting volumes... [==================================================]
+mrmath: preloading data for "/tmp/mrtrix-tmp-MyCuo8.mif"... [==================================================]
+mrmath: computing mean along axis 3...... [==================================================]
+mrmath: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_corrected_mean_b0.nii.gz"... [==================================================]
+Traceback (most recent call last):
+  File "/home/apps//fsl/6.0.7.6/bin/imtest", line 6, in <module>
+    from fsl.scripts.imtest import main
+ModuleNotFoundError: No module named 'fsl'
+/home/apps//fsl/6.0.7.6/share/fsl/bin/bet: line 160: [: =: unary operator expected
+dwibiascorrect: 
+dwibiascorrect: Note that this script makes use of commands / algorithms that have relevant articles for citation; INCLUDING FROM EXTERNAL SOFTWARE PACKAGES. Please consult the help page (-help option) for more information.
+dwibiascorrect: 
+dwibiascorrect: Generated scratch directory: /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-V01LA4/
+Command:  mrconvert /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_04_preprocessed.mif /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-V01LA4/in.mif
+Command:  mrconvert /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_corrected_mean_b0_brain_mask.nii.gz /mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-V01LA4/mask.mif -datatype bit
+dwibiascorrect: Changing to scratch directory (/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-V01LA4/)
+Command:  dwiextract in.mif - -bzero | mrmath - mean mean_bzero.mif -axis 3
+Command:  mrconvert mean_bzero.mif mean_bzero.nii -strides +1,+2,+3
+Command:  mrconvert mask.mif mask.nii -strides +1,+2,+3
+Command:  N4BiasFieldCorrection -d 3 -i mean_bzero.nii -w mask.nii -o [corrected.nii,init_bias.nii] -s 4 -b [100,3] -c [1000,0.0]
+Command:  mrcalc mean_bzero.mif mask.mif -mult - | mrmath - sum - -axis 0 | mrmath - sum - -axis 1 | mrmath - sum - -axis 2 | mrdump -
+Command:  mrcalc corrected.nii mask.mif -mult - | mrmath - sum - -axis 0 | mrmath - sum - -axis 1 | mrmath - sum - -axis 2 | mrdump -
+Command:  mrcalc init_bias.nii 0.832303145970572 -mult bias.mif
+Command:  mrcalc in.mif bias.mif -div result.mif
+Command:  mrconvert result.mif /mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_05_biascorrected.mif
+dwibiascorrect: Changing back to original directory (/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis)
+dwibiascorrect: Deleting scratch directory (/mnt/newStor/paros/paros_WORK/xintong/code/cortical_trajectory_analysis/dwibiascorrect-tmp-V01LA4/)
+dwi2tensor: [WARNING] existing output files will be overwritten
+dwi2tensor: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_corrected_mean_b0_brain_mask.nii.gz"... [==================================================]
+dwi2tensor: computing tensors... [==================================================]
+tensor2metric: [WARNING] existing output files will be overwritten
+tensor2metric: uncompressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_corrected_mean_b0_brain_mask.nii.gz"... [==================================================]
+tensor2metric: computing metrics... [==================================================]
+tensor2metric: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_rd.nii.gz"... [==================================================]
+tensor2metric: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_ad.nii.gz"... [==================================================]
+tensor2metric: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_fa.nii.gz"... [==================================================]
+tensor2metric: compressing image "/mnt/newStor/paros/paros_WORK/xintong/data/processed/dwi/D0262/D0262_md.nii.gz"... [==================================================]
