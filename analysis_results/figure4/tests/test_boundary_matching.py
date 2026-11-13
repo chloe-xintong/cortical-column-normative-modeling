@@ -1,4 +1,27 @@
-"""Minimal unit tests for Figure 4D boundary matching."""
+"""Minimal unit tests for Figure 4D boundary matching.
+
+Description
+-----------
+Minimal unit tests for Figure 4D boundary matching.
+
+Methods
+-------
+1. Set up the test inputs.
+2. Execute the target behavior.
+3. Assert the expected results.
+
+Inputs
+------
+- No required command-line inputs; optional inputs are defined by the script.
+
+Outputs
+-------
+- Test pass/fail status; no analysis result files are generated.
+
+Usage
+-----
+pytest analysis_results/figure4/tests/test_boundary_matching.py
+"""
 
 from __future__ import annotations
 

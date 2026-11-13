@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Create the requested legacy-versus-formal Figure 4 robustness table."""
+"""Create the requested legacy-versus-formal Figure 4 robustness table.
+
+Description
+-----------
+Create the requested legacy-versus-formal Figure 4 robustness table.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--legacy-null-dir`` command-line input
+- ``--legacy-fit-file`` command-line input
+- ``--formal-null-dir`` command-line input
+- ``--formal-fit-file`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/compare_legacy_and_ico5_formal.py --help
+"""
 
 from __future__ import annotations
 

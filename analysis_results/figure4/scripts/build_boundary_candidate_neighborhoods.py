@@ -1,9 +1,32 @@
 #!/usr/bin/env python3
 """Build reusable dense 0--10-mm candidates for formal ico5 anchors.
 
+Description
+-----------
 Distances, template mask, DK labels, and ico5 anchor mappings are inherited
 from the frozen Figure 4A--C implementation. Subject profile validity is not
 applied here; it is applied before matching for every subject.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subjects-dir`` command-line input
+- ``--formal-pair-file`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/build_boundary_candidate_neighborhoods.py --help
 """
 
 from __future__ import annotations

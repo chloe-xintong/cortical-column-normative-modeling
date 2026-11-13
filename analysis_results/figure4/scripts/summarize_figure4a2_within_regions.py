@@ -1,10 +1,36 @@
 #!/usr/bin/env python3
 """Summarize bilateral within-DK-region Figure 4A2 results.
 
+Description
+-----------
 The analysis uses only fixed Figure 4A pairs whose anchor and neighbor share
 the same DK label.  Pair metrics are reduced to anchor x distance-bin medians,
 then homologous hemispheres are combined inside each subject, and subjects are
 summarized with the group median and IQR.  Pair counts never weight a metric.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--pair-table`` command-line input
+- ``--template-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--figure-dir`` command-line input
+- ``--repo-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_figure4a2_within_regions.py --help
 """
 
 from __future__ import annotations
@@ -296,9 +322,9 @@ def main() -> None:
     row_order = key.sort_values("dk_region")["dk_region"].tolist()
     column_order = bins["distance_bin"].tolist()
     metric_specs = [
-        ("profile_dissimilarity_median", "Within-region profile\ndissimilarity (1 − r)", "viridis"),
-        ("symmetric_relative_mae_pct_median", "Within-region symmetric\nrelative MAE (%)", "cividis"),
-        ("fixed_directed_pair_count", "Fixed directed within-region\npairs, log10(n)", "viridis"),
+        ("profile_dissimilarity_median", "Within-region profile\ndissimilarity (1 − r)", "project_blue"),
+        ("symmetric_relative_mae_pct_median", "Within-region symmetric\nrelative MAE (%)", "project_blue"),
+        ("fixed_directed_pair_count", "Fixed directed within-region\npairs, log10(n)", "project_blue"),
     ]
     fig = plt.figure(figsize=(FIGURE_WIDTH_IN, 7.2))
     grid = fig.add_gridspec(
@@ -386,7 +412,7 @@ def main() -> None:
         index="dk_region", columns="distance_bin", values="formal_coverage_pass"
     ).reindex(index=high_order, columns=column_order)
     high_matrix = high_matrix.where(high_coverage)
-    high_cmap = plt.get_cmap("viridis").copy()
+    high_cmap = plt.get_cmap("project_blue").copy()
     high_cmap.set_bad(PALETTE["masked"])
     fig = plt.figure(figsize=(FIGURE_WIDTH_IN, 2.25))
     high_grid = fig.add_gridspec(1, 2, width_ratios=[1, .025], wspace=.08)

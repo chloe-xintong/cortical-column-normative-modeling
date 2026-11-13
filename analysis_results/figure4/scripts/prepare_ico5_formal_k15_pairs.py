@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Freeze the formal Figure 4 ico5 within-region K=15 pair table."""
+"""Freeze the formal Figure 4 ico5 within-region K=15 pair table.
+
+Description
+-----------
+Freeze the formal Figure 4 ico5 within-region K=15 pair table.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--source-pair-file`` command-line input
+- ``--source-validation`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/prepare_ico5_formal_k15_pairs.py --help
+"""
 
 from __future__ import annotations
 

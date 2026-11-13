@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
-"""Create the Figure 4D DK-region x distance effect and coverage heatmaps."""
+"""Create the Figure 4D DK-region x distance effect and coverage heatmaps.
+
+Description
+-----------
+Create the Figure 4D DK-region x distance effect and coverage heatmaps.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--region-subbin-table`` command-line input
+- ``--pair-table`` command-line input
+- ``--template-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--figure-dir`` command-line input
+- ``--repo-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_dk_region_heatmap.py --help
+"""
 
 from __future__ import annotations
 
@@ -67,7 +96,7 @@ def main() -> None:
     sys.path.insert(0, str(args.repo_root))
     from qc.publication_style import (  # pylint: disable=import-outside-toplevel
         FIGURE_WIDTH_IN,
-        PALETTE,
+        PALETTE, CMAP_SEQUENTIAL, CMAP_DIVERGING,
         save_publication_figure,
         set_publication_style,
     )
@@ -232,9 +261,8 @@ def main() -> None:
     effect_values = effect_matrix.to_numpy(dtype=float)
     finite = np.abs(effect_values[np.isfinite(effect_values)])
     limit = float(np.quantile(finite, .98)) if finite.size else .01
-    cmap = mcolors.LinearSegmentedColormap.from_list(
-        "dk_effect", [PALETTE["blue"], "#FFFFFF", PALETTE["orange"]]
-    )
+    (args.output_dir / 'heatmap_color_caption.txt').write_text('Signed difference: delta D = D_across - D_within. Red indicates greater across-region dissimilarity; blue indicates greater within-region dissimilarity; neutral white indicates zero. Symmetric color limits use the 98th percentile of absolute finite effects across the complete displayed matrix; only colors are clipped. Missing or insufficient-coverage cells are gray. Coverage uses a separate light-to-dark blue sequential scale from 0 to 100 percent.\n')
+    cmap = CMAP_DIVERGING.copy()
     cmap.set_bad(PALETTE["masked"])
 
     fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 10.0))
@@ -276,7 +304,7 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 10.0))
     coverage_image = ax.imshow(
         coverage_matrix.to_numpy(dtype=float) / args.expected_subjects * 100,
-        cmap="viridis",
+        cmap=CMAP_SEQUENTIAL,
         vmin=0,
         vmax=100,
         aspect="auto",

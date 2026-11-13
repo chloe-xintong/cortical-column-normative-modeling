@@ -1,9 +1,34 @@
 #!/usr/bin/env python3
 """Summarize whole-cortex Figure 4A curves using only within-DK pairs.
 
+Description
+-----------
 Hierarchy: within-region pair -> hemisphere x anchor x 2-mm-bin median ->
 subject median across bilateral cortical anchors -> group median/IQR.
 Pair and anchor counts describe support and never weight the metric.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--pair-table`` command-line input
+- ``--output-dir`` command-line input
+- ``--figure-dir`` command-line input
+- ``--repo-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_within_region_whole_cortex.py --help
 """
 
 from __future__ import annotations

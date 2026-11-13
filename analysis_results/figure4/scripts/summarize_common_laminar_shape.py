@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Summarize real/null column correlations with subject mean profiles."""
+"""Summarize real/null column correlations with subject mean profiles.
+
+Description
+-----------
+Summarize real/null column correlations with subject mean profiles.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--condition`` command-line input
+- ``--manifest`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_common_laminar_shape.py --help
+"""
 
 from __future__ import annotations
 

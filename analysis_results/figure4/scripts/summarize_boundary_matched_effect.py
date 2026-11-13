@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Summarize frozen Figure 4D boundary-matched effects and QC."""
+"""Summarize frozen Figure 4D boundary-matched effects and QC.
+
+Description
+-----------
+Summarize frozen Figure 4D boundary-matched effects and QC.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-root`` command-line input
+- ``--effect-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--repo-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_boundary_matched_effect.py --help
+"""
 
 from __future__ import annotations
 
@@ -218,32 +246,7 @@ def main() -> None:
         json.dumps(qc_status, indent=2) + "\n"
     )
 
-    sys.path.insert(0, str(args.repo_root))
-    from qc.publication_style import (  # pylint: disable=import-outside-toplevel
-        FIGURE_WIDTH_IN, PALETTE, save_publication_figure,
-        set_publication_style, style_axes,
-    )
-    set_publication_style()
-    x = group["distance_bin_index"].to_numpy(float) * 2 + 1
-    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 3.1))
-    ax.axhline(0, color=PALETTE["reference"], linewidth=0.9, linestyle="--")
-    ax.plot(
-        x, group["delta_d_median"], color=PALETTE["orange"],
-        marker="o", markersize=3, linewidth=1.4,
-    )
-    ax.fill_between(
-        x, group["delta_d_q25"], group["delta_d_q75"],
-        color=PALETTE["orange"], alpha=0.2, linewidth=0,
-    )
-    ax.set(
-        xlabel="White-surface geodesic distance (mm)",
-        ylabel="Matched Δ profile dissimilarity\n(across − within)",
-        xlim=(0, 10), xticks=np.arange(0, 11, 2),
-    )
-    style_axes(ax, grid=True)
-    fig.subplots_adjust(left=0.14, right=0.98, bottom=0.20, top=0.98)
-    save_publication_figure(fig, args.output_dir / "Figure4D_boundary_matched_0_10")
-    plt.close(fig)
+    plot_cached(args.output_dir, args.repo_root)
 
     report = {
         "status": "complete",
@@ -261,6 +264,37 @@ def main() -> None:
         json.dumps(report, indent=2) + "\n"
     )
     print(json.dumps(report, indent=2))
+
+
+def plot_cached(output_dir, repo_root):
+    output_dir = Path(output_dir)
+    group = pd.read_csv(output_dir / "figure4D_group_summary.csv")
+    sys.path.insert(0, str(repo_root))
+    from qc.publication_style import (  # pylint: disable=import-outside-toplevel
+        FIGURE_WIDTH_IN, PALETTE, save_publication_figure,
+        set_publication_style, style_axes,
+    )
+    set_publication_style()
+    x = group["distance_bin_index"].to_numpy(float) * 2 + 1
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 3.1))
+    ax.axhline(0, color=PALETTE["reference"], linewidth=0.9, linestyle="--")
+    ax.plot(
+        x, group["delta_d_median"], color=PALETTE["blue"],
+        marker="o", markersize=3, linewidth=1.6,
+    )
+    ax.fill_between(
+        x, group["delta_d_q25"], group["delta_d_q75"],
+        color=PALETTE["blue"], alpha=.12, linewidth=0,
+    )
+    ax.set(
+        xlabel="White-surface geodesic distance (mm)",
+        ylabel="Matched Δ profile dissimilarity\n(across − within)",
+        xlim=(0, 10), xticks=np.arange(0, 11, 2),
+    )
+    style_axes(ax, grid=True)
+    fig.subplots_adjust(left=0.14, right=0.98, bottom=0.20, top=0.98)
+    save_publication_figure(fig, output_dir / "Figure4D_boundary_matched_0_10")
+    plt.close(fig)
 
 
 if __name__ == "__main__":

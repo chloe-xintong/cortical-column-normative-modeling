@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Summarize a whole-profile permutation pilot and compare it with PSF-0."""
+"""Summarize a whole-profile permutation pilot and compare it with PSF-0.
+
+Description
+-----------
+Summarize a whole-profile permutation pilot and compare it with PSF-0.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--permutation-root`` command-line input
+- ``--acquisition-summary`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_whole_profile_permutation_pilot.py --help
+"""
 
 from __future__ import annotations
 
@@ -224,7 +251,7 @@ def main() -> None:
     colors = {
         "Real": PALETTE["blue"],
         "DWI-grid, PSF 0 mm": PALETTE["orange"],
-        "Whole-profile permutation": "#009E73",
+        "Whole-profile permutation": "#90BEE0",
     }
     fig = plt.figure(figsize=(FIGURE_WIDTH_IN, 3.2))
     grid = fig.add_gridspec(1, 3, width_ratios=[1.55, 1.55, .85], wspace=.42)

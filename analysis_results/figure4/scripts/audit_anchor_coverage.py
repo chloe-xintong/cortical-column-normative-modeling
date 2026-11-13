@@ -1,8 +1,31 @@
 #!/usr/bin/env python3
 """Audit spatial coverage of the anchors stored in a Figure 4 pair table.
 
+Description
+-----------
 This is deliberately read-only with respect to pair construction: it evaluates
 the already used anchors against the fsaverage sphere and DK annotation.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subjects-dir`` command-line input
+- ``--pair-table`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/audit_anchor_coverage.py --help
 """
 
 from __future__ import annotations
@@ -100,7 +123,7 @@ def main() -> None:
         lon = np.arctan2(direction[:, 1], direction[:, 0])
         lat = np.arcsin(np.clip(direction[:, 2], -1, 1))
         ax.scatter(lon[mask], lat[mask], c="#D9D9D9", s=.12, linewidths=0, rasterized=True)
-        ax.scatter(lon[anchors], lat[anchors], c="#B2182B", s=5, linewidths=0, rasterized=True)
+        ax.scatter(lon[anchors], lat[anchors], c="#DB3124", s=5, linewidths=0, rasterized=True)
         ax.set(title=f"{hemi}: fsaverage sphere anchors", xlabel="Sphere longitude (rad)", ylabel="Sphere latitude (rad)")
         ax.spines[["top", "right"]].set_visible(False)
 

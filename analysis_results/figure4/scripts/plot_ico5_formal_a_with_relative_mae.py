@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Plot formal Figure 4A with dissimilarity and symmetric relative MAE."""
+"""Plot formal Figure 4A with dissimilarity and symmetric relative MAE.
+
+Description
+-----------
+Plot formal Figure 4A with dissimilarity and symmetric relative MAE.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--real-summary`` command-line input
+- ``--relative-summary`` command-line input
+- ``--output-dir`` command-line input
+- ``--repo-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/plot_ico5_formal_a_with_relative_mae.py --help
+"""
 
 from __future__ import annotations
 
@@ -72,41 +98,23 @@ def main() -> None:
 
     set_publication_style()
     x = combined["distance_bin_index"].to_numpy(dtype=float) * 2 + 1
-    fig, axes = plt.subplots(
-        1, 2, figsize=(FIGURE_WIDTH_IN, 2.75), sharex=True,
-        gridspec_kw={"wspace": 0.30},
-    )
     specifications = [
-        (
-            axes[0], "profile_dissimilarity_median",
-            "profile_dissimilarity_q25", "profile_dissimilarity_q75",
-            PALETTE["blue"], "Profile-shape dissimilarity (1 − r)",
-        ),
-        (
-            axes[1], "symmetric_relative_mae_pct_median",
-            "symmetric_relative_mae_pct_q25", "symmetric_relative_mae_pct_q75",
-            PALETTE["orange"], "Symmetric relative profile MAE (%)",
-        ),
+        ("dissimilarity", "profile_dissimilarity_median",
+         "profile_dissimilarity_q25", "profile_dissimilarity_q75",
+         PALETTE["blue"], "Profile-shape dissimilarity (1 − r)"),
+        ("relative_MAE", "symmetric_relative_mae_pct_median",
+         "symmetric_relative_mae_pct_q25", "symmetric_relative_mae_pct_q75",
+         PALETTE["blue"], "Symmetric relative profile MAE (%)"),
     ]
-    for axis, median, q25, q75, color, ylabel in specifications:
-        axis.plot(
-            x, combined[median], color=color, linewidth=1.4,
-            marker="o", markersize=2.7,
-        )
-        axis.fill_between(
-            x, combined[q25], combined[q75],
-            color=color, alpha=0.2, linewidth=0,
-        )
-        axis.set(
-            xlabel="White-surface geodesic distance (mm)",
-            ylabel=ylabel,
-            xlim=(0, 30), xticks=np.arange(0, 31, 5),
-        )
+    for stem, median, q25, q75, color, ylabel in specifications:
+        fig, axis = plt.subplots(figsize=(FIGURE_WIDTH_IN / 2, 2.9), constrained_layout=True)
+        axis.plot(x, combined[median], color=color, linewidth=1.6, marker="o", markersize=3)
+        axis.fill_between(x, combined[q25], combined[q75], color=PALETTE["blue"], alpha=.12, linewidth=0)
+        axis.set(xlabel="White-surface geodesic distance (mm)", ylabel=ylabel,
+                 xlim=(0, 30), xticks=np.arange(0, 31, 5))
         style_axes(axis, grid=True)
-    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.20, top=0.98, wspace=0.30)
-    output_stem = args.output_dir / "Figure4A_ico5_K15_with_relative_MAE"
-    save_publication_figure(fig, output_stem)
-    plt.close(fig)
+        save_publication_figure(fig, args.output_dir / f"Figure4A_ico5_K15_{stem}")
+        plt.close(fig)
     (args.output_dir / "figure4A_with_relative_mae_status.json").write_text(
         json.dumps(
             {

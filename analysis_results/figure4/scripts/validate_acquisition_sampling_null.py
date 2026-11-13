@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Validate and plot the predefined Figure 4B acquisition-sampling PSF family."""
+"""Validate and plot the predefined Figure 4B acquisition-sampling PSF family.
+
+Description
+-----------
+Validate and plot the predefined Figure 4B acquisition-sampling PSF family.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--condition`` command-line input
+- ``--manifest`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/validate_acquisition_sampling_null.py --help
+"""
 
 from __future__ import annotations
 

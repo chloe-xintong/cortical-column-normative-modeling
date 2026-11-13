@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
 """Compute Figure 4A symmetric relative profile MAE for one subject.
 
+Description
+-----------
 The aggregation hierarchy is pair -> anchor x 2-mm bin median -> subject
 median.  The metric matches the symmetric profile NMAE used in Figure 2:
 
-    200 * mean_depth(|x - y|) / (median_depth(|x|) + median_depth(|y|)).
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-table`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/compute_relative_mae.py --help
 """
 
 from __future__ import annotations

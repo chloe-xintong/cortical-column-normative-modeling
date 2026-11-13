@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Aggregate completed Figure 4 null runs without executing a notebook."""
+"""Aggregate completed Figure 4 null runs without executing a notebook.
+
+Description
+-----------
+Aggregate completed Figure 4 null runs without executing a notebook.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_spatial_null.py --help
+"""
 
 from __future__ import annotations
 

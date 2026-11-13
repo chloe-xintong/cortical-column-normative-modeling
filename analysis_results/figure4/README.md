@@ -119,18 +119,20 @@ then within subject, and finally across subjects.
 The notebook under `notebooks/` only reads cached tables. The full-cohort SLURM
 workflow intentionally does not execute it; the investigator runs it manually.
 
-## Active registration-QC-passing cohort (320 participants)
+## Active registration- and coverage-QC-passing cohort
 
-The current primary Figure 4 analysis excludes the five visually confirmed
+The primary Figure 4 analysis excludes the five visually confirmed
 T1–DWI registration failures D0128, D0163, D0248, D0296 and D0388 from the
-historical 325-participant cohort. Use
-`manifests/figure4_registration_qc_pass_320_subjects.csv`; exclusion reasons
-are recorded in `manifests/figure4_registration_qc_exclusions.csv`.
+historical 325-participant cohort, then applies the same bilateral cleaned-profile
+coverage rule as Figure 3 and Figure 5: `sum(in_analysis_mask & column_valid) /
+sum(in_analysis_mask) >= 0.95`. Use
+`manifests/figure4_coverage95_pass_313_subjects.csv`; the exact coverage audit is
+saved under `analysis_results/figure4/outputs/coverage95_pass_313/`.
 
-`notebooks/figure4_formal_ico5_k15.ipynb` now displays the reaggregated 320-person
-A–D results under `analysis_results/figure4/outputs/registration_qc_pass_320/`. The original
-notebook is preserved as `figure4_formal_ico5_k15_legacy_325.ipynb`, and original
-external frozen results are untouched. Group curves, bootstrap intervals and
+`notebooks/figure4_formal_ico5_k15.ipynb` displays the reaggregated coverage-gated
+A–D results under `analysis_results/figure4/outputs/coverage95_pass_313/`.
+Historical outputs are not used as a sensitivity analysis in the active notebook.
+Group curves, bootstrap intervals and
 split-half reliability are recalculated using cached subject-level outputs:
 
 ```bash
@@ -141,5 +143,5 @@ python analysis_results/figure4/scripts/write_registration_qc_notebook.py
 No profile sampling, null realization generation or subject fit is repeated.
 All four primary panels are checked against the exact retained participant set.
 Other historical region/supplement notebooks retain their original cohorts and
-must not be presented as the 320-person primary analysis. Figure 5 remains the
+must not be presented as the primary analysis. Figure 5 remains the
 same 196 CN participants, already excluding all five failed registrations.

@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
-"""Audit extreme Figure 4D DK-region effects and pair composition."""
+"""Audit extreme Figure 4D DK-region effects and pair composition.
+
+Description
+-----------
+Audit extreme Figure 4D DK-region effects and pair composition.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--region-subbin-table`` command-line input
+- ``--bilateral-subject-table`` command-line input
+- ``--pair-table`` command-line input
+- ``--template-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--figure-dir`` command-line input
+- ``--repo-root`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/audit_dk_region_extremes.py --help
+"""
 
 from __future__ import annotations
 

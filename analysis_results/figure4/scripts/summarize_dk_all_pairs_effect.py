@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Aggregate the all-pair, region-balanced DK effect across subjects."""
+"""Aggregate the all-pair, region-balanced DK effect across subjects.
+
+Description
+-----------
+Aggregate the all-pair, region-balanced DK effect across subjects.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-table`` command-line input
+- ``--results-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_dk_all_pairs_effect.py --help
+"""
 
 from __future__ import annotations
 

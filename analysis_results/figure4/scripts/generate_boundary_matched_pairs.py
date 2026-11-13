@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Generate subject-specific Figure 4D matched within/across pair tables."""
+"""Generate subject-specific Figure 4D matched within/across pair tables.
+
+Description
+-----------
+Generate subject-specific Figure 4D matched within/across pair tables.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--candidate-dir`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/generate_boundary_matched_pairs.py --help
+"""
 
 from __future__ import annotations
 

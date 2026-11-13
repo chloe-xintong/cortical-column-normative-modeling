@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Summarize formal ico5 within-DK K=15 Figure 4C correlation lengths."""
+"""Summarize formal ico5 within-DK K=15 Figure 4C correlation lengths.
+
+Description
+-----------
+Summarize formal ico5 within-DK K=15 Figure 4C correlation lengths.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_ico5_formal_c.py --help
+"""
 
 from __future__ import annotations
 
@@ -9,6 +34,7 @@ import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib import colors as mcolors
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -84,23 +110,56 @@ def main() -> None:
     }])
     reliability.to_csv(args.output_dir / "figure4C_fixed_split_reliability.csv", index=False)
 
+    plot_cached(args.output_dir)
+    report = {
+        "status": "full_cohort_complete",
+        "n_subjects": len(expected),
+        "anchor_definition": "official_fsaverage5_fixed",
+        "candidate_definition": "within_DK_region", "k": 15,
+        "pair_seed": 0, "split_seed": 20261021,
+        "split_stratification": "hemisphere_x_DK_region",
+    }
+    (args.output_dir / "figure4C_status.json").write_text(json.dumps(report, indent=2) + "\n")
+
+
+def plot_cached(output_dir):
+    output_dir = Path(output_dir)
+    fits = pd.read_csv(output_dir / "figure4C_correlation_length_fits.csv")
+    full = fits.loc[fits.fit_scope.eq("full") & fits.fit_acceptable].copy()
+    paired = fits.loc[fits.fit_scope.isin(["fixed_half_1", "fixed_half_2"]) & fits.fit_acceptable].pivot(
+        index="subject_id", columns="fit_scope", values="lambda_mm").dropna()
     repo_root = Path(__file__).resolve().parents[3]
     sys.path.insert(0, str(repo_root))
     from qc.publication_style import (
-        FIGURE_WIDTH_IN, PALETTE, save_publication_figure, set_publication_style,
-        style_axes,
+        FIGURE_WIDTH_IN, PALETTE, VIOLIN_STYLE, save_publication_figure,
+        set_publication_style, style_axes,
     )
     set_publication_style()
-    rng = np.random.default_rng(20261021)
     fig = plt.figure(figsize=(FIGURE_WIDTH_IN, 3.35))
     grid = fig.add_gridspec(1, 2, width_ratios=[.8, 1.4], wspace=.36)
     ax = fig.add_subplot(grid[0, 0])
-    jitter = rng.uniform(-.10, .10, len(full))
-    ax.scatter(jitter, full.lambda_mm, s=8, color=PALETTE["blue"], alpha=.45, linewidth=0)
-    q25, median, q75 = full.lambda_mm.quantile([.25, .5, .75])
-    ax.vlines(0, q25, q75, color=PALETTE["reference"], linewidth=2.4)
-    ax.hlines(median, -.18, .18, color=PALETTE["reference"], linewidth=1.3)
-    ax.set(xlim=(-.32, .32), xticks=[], xlabel="Full-data fit", ylabel="Correlation length, λ (mm)")
+    values = full.lambda_mm.to_numpy(dtype=float)
+    values = values[np.isfinite(values)]
+    bw_method = lambda kde: kde.scotts_factor() * VIOLIN_STYLE["bw_adjust"]
+    violin = ax.violinplot(
+        [values], positions=[0], widths=VIOLIN_STYLE["width"],
+        showextrema=False, showmedians=False, bw_method=bw_method,
+    )
+    violin_edge = "#233E68"
+    for body in violin["bodies"]:
+        body.set_gid("subject_violin")
+        body.set_alpha(None)
+        body.set_facecolor(mcolors.to_rgba(PALETTE["blue"], alpha=.42))
+        body.set_edgecolor(mcolors.to_rgba(violin_edge, alpha=1))
+        body.set_linewidths([1.1])
+    q25, median, q75 = np.quantile(values, [.25, .5, .75])
+    ax.vlines(0, q25, q75, color=violin_edge, linewidth=.8, zorder=3)
+    ax.hlines([q25, q75], -.055, .055, color=violin_edge,
+              linewidth=.9, zorder=4)
+    ax.hlines(median, -.085, .085, color=violin_edge,
+              linewidth=1.3, zorder=4)
+    ax.set(xlim=(-.5, .5), xticks=[0], xticklabels=["Full-data fit"],
+           ylabel="Correlation length, λ (mm)")
     style_axes(ax)
 
     ax = fig.add_subplot(grid[0, 1])
@@ -112,22 +171,9 @@ def main() -> None:
     ax.plot([low, high], [low, high], color=PALETTE["reference"], linewidth=.9, linestyle="--")
     ax.set(xlim=(low-padding, high+padding), ylim=(low-padding, high+padding),
            xlabel="Half 1 λ (mm)", ylabel="Half 2 λ (mm)")
-    row = reliability.iloc[0]
-    ax.text(.03, .97,
-            f"Pearson r = {row.pearson_r:.2f}\nSpearman ρ = {row.spearman_rho:.2f}\nICC = {row.icc_two_way_single:.2f}\nMAE = {row.median_absolute_difference_mm:.2f} mm",
-            transform=ax.transAxes, ha="left", va="top", fontsize=7)
     style_axes(ax)
-    save_publication_figure(fig, args.output_dir / "Figure4C_ico5_K15_correlation_length")
+    save_publication_figure(fig, output_dir / "Figure4C_ico5_K15_correlation_length")
     plt.close(fig)
-    report = {
-        "status": "full_cohort_complete",
-        "n_subjects": len(expected),
-        "anchor_definition": "official_fsaverage5_fixed",
-        "candidate_definition": "within_DK_region", "k": 15,
-        "pair_seed": 0, "split_seed": 20261021,
-        "split_stratification": "hemisphere_x_DK_region",
-    }
-    (args.output_dir / "figure4C_status.json").write_text(json.dumps(report, indent=2) + "\n")
 
 
 if __name__ == "__main__":

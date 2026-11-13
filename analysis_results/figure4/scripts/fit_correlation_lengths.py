@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Aggregate Figure 4 real curves and fit subject-level correlation lengths."""
+"""Aggregate Figure 4 real curves and fit subject-level correlation lengths.
+
+Description
+-----------
+Aggregate Figure 4 real curves and fit subject-level correlation lengths.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--results-root`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/fit_correlation_lengths.py --help
+"""
 
 from __future__ import annotations
 

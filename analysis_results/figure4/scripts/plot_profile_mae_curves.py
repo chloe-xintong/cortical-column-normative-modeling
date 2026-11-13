@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Plot real and FWHM=0 null profile MAE versus geodesic distance."""
+"""Plot real and FWHM=0 null profile MAE versus geodesic distance.
+
+Description
+-----------
+Plot real and FWHM=0 null profile MAE versus geodesic distance.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--real-results-root`` command-line input
+- ``--null-results-root`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/plot_profile_mae_curves.py --help
+"""
 
 from __future__ import annotations
 

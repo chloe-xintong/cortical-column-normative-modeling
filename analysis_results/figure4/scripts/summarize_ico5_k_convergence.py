@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Summarize and plot the 20-subject ico5 nested-K convergence pilot."""
+"""Summarize and plot the 20-subject ico5 nested-K convergence pilot.
+
+Description
+-----------
+Summarize and plot the 20-subject ico5 nested-K convergence pilot.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--results-root`` command-line input
+- ``--pair-output-dir`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_ico5_k_convergence.py --help
+"""
 
 from __future__ import annotations
 
@@ -515,23 +541,55 @@ def main() -> None:
         json.dumps(decision, indent=2) + "\n"
     )
 
-    colors = {
-        1: PALETTE["gray"], 3: PALETTE["blue"], 5: PALETTE["orange"],
-        10: "#009E73", 15: "#CC79A7", 20: "#56B4E9",
-        25: "#7A4EAB", 30: PALETTE["red"],
+    # K is ordered. Use one sequential blue family for the sensitivity curves
+    # and reserve orange for the formal K=15 choice. All curves are solid and
+    # unmarked so that color is the only categorical encoding requested here.
+    k_styles = {
+        1: dict(color="#C7DCE8", linestyle="-", marker=None,
+                linewidth=1.15, alpha=1.0, zorder=1),
+        3: dict(color="#AACDE1", linestyle="-", marker=None,
+                linewidth=1.15, alpha=1.0, zorder=2),
+        5: dict(color=PALETTE["light_blue"], linestyle="-", marker=None,
+                linewidth=1.2, alpha=1.0, zorder=2),
+        10: dict(color="#6F9FC9", linestyle="-", marker=None,
+                 linewidth=1.3, alpha=1.0, zorder=3),
+        15: dict(color=PALETTE["orange"], linestyle="-", marker=None,
+                 linewidth=1.9, alpha=1.0, zorder=5),
+        20: dict(color=PALETTE["blue"], linestyle="-", marker=None,
+                 linewidth=1.4, alpha=1.0, zorder=4),
+        25: dict(color="#2F5D91", linestyle="-", marker=None,
+                 linewidth=1.6, alpha=1.0, zorder=4),
+        30: dict(color="#1F456D", linestyle="-", marker=None,
+                 linewidth=1.6, alpha=1.0, zorder=4),
     }
+    colors = {k: style["color"] for k, style in k_styles.items()}
     curve_average = group.loc[group["metric"].eq("profile_dissimilarity")].groupby(
         ["k", "distance_bin_index"], as_index=False
     ).agg(value=("group_median", "median"), q25=("group_q25", "median"), q75=("group_q75", "median"))
-    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 3.35), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 3.55), constrained_layout=True)
     for k in K_VALUES:
         part = curve_average.loc[curve_average["k"].eq(k)].sort_values("distance_bin_index")
         current_x = part["distance_bin_index"].to_numpy() * 2 + 1
-        ax.plot(current_x, part["value"], color=colors[k], label=f"K={k}")
-        if k == REFERENCE_K:
-            ax.fill_between(current_x, part["q25"], part["q75"], color=colors[k], alpha=.18, linewidth=0)
-    ax.set(xlabel="White-surface geodesic distance (mm)", ylabel="Profile dissimilarity (1 − r)")
-    ax.legend(frameon=False, ncol=4)
+        style = k_styles[k]
+        ax.plot(
+            current_x, part["value"], label=f"K={k}",
+            color=style["color"], linestyle=style["linestyle"],
+            marker=style["marker"],
+            linewidth=style["linewidth"], alpha=style["alpha"],
+            zorder=style["zorder"],
+        )
+    # Do not overlay a subject-IQR band here.  Its width reflects between-subject
+    # heterogeneity, not uncertainty in K convergence, and it obscures all of
+    # the central curves.  Seed-wise differences remain quantified in Figure K2.
+    ax.set(
+        xlabel="White-surface geodesic distance (mm)",
+        ylabel="Profile dissimilarity (1 − r)",
+        xlim=(0, 30), xticks=np.arange(0, 31, 5),
+    )
+    ax.legend(
+        frameon=False, ncol=4, loc="lower center",
+        bbox_to_anchor=(.5, 1.01), columnspacing=.9,
+    )
     style_axes(ax)
     save_publication_figure(fig, args.output_dir / "FigureK1_curves")
     plt.close(fig)
@@ -573,7 +631,7 @@ def main() -> None:
     order = matrix.mean(axis=1).sort_values(ascending=False).index
     matrix = matrix.loc[order]
     fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 6.2), constrained_layout=True)
-    sns.heatmap(matrix, ax=ax, cmap="viridis", vmin=0, vmax=1,
+    sns.heatmap(matrix, ax=ax, cmap="project_blue", vmin=0, vmax=1,
                 cbar_kws={"label": "Anchor fraction with ≥3 candidates"})
     ax.set(xlabel="White-surface geodesic distance bin (mm)", ylabel="Bilateral DK region")
     ax.set_xticklabels([f"{2*i}–{2*i+2}" for i in matrix.columns], rotation=45, ha="right")

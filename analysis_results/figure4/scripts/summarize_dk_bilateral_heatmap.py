@@ -1,11 +1,36 @@
 #!/usr/bin/env python3
 """Build the bilateral 34-region Figure 4D heatmap and laterality audit.
 
+Description
+-----------
 The cached hemisphere x DK-region x 0.5-mm sub-bin summaries are combined
 within subject before any group statistic is calculated.  Each hemisphere is
 therefore weighted equally when both are available; a single eligible side can
 contribute when its homologue is unavailable.  Classification is based only on
 the prespecified 0--10-mm subject-level local effect.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--region-subbin-table`` command-line input
+- ``--template-root`` command-line input
+- ``--output-dir`` command-line input
+- ``--figure-dir`` command-line input
+- ``--repo-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/summarize_dk_bilateral_heatmap.py --help
 """
 
 from __future__ import annotations
@@ -82,7 +107,7 @@ def main() -> None:
     sys.path.insert(0, str(args.repo_root))
     from qc.publication_style import (  # pylint: disable=import-outside-toplevel
         FIGURE_WIDTH_IN,
-        PALETTE,
+        PALETTE, CMAP_SEQUENTIAL, CMAP_DIVERGING,
         save_publication_figure,
         set_publication_style,
     )
@@ -297,9 +322,8 @@ def main() -> None:
     values = effect_matrix.to_numpy(float)
     finite = np.abs(values[np.isfinite(values)])
     limit = float(np.quantile(finite, .98)) if finite.size else .01
-    cmap = mcolors.LinearSegmentedColormap.from_list(
-        "dk_effect", [PALETTE["blue"], "#FFFFFF", PALETTE["orange"]]
-    )
+    (args.output_dir / 'heatmap_color_caption.txt').write_text('Signed difference: delta D = D_across - D_within. Red indicates greater across-region dissimilarity; blue indicates greater within-region dissimilarity; neutral white indicates zero. Symmetric color limits use the 98th percentile of absolute finite effects across the complete displayed matrix; only colors are clipped. Missing or insufficient-coverage cells are gray. Coverage uses a separate light-to-dark blue sequential scale from 0 to 100 percent.\n')
+    cmap = CMAP_DIVERGING.copy()
     cmap.set_bad(PALETTE["masked"])
 
     fig = plt.figure(figsize=(FIGURE_WIDTH_IN, 6.3))

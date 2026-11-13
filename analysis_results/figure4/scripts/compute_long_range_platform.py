@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Evaluate the real-profile dissimilarity plateau from 20 to 100 mm."""
+"""Evaluate the real-profile dissimilarity plateau from 20 to 100 mm.
+
+Description
+-----------
+Evaluate the real-profile dissimilarity plateau from 20 to 100 mm.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-table`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/compute_long_range_platform.py --help
+"""
 
 from __future__ import annotations
 

@@ -1,11 +1,34 @@
 #!/usr/bin/env python3
 """Compute one subject's all-pair DK-region effect from fixed Figure 4A pairs.
 
+Description
+-----------
 The primary hierarchy is:
 pair -> anchor x 0.5-mm sub-bin median -> hemisphere x anchor-DK-region
 x sub-bin median -> subject median.  Within- and across-region estimates are
 matched at the region/sub-bin level but do not need to come from the same
 anchor.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-table`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/compute_dk_all_pairs_effect.py --help
 """
 
 from __future__ import annotations

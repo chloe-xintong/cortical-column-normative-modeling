@@ -1,5 +1,36 @@
 #!/usr/bin/env python3
-"""Audit and freeze provenance for the formal ico5 within-DK K=15 pairs."""
+"""Audit and freeze provenance for the formal ico5 within-DK K=15 pairs.
+
+Description
+-----------
+Audit and freeze provenance for the formal ico5 within-DK K=15 pairs.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--pair-file`` command-line input
+- ``--mapping-file`` command-line input
+- ``--candidate-counts`` command-line input
+- ``--fsaverage-dir`` command-line input
+- ``--real-results-root`` command-line input
+- ``--null-results-root`` command-line input
+- ``--manifest`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/audit_ico5_formal_k15_pairs.py --help
+"""
 
 from __future__ import annotations
 

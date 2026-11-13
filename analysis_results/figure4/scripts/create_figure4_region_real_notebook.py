@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
-"""Create an unexecuted notebook for real-only regional Figure 4 analyses."""
+"""Create an unexecuted notebook for real-only regional Figure 4 analyses.
+
+Description
+-----------
+Create an unexecuted notebook for real-only regional Figure 4 analyses.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- No required command-line inputs; optional inputs are defined by the script.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/create_figure4_region_real_notebook.py --help
+"""
 
 from __future__ import annotations
 
@@ -195,7 +218,7 @@ matrix = matrix.where(coverage_matrix)
 reliable_values = matrix.to_numpy(float)
 vmax = float(np.nanquantile(reliable_values, 0.95))
 
-cmap = plt.get_cmap('viridis').copy()
+cmap = plt.get_cmap('project_blue').copy()
 cmap.set_bad(PALETTE['masked'])
 fig, ax = plt.subplots(figsize=(FIGURE_WIDTH_IN, 6.8))
 image = ax.imshow(
@@ -220,8 +243,8 @@ The left heatmap shows the median subject-level $K_{effective}$ after profile va
 """),
         code("coverage", r"""
 coverage_specs = [
-    ('median_k_effective', r'Median $K_{effective}$', 'viridis', 0, 15),
-    ('full_k15_coverage_median', 'Full-K=15 anchor coverage', 'cividis', 0, 1),
+    ('median_k_effective', r'Median $K_{effective}$', 'project_blue', 0, 15),
+    ('full_k15_coverage_median', 'Full-K=15 anchor coverage', 'project_blue', 0, 1),
 ]
 fig, axes = plt.subplots(1, 2, figsize=(FIGURE_WIDTH_IN, 6.8), sharey=True)
 for index, (metric, label, cmap_name, vmin, vmax_metric) in enumerate(coverage_specs):
@@ -341,14 +364,14 @@ for row, hemisphere in enumerate(('lh', 'rh')):
         plotting.plot_surf_stat_map(
             surface.load_surf_mesh(TEMPLATE_ROOT / 'surf' / f'{hemisphere}.inflated'),
             surface_values[hemisphere], hemi='left' if hemisphere == 'lh' else 'right',
-            view=view, cmap='viridis', vmin=vmin, vmax=vmax, colorbar=False,
+            view=view, cmap='project_blue', vmin=vmin, vmax=vmax, colorbar=False,
             bg_map=surface.load_surf_data(TEMPLATE_ROOT / 'surf' / f'{hemisphere}.sulc'),
             axes=ax,
         )
         ax.set_axis_off()
 normalizer = mpl.colors.Normalize(vmin=vmin, vmax=vmax)
 colorbar = fig.colorbar(
-    mpl.cm.ScalarMappable(norm=normalizer, cmap='viridis'), ax=fig.axes,
+    mpl.cm.ScalarMappable(norm=normalizer, cmap='project_blue'), ax=fig.axes,
     orientation='vertical', fraction=0.025, pad=0.015,
 )
 colorbar.set_label('Correlation length λ (mm)')

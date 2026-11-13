@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
-"""Create the cached-results notebook for the frozen formal Figure 4A-D analysis."""
+"""Create the cached-results notebook for the frozen formal Figure 4A-D analysis.
+
+Description
+-----------
+Create the cached-results notebook for the frozen formal Figure 4A-D analysis.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- No required command-line inputs; optional inputs are defined by the script.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/create_figure4_formal_notebook.py --help
+"""
 
 from __future__ import annotations
 

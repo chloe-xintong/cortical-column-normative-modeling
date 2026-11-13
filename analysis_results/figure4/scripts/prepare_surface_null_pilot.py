@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Select deterministic registration-cost quantiles for a Figure 4 null pilot."""
+"""Select deterministic registration-cost quantiles for a Figure 4 null pilot.
+
+Description
+-----------
+Select deterministic registration-cost quantiles for a Figure 4 null pilot.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--registration-table`` command-line input
+- ``--number`` command-line input
+- ``--output`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/prepare_surface_null_pilot.py --help
+"""
 
 from __future__ import annotations
 

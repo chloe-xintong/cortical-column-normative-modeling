@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Record immutable identifiers for the Figure 4 real/pair inputs used by nulls."""
+"""Record immutable identifiers for the Figure 4 real/pair inputs used by nulls.
+
+Description
+-----------
+Record immutable identifiers for the Figure 4 real/pair inputs used by nulls.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--manifest`` command-line input
+- ``--pair-dir`` command-line input
+- ``--real-cohort-dir`` command-line input
+- ``--output`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/freeze_figure4_state.py --help
+"""
 
 from __future__ import annotations
 

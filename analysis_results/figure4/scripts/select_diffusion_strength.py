@@ -1,5 +1,29 @@
 #!/usr/bin/env python3
-"""Select Figure 4B mesh-diffusion strength using outcome-blind ACF error."""
+"""Select Figure 4B mesh-diffusion strength using outcome-blind ACF error.
+
+Description
+-----------
+Select Figure 4B mesh-diffusion strength using outcome-blind ACF error.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--candidate`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure4/scripts/select_diffusion_strength.py --help
+"""
 
 from __future__ import annotations
 
