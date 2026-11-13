@@ -48,7 +48,7 @@ def main() -> None:
     repo_root = Path(__file__).resolve().parents[3]
     spacing = pd.read_csv(
         repo_root
-        / "analysis_results/figure5/outputs/spatial_resolution/ico_nearest_neighbor_summary.csv"
+        / "/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure5/outputs/spatial_resolution/ico_nearest_neighbor_summary.csv"
     )
     spacing = spacing.loc[
         spacing.hemisphere.eq("bilateral_pooled")

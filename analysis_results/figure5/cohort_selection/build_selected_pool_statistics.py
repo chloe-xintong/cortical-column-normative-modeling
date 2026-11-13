@@ -67,7 +67,7 @@ def main() -> None:
 
     cohort = pd.read_csv(selection_dir / "outputs" / "cohort_manifest.csv", dtype={"subject_id": str})
     visit = pd.read_csv(
-        repo / "analysis_results/cohort_audit/outputs/date_match_visit_audit_325.csv",
+        repo / "/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/cohort_audit/outputs/date_match_visit_audit_325.csv",
         dtype={"subject_id": str},
     )
     active = pd.read_csv(

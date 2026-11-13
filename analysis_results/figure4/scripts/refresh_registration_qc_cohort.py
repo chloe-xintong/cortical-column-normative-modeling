@@ -44,7 +44,7 @@ def run(name,*args):
 def parse_args():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--manifest',type=Path,default=REPO/'manifests/figure4_coverage95_pass_313_subjects.csv')
- parser.add_argument('--output-dir',type=Path,default=REPO/'analysis_results/figure4/outputs/coverage95_pass_313')
+ parser.add_argument('--output-dir',type=Path,default=REPO/'/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure4/outputs/coverage95_pass_313')
  parser.add_argument('--source-results',type=Path,default=SOURCE)
  parser.add_argument('--source-cohort',type=Path,default=REPO/'manifests/figure4_registration_qc_pass_320_subjects.csv')
  return parser.parse_args()

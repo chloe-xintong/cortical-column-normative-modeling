@@ -1,6 +1,39 @@
 # Results layout
 
-The external results root is:
+## Generated analysis results
+
+The new results directory is a sibling of `code/`:
+
+`/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/`
+
+Generated artifacts formerly stored inside this repository now mirror their
+relative source layout beneath that directory, for example:
+
+```text
+result/cortical_trajectory_analysis/
+├── analysis_results/
+│   ├── figure4/outputs/
+│   ├── figure5/outputs/
+│   ├── figure6/
+│   └── figure7/
+└── visualization/outputs/
+```
+
+Scripts, notebooks, configuration, and documentation remain in the repository.
+Moved result locations have local compatibility symlinks excluded by
+`.gitignore`. Explicit source paths are updated where identifiable; computed
+legacy paths still resolve through these links. Keep the links when running
+historical notebooks. These links are local conveniences, not portable Git
+artifacts. On another checkout, supply the external output path using each
+script's existing CLI or recreate the links for historical notebooks.
+
+Migration mapping: `result/cortical_trajectory_analysis/migration_manifest.json`.
+No generated data were deleted. Existing result metadata retain their original
+provenance paths, which continue to resolve through compatibility links.
+
+## Existing production imaging and legacy results
+
+The previously established external results root remains:
 
 `/mnt/newStor/paros/paros_WORK/xintong/results`
 

@@ -26,7 +26,7 @@ from pathlib import Path
 import json,base64,shutil
 import pandas as pd
 REPO=Path(__file__).resolve().parents[3]
-ROOT=REPO/'analysis_results/figure4/outputs/coverage95_pass_313'
+ROOT=REPO/'/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure4/outputs/coverage95_pass_313'
 MANIFEST=REPO/'manifests/figure4_coverage95_pass_313_subjects.csv'
 N=len(pd.read_csv(MANIFEST,dtype={'subject_id':str}))
 NOTEBOOK=REPO/'analysis_results/figure4/notebooks/figure4_formal_ico5_k15.ipynb'

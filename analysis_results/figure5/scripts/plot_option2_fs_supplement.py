@@ -38,7 +38,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[3]
 COMPARISON = Path('/mnt/newStor/paros/paros_WORK/xintong/results/figure5_age_prediction/outputs/option2_fs_baselines/comparison')
-OUTPUT = REPO / 'analysis_results/figure5/outputs/figures/supplement'
+OUTPUT = REPO / '/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure5/outputs/figures/supplement'
 MODELS = ['o2fs_ico4_md', 'ico4_md', 'o2fs_ico4_md_length', 'ico4_md_length']
 LABELS = ['Option 2-FS\nMD', 'Option 3\nMD', 'Option 2-FS\nMD +\nlength', 'Option 3\nMD +\nlength']
 COLORS = [MODEL_COLORS[model] for model in MODELS]

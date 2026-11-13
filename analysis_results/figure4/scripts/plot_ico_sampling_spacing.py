@@ -65,13 +65,13 @@ def parse_args() -> argparse.Namespace:
         "--summary-csv",
         type=Path,
         default=REPO_ROOT
-        / "analysis_results/figure5/outputs/spatial_resolution/ico_nearest_neighbor_summary.csv",
+        / "/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure5/outputs/spatial_resolution/ico_nearest_neighbor_summary.csv",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
         default=REPO_ROOT
-        / "analysis_results/figure4/outputs/coverage95_pass_313/real/cohort",
+        / "/mnt/newStor/paros/paros_WORK/xintong/result/cortical_trajectory_analysis/analysis_results/figure4/outputs/coverage95_pass_313/real/cohort",
     )
     return parser.parse_args()
 
