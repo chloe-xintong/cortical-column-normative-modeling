@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
-"""Collapse each ico4 column's 21-depth MD profile to one mean-MD feature."""
+"""Collapse each ico4 column's 21-depth MD profile to one mean-MD feature.
+
+Description
+-----------
+Collapse each ico4 column's 21-depth MD profile to one mean-MD feature.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--feature-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/build_ico4_column_mean_md.py --help
+"""
 
 from __future__ import annotations
 

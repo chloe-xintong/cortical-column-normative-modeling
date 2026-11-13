@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
-"""Build descriptive statistics for the user-selected all-diagnosis pools."""
+"""Build descriptive statistics for the user-selected all-diagnosis pools.
+
+Description
+-----------
+Build descriptive statistics for the user-selected all-diagnosis pools.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- No required command-line inputs; optional inputs are defined by the script.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/cohort_selection/build_selected_pool_statistics.py --help
+"""
 
 from __future__ import annotations
 

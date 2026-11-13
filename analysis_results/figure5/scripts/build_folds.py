@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Create deterministic shared age-stratified nested 5x5 CV folds."""
+"""Create deterministic shared age-stratified nested 5x5 CV folds.
+
+Description
+-----------
+Create deterministic shared age-stratified nested 5x5 CV folds.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--subject-order`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/build_folds.py --help
+"""
 
 from __future__ import annotations
 

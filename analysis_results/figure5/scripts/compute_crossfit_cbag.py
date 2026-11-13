@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Compute leakage-resistant foldwise cBAG using cross-fitted outer-training predictions."""
+"""Compute leakage-resistant foldwise cBAG using cross-fitted outer-training predictions.
+
+Description
+-----------
+Compute leakage-resistant foldwise cBAG using cross-fitted outer-training predictions.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--representation`` command-line input
+- ``--feature-dir`` command-line input
+- ``--fold-dir`` command-line input
+- ``--model-root`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/compute_crossfit_cbag.py --help
+"""
 
 from __future__ import annotations
 

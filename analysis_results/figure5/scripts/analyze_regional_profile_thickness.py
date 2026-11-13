@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Compare regional MD profile alone with profile plus regional thickness."""
+"""Compare regional MD profile alone with profile plus regional thickness.
+
+Description
+-----------
+Compare regional MD profile alone with profile plus regional thickness.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--model-root`` command-line input
+- ``--cbag-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/analyze_regional_profile_thickness.py --help
+"""
 
 from __future__ import annotations
 

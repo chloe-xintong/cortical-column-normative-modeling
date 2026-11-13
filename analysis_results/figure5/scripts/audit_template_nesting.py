@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Audit ico3/4/5 nesting in full fsaverage and write fixed node tables."""
+"""Audit ico3/4/5 nesting in full fsaverage and write fixed node tables.
+
+Description
+-----------
+Audit ico3/4/5 nesting in full fsaverage and write fixed node tables.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--freesurfer-subjects-dir`` command-line input
+- ``--profile-root`` command-line input
+- ``--reference-subject`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/audit_template_nesting.py --help
+"""
 
 from __future__ import annotations
 

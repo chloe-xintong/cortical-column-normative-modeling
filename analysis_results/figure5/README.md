@@ -4,8 +4,20 @@ This directory contains a standalone, reproducible pipeline for building fixed
 regional/ico3/ico4/ico5 features from cleaned full-fsaverage Option 3 profiles
 and evaluating them with shared nested cross-validation folds.
 
-No MD volume is resampled. Missing profile positions remain `NaN` until the
+The additional `fsaverage_full_md` model uses all 299,879 retained bilateral
+fsaverage vertices at 21 depths (6,297,459 features) with the same subject
+order, nested folds, fold-local imputation and scaling, alpha grid, and LSQR
+Ridge implementation as the ico-resolution models.
+
+For the Option 3 models, no MD volume is resampled. Missing profile positions remain `NaN` until the
 fold-local scikit-learn imputer is fitted.
+
+The [Option 2-FS ico4 baselines](OPTION2_FS_BASELINES.md) reuse the same CN
+cohort, vertices, nested folds, and LSQR Ridge implementation to compare
+21-depth MD profiles with and without native Euclidean column length.
+Their supplementary figure and full metric tables are in
+`notebooks/supplement.ipynb`, with PNG/PDF/SVG exports under
+`outputs/figures/supplement/Figure5S_Option2FS_ico4_baselines.*`.
 
 The cohort source is the fixed CN manifest produced under
 `analysis_results/figure5/cohort_selection/outputs/figure5_primary_metadata_cn.csv`.
@@ -44,21 +56,27 @@ cognition analyses.
 
 ## Formal Figure 5 panels
 
-Run `notebooks/plot_figure5.ipynb` to calculate four metrics from the 196 merged
-OOF predictions. Figure 5A is the complete 11-representation MAE overview,
+Run `notebooks/plot_figure5.ipynb` to calculate performance metrics from the 196
+merged OOF predictions. Figure 5A is the complete 14-representation MAE overview,
 ordered from lowest to highest MAE. Figure 5B shows the experimental spatial
-sequence (regional 21-depth profile, ico3, ico4, ico5), and Figure 5C shows the
-ico4 column-mean, full-depth, and geometry-feature sequence. Each panel is
-exported independently at publication scale.
+sequence (regional, ico3, ico4, ico5, and full-resolution 21-depth profiles).
+Figure 5C compares ico4 depth-averaged MD with 6-, 11-, and 21-depth profiles,
+and Figure 5D compares the ico4 profile with length and curvature extensions.
+Panels B–D are exported as three separate figures with the same vertical MAE
+axis range and full model names on their horizontal axes. The overview uses one
+dark-blue color, whereas the grouped panels use condition-specific colors and
+red to highlight the ico4 21-depth baseline.
+Supplementary Figure S5 compares the regional 21-depth profile with regional
+depth-averaged MD. All colors, publication styling, plot helpers, panel drawing,
+and export code are defined directly in this notebook so visual adjustments do
+not require editing a separate Python file.
 
-The spatial-resolution family contains three paired-MAE comparisons, and the
-ico4-ablation family contains four. Benjamini–Hochberg FDR correction is applied
-separately within these two families. Because the families were organized after
-inspection of the results, they are described as exploratory/secondary rather
-than prespecified. Panels B and C show selected q values; the complete 3+4 table
-is exported as `Figure5_exploratory_FDR_statistics.csv`. Pearson r, RMSE, and R²
-are exported as complete 11-model Supplementary Figure S5 panels. R² is
-calculated with `sklearn.metrics.r2_score`, not as Pearson r squared.
+The spatial-resolution and ico4-ablation families each contain four paired-MAE
+comparisons. Benjamini–Hochberg correction is applied separately within these
+two exploratory/secondary families. The complete table is exported as
+`Figure5_exploratory_FDR_statistics.csv`, with the selected comparisons also
+written to `Figure5_selected_paired_MAE_statistics.csv`; dense significance
+brackets are not drawn on the panels.
 
 ### ico4 column-mean MD comparator
 

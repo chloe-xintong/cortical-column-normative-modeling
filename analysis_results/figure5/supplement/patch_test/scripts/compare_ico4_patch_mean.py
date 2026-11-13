@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Run the pre-specified paired ico4 versus ico4 patch-mean comparison."""
+"""Run the pre-specified paired ico4 versus ico4 patch-mean comparison.
+
+Description
+-----------
+Run the pre-specified paired ico4 versus ico4 patch-mean comparison.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--baseline-model-root`` command-line input
+- ``--patch-model-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/supplement/patch_test/scripts/compare_ico4_patch_mean.py --help
+"""
 
 from __future__ import annotations
 

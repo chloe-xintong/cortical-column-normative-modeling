@@ -2,10 +2,34 @@
 
 """Build the fixed Figure 5 metadata-eligible ADRC cohort.
 
+Description
+-----------
 This stage identifies the clinical visit selected by the QIAL imaging match,
 defines age/diagnosis at that matched visit, and intersects the result with the
 325-subject Option 3 QC manifest.  It does not yet apply representation
 availability, coverage, registration, or surface-reconstruction exclusions.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--metadata`` command-line input
+- ``--option3-manifest`` command-line input
+- ``--output-dir`` command-line input
+- ``--registration-qc-exclusions`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/cohort_selection/build_figure5_metadata_cohort.py --help
 """
 
 from __future__ import annotations

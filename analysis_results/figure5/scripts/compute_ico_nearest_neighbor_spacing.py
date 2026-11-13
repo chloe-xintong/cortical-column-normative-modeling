@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Measure masked ico3/4/5 nearest-neighbor spacing on fsaverage white."""
+"""Measure masked ico3/4/5 nearest-neighbor spacing on fsaverage white.
+
+Description
+-----------
+Measure masked ico3/4/5 nearest-neighbor spacing on fsaverage white.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--vertex-order-dir`` command-line input
+- ``--subjects-dir`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/compute_ico_nearest_neighbor_spacing.py --help
+"""
 
 from __future__ import annotations
 
@@ -237,7 +263,7 @@ def validate_against_figure4_cache(
 
 
 def plot_distributions(details: pd.DataFrame, output_path: Path) -> None:
-    colors = {"lh": "#3B82A0", "rh": "#D9822B"}
+    colors = {"lh": "#4B74B2", "rh": "#FC8C5A"}
     fig, axes = plt.subplots(1, 3, figsize=(10.5, 3.6), sharey=True)
     for axis, level in zip(axes, LEVELS):
         level_table = details.loc[details["ico_level"].eq(level)]

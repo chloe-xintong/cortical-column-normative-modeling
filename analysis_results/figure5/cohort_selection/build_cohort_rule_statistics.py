@@ -1,10 +1,36 @@
 #!/usr/bin/env python3
 """Compare Figure 5 cohort composition under explicit visit-match rules.
 
+Description
+-----------
 The current 196-subject primary cohort is not changed.  Every Figure 5 rule
 below requires the existing manual registration QC pass, complete Option 3
 profiles, strict matched-visit CN status, and at least 95% bilateral profile
 coverage.  Only the visit-match rule varies.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--cohort-manifest`` command-line input
+- ``--visit-audit`` command-line input
+- ``--figure4-active-manifest`` command-line input
+- ``--profile-root`` command-line input
+- ``--current-final-subjects`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/cohort_selection/build_cohort_rule_statistics.py --help
 """
 
 from __future__ import annotations

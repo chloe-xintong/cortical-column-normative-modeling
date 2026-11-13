@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Compute exploratory spatial-resolution and ico4-ablation MAE families."""
+"""Compute exploratory spatial-resolution and ico4-ablation MAE families.
+
+Description
+-----------
+Compute exploratory spatial-resolution and ico4-ablation MAE families.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--model-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/compute_figure5_paired_mae.py --help
+"""
 
 from __future__ import annotations
 
@@ -32,6 +57,13 @@ COMPARISONS = [
         "representation_a": "ico4_md",
         "representation_b": "ico5_md",
         "comparison": "ico4 − ico5",
+    },
+    {
+        "family": "spatial_resolution",
+        "family_label": "Exploratory spatial-resolution comparisons",
+        "representation_a": "ico5_md",
+        "representation_b": "fsaverage_full_md",
+        "comparison": "ico5 − full fsaverage",
     },
     {
         "family": "ico4_ablation",
@@ -158,7 +190,7 @@ def main() -> None:
         "bootstrap_indices_shared_across_all_comparisons": True,
         "fdr_method": "Benjamini-Hochberg",
         "fdr_families": {
-            "spatial_resolution": 3,
+            "spatial_resolution": 4,
             "ico4_ablation": 4,
         },
         "note": (

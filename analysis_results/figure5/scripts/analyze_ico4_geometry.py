@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-"""Summarize ico4 geometry increments with paired bootstrap and FDR."""
+"""Summarize ico4 geometry increments with paired bootstrap and FDR.
+
+Description
+-----------
+Summarize ico4 geometry increments with paired bootstrap and FDR.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--model-root`` command-line input
+- ``--cbag-root`` command-line input
+- ``--output-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/analyze_ico4_geometry.py --help
+"""
 
 from __future__ import annotations
 

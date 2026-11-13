@@ -1,5 +1,29 @@
 #!/usr/bin/env python3
-"""Combine leakage-resistant cross-fitted cBAG outputs across representations."""
+"""Combine leakage-resistant cross-fitted cBAG outputs across representations.
+
+Description
+-----------
+Combine leakage-resistant cross-fitted cBAG outputs across representations.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--cbag-root`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/summarize_crossfit_cbag.py --help
+"""
 
 from __future__ import annotations
 

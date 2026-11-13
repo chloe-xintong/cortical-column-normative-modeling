@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-"""Validate ico4 geometry matrices and fixed feature ordering."""
+"""Validate ico4 geometry matrices and fixed feature ordering.
+
+Description
+-----------
+Validate ico4 geometry matrices and fixed feature ordering.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--feature-dir`` command-line input
+- ``--vertex-order`` command-line input
+- ``--output-dir`` command-line input
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/qc_ico4_geometry.py --help
+"""
 
 from __future__ import annotations
 

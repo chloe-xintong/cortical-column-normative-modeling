@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""Run one age-prediction representation with shared nested CV folds."""
+"""Run one age-prediction representation with shared nested CV folds.
+
+Description
+-----------
+Run one age-prediction representation with shared nested CV folds.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--representation`` command-line input
+- ``--feature-dir`` command-line input
+- ``--fold-dir`` command-line input
+- ``--output-root`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/scripts/run_ridge.py --help
+"""
 
 from __future__ import annotations
 
@@ -29,24 +56,34 @@ BASE_FILES = {
     "regional_profile": "X_regional_profile.npy",
     "ico3_md": "X_ico3_md.npy",
     "ico4_md": "X_ico4_md.npy",
+    "ico4_md_depth6": "X_ico4_md_depth6.npy",
+    "ico4_md_depth11": "X_ico4_md_depth11.npy",
     "ico4_column_mean_md": "X_ico4_column_mean_md.npy",
     "ico4_patch_mean_md": "X_ico4_patch_mean_md.npy",
     "ico5_md": "X_ico5_md.npy",
+    "fsaverage_full_md": "X_fsaverage_full_md.npy",
     "ico3_column_length": "X_ico3_column_length.npy",
     "ico3_curvature": "X_ico3_curvature.npy",
     "ico4_column_length": "X_ico4_column_length.npy",
     "ico4_curvature": "X_ico4_curvature.npy",
+    "o2fs_ico4_md": "X_o2fs_ico4_md.npy",
+    "o2fs_ico4_column_length": "X_o2fs_ico4_column_length.npy",
 }
 REPRESENTATIONS = {
+    "o2fs_ico4_md": ["o2fs_ico4_md"],
+    "o2fs_ico4_md_length": ["o2fs_ico4_md", "o2fs_ico4_column_length"],
     "regional_mean_md": ["regional_mean_md"],
     "regional_thickness": ["regional_thickness"],
     "regional_profile": ["regional_profile"],
     "regional_profile_thickness": ["regional_profile", "regional_thickness"],
     "ico3_md": ["ico3_md"],
     "ico4_md": ["ico4_md"],
+    "ico4_md_depth6": ["ico4_md_depth6"],
+    "ico4_md_depth11": ["ico4_md_depth11"],
     "ico4_column_mean_md": ["ico4_column_mean_md"],
     "ico4_patch_mean_md": ["ico4_patch_mean_md"],
     "ico5_md": ["ico5_md"],
+    "fsaverage_full_md": ["fsaverage_full_md"],
     "ico3_md_length": ["ico3_md", "ico3_column_length"],
     "ico3_md_curvature": ["ico3_md", "ico3_curvature"],
     "ico3_md_length_curvature": ["ico3_md", "ico3_column_length", "ico3_curvature"],
@@ -63,6 +100,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fold-dir", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--max-outer-folds", type=int)
+    parser.add_argument(
+        "--outer-fold-indices",
+        help="Comma-separated outer-fold indices; intended for parallel shards",
+    )
     parser.add_argument("--alpha-count", type=int, default=21)
     parser.add_argument("--solver", choices=("auto", "lsqr"), default="auto")
     return parser.parse_args()
@@ -154,8 +195,22 @@ def main() -> None:
         (args.fold_dir / "inner_folds_by_outer_fold.json").read_text(encoding="utf-8")
     )
     folds = outer_payload["folds"]
+    if args.max_outer_folds is not None and args.outer_fold_indices is not None:
+        raise ValueError("Use only one of --max-outer-folds and --outer-fold-indices")
     if args.max_outer_folds is not None:
         folds = folds[: args.max_outer_folds]
+    if args.outer_fold_indices is not None:
+        requested = {
+            int(value) for value in args.outer_fold_indices.split(",") if value.strip()
+        }
+        if not requested:
+            raise ValueError("--outer-fold-indices did not contain any fold indices")
+        folds = [fold for fold in folds if int(fold["outer_fold"]) in requested]
+        observed = {int(fold["outer_fold"]) for fold in folds}
+        if observed != requested:
+            raise ValueError(
+                f"Requested outer folds {sorted(requested)}, found {sorted(observed)}"
+            )
     alphas = np.logspace(-4, 6, args.alpha_count)
     oof = np.full(len(y), np.nan, dtype=float)
     prediction_fold = np.full(len(y), -1, dtype=int)

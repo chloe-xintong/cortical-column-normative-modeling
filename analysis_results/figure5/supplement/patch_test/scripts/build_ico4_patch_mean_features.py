@@ -1,5 +1,33 @@
 #!/usr/bin/env python3
-"""Build template-fixed ico4 geodesic Voronoi patch-mean MD features."""
+"""Build template-fixed ico4 geodesic Voronoi patch-mean MD features.
+
+Description
+-----------
+Build template-fixed ico4 geodesic Voronoi patch-mean MD features.
+
+Methods
+-------
+1. Parse and validate the command-line inputs.
+2. Execute the processing implemented by this script.
+3. Validate and save the configured results.
+
+Inputs
+------
+- ``--base-feature-dir`` command-line input
+- ``--output-dir`` command-line input
+- ``--profile-root`` command-line input
+- ``--vertex-order-dir`` command-line input
+- ``--subjects-dir`` command-line input
+- Additional optional, conditional, or mutually exclusive inputs are listed by ``--help``.
+
+Outputs
+-------
+- Result files written to the output paths configured by the script.
+
+Usage
+-----
+python analysis_results/figure5/supplement/patch_test/scripts/build_ico4_patch_mean_features.py --help
+"""
 
 from __future__ import annotations
 
