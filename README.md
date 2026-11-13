@@ -1,4 +1,4 @@
-# Cortical Trajectory Analysis
+# Age-Conditioned Normative Modeling of Cortical Columns with Diffusion MRI
 
 This repository implements a template-driven cortical-column pipeline for
 sampling diffusion MRI across cortical depth. It covers subject inventory,
