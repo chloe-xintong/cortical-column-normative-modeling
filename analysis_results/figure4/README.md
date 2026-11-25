@@ -145,3 +145,28 @@ All four primary panels are checked against the exact retained participant set.
 Other historical region/supplement notebooks retain their original cohorts and
 must not be presented as the primary analysis. Figure 5 remains the
 same 196 CN participants, already excluding all five failed registrations.
+
+## Common-anchor composition sensitivity (313 participants)
+
+`scripts/analyze_common_anchor_sensitivity.py` audits all 18,742 template
+anchors across the 15 formal distance bins, including zero-pair anchor-bins,
+and restricts cached real-data anchor-bin metrics to the fixed template
+intersection. Subject-specific validity is retained; pairs are not resampled
+and no null is regenerated. The region-level cache is reused only before its
+region aggregation: formal bilateral anchor-weighted subject medians are
+reconstructed and checked against the original whole-cortex outputs.
+
+The formal `fit_curve` implementation, subject-specific distance coordinates
+and fit-QC rules are reused. Paired lambda differences are bootstrapped over
+subjects passing both fits (10,000 resamples). Curves and paired delta-D are
+reported as subject medians/IQR without per-bin significance tests.
+
+```bash
+python analysis_results/figure4/scripts/analyze_common_anchor_sensitivity.py
+```
+
+Results are written to `audits/common_anchor_sensitivity_313/`, separately
+from all original results. The cached-results reader is
+`notebooks/figure4_common_anchor_sensitivity.ipynb`. High overall anchor
+retention must not be taken to imply uniform retention across small DK
+regions or equivalence of the resulting curves.
