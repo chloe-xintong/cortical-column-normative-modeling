@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "n_subjects": 196,
+  "models": [
+    "column_E_local",
+    "column_plateau",
+    "column_E_local_plateau",
+    "ico4_md"
+  ],
+  "shared_subjects_and_folds": true,
+  "one_outer_heldout_prediction_per_subject": true,
+  "ridge_solver": "lsqr",
+  "alpha_grid": "logspace(-4,6,21)",
+  "preprocessing": "training-fold median imputation then standardization",
+  "globally_all_nan_E_columns": [
+    50,
+    11770
+  ],
+  "globally_all_nan_feature_policy": "retained as NaN in saved matrix; sklearn SimpleImputer skips them in every fold",
+  "bootstrap": "paired subjects on fixed OOF absolute errors; no refitting; shared resample indices across comparisons",
+  "disease_analysis": false
+}

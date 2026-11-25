@@ -51,6 +51,11 @@ from sklearn.preprocessing import StandardScaler
 
 
 BASE_FILES = {
+    "column_E_local": "X_column_E_local.npy",
+    "column_plateau": "X_column_plateau.npy",
+    "column_r_real": "X_column_r_real.npy",
+    "global_mean_md": "X_global_mean_md.npy",
+    "ico4_depth_mean_md": "X_ico4_depth_mean_md.npy",
     "regional_mean_md": "X_regional_mean_md.npy",
     "regional_thickness": "X_regional_thickness.npy",
     "regional_profile": "X_regional_profile.npy",
@@ -70,6 +75,17 @@ BASE_FILES = {
     "o2fs_ico4_column_length": "X_o2fs_ico4_column_length.npy",
 }
 REPRESENTATIONS = {
+    "column_E_local": ["column_E_local"],
+    "column_plateau": ["column_plateau"],
+    "column_E_local_plateau": ["column_E_local", "column_plateau"],
+    "column_r_real": ["column_r_real"],
+    "global_mean_md": ["global_mean_md"],
+    "ico4_depth_mean_md": ["ico4_depth_mean_md"],
+    "ico4_md_E_local": ["ico4_md", "column_E_local"],
+    "ico4_md_r_real": ["ico4_md", "column_r_real"],
+    "ico4_md_plateau": ["ico4_md", "column_plateau"],
+    "ico3_md_r_real": ["ico3_md", "column_r_real"],
+    "column_r_real_E_local": ["column_r_real", "column_E_local"],
     "o2fs_ico4_md": ["o2fs_ico4_md"],
     "o2fs_ico4_md_length": ["o2fs_ico4_md", "o2fs_ico4_column_length"],
     "regional_mean_md": ["regional_mean_md"],
